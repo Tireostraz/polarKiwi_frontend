@@ -1,12 +1,7 @@
-<script>
-
-</script>
-
 <template>
-    <AppHeader />
+  <AppHeader />
+  <Container>
+    <AppCarousel />
     <slot />
+  </Container>
 </template>
-
-<style>
-
-</style>

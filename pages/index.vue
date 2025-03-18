@@ -1,14 +1,5 @@
-<script></script>
-
 <template>
-    <div>
-        <h1 class="text-3xl font-bold underline">
-            Hello world!
-        </h1>
-        <h2>Index page</h2>
-    </div>
+  <Container>
+    <h1>Index page</h1>
+  </Container>
 </template>
-
-<style>
-
-</style>
