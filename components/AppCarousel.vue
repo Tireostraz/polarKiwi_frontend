@@ -3,10 +3,10 @@
     <Carousel control indicators>
       <CarouselInner>
         <CarouselItem>
-          <CarouselItemImage class="carousel-image" src="carousel_1.jpg" />
+          <CarouselItemImage class="carousel-image" src="kiwi.webp" />
         </CarouselItem>
         <CarouselItem>
-          <CarouselItemImage class="carousel-image" src="carousel_1.jpg" />
+          <CarouselItemImage class="carousel-image" src="kiwi.webp" />
         </CarouselItem>
         <CarouselItem>
           <CarouselItemImage class="carousel-image" src="carousel_1.jpg" />

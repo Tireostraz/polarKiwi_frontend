@@ -11,40 +11,43 @@
             display="inline-block"
           />
         </NavbarBrand>
-        <NavbarToggler />
-        <NavbarCollapse>
-          <NavbarNavList margin="e-auto b-2 b-lg-0">
-            <NavItem>
-              <NavLink active aria-current="page">
-                <b-img
-                  src="polarKiwiText.svg"
-                  width="100"
-                  height="30"
-                  vertical-align="text-top"
-                  display="inline-block"
-                />
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink>Link</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink disabled aria-current="page"> Disabled </NavLink>
-            </NavItem>
-          </NavbarNavList>
-        </NavbarCollapse>
-        <NavbarNavList>
+        <NavbarNavList margin="x-auto b-lg-0">
           <NavItem>
-            Войти
-            <b-img
-              src="Login.svg"
-              width="20"
-              height="20"
-              vertical-align="text-top"
-              display="inline-block"
-            />
+            <NavLink active aria-current="page">
+              <b-img
+                src="polarKiwiText.svg"
+                width="100"
+                height="30"
+                vertical-align="text-top"
+                display="inline-block"
+              />
+            </NavLink>
           </NavItem>
         </NavbarNavList>
+        <div>
+          <NavbarNavList>
+            <NavItem>
+              Войти
+              <b-img
+                src="Login.svg"
+                width="20"
+                height="20"
+                vertical-align="text-top"
+                display="inline-block"
+              />
+            </NavItem>
+            <NavItem>
+              Корзина
+              <b-img
+                src="Login.svg"
+                width="20"
+                height="20"
+                vertical-align="text-top"
+                display="inline-block"
+              />
+            </NavItem>
+          </NavbarNavList>
+        </div>
       </Container>
     </Navbar>
   </Container>
