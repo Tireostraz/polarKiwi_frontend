@@ -5,8 +5,4 @@
   </NuxtLayout>
 </template>
 
-<style>
-body {
-  background: #929191;
-}
-</style>
+<style></style>
