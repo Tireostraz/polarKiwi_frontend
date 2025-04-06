@@ -1,112 +1,136 @@
 <script setup lang="ts">
-const images = ref([
-  "/carousel/kiwi.webp",
-  "/carousel/annie.webp",
-  "/carousel/kiwi.webp",
-]);
-const currentIndex = ref(0);
-let transitionName = ref("slide-next");
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { ref } from "vue";
+import "swiper/css";
 
-function slideNext() {
-  transitionName.value = "slide-next";
-  if (currentIndex.value + 1 === images.value.length) {
-    currentIndex.value = 0;
-  } else {
-    currentIndex.value++;
+const images: string[] = [
+  "/slider/kiwi.webp",
+  "/slider/annie.webp",
+  "/slider/kiwi.webp",
+];
+const swiperInstance = ref<any>(null);
+const activeIndex = ref(0); // Добавляем реактивный индекс
+
+const onSwiperInit = (swiper: any) => {
+  swiperInstance.value = swiper;
+
+  swiper.on("slideChange", () => {
+    // Обновляем активный индекс при любом изменении слайда
+    activeIndex.value = swiper.realIndex; // Используем realIndex для работы с loop
+
+    const nextIndex = (swiper.realIndex + 1) % images.length;
+    const prevIndex = (swiper.realIndex - 1 + images.length) % images.length;
+    new Image().src = images[nextIndex];
+    new Image().src = images[prevIndex];
+  });
+};
+
+const goToSlide = (index: number) => {
+  if (swiperInstance.value) {
+    swiperInstance.value.slideToLoop(index); // Используем slideToLoop для loop-режима
   }
-}
-
-function slidePrev() {
-  transitionName.value = "slide-prev";
-  currentIndex.value + 1 === images.value.length
-    ? (currentIndex.value = 0)
-    : currentIndex.value++;
-}
+};
 </script>
+
 <template>
-  <div class="carousel">
-    <div class="carousel-container">
-      <div @click="slidePrev" class="arrow left">&lt;</div>
-      <Transition :name="transitionName" mode="out-in">
+  <div class="swiper-container">
+    <Swiper
+      :modules="[Navigation, Pagination, Autoplay]"
+      :navigation="{ nextEl: '.next-button', prevEl: '.prev-button' }"
+      :pagination="{ clickable: false }"
+      :loop="true"
+      :autoplay="{ delay: 5000, disableOnInteraction: false }"
+      :preload-images="false"
+      @swiper="onSwiperInit"
+    >
+      <SwiperSlide v-for="(image, index) in images" :key="index">
         <NuxtImg
-          :key="currentIndex"
-          :src="images[currentIndex]"
-          class="carousel-image"
+          :src="image"
+          :preload="index < 2"
+          loading="lazy"
+          class="slide-image"
         />
-      </Transition>
-      <div @click="slideNext" class="arrow right">&gt;</div>
+      </SwiperSlide>
+
+      <div class="prev-button">
+        <NuxtImg width="16" height="16" src="/slider/back.svg" />
+      </div>
+      <div class="next-button">
+        <NuxtImg width="16" height="16" src="/slider/more.svg" />
+      </div>
+    </Swiper>
+
+    <div class="custom-pagination">
+      <button
+        v-for="(_, index) in images"
+        :key="index"
+        @click="goToSlide(index)"
+        :class="{ active: activeIndex === index }"
+        class="pagination-dot"
+      />
     </div>
   </div>
 </template>
 
 <style scoped>
-.carousel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
+.swiper-container {
   position: relative;
 }
-.carousel-container {
-  width: 100%;
-  height: 480px;
+.swiper-container:hover {
 }
-.arrow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translate(0, -50%);
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  opacity: 50%;
-  background: white;
-  user-select: none;
-  cursor: pointer;
-}
-.right {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  margin-right: 1rem;
-}
-.left {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  margin-left: 1rem;
-}
-.carousel-image {
+.slide-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 20px;
+  height: 480px;
+}
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.prev-button {
+  left: 20px;
+}
+.next-button {
+  right: 20px;
 }
 
-/* Анимация */
-
-.slide-next-enter-active,
-.slide-next-leave-active,
-.slide-prev-enter-active,
-.slide-prev-leave-active {
-  transition: all 0.3s ease;
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
 }
 
-.slide-next-enter-from {
-  transform: translateX(100%);
-  opacity: 0;
+.pagination-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
 }
 
-.slide-next-leave-to {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-.slide-prev-enter-from {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-.slide-prev-leave-to {
-  transform: translateX(100%);
-  opacity: 0;
+.pagination-dot.active {
+  background-color: #000;
 }
 </style>

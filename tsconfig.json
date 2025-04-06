@@ -1,7 +1,10 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "types": ["vite/client", "nuxt/types"]
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "swiper/vue": ["node_modules/swiper/vue"],
+      "swiper/modules": ["node_modules/swiper/modules"]
+    }
   }
 }

@@ -1,4 +1,4 @@
 <template>
-  <h1>Main page</h1>
   <ProductCarousel />
+  <h1>Main page</h1>
 </template>
