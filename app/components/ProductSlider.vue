@@ -4,6 +4,41 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { ref } from "vue";
 import "swiper/css";
 
+const swiperOptions = {
+  modules: [Navigation, Pagination, Autoplay],
+  navigation: {
+    nextEl: ".next-button",
+    prevEl: ".prev-button",
+  },
+  pagination: { clickable: false },
+  loop: true,
+  autoplay: { delay: 5000, disableOnInteraction: false },
+  preloadImages: false,
+  breakpoints: {
+    320: {
+      // Mobile
+      slidesPerView: 1,
+      spaceBetween: 10,
+      navigation: {
+        enabled: false, // Отключаем стрелки на мобильных
+      },
+    },
+    768: {
+      // Tablet
+      slidesPerView: 1,
+      spaceBetween: 20,
+      navigation: {
+        enabled: true,
+      },
+    },
+    1024: {
+      // Desktop
+      slidesPerView: 1,
+      spaceBetween: 30,
+    },
+  },
+};
+
 const images: string[] = [
   "/slider/kiwi.webp",
   "/slider/annie.webp",
@@ -35,15 +70,7 @@ const goToSlide = (index: number) => {
 
 <template>
   <div class="swiper-container">
-    <Swiper
-      :modules="[Navigation, Pagination, Autoplay]"
-      :navigation="{ nextEl: '.next-button', prevEl: '.prev-button' }"
-      :pagination="{ clickable: false }"
-      :loop="true"
-      :autoplay="{ delay: 5000, disableOnInteraction: false }"
-      :preload-images="false"
-      @swiper="onSwiperInit"
-    >
+    <Swiper v-bind="swiperOptions" @swiper="onSwiperInit">
       <SwiperSlide v-for="(image, index) in images" :key="index">
         <NuxtImg
           :src="image"
@@ -81,17 +108,28 @@ const goToSlide = (index: number) => {
 .swiper-container {
   position: relative;
 }
-.swiper-container:hover {
+.swiper-container:hover .slide-image {
+  filter: brightness(90%);
+}
+
+.swiper-container:hover .prev-button,
+.swiper-container:hover .next-button {
+  opacity: 50%;
+  visibility: visible;
 }
 .slide-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
-  height: 480px;
+  /* Адаптивная высота */
+  height: 70vh;
+  max-height: 480px;
+  min-height: 200px;
 }
 .prev-button,
 .next-button {
+  visibility: hidden;
   position: absolute;
   top: 50%;
   z-index: 10;
@@ -104,12 +142,18 @@ const goToSlide = (index: number) => {
   justify-content: center;
   cursor: pointer;
   transform: translateY(-50%);
+  user-select: none;
 }
 .prev-button {
   left: 20px;
 }
 .next-button {
   right: 20px;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  opacity: 100% !important;
 }
 
 .custom-pagination {
@@ -132,5 +176,8 @@ const goToSlide = (index: number) => {
 
 .pagination-dot.active {
   background-color: #000;
+}
+.pagination-dot {
+  translate: all 0.5s ease;
 }
 </style>

@@ -1,7 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+
+const isMenuOpen = ref(false);
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+</script>
 
 <template>
-  <head> </head>
   <header class="header">
     <nav class="nav">
       <div class="logo-container">
@@ -15,101 +22,105 @@
           />
         </nuxt-link>
       </div>
-      <NuxtImg
-        class="logo-img"
-        src="/PolarKiwi.svg"
-        sizes="sm:80px md:90px lg:120px"
-      >
-      </NuxtImg>
+
+      <div class="center-logo">
+        <NuxtImg
+          class="polar-kiwi-logo"
+          src="/PolarKiwi.svg"
+          sizes="sm:80px md:90px lg:120px"
+        />
+      </div>
+
       <div class="nav-controls">
-        <nuxt-link class="nav-link" to="projects">
-          <img src="/projects.svg" width="24" height="24" />
-          <div class="nav-text">Проекты</div>
+        <!-- Десктопное меню -->
+        <div class="desktop-menu">
+          <nuxt-link class="nav-link" to="projects">
+            <img src="/projects.svg" width="24" height="24" />
+            <div class="nav-text">Проекты</div>
+          </nuxt-link>
+          <nuxt-link class="nav-link" to="cart">
+            <img src="/cart.svg" width="24" height="24" />
+            <div class="nav-cart_counter">22</div>
+            <div class="nav-text">Корзина</div>
+          </nuxt-link>
+          <nuxt-link class="nav-link" to="account">
+            <img src="/account.svg" width="24" height="24" />
+            <div class="nav-text">Аккаунт</div>
+          </nuxt-link>
+        </div>
+
+        <!-- Мобильное меню -->
+        <button class="burger-menu" @click="toggleMenu">
+          <img src="/menu.svg" width="24" height="24" alt="Меню" />
+        </button>
+      </div>
+
+      <!-- Выпадающее меню -->
+      <div v-if="isMenuOpen" class="mobile-menu">
+        <nuxt-link class="mobile-link" to="projects" @click="toggleMenu">
+          <img src="/projects.svg" width="20" height="20" />
+          <span>Проекты</span>
         </nuxt-link>
-        <nuxt-link class="nav-link" to="cart">
-          <img src="/cart.svg" width="24" height="24" />
-          <div class="nav-cart_counter">22</div>
-          <div class="nav-text">Корзина</div>
+        <nuxt-link class="mobile-link" to="cart" @click="toggleMenu">
+          <img src="/cart.svg" width="20" height="20" />
+          <span>Корзина <span class="mobile-cart-counter">22</span></span>
         </nuxt-link>
-        <nuxt-link class="nav-link" to="account">
-          <img src="/account.svg" width="24" height="24" />
-          <div class="nav-text">Аккаунт</div>
+        <nuxt-link class="mobile-link" to="account" @click="toggleMenu">
+          <img src="/account.svg" width="20" height="20" />
+          <span>Аккаунт</span>
         </nuxt-link>
       </div>
     </nav>
     <hr />
   </header>
+
   <main>
     <div class="container">
-      <slot> </slot>
+      <slot />
     </div>
   </main>
+
   <footer></footer>
 </template>
 
 <style scoped>
-/* Десктоп */
-body {
-  font-size: 20px;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-@media (max-width: 1024px) {
-  body {
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 640px) {
-  body {
-    font-size: 14px;
-  }
-}
-
 .header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 0 1rem;
+  position: relative;
 }
+
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 1280px;
+  margin: 0 auto;
   position: relative;
+  padding: 0.5rem 0;
+}
+
+.logo-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.center-logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-controls {
+  flex: 1;
   display: flex;
-  justify-content: right;
-}
-.logo-container {
-  display: flex;
-  align-items: center;
+  justify-content: flex-end;
 }
 
-.logo-container nuxt-link {
-  display: block;
-}
-
-.logo-link {
+.desktop-menu {
   display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.logo-img {
-  display: block;
+  gap: 1rem;
 }
 
 .nav-link {
@@ -118,21 +129,17 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 50px;
-  width: 50px;
-  margin: 0 0 0 1rem;
+  min-width: 50px;
+  text-align: center;
 }
 
 .nav-text {
   font-size: 12px;
+  margin-top: 4px;
 }
 
-a {
-  color: rgb(113, 113, 113);
-  text-decoration: none;
-}
 .nav-cart_counter {
-  font-size: 12px;
+  font-size: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,6 +151,108 @@ a {
   border-radius: 50%;
   top: 0;
   right: 0;
+}
+
+/* Бургер-меню (скрыто по умолчанию) */
+.burger-menu {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* Мобильное меню (скрыто по умолчанию) */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  border-radius: 8px;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.mobile-link:hover {
+  background: #f5f5f5;
+}
+
+.mobile-cart-counter {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  color: white;
+  background: black;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none; /* Скрываем обычное меню */
+  }
+
+  .burger-menu {
+    display: block; /* Показываем бургер */
+  }
+
+  .mobile-menu {
+    display: flex; /* Показываем мобильное меню когда открыто */
+  }
+
+  .nav {
+    flex-wrap: wrap;
+  }
+
+  .logo-container {
+    order: 1;
+    flex: 0 0 auto;
+  }
+
+  .center-logo {
+    order: 3;
+    flex: 1 0 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .nav-controls {
+    order: 2;
+    flex: 0 0 auto;
+  }
+
+  .polar-kiwi-logo {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-menu {
+    width: 180px;
+  }
+
+  .polar-kiwi-logo {
+    max-width: 100px;
+  }
 }
 
 main {
