@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 const isMenuOpen = ref(false);
 const modalOpen = ref(false);
+const modalDeepOpen = ref(false);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
@@ -10,6 +11,10 @@ const toggleMenu = () => {
 
 function toggleModal() {
   modalOpen.value = !modalOpen.value;
+}
+
+function toggleDeepModal() {
+  modalDeepOpen.value = !modalDeepOpen.value;
 }
 </script>
 
@@ -81,9 +86,15 @@ function toggleModal() {
 
   <main>
     <div class="container">
+      <button @click="toggleDeepModal">Open modal</button>
+
       <slot />
     </div>
-    <AuthDeepModal :isOpen="modalOpen" @close="toggleModal"></AuthDeepModal>
+    <AuthModal :isOpen="modalOpen" @close="toggleModal"></AuthModal>
+    <auth-deep-modal
+      :isOpen="modalDeepOpen"
+      @close="toggleDeepModal"
+    ></auth-deep-modal>
   </main>
 
   <footer></footer>

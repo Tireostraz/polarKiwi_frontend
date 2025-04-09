@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRuntimeConfig } from "nuxt/app";
 import { ref } from "vue";
 /* genetic type argument https://vuejs.org/guide/typescript/composition-api */
 defineProps<{
@@ -9,13 +10,88 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
+const loginForm = ref({
+  email: "",
+  password: "",
+});
+
+const registerForm = ref({
+  name: "",
+  email: "",
+  password: "",
+  user_type_id: 1,
+});
+
+interface loginSuccessResponse {
+  token: string;
+}
+interface registrationSuccessResponse {
+  token: string;
+}
+interface loginErrorResponse {
+  error: string;
+}
+const error = ref<string>("");
+
+const isSubmitting = ref(false);
+
+const activeTab = ref("Login");
+
+const {
+  public: { apiBase },
+} = useRuntimeConfig();
+
+async function handleLogin() {
+  isSubmitting.value = true;
+  error.value = "";
+  try {
+    const response = await $fetch<loginSuccessResponse>(
+      `${apiBase}/auth/login`,
+      {
+        method: "POST",
+        body: JSON.stringify(loginForm.value),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+    //const token = response.token;
+    console.log(response.token);
+  } catch (e: any) {
+    error.value = e.data.error;
+    console.error("Login error:", e.data);
+  } finally {
+    isSubmitting.value = false;
+  }
+}
+
+async function handleRegistration() {
+  isSubmitting.value = true;
+  try {
+    console.log(registerForm.value);
+    const response = await $fetch<registrationSuccessResponse>(
+      `${apiBase}/auth/register`,
+      {
+        method: "POST",
+        body: JSON.stringify(registerForm.value),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+    console.log(response.token);
+  } catch (e: any) {
+    error.value = e.data.error;
+    console.error("Registration error:", e.data);
+  } finally {
+    isSubmitting.value = false;
+  }
+}
+
 function closeModal() {
   console.log("close");
   emit("close");
 }
-
-const activeTab = ref("");
-console.log(activeTab.value);
 
 function setActiveTab(newValue) {
   activeTab.value = newValue;
@@ -24,26 +100,71 @@ function setActiveTab(newValue) {
 <template>
   <div v-if="isOpen" class="modal-overlay">
     <div class="modal-content">
-      <button @click="closeModal">Close</button>
-      <button @click="setActiveTab('Login')">Login</button>
-      <button @click="setActiveTab('Register')">Register</button>
+      <button class="modal-close" @click="closeModal">×</button>
+      <div class="auth-tabs">
+        <button
+          :class="{ active: activeTab === 'Login' }"
+          @click="setActiveTab('Login')"
+        >
+          Login
+        </button>
+        <button
+          :class="{ active: activeTab === 'Register' }"
+          @click="setActiveTab('Register')"
+        >
+          Register
+        </button>
+      </div>
 
-      <form v-if="activeTab === 'Register'">
-        <h3>Create new account</h3>
-        <input type="text" value="text" />
-        <input type="password" />
-        <button>Submit</button>
-      </form>
-
-      <form v-else-if="activeTab === 'Login'">
+      <form v-if="activeTab === 'Login'" class="auth-form">
         <h3>Login to your account</h3>
-        <input type="text" />
-        <input type="password" />
-        <Button>Submit</Button>
+        <input
+          v-model="loginForm.email"
+          type="email"
+          placeholder="Email"
+          required
+        />
+        <input
+          v-model="loginForm.password"
+          type="password"
+          placeholder="Password"
+          required
+        />
+        <div v-if="error" class="login-error">{{ error }}</div>
+        <button @click="handleLogin" :disabled="isSubmitting">
+          {{ isSubmitting ? "Loggin in..." : "Login" }}
+        </button>
+      </form>
+      <form v-else-if="activeTab === 'Register'" class="auth-form">
+        <h3>Create new account</h3>
+        <input
+          v-model="registerForm.name"
+          type="text"
+          placeholder="Name"
+          required
+        />
+        <input
+          v-model="registerForm.email"
+          type="email"
+          placeholder="Email"
+          required
+        />
+        <input
+          v-model="registerForm.password"
+          type="password"
+          placeholder="Password"
+          required
+        />
+        <input type="password" placeholder="Confirm password" required />
+        <div v-if="error" class="login-error">{{ error }}</div>
+        <button @click="handleRegistration" :disabled="isSubmitting">
+          {{ isSubmitting ? "Registration..." : "Registrate" }}
+        </button>
       </form>
     </div>
   </div>
 </template>
+
 <style scoped>
 .modal-overlay {
   position: fixed;
@@ -57,13 +178,60 @@ function setActiveTab(newValue) {
   align-items: center;
   z-index: 99;
 }
-
 .modal-content {
   background: white;
+  position: relative;
   width: 100%;
   max-width: 400px;
   padding: 2rem;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+.auth-tabs {
+  display: flex;
+}
+
+.auth-tabs button {
+  flex: 1;
+  font-size: 0.8rem;
+  border: none;
+  background: none;
+  padding: 0.75rem;
+  color: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.auth-tabs button.active {
+  color: #000;
+  border-bottom: 2px solid black;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.auth-form input {
+  padding: 12px;
+  border: 1px solid #666;
+  border-radius: 5px;
+}
+
+.auth-form button {
+  color: white;
+  background: #000;
+  padding: 0.75rem;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 </style>

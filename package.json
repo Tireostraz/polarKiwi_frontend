@@ -16,5 +16,10 @@
     "swiper": "^11.2.6",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@nuxt/schema": "^3.16.2",
+    "@nuxt/types": "^2.18.1",
+    "@types/node": "^22.14.0"
   }
 }
