@@ -2,10 +2,15 @@
 import { ref } from "vue";
 
 const isMenuOpen = ref(false);
+const modalOpen = ref(false);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
+
+function toggleModal() {
+  modalOpen.value = !modalOpen.value;
+}
 </script>
 
 <template>
@@ -43,7 +48,7 @@ const toggleMenu = () => {
             <div class="nav-cart_counter">22</div>
             <div class="nav-text">Корзина</div>
           </nuxt-link>
-          <nuxt-link class="nav-link" to="account">
+          <nuxt-link class="nav-link" @click="toggleModal">
             <img src="/account.svg" width="24" height="24" />
             <div class="nav-text">Аккаунт</div>
           </nuxt-link>
@@ -65,7 +70,7 @@ const toggleMenu = () => {
           <img src="/cart.svg" width="20" height="20" />
           <span>Корзина <span class="mobile-cart-counter">22</span></span>
         </nuxt-link>
-        <nuxt-link class="mobile-link" to="account" @click="toggleMenu">
+        <nuxt-link class="mobile-link" @click="toggleModal">
           <img src="/account.svg" width="20" height="20" />
           <span>Аккаунт</span>
         </nuxt-link>
@@ -78,6 +83,7 @@ const toggleMenu = () => {
     <div class="container">
       <slot />
     </div>
+    <AuthDeepModal :isOpen="modalOpen" @close="toggleModal"></AuthDeepModal>
   </main>
 
   <footer></footer>
@@ -131,6 +137,7 @@ const toggleMenu = () => {
   position: relative;
   min-width: 50px;
   text-align: center;
+  cursor: pointer;
 }
 
 .nav-text {
