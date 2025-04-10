@@ -91,10 +91,10 @@ function toggleDeepModal() {
       <slot />
     </div>
     <AuthModal :isOpen="modalOpen" @close="toggleModal"></AuthModal>
-    <auth-deep-modal
+    <auth-new-modal
       :isOpen="modalDeepOpen"
       @close="toggleDeepModal"
-    ></auth-deep-modal>
+    ></auth-new-modal>
   </main>
 
   <footer></footer>

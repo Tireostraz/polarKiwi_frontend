@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRuntimeConfig } from "nuxt/app";
+import { useCookie, useRuntimeConfig } from "nuxt/app";
 import { ref } from "vue";
 /* genetic type argument https://vuejs.org/guide/typescript/composition-api */
 defineProps<{
@@ -22,15 +22,6 @@ const registerForm = ref({
   user_type_id: 1,
 });
 
-interface loginSuccessResponse {
-  token: string;
-}
-interface registrationSuccessResponse {
-  token: string;
-}
-interface loginErrorResponse {
-  error: string;
-}
 const error = ref<string>("");
 
 const isSubmitting = ref(false);
@@ -41,11 +32,15 @@ const {
   public: { apiBase },
 } = useRuntimeConfig();
 
+const accessToken = useCookie("accessToken", {
+  default: () => null,
+});
+
 async function handleLogin() {
   isSubmitting.value = true;
   error.value = "";
   try {
-    const response = await $fetch<loginSuccessResponse>(
+    const response = await $fetch<{ accessToken: string }>(
       `${apiBase}/auth/login`,
       {
         method: "POST",
@@ -53,10 +48,13 @@ async function handleLogin() {
         headers: {
           "Content-type": "application/json",
         },
+        credentials: "include",
       }
     );
-    //const token = response.token;
-    console.log(response.token);
+
+    accessToken.value = response.accessToken;
+    console.log(response.accessToken);
+    closeModal();
   } catch (e: any) {
     error.value = e.data.error;
     console.error("Login error:", e.data);
@@ -69,7 +67,7 @@ async function handleRegistration() {
   isSubmitting.value = true;
   try {
     console.log(registerForm.value);
-    const response = await $fetch<registrationSuccessResponse>(
+    const response = await $fetch<{ accessToken: string }>(
       `${apiBase}/auth/register`,
       {
         method: "POST",
@@ -77,9 +75,13 @@ async function handleRegistration() {
         headers: {
           "Content-type": "application/json",
         },
+        credentials: "include",
       }
     );
-    console.log(response.token);
+
+    accessToken.value = response.accessToken;
+    console.log(response.accessToken);
+    setActiveTab("Login");
   } catch (e: any) {
     error.value = e.data.error;
     console.error("Registration error:", e.data);
