@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useAuth } from "../composables/useAuth";
 
+const auth = useAuth();
 const isMenuOpen = ref(false);
 const modalOpen = ref(false);
 const modalDeepOpen = ref(false);
@@ -10,11 +12,13 @@ const toggleMenu = () => {
 };
 
 function toggleModal() {
+  console.log(auth.user.value);
   modalOpen.value = !modalOpen.value;
 }
 
-function toggleDeepModal() {
-  modalDeepOpen.value = !modalDeepOpen.value;
+function handleLogout() {
+  auth.logout();
+  console.log("Logout");
 }
 </script>
 
@@ -53,10 +57,14 @@ function toggleDeepModal() {
             <div class="nav-cart_counter">22</div>
             <div class="nav-text">Корзина</div>
           </nuxt-link>
-          <nuxt-link class="nav-link" @click="toggleModal">
+          <button v-if="auth.user.value" @click="handleLogout">
+            <img src="/account.svg" width="24" height="24" />
+            <div class="nav-text">Выйти</div>
+          </button>
+          <button v-else @click="toggleModal">
             <img src="/account.svg" width="24" height="24" />
             <div class="nav-text">Аккаунт</div>
-          </nuxt-link>
+          </button>
         </div>
 
         <!-- Мобильное меню -->
@@ -86,15 +94,9 @@ function toggleDeepModal() {
 
   <main>
     <div class="container">
-      <button @click="toggleDeepModal">Open modal</button>
-
       <slot />
     </div>
     <AuthModal :isOpen="modalOpen" @close="toggleModal"></AuthModal>
-    <auth-new-modal
-      :isOpen="modalDeepOpen"
-      @close="toggleDeepModal"
-    ></auth-new-modal>
   </main>
 
   <footer></footer>

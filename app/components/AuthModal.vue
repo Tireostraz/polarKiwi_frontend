@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useCookie, useRuntimeConfig } from "nuxt/app";
 import { ref } from "vue";
+import { useAuth } from "../composables/useAuth";
 /* genetic type argument https://vuejs.org/guide/typescript/composition-api */
 defineProps<{
   isOpen: boolean;
@@ -9,6 +10,11 @@ defineProps<{
 const emit = defineEmits<{
   (e: "close"): void;
 }>();
+
+const auth = useAuth();
+const error = ref<string>("");
+const isSubmitting = ref(false);
+const activeTab = ref("Login");
 
 const loginForm = ref({
   email: "",
@@ -22,38 +28,11 @@ const registerForm = ref({
   user_type_id: 1,
 });
 
-const error = ref<string>("");
-
-const isSubmitting = ref(false);
-
-const activeTab = ref("Login");
-
-const {
-  public: { apiBase },
-} = useRuntimeConfig();
-
-const accessToken = useCookie("accessToken", {
-  default: () => null,
-});
-
 async function handleLogin() {
   isSubmitting.value = true;
   error.value = "";
   try {
-    const response = await $fetch<{ accessToken: string }>(
-      `${apiBase}/auth/login`,
-      {
-        method: "POST",
-        body: JSON.stringify(loginForm.value),
-        headers: {
-          "Content-type": "application/json",
-        },
-        credentials: "include",
-      }
-    );
-
-    accessToken.value = response.accessToken;
-    console.log(response.accessToken);
+    await auth.login(loginForm.value.email, loginForm.value.password);
     closeModal();
   } catch (e: any) {
     error.value = e.data.error;
@@ -66,21 +45,11 @@ async function handleLogin() {
 async function handleRegistration() {
   isSubmitting.value = true;
   try {
-    console.log(registerForm.value);
-    const response = await $fetch<{ accessToken: string }>(
-      `${apiBase}/auth/register`,
-      {
-        method: "POST",
-        body: JSON.stringify(registerForm.value),
-        headers: {
-          "Content-type": "application/json",
-        },
-        credentials: "include",
-      }
+    await auth.register(
+      registerForm.value.name,
+      registerForm.value.email,
+      registerForm.value.password
     );
-
-    accessToken.value = response.accessToken;
-    console.log(response.accessToken);
     setActiveTab("Login");
   } catch (e: any) {
     error.value = e.data.error;

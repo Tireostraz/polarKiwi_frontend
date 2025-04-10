@@ -6,6 +6,8 @@
     "baseUrl": ".",
     "types": ["@nuxt/schema"],
     "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"],
       "swiper/vue": ["node_modules/swiper/vue"],
       "swiper/modules": ["node_modules/swiper/modules"]
     }
