@@ -1,5 +1,5 @@
-import { useState, useCookie, useRuntimeConfig } from "nuxt/app";
-import { fetchWithAuth, refreshTokens } from "~/utils/fetchWithAuth";
+//import { useState, useCookie, useRuntimeConfig } from "nuxt/app";
+//import { fetchWithAuth, refreshTokens } from "~/utils/fetchWithAuth";
 
 export const useAuth = () => {
   const user = useState<{ id: number; email: string } | null>(

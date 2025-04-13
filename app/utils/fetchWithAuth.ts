@@ -1,4 +1,4 @@
-import { useCookie, useRuntimeConfig } from "nuxt/app";
+//import { useCookie, useRuntimeConfig } from "nuxt/app";
 let refreshAttempted = false;
 
 export async function fetchWithAuth(url: string, options: any = {}) {

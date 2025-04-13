@@ -1,15 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "ES2015",
-    "lib": ["ES2015", "DOM"],
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "types": ["@nuxt/schema"],
-    "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./*"],
-      "swiper/vue": ["node_modules/swiper/vue"],
-      "swiper/modules": ["node_modules/swiper/modules"]
-    }
-  }
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json"
 }

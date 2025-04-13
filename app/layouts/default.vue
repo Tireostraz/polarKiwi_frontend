@@ -5,7 +5,6 @@ import { useAuth } from "../composables/useAuth";
 const auth = useAuth();
 const isMenuOpen = ref(false);
 const modalOpen = ref(false);
-const modalDeepOpen = ref(false);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
