@@ -1,8 +1,28 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { ref } from "vue";
 import "swiper/css";
+
+const props = defineProps<{
+  isCollapsed: boolean;
+}>();
+const isCollapsing = ref(false);
+
+watch(
+  () => props.isCollapsed,
+  (newVal) => {
+    if (newVal) {
+      // При уменьшении
+      isCollapsing.value = true;
+    } else {
+      // При возвращении к нормальному размеру
+      setTimeout(() => {
+        isCollapsing.value = false;
+      }, 10);
+    }
+  },
+  { immediate: true }
+);
 
 const swiperOptions = {
   modules: [Navigation, Pagination, Autoplay],
@@ -56,8 +76,8 @@ const onSwiperInit = (swiper: any) => {
 
     const nextIndex = (swiper.realIndex + 1) % images.length;
     const prevIndex = (swiper.realIndex - 1 + images.length) % images.length;
-    new Image().src = images[nextIndex];
-    new Image().src = images[prevIndex];
+    new Image().src = images[nextIndex] as string;
+    new Image().src = images[prevIndex] as string;
   });
 };
 
@@ -69,7 +89,7 @@ const goToSlide = (index: number) => {
 </script>
 
 <template>
-  <div class="swiper-container">
+  <div class="swiper-container" :class="{ 'slider--collapsing': isCollapsing }">
     <Swiper v-bind="swiperOptions" @swiper="onSwiperInit">
       <SwiperSlide v-for="(image, index) in images" :key="index">
         <NuxtImg
@@ -77,6 +97,7 @@ const goToSlide = (index: number) => {
           :preload="index < 2"
           loading="lazy"
           class="slide-image"
+          :class="{ collapsed: isCollapsed }"
         />
       </SwiperSlide>
 
@@ -119,14 +140,19 @@ const goToSlide = (index: number) => {
 }
 .slide-image {
   width: 100%;
-  height: 100%;
   object-fit: cover;
   border-radius: 20px;
-  /* Адаптивная высота */
+  transition: height 0.6s ease-in-out;
   height: 70vh;
   max-height: 480px;
   min-height: 200px;
 }
+
+.slide-image.collapsed {
+  height: 160px; /* или 0, если нужно спрятать */
+  max-height: 160px;
+}
+
 .prev-button,
 .next-button {
   visibility: hidden;
@@ -179,5 +205,20 @@ const goToSlide = (index: number) => {
 }
 .pagination-dot {
   translate: all 0.5s ease;
+}
+
+/* Анимации */
+
+.swiper-container {
+  transition: height 0.5s ease;
+}
+
+.slide-image {
+  transition: height 0.5s ease-in-out;
+}
+
+.slide-image.collapsed {
+  height: 160px;
+  max-height: 160px;
 }
 </style>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { useCookie, useRuntimeConfig } from "nuxt/app";
-import { ref } from "vue";
-import { useAuth } from "../composables/useAuth";
+import type { LoginStore, RegisterStore } from "~/repository/auth";
+
 /* genetic type argument https://vuejs.org/guide/typescript/composition-api */
 defineProps<{
   isOpen: boolean;
@@ -11,28 +10,32 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-const auth = useAuth();
+const auth = useAuthStore();
 const error = ref<string>("");
 const isSubmitting = ref(false);
-const activeTab = ref("Login");
+const activeTab = ref<"Login" | "Register">("Login");
 
-const loginForm = ref({
+const loginForm = ref<LoginStore>({
   email: "",
   password: "",
+  rememberMe: false,
 });
 
-const registerForm = ref({
+const registerForm = ref<RegisterStore>({
   name: "",
   email: "",
   password: "",
-  user_type_id: 1,
 });
 
 async function handleLogin() {
   isSubmitting.value = true;
   error.value = "";
   try {
-    await auth.login(loginForm.value.email, loginForm.value.password);
+    await auth.login({
+      email: loginForm.value.email,
+      password: loginForm.value.password,
+      rememberMe: loginForm.value.rememberMe,
+    });
     closeModal();
   } catch (e: any) {
     error.value = e.data.error;
@@ -45,11 +48,11 @@ async function handleLogin() {
 async function handleRegistration() {
   isSubmitting.value = true;
   try {
-    await auth.register(
-      registerForm.value.name,
-      registerForm.value.email,
-      registerForm.value.password
-    );
+    await auth.register({
+      name: registerForm.value.name,
+      email: registerForm.value.email,
+      password: registerForm.value.password,
+    });
     setActiveTab("Login");
   } catch (e: any) {
     error.value = e.data.error;
@@ -64,7 +67,7 @@ function closeModal() {
   emit("close");
 }
 
-function setActiveTab(newValue) {
+function setActiveTab(newValue: "Login" | "Register") {
   activeTab.value = newValue;
 }
 </script>
@@ -102,6 +105,8 @@ function setActiveTab(newValue) {
           required
         />
         <div v-if="error" class="login-error">{{ error }}</div>
+        <input v-model="loginForm.rememberMe" type="checkbox" id="remamberMe" />
+        <label for="remamberMe">Запомнить меня</label>
         <button @click="handleLogin" :disabled="isSubmitting">
           {{ isSubmitting ? "Loggin in..." : "Login" }}
         </button>

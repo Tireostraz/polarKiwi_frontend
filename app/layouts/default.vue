@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useAuth } from "../composables/useAuth";
-
-const auth = useAuth();
+const auth = useAuthStore();
 const isMenuOpen = ref(false);
 const modalOpen = ref(false);
+const route = useRoute();
+const isCollapsed = computed(() => route.path !== "/");
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
 
 function toggleModal() {
-  console.log(auth.user.value);
   modalOpen.value = !modalOpen.value;
 }
 
@@ -56,7 +54,7 @@ function handleLogout() {
             <div class="nav-cart_counter">22</div>
             <div class="nav-text">Корзина</div>
           </nuxt-link>
-          <button v-if="auth.user.value" @click="handleLogout">
+          <button v-if="auth.ssrFriendlyIsAuthenticated" @click="handleLogout">
             <img src="/account.svg" width="24" height="24" />
             <div class="nav-text">Выйти</div>
           </button>
@@ -93,6 +91,8 @@ function handleLogout() {
 
   <main>
     <div class="container">
+      <ProductSlider :is-collapsed="isCollapsed" />
+      <TabNavigation />
       <slot />
     </div>
     <AuthModal :isOpen="modalOpen" @close="toggleModal"></AuthModal>
@@ -134,6 +134,17 @@ function handleLogout() {
   flex: 1;
   display: flex;
   justify-content: flex-end;
+  text-decoration: none;
+}
+
+.desktop-menu button {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .desktop-menu {
@@ -150,6 +161,14 @@ function handleLogout() {
   min-width: 50px;
   text-align: center;
   cursor: pointer;
+}
+
+.desktop-menu button,
+.desktop-menu .nav-link {
+  font: 1rem "Arial";
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
 }
 
 .nav-text {
