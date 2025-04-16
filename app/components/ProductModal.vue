@@ -22,7 +22,7 @@ function addToCart() {
   <div v-if="isOpen" class="modal-overlay" @click.self="emit('close')">
     <div class="modal-container">
       <button class="close-btn" @click="emit('close')">
-        <Icon name="mdi:close" size="24" />
+        <img name="mdi:close" size="24" />
       </button>
 
       <div class="modal-content">

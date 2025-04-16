@@ -25,7 +25,7 @@ function addToCart(e: Event) {
         class="product-image"
       />
       <button class="quick-add-btn" @click="addToCart">
-        <Icon name="mdi:cart-plus" size="20" />
+        <img name="mdi:cart-plus" size="20" />
       </button>
     </div>
     <div class="product-info">

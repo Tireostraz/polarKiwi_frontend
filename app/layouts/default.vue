@@ -54,7 +54,7 @@ function handleLogout() {
             <div class="nav-cart_counter">22</div>
             <div class="nav-text">Корзина</div>
           </nuxt-link>
-          <button v-if="auth.ssrFriendlyIsAuthenticated" @click="handleLogout">
+          <button v-if="auth.isAuthenticated" @click="handleLogout">
             <img src="/account.svg" width="24" height="24" />
             <div class="nav-text">Выйти</div>
           </button>

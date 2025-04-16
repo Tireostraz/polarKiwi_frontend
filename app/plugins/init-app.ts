@@ -6,17 +6,23 @@ export default defineNuxtPlugin({
     const { $api } = useNuxtApp();
     const authStore = useAuthStore();
 
+    if (import.meta.server) {
+      authStore.isAuthenticated = false;
+    }
+
     if (import.meta.browser) {
       $api.auth
         .me()
         .then((response) => {
-          if (response.name) {
+          if (response) {
             authStore.setUser(response);
-            authStore.isAuthenticated = true;
+            console.log("respinse ok");
+            /* authStore.isAuthenticated = true; */
           }
         })
         .catch((e) => {
           authStore.setUser(null);
+          /* authStore.isAuthenticated = false; */
           // todo: alert about auth fail
         });
 

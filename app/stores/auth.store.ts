@@ -5,10 +5,13 @@ export const useAuthStore = defineStore("auth", () => {
   const user = ref<User | null>(null);
   const ssrFriendlyUser = computed(() => (isHydrated ? user.value : null));
 
-  const isAuthenticated = ref(false);
-  const ssrFriendlyIsAuthenticated = computed(() =>
-    isHydrated ? isAuthenticated.value : false
+  const isAuthenticated = useState<boolean>(
+    "auth.isAuthenticated",
+    () => false
   );
+  /* const ssrFriendlyIsAuthenticated = computed(() =>
+    isHydrated ? isAuthenticated.value : false
+  ); */
 
   let readyResolver: ((value: User | null) => void) | null = null;
 
@@ -38,6 +41,7 @@ export const useAuthStore = defineStore("auth", () => {
 
   const setUser = (currentUser: User | null) => {
     user.value = currentUser;
+    isAuthenticated.value = !!currentUser;
   };
 
   function setIsHydrated() {
@@ -51,7 +55,6 @@ export const useAuthStore = defineStore("auth", () => {
     setIsHydrated,
     isReady,
     isAuthenticated,
-    ssrFriendlyIsAuthenticated,
     login,
     register,
     logout,

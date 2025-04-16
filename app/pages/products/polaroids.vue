@@ -9,11 +9,11 @@ const products = ref<Product[]>([
   {
     id: "1",
     title: 'Polaroid "Весеннее настроение"',
-    thumbnail: "/products/polaroid1-thumb.jpg",
+    thumbnail: "/products/photos/polaroid-standard1.jpg",
     images: [
-      "/products/polaroid1-1.jpg",
-      "/products/polaroid1-2.jpg",
-      "/products/polaroid1-3.jpg",
+      "/products/photos/polaroid-standard1.jpg",
+      "/products/photos/polaroid-standard2.jpg",
+      "/products/photos/polaroid-standard3.jpg",
     ],
     price: 1200,
     shortDescription: "Яркий Polaroid с весенними цветами",
