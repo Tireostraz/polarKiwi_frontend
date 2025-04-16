@@ -4,6 +4,7 @@
   <NuxtLayout>
     <NuxtPage />
     <NuxtRouteAnnouncer />
+    <Toasts />
   </NuxtLayout>
 </template>
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Product } from "~/repository/cart";
+import type { Product } from "~/repository/products";
+const { $toast } = useNuxtApp();
 
 const props = defineProps<{
   product: Product;
@@ -9,10 +10,8 @@ const emit = defineEmits(["add-to-cart", "open-details"]);
 
 const cartStore = useCartStore();
 
-function addToCart(e: Event) {
-  e.stopPropagation();
+function addToCart() {
   cartStore.addToCart(props.product);
-  emit("add-to-cart", props.product);
 }
 </script>
 
@@ -24,13 +23,13 @@ function addToCart(e: Event) {
         :alt="product.title"
         class="product-image"
       />
-      <button class="quick-add-btn" @click="addToCart">
-        <img name="mdi:cart-plus" size="20" />
+      <button class="quick-add-btn" @click.stop="addToCart">
+        <NuxtImg src="/add-to-cart.svg" width="20" />
       </button>
     </div>
     <div class="product-info">
       <h3 class="product-title">{{ product.title }}</h3>
-      <p class="product-description">{{ product.shortDescription }}</p>
+      <p class="product-description">{{ product.short_description }}</p>
       <div class="product-footer">
         <span class="product-price">{{ product.price }} ₽</span>
         <button class="details-btn" @click.stop="emit('open-details')">
@@ -85,7 +84,7 @@ function addToCart(e: Event) {
 }
 
 .quick-add-btn:hover {
-  background: #f5f5f5;
+  background: #ffb3b3;
 }
 
 .product-info {
@@ -102,9 +101,7 @@ function addToCart(e: Event) {
   font-size: 0.875rem;
   color: #666;
   margin-bottom: 12px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  display: flex;
   overflow: hidden;
 }
 

@@ -1,4 +1,5 @@
 import { createAuthRepository } from "~/repository/auth";
+import { createProductRepository } from "~/repository/products";
 
 export default defineNuxtPlugin({
   name: "fetch",
@@ -24,6 +25,7 @@ export default defineNuxtPlugin({
     });
     const api = {
       auth: createAuthRepository(appFetch),
+      products: createProductRepository(appFetch),
     };
     return {
       provide: {

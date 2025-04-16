@@ -1,21 +1,41 @@
 <script setup lang="ts">
-import type { Product } from "~/repository/cart";
+import type { Product } from "~/repository/products";
 
 const props = defineProps<{
   product: Product | null;
   isOpen: boolean;
 }>();
 
+const currentImageIndex = ref(0);
+
+const currentOpenImage = computed(() => {
+  return props.product?.images?.[currentImageIndex.value];
+});
+
 const emit = defineEmits(["close", "add-to-cart"]);
 
 const cartStore = useCartStore();
 
-function addToCart() {
+function addToCart(e: Event) {
+  e.preventDefault();
   if (props.product) {
     cartStore.addToCart(props.product);
     emit("add-to-cart", props.product);
   }
 }
+
+function setCurrentImage(index: number) {
+  currentImageIndex.value = index;
+}
+
+watch(
+  () => props.isOpen,
+  (isOpen) => {
+    if (isOpen) {
+      currentImageIndex.value = 0;
+    }
+  }
+);
 </script>
 
 <template>
@@ -29,7 +49,7 @@ function addToCart() {
         <div class="modal-gallery">
           <div class="main-image">
             <NuxtImg
-              :src="product?.images[0] || product?.thumbnail"
+              :src="currentOpenImage"
               :alt="product?.title"
               class="product-image"
             />
@@ -39,6 +59,7 @@ function addToCart() {
               v-for="(image, index) in product?.images"
               :key="index"
               class="thumbnail"
+              @click="setCurrentImage(index)"
             >
               <NuxtImg
                 :src="image"
@@ -53,11 +74,11 @@ function addToCart() {
           <h2 class="modal-title">{{ product?.title }}</h2>
           <div class="modal-price">{{ product?.price }} ₽</div>
           <div class="modal-description">
-            <p>{{ product?.fullDescription }}</p>
+            <p>{{ product?.full_description }}</p>
           </div>
 
           <div class="modal-actions">
-            <button class="add-to-cart-btn" @click="addToCart">
+            <button class="add-to-cart-btn" @click.stop.prevent="addToCart">
               Добавить в корзину
             </button>
           </div>

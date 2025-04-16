@@ -9,9 +9,6 @@ export const useAuthStore = defineStore("auth", () => {
     "auth.isAuthenticated",
     () => false
   );
-  /* const ssrFriendlyIsAuthenticated = computed(() =>
-    isHydrated ? isAuthenticated.value : false
-  ); */
 
   let readyResolver: ((value: User | null) => void) | null = null;
 
@@ -21,15 +18,27 @@ export const useAuthStore = defineStore("auth", () => {
   const isHydrated = ref(false);
 
   const login = async (body: LoginStore) => {
-    const { $api } = useNuxtApp();
-    const res = await $api.auth.login(body);
-    isAuthenticated.value = true;
+    const { $api, $toast } = useNuxtApp();
+    try {
+      await $api.auth.login(body);
+      isAuthenticated.value = true;
+      $toast.authSuccess();
+    } catch (error: any) {
+      $toast.authError(error?.response?._data?.message || "Ошибка авторизации");
+      throw error;
+    }
   };
 
   const register = async (body: RegisterStore) => {
-    const { $api } = useNuxtApp();
-    const res = await $api.auth.register(body);
-    isAuthenticated.value = true;
+    const { $api, $toast } = useNuxtApp();
+    try {
+      await $api.auth.register(body);
+      isAuthenticated.value = true;
+      $toast.authSuccess();
+    } catch (error: any) {
+      $toast.authError(error?.response?._data?.message || "Ошибка регистрации");
+      throw error;
+    }
   };
 
   const logout = async () => {

@@ -10,57 +10,30 @@ const tabs = [
   { name: "Журналы", path: "/products/magazines" },
 ];
 
-const activeIndex = ref(-1); // Начальное значение -1 (ничего не активно)
-
-watch(
-  () => route.path,
-  (newPath) => {
-    // Если мы на главной странице, сбрасываем активный индекс
-    if (newPath === "/") {
-      activeIndex.value = -1;
-    } else {
-      // Иначе ищем соответствующую вкладку
-      const foundIndex = tabs.findIndex((t) => newPath.startsWith(t.path));
-      activeIndex.value = foundIndex;
-    }
-  },
-  { immediate: true }
+const activeIndex = computed(() =>
+  tabs.findIndex((tab) => route.path === tab.path)
 );
 
-const isOnHomePage = computed(() => route.path === "/");
-
-function navigateTo(index: number) {
-  // Если мы на главной странице, добавляем класс для анимации перед переходом
-  if (isOnHomePage.value) {
-    const slider = document.querySelector(".main-slider");
-    if (slider) {
-      slider.classList.add("slider--collapsing");
-      // Ждем небольшое время, чтобы анимация началась перед переходом
-      setTimeout(() => {
-        activeIndex.value = index;
-        router.push(tabs[index]!.path);
-      }, 50);
-      return;
-    }
+function navigateTo(path: string) {
+  if (route.path !== path) {
+    router.push({ path });
   }
-  activeIndex.value = index;
-  router.push(tabs[index]!.path);
 }
 </script>
 
 <template>
-  <div class="tabs-nav">
+  <nav class="tabs-nav">
     <div class="tabs-container">
       <button
         v-for="(tab, index) in tabs"
         :key="tab.path"
         :class="['tab-button', { active: index === activeIndex }]"
-        @click="navigateTo(index)"
+        @click="navigateTo(tab.path)"
       >
         {{ tab.name }}
       </button>
     </div>
-  </div>
+  </nav>
 </template>
 
 <style scoped>
@@ -86,9 +59,13 @@ function navigateTo(index: number) {
   padding: 0.5rem 1rem;
   white-space: nowrap;
   cursor: pointer;
-  transition: color 0.3s, border-bottom 0.3s;
+  transition: all 0.3s ease;
   border-bottom: 2px solid transparent;
-  color: #444;
+  color: #555;
+}
+
+.tab-button:hover {
+  color: #6a1b9a;
 }
 
 .tab-button.active {
@@ -102,14 +79,8 @@ function navigateTo(index: number) {
     gap: 0.5rem;
   }
   .tab-button {
-    font-size: 0.875rem;
-    padding: 0.25rem 0.75rem;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.75rem;
   }
-}
-
-/* Слайдер-уменьшение */
-.main-slider.slider--collapsing {
-  height: 200px !important;
-  transition: height 0.5s ease;
 }
 </style>

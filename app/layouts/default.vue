@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const auth = useAuthStore();
+const cartStore = useCartStore();
+
 const isMenuOpen = ref(false);
 const modalOpen = ref(false);
 const route = useRoute();
@@ -45,13 +47,15 @@ function handleLogout() {
       <div class="nav-controls">
         <!-- Десктопное меню -->
         <div class="desktop-menu">
-          <nuxt-link class="nav-link" to="projects">
+          <nuxt-link class="nav-link" to="/projects">
             <img src="/projects.svg" width="24" height="24" />
             <div class="nav-text">Проекты</div>
           </nuxt-link>
-          <nuxt-link class="nav-link" to="cart">
+          <nuxt-link class="nav-link" to="/cart">
             <img src="/cart.svg" width="24" height="24" />
-            <div class="nav-cart_counter">22</div>
+            <div v-if="cartStore.totalItems > 0" class="nav-cart_counter">
+              {{ cartStore.totalItems }}
+            </div>
             <div class="nav-text">Корзина</div>
           </nuxt-link>
           <button v-if="auth.isAuthenticated" @click="handleLogout">
@@ -72,18 +76,23 @@ function handleLogout() {
 
       <!-- Выпадающее меню -->
       <div v-if="isMenuOpen" class="mobile-menu">
-        <nuxt-link class="mobile-link" to="projects" @click="toggleMenu">
+        <nuxt-link class="mobile-link" to="/projects" @click="toggleMenu">
           <img src="/projects.svg" width="20" height="20" />
           <span>Проекты</span>
         </nuxt-link>
-        <nuxt-link class="mobile-link" to="cart" @click="toggleMenu">
+        <nuxt-link class="mobile-link" to="/cart" @click="toggleMenu">
           <img src="/cart.svg" width="20" height="20" />
-          <span>Корзина <span class="mobile-cart-counter">22</span></span>
+          <span
+            >Корзина
+            <span v-if="cartStore.totalItems > 0" class="mobile-cart-counter">{{
+              cartStore.totalItems
+            }}</span></span
+          >
         </nuxt-link>
-        <nuxt-link class="mobile-link" @click="toggleModal">
+        <button class="mobile-link" @click="toggleModal">
           <img src="/account.svg" width="20" height="20" />
-          <span>Аккаунт</span>
-        </nuxt-link>
+          <div class="nav-text">Аккаунт</div>
+        </button>
       </div>
     </nav>
     <hr />
