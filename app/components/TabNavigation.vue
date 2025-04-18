@@ -3,37 +3,64 @@ const router = useRouter();
 const route = useRoute();
 
 const tabs = [
-  { name: "Фото Polaroid", path: "/products/polaroids" },
-  { name: "Смсбуки", path: "/products/smsbooks" },
-  { name: "Постеры", path: "/products/posters" },
+  { name: "Фото Polaroid", path: "/products/polaroid" },
+  { name: "Смсбуки", path: "/products/smsbook" },
+  { name: "Постеры", path: "/products/poster" },
   { name: "Love is...", path: "/products/photos" },
   { name: "Журналы", path: "/products/magazines" },
 ];
 
-const activeIndex = computed(() =>
-  tabs.findIndex((tab) => route.path === tab.path)
+const activeIndex = ref(-1); // Начальное значение -1 (ничего не активно)
+
+watch(
+  () => route.path,
+  (newPath) => {
+    // Если мы на главной странице, сбрасываем активный индекс
+    if (newPath === "/") {
+      activeIndex.value = -1;
+    } else {
+      // Иначе ищем соответствующую вкладку
+      const foundIndex = tabs.findIndex((t) => newPath.startsWith(t.path));
+      activeIndex.value = foundIndex;
+    }
+  },
+  { immediate: true }
 );
 
-function navigateTo(path: string) {
-  if (route.path !== path) {
-    router.push({ path });
+const isOnHomePage = computed(() => route.path === "/");
+
+function navigateTo(index: number) {
+  // Если мы на главной странице, добавляем класс для анимации перед переходом
+  if (isOnHomePage.value) {
+    const slider = document.querySelector(".main-slider");
+    if (slider) {
+      slider.classList.add("slider--collapsing");
+      // Ждем небольшое время, чтобы анимация началась перед переходом
+      setTimeout(() => {
+        activeIndex.value = index;
+        router.push(tabs[index]!.path);
+      }, 50);
+      return;
+    }
   }
+  activeIndex.value = index;
+  router.push(tabs[index]!.path);
 }
 </script>
 
 <template>
-  <nav class="tabs-nav">
+  <div class="tabs-nav">
     <div class="tabs-container">
       <button
         v-for="(tab, index) in tabs"
         :key="tab.path"
         :class="['tab-button', { active: index === activeIndex }]"
-        @click="navigateTo(tab.path)"
+        @click="navigateTo(index)"
       >
         {{ tab.name }}
       </button>
     </div>
-  </nav>
+  </div>
 </template>
 
 <style scoped>
@@ -59,13 +86,9 @@ function navigateTo(path: string) {
   padding: 0.5rem 1rem;
   white-space: nowrap;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: color 0.3s, border-bottom 0.3s;
   border-bottom: 2px solid transparent;
-  color: #555;
-}
-
-.tab-button:hover {
-  color: #6a1b9a;
+  color: #444;
 }
 
 .tab-button.active {
@@ -79,8 +102,14 @@ function navigateTo(path: string) {
     gap: 0.5rem;
   }
   .tab-button {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.75rem;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
   }
+}
+
+/* Слайдер-уменьшение */
+.main-slider.slider--collapsing {
+  height: 200px !important;
+  transition: height 0.5s ease;
 }
 </style>

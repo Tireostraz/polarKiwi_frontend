@@ -12,10 +12,6 @@ export default defineNuxtPlugin({
       onRequest({ options }) {
         options.headers.append("Accept", "application/json");
         options.credentials = "include";
-
-        if (import.meta.browser) {
-          console.log(1);
-        }
       },
       /* async onResponseError({ response }) {
         if (response.status === 401) {
