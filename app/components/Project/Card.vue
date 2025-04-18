@@ -1,34 +1,72 @@
 <template>
   <div class="project-card" @click="handleClick">
-    <img
-      :src="project.preview"
-      :alt="project.name || 'Превью проекта'"
-      class="project-image"
-    />
+    <img :src="getPreviewImage" :alt="projectTitle" class="project-image" />
     <div class="project-content">
-      <h3 class="project-title">{{ project.name || "Без названия" }}</h3>
+      <h3 class="project-title">{{ projectTitle }}</h3>
       <p class="project-description">
-        {{ project.description || "Нет описания" }}
+        {{ projectDescription }}
       </p>
+      <div class="project-meta">
+        <span class="project-date">{{ formattedDate }}</span>
+        <span class="project-type">{{ projectType }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  project: {
-    id: string | number;
-    name?: string;
-    description?: string;
-    preview: string;
-    productSlug: string;
-  };
+import type { Project } from "~/repository/projects";
+import { computed } from "vue";
+
+const props = defineProps<{
+  project: Project;
 }>();
 
 const router = useRouter();
 
+// Получаем данные продукта из хранилища или API
+const { data: product } = await useFetch(
+  `/api/products/${props.project.productId}`
+);
+
+const projectTitle = computed(() => {
+  return product.value?.title || "Без названия";
+});
+
+const projectDescription = computed(() => {
+  return product.value?.short_description || "Нет описания";
+});
+
+const projectType = computed(() => {
+  switch (props.project.type) {
+    case "photo":
+      return "Фотография";
+    case "smsbook":
+      return "SMS-книга";
+    default:
+      return "Проект";
+  }
+});
+
+const formattedDate = computed(() => {
+  return new Date(props.project.createdAt).toLocaleDateString();
+});
+
+const getPreviewImage = computed(() => {
+  // Для фото проектов используем первое изображение, если есть
+  if (props.project.type === "photo" && props.project.images?.length > 0) {
+    return props.project.images[0].url;
+  }
+  // Для SMS-книг используем обложку
+  if (props.project.type === "smsbook" && props.project.coverImage) {
+    return props.project.coverImage;
+  }
+  // Если нет своих изображений, используем thumbnail продукта
+  return product.value?.thumbnail || "/images/default-project.jpg";
+});
+
 const handleClick = () => {
-  router.push(`/projects/`);
+  router.push(`/projects/${props.project.id}`);
 };
 </script>
 
@@ -69,5 +107,18 @@ const handleClick = () => {
   margin: 8px 0 0;
   font-size: 14px;
   color: #666;
+}
+
+.project-meta {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #888;
+}
+
+.project-date,
+.project-type {
+  display: inline-block;
 }
 </style>

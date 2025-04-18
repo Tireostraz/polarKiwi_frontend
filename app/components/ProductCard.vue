@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Product } from "~/repository/products";
-const { $toast } = useNuxtApp();
 
 const props = defineProps<{
   product: Product;
@@ -8,11 +7,17 @@ const props = defineProps<{
 
 const emit = defineEmits(["add-to-cart", "open-details"]);
 
-const cartStore = useCartStore();
+/* const cartStore = useCartStore(); */
+const projectsStore = useProjectsStore();
 
-function addToCart() {
+/* function addToCart() {
   cartStore.addToCart(props.product);
-}
+} */
+
+const addToProjects = () => {
+  projectsStore.addProject(props.product);
+  // Можно добавить уведомление об успешном добавлении
+};
 </script>
 
 <template>
@@ -23,7 +28,7 @@ function addToCart() {
         :alt="product.title"
         class="product-image"
       />
-      <button class="quick-add-btn" @click.stop="addToCart">
+      <button class="quick-add-btn" @click.st="addToProjects">
         <NuxtImg src="/add-to-cart.svg" width="20" />
       </button>
     </div>
