@@ -5,11 +5,11 @@
       v-if="projects.length"
       class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"
     >
-      <ProjectCard
+      <!-- <ProjectCard
         v-for="project in projects"
         :key="project.id"
         :project="project"
-      />
+      /> -->
     </div>
     <p v-else class="text-muted-foreground text-sm">У вас пока нет проектов.</p>
   </div>

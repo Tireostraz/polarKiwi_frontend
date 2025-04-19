@@ -1,5 +1,5 @@
 <template>
-  <div class="project-card" @click="handleClick">
+  <div class="project-card">
     <img
       :src="project.preview"
       :alt="project.name || 'Превью проекта'"
@@ -26,10 +26,6 @@ defineProps<{
 }>();
 
 const router = useRouter();
-
-const handleClick = () => {
-  router.push(`/projects/${project.productSlug}/${project.id}`);
-};
 </script>
 
 <style scoped>

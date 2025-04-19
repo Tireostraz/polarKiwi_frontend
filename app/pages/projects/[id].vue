@@ -1,60 +1,83 @@
 <template>
   <div class="constructor-page">
-    <!-- Галерея слева -->
-    <aside class="gallery">
-      <h3>Галерея</h3>
-      <input type="file" multiple @change="handleFiles" />
-      <div class="thumbnails">
-        <img
-          v-for="(img, i) in galleryImages"
-          :key="i"
-          :src="img"
-          @click="addToPolaroids(img)"
-          class="thumbnail"
-        />
-      </div>
-    </aside>
+    <ConstructorUploader @add-image="addImageToGallery" />
 
-    <!-- Полароид-превью по центру -->
     <main class="polaroid-preview">
-      <div class="polaroid" v-for="(img, index) in polaroidImages" :key="index">
-        <img :src="img" class="polaroid-img" />
-        <div class="polaroid-label">Ваш текст</div>
+      <div class="photos-list">
+        <ConstructorItem
+          v-for="(img, index) in printItems"
+          :key="index"
+          :image-url="img"
+          :index="index"
+          :item-count="printItems.length"
+          @edit="openEditor(index)"
+        />
       </div>
     </main>
 
-    <!-- Кнопка добавления в корзину -->
+    <ConstructorModal
+      v-if="activeImageIndex !== null"
+      :is-open="isEditorOpen"
+      :image-url="printItems[activeImageIndex] || ''"
+      @close="closeEditor"
+      @save="saveImage"
+      @remove="removeImage"
+      @replace="replaceImage"
+    />
+
     <button class="submit-btn" @click="submitProject">
       Добавить в корзину
     </button>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+const galleryImages = ref<string[]>([]);
+const printItems = ref<string[]>(Array(20).fill(""));
+const activeImageIndex = ref<number | null>(null);
+const isEditorOpen = ref(false);
 
-const galleryImages = ref([]);
-const polaroidImages = ref([]);
+const addImageToGallery = (imageUrl: string) => {
+  galleryImages.value.push(imageUrl);
+};
 
-function handleFiles(event) {
-  const files = Array.from(event.target.files);
-  files.forEach((file) => {
-    const reader = new FileReader();
-    reader.onload = () => galleryImages.value.push(reader.result);
-    reader.readAsDataURL(file);
-  });
-}
+const openEditor = (index: number) => {
+  activeImageIndex.value = index;
+  isEditorOpen.value = true;
+};
 
-function addToPolaroids(image) {
-  polaroidImages.value.push(image);
-}
+const closeEditor = () => {
+  isEditorOpen.value = false;
+  activeImageIndex.value = null;
+};
 
-function submitProject() {
+const saveImage = (editData: { zoom: number; rotation: number }) => {
+  if (activeImageIndex.value !== null) {
+    // Здесь можно применить изменения к изображению
+    console.log("Saved edits for image:", editData);
+  }
+};
+
+const removeImage = () => {
+  if (activeImageIndex.value !== null) {
+    printItems.value[activeImageIndex.value] = "";
+    closeEditor();
+  }
+};
+
+const replaceImage = () => {
+  if (activeImageIndex.value !== null && galleryImages.value.length > 0) {
+    // Берем первое изображение из галереи для примера
+    printItems.value[activeImageIndex.value] = galleryImages.value[0]!; //добавить провеку на undefined
+    closeEditor();
+  }
+};
+
+const submitProject = () => {
   console.log("Сохраняем проект", {
-    images: polaroidImages.value,
-    // Позже сюда добавим данные об обрезке и т.д.
+    images: printItems.value.filter((img) => img),
   });
-}
+};
 </script>
 
 <style scoped>
@@ -64,21 +87,7 @@ function submitProject() {
   padding: 20px;
   position: relative;
 }
-.gallery {
-  width: 200px;
-  border-right: 1px solid #ccc;
-}
-.thumbnails {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-.thumbnail {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  cursor: pointer;
-}
+
 .polaroid-preview {
   flex-grow: 1;
   display: flex;
@@ -86,28 +95,14 @@ function submitProject() {
   gap: 20px;
   justify-content: center;
 }
-.polaroid {
-  width: 150px;
-  height: 180px;
-  background: white;
-  border: 1px solid #000;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+
+.photos-list {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 10px;
 }
-.polaroid-img {
-  max-width: 100%;
-  max-height: 120px;
-}
-.polaroid-label {
-  margin-top: 10px;
-  font-size: 14px;
-  text-align: center;
-}
+
 .submit-btn {
   position: absolute;
   top: 20px;

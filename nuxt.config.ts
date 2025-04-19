@@ -12,5 +12,10 @@ export default defineNuxtConfig({
       apiBaseUrl: "", // Будет переопределено из .env
     },
   },
-  modules: ["@nuxt/image", "@pinia/nuxt", "pinia-plugin-persistedstate/nuxt"],
+  modules: [
+    "@nuxt/image",
+    "@pinia/nuxt",
+    "pinia-plugin-persistedstate/nuxt",
+    "@vueuse/nuxt",
+  ],
 });
