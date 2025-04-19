@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import toast from "~/plugins/toast";
 import type { Product } from "~/repository/products";
 
 const props = defineProps<{
@@ -15,7 +16,8 @@ const projectsStore = useProjectsStore();
 } */
 
 const addToProjects = () => {
-  projectsStore.addProject(props.product);
+  console.log(props.product.id, props.product.title);
+  projectsStore.addProject(props.product.id, props.product.title);
   // Можно добавить уведомление об успешном добавлении
 };
 </script>
@@ -28,7 +30,7 @@ const addToProjects = () => {
         :alt="product.title"
         class="product-image"
       />
-      <button class="quick-add-btn" @click.st="addToProjects">
+      <button class="quick-add-btn" @click.stop="addToProjects">
         <NuxtImg src="/add-to-cart.svg" width="20" />
       </button>
     </div>

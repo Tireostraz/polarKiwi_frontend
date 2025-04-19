@@ -13,6 +13,7 @@ interface AppToast {
   cartRemoved: (productName: string) => ToastID;
   authSuccess: () => ToastID;
   authError: (message?: string) => ToastID;
+  projectAdded: (projectName: string) => ToastID;
 }
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -43,6 +44,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       toastBase.info(`Товар "${productName}" удален из корзины`),
     authSuccess: () => toastBase.success("Авторизация прошла успешно"),
     authError: (message = "Ошибка авторизации") => toastBase.error(message),
+    projectAdded: (projectName: string) =>
+      toastBase.success(`Товар "${projectName}" добавлен в проекты`),
   };
 
   return {

@@ -1,6 +1,7 @@
 export interface ProjectBase {
   id: string;
-  productId: string; // Ссылка на продукт
+  title: string;
+  productId: string;
   createdAt: Date;
   updatedAt: Date;
   status: "draft" | "completed";

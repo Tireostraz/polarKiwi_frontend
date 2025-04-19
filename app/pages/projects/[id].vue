@@ -1,37 +1,8 @@
-<template>
-  <div class="constructor-page">
-    <ConstructorUploader @add-image="addImageToGallery" />
-
-    <main class="polaroid-preview">
-      <div class="photos-list">
-        <ConstructorItem
-          v-for="(img, index) in printItems"
-          :key="index"
-          :image-url="img"
-          :index="index"
-          :item-count="printItems.length"
-          @edit="openEditor(index)"
-        />
-      </div>
-    </main>
-
-    <ConstructorModal
-      v-if="activeImageIndex !== null"
-      :is-open="isEditorOpen"
-      :image-url="printItems[activeImageIndex] || ''"
-      @close="closeEditor"
-      @save="saveImage"
-      @remove="removeImage"
-      @replace="replaceImage"
-    />
-
-    <button class="submit-btn" @click="submitProject">
-      Добавить в корзину
-    </button>
-  </div>
-</template>
-
 <script setup lang="ts">
+definePageMeta({
+  layout: "projects",
+});
+
 const galleryImages = ref<string[]>([]);
 const printItems = ref<string[]>(Array(20).fill(""));
 const activeImageIndex = ref<number | null>(null);
@@ -79,6 +50,39 @@ const submitProject = () => {
   });
 };
 </script>
+
+<template>
+  <div class="constructor-page">
+    <ConstructorUploader @add-image="addImageToGallery" />
+
+    <main class="polaroid-preview">
+      <div class="photos-list">
+        <ConstructorItem
+          v-for="(img, index) in printItems"
+          :key="index"
+          :image-url="img"
+          :index="index"
+          :item-count="printItems.length"
+          @edit="openEditor(index)"
+        />
+      </div>
+    </main>
+
+    <ConstructorModal
+      v-if="activeImageIndex !== null"
+      :is-open="isEditorOpen"
+      :image-url="printItems[activeImageIndex] || ''"
+      @close="closeEditor"
+      @save="saveImage"
+      @remove="removeImage"
+      @replace="replaceImage"
+    />
+
+    <button class="submit-btn" @click="submitProject">
+      Добавить в корзину
+    </button>
+  </div>
+</template>
 
 <style scoped>
 .constructor-page {

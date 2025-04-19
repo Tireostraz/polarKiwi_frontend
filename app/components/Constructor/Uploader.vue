@@ -1,69 +1,5 @@
-<template>
-  <div class="uploader">
-    <!-- Кнопка загрузки -->
-    <button @click="triggerFileInput" class="upload-button">
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-      >
-        <path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round" />
-      </svg>
-      <span>Добавить фото</span>
-    </button>
-
-    <!-- Drag-and-drop зона -->
-    <div
-      class="dropzone"
-      @dragover.prevent="dragOver"
-      @dragleave="dragLeave"
-      @drop.prevent="handleDrop"
-      :class="{ 'dropzone--active': isDragging }"
-    >
-      <div class="dropzone-content">
-        <svg
-          width="64"
-          height="64"
-          viewBox="0 0 64 64"
-          fill="none"
-          stroke="currentColor"
-        >
-          <circle cx="32" cy="32" r="31" stroke-opacity="0.25" />
-          <path
-            d="M32 22v20M22 32h20"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-        </svg>
-        <p>Перетащите фото сюда</p>
-      </div>
-    </div>
-
-    <!-- Список загруженных изображений -->
-    <div class="gallery">
-      <div v-for="image in images" :key="image.id" class="gallery-item">
-        <img :src="image.url" :alt="image.name" />
-        <button @click="removeImage(image.id)" class="remove-button">×</button>
-      </div>
-    </div>
-
-    <!-- Скрытый input -->
-    <input
-      type="file"
-      ref="fileInput"
-      accept="image/jpeg, image/png, image/webp"
-      multiple
-      @change="handleFiles"
-      style="display: none"
-    />
-  </div>
-</template>
-
 <script setup lang="ts">
 import { useStorage } from "@vueuse/core";
-import type { Ref } from "vue";
 
 interface GalleryImage {
   id: string;
@@ -157,8 +93,75 @@ const isValidImage = (file: File): boolean => {
 };
 </script>
 
+<template>
+  <div class="uploader">
+    <!-- Кнопка загрузки -->
+    <button @click="triggerFileInput" class="upload-button">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+      >
+        <path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <span>Добавить фото</span>
+    </button>
+
+    <!-- Drag-and-drop зона -->
+    <div
+      class="dropzone"
+      @dragover.prevent="dragOver"
+      @dragleave="dragLeave"
+      @drop.prevent="handleDrop"
+      :class="{ 'dropzone--active': isDragging }"
+    >
+      <div class="dropzone-content">
+        <svg
+          width="64"
+          height="64"
+          viewBox="0 0 64 64"
+          fill="none"
+          stroke="currentColor"
+        >
+          <circle cx="32" cy="32" r="31" stroke-opacity="0.25" />
+          <path
+            d="M32 22v20M22 32h20"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+        <p>Перетащите фото сюда</p>
+      </div>
+    </div>
+
+    <!-- Список загруженных изображений -->
+    <div class="gallery">
+      <div v-for="image in images" :key="image.id" class="gallery-item">
+        <img :src="image.url" :alt="image.name" />
+        <button @click="removeImage(image.id)" class="remove-button">×</button>
+      </div>
+    </div>
+
+    <!-- Скрытый input -->
+    <input
+      type="file"
+      ref="fileInput"
+      accept="image/jpeg, image/png, image/webp"
+      multiple
+      @change="handleFiles"
+      style="display: none"
+    />
+  </div>
+</template>
+
 <style scoped>
 .uploader {
+  display: flex;
+  z-index: 1000;
+  position: fixed;
+  flex-direction: column;
   width: 300px;
   padding: 20px;
   border-right: 1px solid #eee;

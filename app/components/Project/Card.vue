@@ -1,19 +1,3 @@
-<template>
-  <div class="project-card" @click="handleClick">
-    <img :src="getPreviewImage" :alt="projectTitle" class="project-image" />
-    <div class="project-content">
-      <h3 class="project-title">{{ projectTitle }}</h3>
-      <p class="project-description">
-        {{ projectDescription }}
-      </p>
-      <div class="project-meta">
-        <span class="project-date">{{ formattedDate }}</span>
-        <span class="project-type">{{ projectType }}</span>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import type { Project } from "~/repository/projects";
 import { computed } from "vue";
@@ -22,11 +6,18 @@ const props = defineProps<{
   project: Project;
 }>();
 
+const { $api } = useNuxtApp();
+
 const router = useRouter();
 
 // Получаем данные продукта из хранилища или API
-const { data: product } = await useFetch(
-  `/api/products/${props.project.productId}`
+const {
+  data: products,
+  status,
+  error,
+} = await useAsyncData(
+  `/products/${category.value}`, // уникальный ключ
+  () => $api.products.byId(category.value)
 );
 
 const projectTitle = computed(() => {
@@ -69,6 +60,22 @@ const handleClick = () => {
   router.push(`/projects/${props.project.id}`);
 };
 </script>
+
+<template>
+  <div class="project-card" @click="handleClick">
+    <img :src="getPreviewImage" :alt="projectTitle" class="project-image" />
+    <div class="project-content">
+      <h3 class="project-title">{{ projectTitle }}</h3>
+      <p class="project-description">
+        {{ projectDescription }}
+      </p>
+      <div class="project-meta">
+        <span class="project-date">{{ formattedDate }}</span>
+        <span class="project-type">{{ projectType }}</span>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .project-card {

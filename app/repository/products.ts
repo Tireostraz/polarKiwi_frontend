@@ -1,5 +1,5 @@
 export interface Product {
-  id: string;
+  id: number;
   title: string;
   thumbnail: string;
   images: string[];
@@ -18,6 +18,11 @@ export function createProductRepository(appFetch: typeof $fetch) {
     },
     byCategory(category: string) {
       return appFetch<Product[] | null>(`/products?category=${category}`, {
+        method: "GET",
+      });
+    },
+    byId(id: number) {
+      return appFetch<Product | null>(`/products/${id}`, {
         method: "GET",
       });
     },

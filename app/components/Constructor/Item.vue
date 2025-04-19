@@ -1,6 +1,5 @@
 <template>
   <div class="print-item__item-wrapper print-item__item-wrapper--print">
-    <h3 class="print-item__photos-title">{{ itemCount }} снимков</h3>
     <div :id="itemId" class="print-item__item">
       <div
         class="product-item"
