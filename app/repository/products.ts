@@ -26,5 +26,11 @@ export function createProductRepository(appFetch: typeof $fetch) {
         method: "GET",
       });
     },
+    byIds(ids: Array<number>) {
+      return appFetch<Product[]>("/products/batch", {
+        method: "POST",
+        body: { product_ids: ids },
+      });
+    },
   };
 }

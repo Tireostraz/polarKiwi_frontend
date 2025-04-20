@@ -1,5 +1,5 @@
 export interface ProjectBase {
-  id: string;
+  id: number;
   title: string;
   productId: string;
   createdAt: Date;
