@@ -3,6 +3,11 @@ definePageMeta({ layout: "projects" });
 
 const galleryImages = ref<string[]>([]);
 const printItems = ref<string[]>(Array(20).fill(""));
+const isDraggingFromGallery = ref(false);
+
+watch(isDraggingFromGallery, (val) => {
+  document.body.style.cursor = val ? "no-drop" : "";
+});
 
 const addImageToGallery = (imageUrl: string) => {
   galleryImages.value.push(imageUrl);
@@ -20,19 +25,24 @@ const submitProject = () => {
 </script>
 
 <template>
-  <div class="constructor-page">
-    <ConstructorUploader @add-image="addImageToGallery" />
+  <div class="base-editor-layout">
+    <ConstructorUploader
+      @add-image="addImageToGallery"
+      @drag-start="isDraggingFromGallery = true"
+    />
 
-    <main class="workspace">
-      <ConstructorItem
-        v-for="(img, index) in printItems"
-        :key="index"
-        :image-url="img"
-        :index="index"
-        @drop="({ index, url }) => updateSlot(index, url)"
-        @edit="() => console.log('Открыть модалку для', index)"
-      />
-    </main>
+    <div class="workspace">
+      <div class="workspace-container">
+        <ConstructorItem
+          v-for="(img, index) in printItems"
+          :key="index"
+          :image-url="img"
+          :index="index"
+          @drop="({ index, url }) => updateSlot(index, url)"
+          @edit="() => console.log('Открыть модалку для', index)"
+        />
+      </div>
+    </div>
 
     <button class="submit-btn" @click="submitProject">
       Добавить в корзину
@@ -41,18 +51,26 @@ const submitProject = () => {
 </template>
 
 <style scoped>
-.constructor-page {
+.base-editor-layout {
   display: flex;
+  position: static;
 }
 
 .workspace {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
-  margin-left: 200px;
-  flex-grow: 1;
+  flex-grow: 75;
+  flex-shrink: 1;
+  flex-basis: 0px;
   justify-content: center;
+}
+
+.workspace-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 100px 90px 0px 90px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  gap: 20px;
 }
 
 .submit-btn {

@@ -105,13 +105,23 @@ function setActiveTab(newValue: "Login" | "Register") {
           required
         />
         <div v-if="error" class="login-error">{{ error }}</div>
-        <input v-model="loginForm.rememberMe" type="checkbox" id="remamberMe" />
-        <label for="remamberMe">Запомнить меня</label>
+        <div>
+          <input
+            v-model="loginForm.rememberMe"
+            type="checkbox"
+            id="remamberMe"
+          />
+          <label for="remamberMe">Запомнить меня</label>
+        </div>
         <button @click="handleLogin" :disabled="isSubmitting">
           {{ isSubmitting ? "Loggin in..." : "Login" }}
         </button>
       </form>
-      <form v-else-if="activeTab === 'Register'" class="auth-form">
+      <form
+        v-else-if="activeTab === 'Register'"
+        class="auth-form"
+        autocomplete="off"
+      >
         <h3>Create new account</h3>
         <input
           v-model="registerForm.name"
@@ -124,6 +134,7 @@ function setActiveTab(newValue: "Login" | "Register") {
           type="email"
           placeholder="Email"
           required
+          autocomplete="off"
         />
         <input
           v-model="registerForm.password"

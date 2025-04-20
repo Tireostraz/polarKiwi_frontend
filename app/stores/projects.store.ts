@@ -5,6 +5,7 @@ export const useProjectsStore = defineStore(
   "projects",
   () => {
     const addedProjectsIds = ref<number[]>([]);
+    const totalProjects = computed(() => addedProjectsIds.value.length);
     const projects = ref<Project[]>([]);
     const { $toast } = useNuxtApp();
 
@@ -25,6 +26,7 @@ export const useProjectsStore = defineStore(
 
     return {
       addedProjectsIds,
+      totalProjects,
       projects,
       addProject,
       removeProject,

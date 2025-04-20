@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const auth = useAuthStore();
 const cartStore = useCartStore();
+const projectStore = useProjectsStore();
 
 const isMenuOpen = ref(false);
 const modalOpen = ref(false);
@@ -50,6 +51,9 @@ function handleLogout() {
           <nuxt-link class="nav-link" to="/projects">
             <img src="/projects.svg" width="24" height="24" />
             <div class="nav-text">Проекты</div>
+            <div v-if="projectStore.totalProjects > 0" class="nav-cart_counter">
+              {{ projectStore.totalProjects }}
+            </div>
           </nuxt-link>
           <nuxt-link class="nav-link" to="/cart">
             <img src="/cart.svg" width="24" height="24" />
