@@ -5,16 +5,12 @@ const galleryImages = ref<string[]>([]);
 const printItems = ref<string[]>(Array(20).fill(""));
 const isDraggingFromGallery = ref(false);
 
-watch(isDraggingFromGallery, (val) => {
+/* watch(isDraggingFromGallery, (val) => {
   document.body.style.cursor = val ? "no-drop" : "";
-});
+}); */
 
 const addImageToGallery = (imageUrl: string) => {
   galleryImages.value.push(imageUrl);
-};
-
-const updateSlot = (index: number, url: string) => {
-  printItems.value[index] = url;
 };
 
 const submitProject = () => {
@@ -35,11 +31,9 @@ const submitProject = () => {
       <div class="workspace-container">
         <ConstructorItem
           v-for="(img, index) in printItems"
-          :key="index"
           :image-url="img"
+          :key="index"
           :index="index"
-          @drop="({ index, url }) => updateSlot(index, url)"
-          @edit="() => console.log('Открыть модалку для', index)"
         />
       </div>
     </div>
@@ -53,11 +47,14 @@ const submitProject = () => {
 <style scoped>
 .base-editor-layout {
   display: flex;
-  position: static;
+  height: 100%;
+  overflow: hidden;
 }
 
 .workspace {
   display: flex;
+  height: 100vh;
+  overflow: hidden;
   flex-grow: 75;
   flex-shrink: 1;
   flex-basis: 0px;
@@ -70,7 +67,9 @@ const submitProject = () => {
   padding: 100px 90px 0px 90px;
   overflow-x: hidden;
   overflow-y: auto;
-  gap: 20px;
+  height: 100vh;
+  align-content: flex-start;
+  gap: 40px;
 }
 
 .submit-btn {

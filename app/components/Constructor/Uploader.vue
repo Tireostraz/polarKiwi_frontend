@@ -142,6 +142,7 @@ const handleDragEnd = (e: DragEvent) => {
 
 .images-grid {
   display: grid;
+  overflow-y: auto;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 8px;
   width: 100%;
