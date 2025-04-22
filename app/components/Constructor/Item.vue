@@ -1,3 +1,41 @@
+<script setup lang="ts">
+const props = defineProps<{
+  imageUrl?: string;
+  index: number;
+}>();
+const dropedImage = ref<string>("");
+const isDragOver = ref(false);
+
+const image = computed(() => {
+  return props.imageUrl || dropedImage.value;
+});
+
+const handleClick = () => {
+  console.log("clicked");
+};
+
+const onDragOver = (e: DragEvent) => {
+  if (!image.value) {
+    e.preventDefault();
+    isDragOver.value = true;
+    e.dataTransfer!.dropEffect = "copy";
+  } else {
+    e.dataTransfer!.dropEffect = "none";
+  }
+};
+
+const onDrop = (e: DragEvent) => {
+  if (image.value) return;
+
+  isDragOver.value = false;
+  const url = e.dataTransfer?.getData("text/plain");
+  if (url) {
+    dropedImage.value = url;
+    isDragOver.value = false;
+  }
+};
+</script>
+
 <template>
   <div
     class="polaroid"
@@ -21,50 +59,12 @@
   </div>
 </template>
 
-<script setup lang="ts">
-const props = defineProps<{
-  imageUrl?: string;
-  index: number;
-}>();
-const dropedImage = ref<string>("");
-const isDragOver = ref(false);
-
-const image = computed(() => {
-  console.log("image set");
-  return props.imageUrl || dropedImage.value;
-});
-
-const handleClick = () => {
-  console.log("clicked");
-};
-
-const onDragOver = (e: DragEvent) => {
-  if (!image.value) {
-    e.preventDefault();
-    isDragOver.value = true;
-    e.dataTransfer!.dropEffect = "copy";
-  } else {
-    e.dataTransfer!.dropEffect = "none";
-  }
-};
-
-const onDrop = (e: DragEvent) => {
-  console.log("image droped");
-  if (image.value) return;
-
-  isDragOver.value = false;
-  const url = e.dataTransfer?.getData("text/plain");
-  if (url) {
-    dropedImage.value = url;
-    isDragOver.value = false;
-  }
-};
-</script>
-
 <style scoped>
 .polaroid {
-  width: 200px;
-  height: 240px;
+  width: 100%;
+  max-width: 170px;
+  height: auto;
+  aspect-ratio: 5/6;
   background: white;
   padding: 15px 15px 40px 15px; /* Больше padding снизу для эффекта полароида */
   border: 1px solid #e0e0e0;

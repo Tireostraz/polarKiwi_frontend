@@ -170,4 +170,44 @@ const handleDragEnd = (e: DragEvent) => {
   padding: 40px 20px;
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .uploader {
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    z-index: 10;
+    border-top: 1px solid #ddd;
+    border-right: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .images-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 8px;
+    overflow-x: auto;
+    flex-grow: 1;
+  }
+
+  .thumbnail {
+    flex: 0 0 auto;
+    width: 80px;
+    height: 80px;
+  }
+
+  .uploader-controls {
+    padding: 0 8px;
+    min-width: 140px;
+  }
+
+  .uploader-tabs {
+    display: none; /* можно скрыть текст на мобильных */
+  }
+}
 </style>

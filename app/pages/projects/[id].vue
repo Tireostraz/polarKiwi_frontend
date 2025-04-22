@@ -28,6 +28,12 @@ const submitProject = () => {
     />
 
     <div class="workspace">
+      <div class="workspace-info">
+        <div>Проект: title</div>
+        <div>Изображений: count</div>
+        <button>+</button>
+        <button>-</button>
+      </div>
       <div class="workspace-container">
         <ConstructorItem
           v-for="(img, index) in printItems"
@@ -47,13 +53,14 @@ const submitProject = () => {
 <style scoped>
 .base-editor-layout {
   display: flex;
-  height: 100%;
+  height: calc(100vh-56px);
+  width: 100%;
   overflow: hidden;
 }
 
 .workspace {
   display: flex;
-  height: 100vh;
+  flex-direction: column;
   overflow: hidden;
   flex-grow: 75;
   flex-shrink: 1;
@@ -61,14 +68,19 @@ const submitProject = () => {
   justify-content: center;
 }
 
+.workspace-info {
+  display: flex;
+  justify-content: space-around;
+}
+
 .workspace-container {
   display: flex;
   flex-wrap: wrap;
-  padding: 100px 90px 0px 90px;
+  padding: 40px 90px 40px 90px;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 100vh;
   align-content: flex-start;
+  box-sizing: border-box;
   gap: 40px;
 }
 

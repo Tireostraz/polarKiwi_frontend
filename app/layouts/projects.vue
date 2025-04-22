@@ -1,14 +1,29 @@
 <script setup lang="ts"></script>
+
 <template>
-  <h2>Проект:</h2>
-  <slot />
+  <div class="layout-container">
+    <h2 class="layout-header">Проект:</h2>
+    <slot />
+  </div>
 </template>
 
-<style>
+<style scoped>
 html,
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Запрещаем скролл body */
+  height: 100%;
+  overflow: hidden;
+}
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.layout-header {
+  margin: 0;
+  padding: 16px;
+  background: white;
+  z-index: 10;
 }
 </style>
