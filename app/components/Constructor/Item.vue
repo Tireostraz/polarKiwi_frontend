@@ -16,7 +16,6 @@ const handleClick = () => {
 
 const onDragOver = (e: DragEvent) => {
   if (!image.value) {
-    e.preventDefault();
     isDragOver.value = true;
     e.dataTransfer!.dropEffect = "copy";
   } else {

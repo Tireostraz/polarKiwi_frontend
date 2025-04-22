@@ -1,10 +1,11 @@
 <template>
   <div
     class="uploader"
-    :class="{ 'drag-over': isDragging }"
+    :class="{ 'drag-over': isDragging && !isGalleryImage }"
     @dragover.prevent="onDragOver"
-    @dragleave="onDragLeave"
+    @dragleave="isDragging = false"
     @drop.prevent="onDrop"
+    @dragstart="onDragStart"
   >
     <div class="uploader-tabs">
       <NuxtImg width="24" src="/Constructor/image.svg" />
@@ -13,7 +14,10 @@
     <div class="uploader-controls">
       <button>+ Загрузить изображения</button>
     </div>
-    <div v-if="!isDragging" class="images-grid">
+    <div v-if="isDragging && !isGalleryImage" class="drop-hint">
+      Перетащите изображения сюда
+    </div>
+    <div v-else class="images-grid">
       <img
         v-for="(img, index) in images"
         :key="index"
@@ -22,10 +26,8 @@
         draggable="true"
         @dragstart="handleDragStart($event, img)"
         @dragend="handleDragEnd"
-        @click="$emit('select-image', img)"
       />
     </div>
-    <div v-else class="drop-hint">Перетащите изображения сюда</div>
     <input
       type="file"
       accept="image/*"
@@ -41,6 +43,7 @@
 const emit = defineEmits(["add-image", "select-image", "drag-start"]);
 const images = ref<string[]>([]);
 const isDragging = ref(false);
+const isGalleryImage = ref(false);
 
 const onFileChange = (e: Event) => {
   const files = (e.target as HTMLInputElement).files;
@@ -59,6 +62,11 @@ const onFileChange = (e: Event) => {
 
 const onDrop = (e: DragEvent) => {
   isDragging.value = false;
+
+  if (isGalleryImage.value) {
+    isGalleryImage.value = false;
+    return;
+  }
   const files = e.dataTransfer?.files;
   if (!files) return;
 
@@ -67,27 +75,46 @@ const onDrop = (e: DragEvent) => {
     reader.onload = () => {
       const url = reader.result as string;
       images.value.push(url);
-      emit("add-image", url);
     };
     reader.readAsDataURL(file);
   });
 };
 
-const onDragOver = () => {
+const onDragOver = (e: DragEvent) => {
   isDragging.value = true;
+  e.dataTransfer!.dropEffect = isGalleryImage.value ? "none" : "copy";
 };
 
-const onDragLeave = () => {
-  isDragging.value = false;
+const onDragStart = () => {
+  isGalleryImage.value = true;
 };
-const handleDragStart = (e: DragEvent, img: string) => {
-  e.dataTransfer?.setData("text/plain", img);
-  e.dataTransfer!.effectAllowed = "copyMove";
-  (e.target as HTMLElement).style.opacity = "0.4";
-  emit("drag-start");
+
+const handleDragStart = (e: DragEvent, imgSrc: string) => {
+  isGalleryImage.value = true;
+  e.dataTransfer?.setData("text/plain", imgSrc);
+  e.dataTransfer!.effectAllowed = "copy";
+
+  const originalImg = e.target as HTMLImageElement;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = originalImg.naturalWidth;
+  canvas.height = originalImg.naturalHeight;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  originalImg.style.opacity = "1";
+  ctx.drawImage(originalImg, 0, 0);
+
+  e.dataTransfer!.setDragImage(canvas, canvas.width / 2, canvas.height / 2);
+
+  originalImg.style.opacity = "0.4";
 };
 
 const handleDragEnd = (e: DragEvent) => {
+  isGalleryImage.value = false;
   (e.target as HTMLElement).style.opacity = "1";
 };
 </script>
