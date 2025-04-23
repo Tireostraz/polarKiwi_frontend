@@ -7,8 +7,10 @@ export default defineNuxtConfig({
   devServer: {
     host: "127.0.0.1",
   },
-  build: {
-    transpile: ["konva", "vue-konva"],
+  vite: {
+    optimizeDeps: {
+      include: ["vue-konva"],
+    },
   },
   routeRules: {
     // Render these routes with SPA

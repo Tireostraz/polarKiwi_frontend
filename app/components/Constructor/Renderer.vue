@@ -6,56 +6,47 @@
           v-for="(node, index) in nodes"
           :key="index"
           :is="getComponentType(node.type)"
-          :config="getNodeConfig(node)"
+          v-bind="getNodeConfig(node)"
         />
       </v-layer>
     </v-stage>
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  templateData: {
-    type: [Object, String],
-    required: true,
-  },
-  width: {
-    type: Number,
-    default: 800,
-  },
-  height: {
-    type: Number,
-    default: 600,
-  },
-});
+<script setup lang="ts">
+import { ref, watch, computed } from "vue";
+
+const props = defineProps<{
+  templateData: object;
+  width?: number;
+  height?: number;
+}>();
 
 const stage = ref(null);
-const images = ref({});
-const parsedData = ref(null);
+const images = ref<Record<string, HTMLImageElement | null>>({});
+const parsedData = ref<any>(null);
 
 const stageConfig = computed(() => ({
-  width: props.width,
-  height: props.height,
+  width: props.width || 800,
+  height: props.height || 600,
 }));
 
-const nodes = computed(() => {
-  if (!parsedData.value) return [];
-  return parsedData.value.nodes || [];
-});
+const nodes = computed(() => parsedData.value?.nodes || []);
 
-const getComponentType = (type) => {
-  const componentMap = {
-    rect: "v-rect",
-    text: "v-text",
-    image: "v-image",
-    circle: "v-circle",
-    line: "v-line",
-    path: "v-path",
-  };
-  return componentMap[type] || null;
+const getComponentType = (type: string) => {
+  return (
+    {
+      rect: "v-rect",
+      text: "v-text",
+      image: "v-image",
+      circle: "v-circle",
+      line: "v-line",
+      path: "v-path",
+    }[type] || null
+  );
 };
 
-const getNodeConfig = (node) => {
+const getNodeConfig = (node: any) => {
   if (node.type === "image") {
     return {
       ...node.attrs,
@@ -65,40 +56,29 @@ const getNodeConfig = (node) => {
   return node.attrs;
 };
 
-const loadImage = async (url) => {
+const loadImage = async (url: string) => {
   if (!url || url === "placeholder") return null;
-
-  try {
+  return new Promise<HTMLImageElement>((resolve, reject) => {
     const img = new Image();
     img.src = url;
-    await new Promise((resolve, reject) => {
-      img.onload = resolve;
-      img.onerror = reject;
-    });
-    return img;
-  } catch (error) {
-    console.error("Error loading image:", url, error);
-    return null;
-  }
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+  });
 };
 
 const parseTemplateData = async () => {
-  try {
-    parsedData.value =
-      typeof props.templateData === "string"
-        ? JSON.parse(props.templateData)
-        : props.templateData;
+  parsedData.value =
+    typeof props.templateData === "string"
+      ? JSON.parse(props.templateData)
+      : props.templateData;
 
-    // Preload images
-    const imageNodes =
-      parsedData.value.nodes?.filter((n) => n.type === "image") || [];
-    for (const node of imageNodes) {
-      if (node.attrs?.src && !images.value[node.attrs.src]) {
-        images.value[node.attrs.src] = await loadImage(node.attrs.src);
-      }
+  const imageNodes =
+    parsedData.value.nodes?.filter((n: any) => n.type === "image") || [];
+  for (const node of imageNodes) {
+    const src = node.attrs?.src;
+    if (src && !images.value[src]) {
+      images.value[src] = await loadImage(src);
     }
-  } catch (error) {
-    console.error("Error parsing template data:", error);
   }
 };
 

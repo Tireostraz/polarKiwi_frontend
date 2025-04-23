@@ -32,29 +32,29 @@
 </template>
 
 <script setup lang="ts">
-interface Layout {
-  id: string;
-  name: string;
-  type: "cover" | "page";
-  preview_url: string;
-  data: string | null;
-}
+import type { Layout } from "~/repository/layouts";
 
-const isLoading = ref(false);
-const errorMessage = ref<string | null>(null);
-//const layoutItems = ref<Layout[] | undefined>([]);
 const { $api } = useNuxtApp();
 
-const { data: layoutItems } = useAsyncData("/layouts", () =>
-  $api.layouts.all()
-);
+const isLoading = ref(true);
+const layoutItems = ref<Layout[]>([]);
+const errorMessage = ref<string | null>(null);
 
-const resp = await $api.layouts.all();
-console.log(resp);
+onMounted(async () => {
+  try {
+    const response = await $api.layouts.all();
+    layoutItems.value = response || [];
+    console.log(response);
+  } catch (error) {
+    errorMessage.value = "Ошибка при загрузке шаблонов.";
+    console.error(error);
+  } finally {
+    isLoading.value = false;
+  }
+});
 
 const selectLayout = (layout: Layout) => {
   console.log("Выбран шаблон:", layout);
-  // Логика выбора шаблона
 };
 </script>
 
