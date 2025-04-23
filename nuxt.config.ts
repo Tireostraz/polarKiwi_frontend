@@ -7,6 +7,13 @@ export default defineNuxtConfig({
   devServer: {
     host: "127.0.0.1",
   },
+  build: {
+    transpile: ["konva", "vue-konva"],
+  },
+  routeRules: {
+    // Render these routes with SPA
+    "/layouts/**": { ssr: true },
+  },
   runtimeConfig: {
     public: {
       apiBaseUrl: "", // Будет переопределено из .env
