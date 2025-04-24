@@ -1,5 +1,3 @@
-//import Konva from "konva";
-
 export interface Layout {
   id: string;
   name: string;
