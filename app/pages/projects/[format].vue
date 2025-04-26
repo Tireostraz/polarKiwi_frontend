@@ -1,13 +1,19 @@
 <script setup lang="ts">
 definePageMeta({ layout: "projects" });
 
+const route = useRoute();
+const { $api } = useNuxtApp();
+
+const format = computed(() => route.params.format as string);
+console.log(format.value);
+
+const { data: photoLayout } = await useAsyncData(`${format}`, () =>
+  $api.layouts.getPhotoLayout(format.value)
+);
+
 const galleryImages = ref<string[]>([]);
 const printItems = ref<string[]>(Array(20).fill(""));
 const isDraggingFromGallery = ref(false);
-
-/* watch(isDraggingFromGallery, (val) => {
-  document.body.style.cursor = val ? "no-drop" : "";
-}); */
 
 const addImageToGallery = (imageUrl: string) => {
   galleryImages.value.push(imageUrl);
@@ -22,31 +28,34 @@ const submitProject = () => {
 
 <template>
   <div class="base-editor-layout">
-    <ConstructorUploader
-      @add-image="addImageToGallery"
-      @drag-start="isDraggingFromGallery = true"
-    />
+    <client-only>
+      <ConstructorUploader
+        @add-image="addImageToGallery"
+        @drag-start="isDraggingFromGallery = true"
+      />
 
-    <div class="workspace">
-      <div class="workspace-info">
-        <div>Проект: title</div>
-        <div>Изображений: count</div>
-        <button>+</button>
-        <button>-</button>
+      <div class="workspace">
+        <div class="workspace-info">
+          <div>Проект: title</div>
+          <div>Изображений: count</div>
+          <button>+</button>
+          <button>-</button>
+        </div>
+        <div class="workspace-container">
+          <!-- <ConstructorItem
+            v-for="(img, index) in printItems"
+            :image-url="img"
+            :key="index"
+            :index="index"
+          /> -->
+          <ConstructorPhotoItem :photo="photoLayout!"> </ConstructorPhotoItem>
+        </div>
       </div>
-      <div class="workspace-container">
-        <ConstructorItem
-          v-for="(img, index) in printItems"
-          :image-url="img"
-          :key="index"
-          :index="index"
-        />
-      </div>
-    </div>
 
-    <button class="submit-btn" @click="submitProject">
-      Добавить в корзину
-    </button>
+      <button class="submit-btn" @click="submitProject">
+        Добавить в корзину
+      </button>
+    </client-only>
   </div>
 </template>
 

@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     // Render these routes with SPA
-    "/layouts/**": { ssr: true },
+    "/projects/**": { ssr: true }, // TODO SSR true on /projects but false on /projects/*
   },
   runtimeConfig: {
     public: {

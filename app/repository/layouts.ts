@@ -7,6 +7,20 @@ export interface Layout {
   data: string | null;
 }
 
+export interface PhotoLayout {
+  id: number;
+  title: string;
+  quantity: number;
+  size: {
+    width: number;
+    height: number;
+    top: number;
+    right: number;
+    bottom: number;
+    left: number;
+  };
+}
+
 export function createLayoutsRepository(appFetch: typeof $fetch) {
   return {
     all() {
@@ -17,6 +31,12 @@ export function createLayoutsRepository(appFetch: typeof $fetch) {
     byId(id: number) {
       return appFetch<Layout>(`/layouts/${id}`, {
         method: "GET",
+      });
+    },
+    getPhotoLayout(format: string) {
+      return appFetch<PhotoLayout>("/layouts/photo", {
+        method: "POST",
+        body: { format: format },
       });
     },
   };
