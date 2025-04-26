@@ -5,22 +5,23 @@
       <button @click="saveTemplate">Сохранить шаблон</button>
       <button @click="addText">Добавить текст</button>
     </div>
+
     <TemplateTextToolbar
       v-if="selectedTextNode"
       :selected-text-node="selectedTextNode"
     />
+
     <TemplateEditorCanvas
       :settings="settings"
       :nodes="nodes"
-      @select-text="(node) => (selectedTextNode.value = node)"
+      @select-node="handleSelectNode"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { TemplateTextToolbar } from "#components";
-
 const selectedTextNode = ref<any | null>(null);
+
 const settings = ref({
   width: 800,
   height: 600,
@@ -43,18 +44,8 @@ function addPlaceholder() {
   });
 }
 
-function addImage() {
-  nodes.value.push({
-    type: "image",
-    attrs: {
-      x: 150,
-      y: 150,
-      width: 100,
-      height: 100,
-      draggable: true,
-      src: "https://via.placeholder.com/100", // можно заменить на свою картинку
-    },
-  });
+function handleSelectNode(node: any) {
+  selectedTextNode.value = { ...node };
 }
 
 function addText() {
@@ -67,6 +58,8 @@ function addText() {
       fontSize: 24,
       fill: "black",
       draggable: true,
+      fontStyle: "normal",
+      fontFamily: "Arial",
     },
   });
 }
@@ -75,6 +68,10 @@ function saveTemplate() {
   const json = JSON.stringify(nodes.value, null, 2);
   console.log("Сохранённый JSON шаблона:", json);
   alert("Шаблон сохранён! Посмотри консоль.");
+}
+
+function handleSelectText(node: any) {
+  selectedTextNode.value = node;
 }
 </script>
 
