@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(["add-image", "select-image", "drag-start"]);
+const emit = defineEmits(["drag-start", "drag-end"]);
 const images = ref<string[]>([]);
 const isDragging = ref(false);
 const isGalleryImage = ref(false);
@@ -54,7 +54,6 @@ const onFileChange = (e: Event) => {
     reader.onload = () => {
       const url = reader.result as string;
       images.value.push(url);
-      emit("add-image", url);
     };
     reader.readAsDataURL(file);
   });
@@ -87,6 +86,7 @@ const onDragOver = (e: DragEvent) => {
 
 const onDragStart = () => {
   isGalleryImage.value = true;
+  emit("drag-start");
 };
 
 const handleDragStart = (e: DragEvent, imgSrc: string) => {
@@ -116,6 +116,7 @@ const handleDragStart = (e: DragEvent, imgSrc: string) => {
 const handleDragEnd = (e: DragEvent) => {
   isGalleryImage.value = false;
   (e.target as HTMLElement).style.opacity = "1";
+  emit("drag-end");
 };
 </script>
 
