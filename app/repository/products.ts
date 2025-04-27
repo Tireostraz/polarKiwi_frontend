@@ -1,12 +1,18 @@
 export interface Product {
   id: number;
   title: string;
-  thumbnail: string;
-  images: string[];
+  slug: string;
   price: number;
+  category: string;
   short_description: string;
   full_description: string;
-  category: string;
+  thumbnail: string;
+  is_active: boolean;
+  images: string[];
+  images_details: {
+    url: string;
+    alt_text: string;
+  };
 }
 
 export function createProductRepository(appFetch: typeof $fetch) {

@@ -32,7 +32,7 @@ export const useCartStore = defineStore(
       }
     }
 
-    function removeFromCart(productId: string) {
+    function removeFromCart(productId: number) {
       const { $toast } = useNuxtApp();
       const item = items.value.find((item) => item.product.id === productId);
       if (item) {
@@ -43,7 +43,7 @@ export const useCartStore = defineStore(
       }
     }
 
-    function updateQuantity(productId: string, quantity: number) {
+    function updateQuantity(productId: number, quantity: number) {
       const item = items.value.find((item) => item.product.id === productId);
       if (item) {
         item.quantity = quantity;

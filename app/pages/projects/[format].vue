@@ -18,6 +18,10 @@ const isDraggingFromGallery = ref(false);
 const isModalOpen = ref(false);
 const selectedImage = ref("");
 const selectedIndex = ref<number | null>(null);
+const imageSize = ref({
+  width: 0,
+  height: 0,
+});
 
 function handleSaveEditedImage(newSrc: string) {
   if (selectedIndex.value !== null) {
@@ -33,16 +37,16 @@ function handleDeleteImage() {
   isModalOpen.value = false;
 }
 
-function openEditor(imageUrl: string, index: number) {
-  selectedImage.value = imageUrl;
-  selectedIndex.value = index;
-  isModalOpen.value = true;
-}
+function handleOpenModal(
+  index: number,
+  size: { width: number; height: number }
+) {
+  if (!printItems.value[index]) return;
 
-function deletePhoto() {
-  if (selectedIndex.value !== null) {
-    printItems.value[selectedIndex.value] = "";
-  }
+  selectedImage.value = printItems.value[index];
+  selectedIndex.value = index;
+
+  isModalOpen.value = true;
 }
 
 function handleUpdateImage({ index, src }: { index: number; src: string }) {
@@ -80,7 +84,7 @@ function validateInput() {
 <template>
   <div class="base-editor-layout">
     <client-only>
-      <ConstructorUploader
+      <EditorUploader
         @add-image="addImageToGallery"
         @drag-start="isDraggingFromGallery = true"
         @drag-end="isDraggingFromGallery = false"
@@ -101,7 +105,7 @@ function validateInput() {
           <button @click="decreasePhotos">Убрать фото</button>
         </div>
         <div class="workspace-container">
-          <ConstructorPhotoItem
+          <EditorPhotoItem
             v-for="index in photosQuantity"
             :photo="photoLayout!"
             :is-dragging="isDraggingFromGallery"
@@ -109,18 +113,14 @@ function validateInput() {
             :index="index - 1"
             :src="printItems[index - 1] || ''"
             @update="handleUpdateImage"
-            @click="() => {
-              if (printItems[index-1]) {
-                openEditor(printItems[index-1]!, index-1)
-              }
-            }"
-          >
-          </ConstructorPhotoItem>
+            @click="handleOpenModal(index, {photoLayout.})"
+          />
         </div>
       </div>
-      <ConstructorModal
+      <EditorModal
         v-if="isModalOpen"
         :src="selectedImage"
+        :size="imageSize"
         @save="handleSaveEditedImage"
         @delete="handleDeleteImage"
         @close="isModalOpen = false"

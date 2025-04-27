@@ -15,7 +15,7 @@ function decreaseQuantity(item: { product: Product; quantity: number }) {
   }
 }
 
-function removeItem(productId: string) {
+function removeItem(productId: number) {
   cartStore.removeFromCart(productId);
 }
 </script>

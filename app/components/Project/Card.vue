@@ -9,7 +9,7 @@ const router = useRouter();
 const projects = useProjectsStore();
 
 const handleClick = () => {
-  router.push(`/projects/${props.product.id}`);
+  router.push(`/projects/${props.product.slug}`);
 };
 
 const handleRemove = (e: MouseEvent) => {

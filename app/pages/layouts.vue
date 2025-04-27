@@ -17,7 +17,7 @@
           }})
         </h2>
         <div class="preview-container">
-          <ConstructorRenderer
+          <EditorRenderer
             v-if="layoutItem.data"
             :template-data="layoutItem.data"
             :width="400"

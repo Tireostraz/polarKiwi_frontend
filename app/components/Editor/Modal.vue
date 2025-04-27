@@ -3,7 +3,16 @@ import { useImage } from "vue-konva";
 
 const props = defineProps<{
   src: string;
+  size: {
+    width: number;
+    height: number;
+  };
 }>();
+
+const stageConfig = {
+  width: 500,
+  height: 500,
+};
 
 const emit = defineEmits<{
   (e: "save", newSrc: string): void;
@@ -11,22 +20,13 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-const imageObj = useImage(props.src); // только imageObj
+const [image, status] = useImage(props.src);
 
 const stageRef = ref();
 const imageRef = ref();
 const transformerRef = ref();
-const isLoading = ref(true);
-
-watch(
-  () => props.src,
-  () => {
-    isLoading.value = true;
-  }
-);
 
 function onImageLoad() {
-  isLoading.value = false;
   if (transformerRef.value && imageRef.value) {
     transformerRef.value.nodes([imageRef.value.getNode()]);
   }
@@ -51,17 +51,14 @@ function handleClose() {
 <template>
   <div class="modal-backdrop" @click.self="handleClose">
     <div class="modal-content">
-      <div v-if="isLoading" class="loading">Загрузка...</div>
-      <v-stage
-        ref="stageRef"
-        v-if="!isLoading"
-        :config="{ width: 500, height: 500 }"
-      >
+      <div v-if="status === 'loading'" class="loading">Загрузка...</div>
+      <v-stage ref="stageRef" :config="{ width: 500, height: 500 }">
         <v-layer>
           <v-image
+            v-if="status === 'loaded'"
             ref="imageRef"
             :config="{
-              image: imageObj,
+              image: image,
               x: 0,
               y: 0,
               draggable: true,

@@ -2,8 +2,6 @@
 import type { PhotoLayout } from "~/repository/layouts";
 import { useImage } from "vue-konva";
 
-//const src = ref(""); // сюда будем класть base64
-
 const props = defineProps<{
   photo: PhotoLayout;
   index: number;
@@ -15,19 +13,19 @@ const emit = defineEmits<{
   (e: "update", payload: { index: number; src: string }): void;
 }>();
 
-const imageObj = ref<HTMLImageElement | null>(null);
+const [image] = useImage(props.src);
 
 watch(
   () => props.src,
   (newSrc) => {
     if (!newSrc) {
-      imageObj.value = null;
+      image.value = null;
       return;
     }
-    const img = new window.Image();
+    const img = new Image();
     img.src = newSrc;
     img.onload = () => {
-      imageObj.value = img;
+      image.value = img;
     };
   },
   { immediate: true }
@@ -43,8 +41,20 @@ function mmToPx(mm: number, DPI: number): number {
 
 const scale = computed(() => {
   const maxWidth = 200;
-  return maxWidth / stageWidth;
+  return maxWidth / mmToPx(props.photo.size.width, DPI);
 });
+
+const stageWidth = computed(
+  () => mmToPx(props.photo.size.width, DPI) * scale.value
+);
+const stageHeight = computed(
+  () => mmToPx(props.photo.size.height, DPI) * scale.value
+);
+
+const stageSize = computed(() => ({
+  width: stageWidth.value,
+  height: stageHeight.value,
+}));
 
 const sizePx = computed(() => {
   const widthMm =
@@ -53,20 +63,51 @@ const sizePx = computed(() => {
     props.photo.size.height - props.photo.size.top - props.photo.size.bottom;
 
   return {
-    x: mmToPx(props.photo.size.top, DPI) * scale.value,
-    y: mmToPx(props.photo.size.left, DPI) * scale.value,
+    x: mmToPx(props.photo.size.left, DPI) * scale.value,
+    y: mmToPx(props.photo.size.top, DPI) * scale.value,
     width: mmToPx(widthMm, DPI) * scale.value,
     height: mmToPx(heightMm, DPI) * scale.value,
   };
 });
 
-const stageWidth = mmToPx(props.photo.size.width, DPI);
-const stageHeight = mmToPx(props.photo.size.height, DPI);
+function getCrop(
+  image: HTMLImageElement,
+  size: { width: number; height: number }
+) {
+  const width = size.width;
+  const height = size.height;
+  const aspectRatio = width / height;
 
-const stageSize = {
-  width: stageWidth * scale.value,
-  height: stageHeight * scale.value,
-};
+  let newWidth;
+  let newHeight;
+
+  const imageRatio = image.width / image.height;
+
+  if (aspectRatio >= imageRatio) {
+    newWidth = image.width;
+    newHeight = image.width / aspectRatio;
+  } else {
+    newWidth = image.height * aspectRatio;
+    newHeight = image.height;
+  }
+  const x = (image.width - newWidth) / 2;
+  const y = (image.height - newHeight) / 2;
+
+  return {
+    cropX: x,
+    cropY: y,
+    cropWidth: newWidth,
+    cropHeight: newHeight,
+  };
+}
+
+const crop = computed(() => {
+  if (!image.value) return {};
+  return getCrop(image.value, {
+    width: sizePx.value.width,
+    height: sizePx.value.height,
+  });
+});
 
 const textConfig = {
   x: 0,
@@ -89,11 +130,12 @@ const rectData = {
 };
 const imageData = computed(() => ({
   ...sizePx.value,
-  image: imageObj.value,
+  ...crop.value,
+  image: image.value,
 }));
 
 function onDragOver(e: DragEvent) {
-  if (!imageObj.value) {
+  if (!image.value) {
     isDragOver.value = true;
     e.dataTransfer!.dropEffect = "copy";
   } else {
@@ -102,7 +144,7 @@ function onDragOver(e: DragEvent) {
 }
 
 function onDrop(e: DragEvent) {
-  if (imageObj.value) return;
+  if (image.value) return;
   const url = e.dataTransfer?.getData("text/plain");
   isDragOver.value = false;
   if (url) {
@@ -122,12 +164,12 @@ function onDrop(e: DragEvent) {
   >
     <v-stage :config="stageSize">
       <v-layer>
-        <v-rect v-if="!imageObj" :config="rectData.rectangle" />
+        <v-rect v-if="!image" :config="rectData.rectangle" />
         <v-image v-else :config="imageData" />
         <v-text v-if="withText" :config="textConfig" />
       </v-layer>
     </v-stage>
-    <div class="photo-index">{{ index }}</div>
+    <div class="photo-index">{{ index + 1 }}</div>
   </div>
 </template>
 
