@@ -1,49 +1,34 @@
-<template>
-  <div
-    class="uploader"
-    :class="{ 'drag-over': isDragging && !isGalleryImage }"
-    @dragover.prevent="onDragOver"
-    @dragleave="isDragging = false"
-    @drop.prevent="onDrop"
-    @dragstart="onDragStart"
-  >
-    <div class="uploader-tabs">
-      <NuxtImg width="24" src="/Constructor/image.svg" />
-      <div>Галерея</div>
-    </div>
-    <div class="uploader-controls">
-      <button>+ Загрузить изображения</button>
-    </div>
-    <div v-if="isDragging && !isGalleryImage" class="drop-hint">
-      Перетащите изображения сюда
-    </div>
-    <div v-else class="images-grid">
-      <img
-        v-for="(img, index) in images"
-        :key="index"
-        :src="img"
-        class="thumbnail"
-        draggable="true"
-        @dragstart="handleDragStart($event, img)"
-        @dragend="handleDragEnd"
-      />
-    </div>
-    <input
-      type="file"
-      accept="image/*"
-      multiple
-      @change="onFileChange"
-      hidden
-      ref="fileInput"
-    />
-  </div>
-</template>
-
 <script setup lang="ts">
-const emit = defineEmits(["drag-start", "drag-end"]);
-const images = ref<string[]>([]);
+import type { PhotoData } from "~/repository/projects";
+
+const emit = defineEmits<{
+  (e: "drag-start"): void;
+  (e: "drag-end"): void;
+  (e: "add-image", photoData: PhotoData): void;
+}>();
+const images = ref<PhotoData[]>([]);
 const isDragging = ref(false);
 const isGalleryImage = ref(false);
+
+function setImageData(url: string) {
+  const img = new Image();
+  img.src = url;
+  img.onload = () => {
+    const photo: PhotoData = {
+      id: crypto.randomUUID(),
+      src: url,
+      width: img.naturalWidth,
+      height: img.naturalHeight,
+      crop: undefined,
+      scale: 1,
+    };
+    images.value.push(photo);
+    emit("add-image", photo);
+  };
+  img.onerror = () => {
+    console.log("Ошибка при загрузки изображения");
+  };
+}
 
 const onFileChange = (e: Event) => {
   const files = (e.target as HTMLInputElement).files;
@@ -53,7 +38,7 @@ const onFileChange = (e: Event) => {
     const reader = new FileReader();
     reader.onload = () => {
       const url = reader.result as string;
-      images.value.push(url);
+      setImageData(url);
     };
     reader.readAsDataURL(file);
   });
@@ -73,7 +58,7 @@ const onDrop = (e: DragEvent) => {
     const reader = new FileReader();
     reader.onload = () => {
       const url = reader.result as string;
-      images.value.push(url);
+      setImageData(url);
     };
     reader.readAsDataURL(file);
   });
@@ -89,9 +74,9 @@ const onDragStart = () => {
   emit("drag-start");
 };
 
-const handleDragStart = (e: DragEvent, imgSrc: string) => {
+const handleDragStart = (e: DragEvent, photoId: string) => {
   isGalleryImage.value = true;
-  e.dataTransfer?.setData("text/plain", imgSrc);
+  e.dataTransfer?.setData("text/plain", photoId);
   e.dataTransfer!.effectAllowed = "copy";
 
   const originalImg = e.target as HTMLImageElement;
@@ -119,6 +104,47 @@ const handleDragEnd = (e: DragEvent) => {
   emit("drag-end");
 };
 </script>
+
+<template>
+  <div
+    class="uploader"
+    :class="{ 'drag-over': isDragging && !isGalleryImage }"
+    @dragover.prevent="onDragOver"
+    @dragleave="isDragging = false"
+    @drop.prevent="onDrop"
+    @dragstart="onDragStart"
+  >
+    <div class="uploader-tabs">
+      <NuxtImg width="24" src="/Constructor/image.svg" />
+      <div>Галерея</div>
+    </div>
+    <div class="uploader-controls">
+      <button>+ Загрузить изображения</button>
+    </div>
+    <div v-if="isDragging && !isGalleryImage" class="drop-hint">
+      Перетащите изображения сюда
+    </div>
+    <div v-else class="images-grid">
+      <img
+        v-for="(image, index) in images"
+        :src="image.src"
+        :key="index"
+        class="thumbnail"
+        draggable="true"
+        @dragstart="handleDragStart($event, image.id)"
+        @dragend="handleDragEnd"
+      />
+    </div>
+    <input
+      type="file"
+      accept="image/*"
+      multiple
+      @change="onFileChange"
+      hidden
+      ref="fileInput"
+    />
+  </div>
+</template>
 
 <style scoped>
 .uploader {

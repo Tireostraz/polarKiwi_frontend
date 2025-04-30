@@ -1,4 +1,7 @@
+import type { PhotoLayout } from "./layouts";
+
 export interface ProjectBase {
+  //не используется
   id: number;
   title: string;
   productId: string;
@@ -8,6 +11,7 @@ export interface ProjectBase {
 }
 
 export interface PhotoProject extends ProjectBase {
+  //не используется
   type: "photo";
   images: {
     url: string;
@@ -20,6 +24,7 @@ export interface PhotoProject extends ProjectBase {
 }
 
 export interface SmsBookProject extends ProjectBase {
+  //не используется
   type: "smsbook";
   pages: {
     number: number;
@@ -30,4 +35,19 @@ export interface SmsBookProject extends ProjectBase {
   coverImage?: string;
 }
 
-export type Project = PhotoProject | SmsBookProject;
+export type Project = PhotoProject | SmsBookProject; //не используется
+
+export interface PhotoData {
+  id: string;
+  src: string;
+  width: number;
+  height: number;
+  crop?: {
+    cropX: number;
+    cropY: number;
+    cropWidth: number;
+    cropHeight: number;
+  };
+  scale: number;
+  layout?: PhotoLayout;
+}

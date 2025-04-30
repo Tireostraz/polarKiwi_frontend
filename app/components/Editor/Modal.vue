@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import { useImage } from "vue-konva";
+import type { PhotoLayout } from "~/repository/layouts";
+import type { PhotoData } from "~/repository/projects";
 
 const props = defineProps<{
-  src: string;
-  size: {
-    width: number;
-    height: number;
-  };
+  photo: PhotoData;
+  index: number;
+  layout: PhotoLayout;
 }>();
-
-const stageConfig = {
-  width: 500,
-  height: 500,
-};
 
 const emit = defineEmits<{
   (e: "save", newSrc: string): void;
@@ -20,11 +15,71 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-const [image, status] = useImage(props.src);
+//Reactive ref
+const scale = ref(1);
+const imageScale = ref(1);
+const containerRef = ref(null);
+
+//virtual scene size:
+const sceneWidth = 1000;
+const sceneHeight = 1000;
+
+//Computed properties for stage dimensions
+const stageWidth = computed(() => sceneWidth * scale.value);
+const stageHeight = computed(() => sceneHeight * scale.value);
+
+function updateSize() {
+  if (!containerRef.value) return;
+
+  const containerWidth = containerRef.value.offsetWidth;
+  scale.value = containerWidth / sceneWidth;
+}
+
+const [image, status] = useImage(props.photo.src);
 
 const stageRef = ref();
 const imageRef = ref();
 const transformerRef = ref();
+
+const DPI = 300;
+const borderSizePx = computed(() => {
+  const widthMm = props.layout.size.width;
+  const heightMm = props.layout.size.height;
+
+  return {
+    x: ((stageWidth.value - mmToPx(widthMm, DPI)) / 2) * scale.value, //(ширина сцены - ширина рамки)/2 * масштаб
+    y: ((stageHeight.value - mmToPx(heightMm, DPI)) / 2) * scale.value, //аналогично по высоте
+    width: mmToPx(widthMm, DPI) * scale.value,
+    height: mmToPx(heightMm, DPI) * scale.value,
+  };
+});
+const borderData = {
+  rectangle: {
+    ...borderSizePx.value,
+    fill: "rgb(50, 50, 50)",
+  },
+};
+
+const frameSizePx = computed(() => {
+  const widthMm =
+    props.layout.size.width - props.layout.size.left - props.layout.size.right;
+  const heightMm =
+    props.layout.size.height - props.layout.size.top - props.layout.size.bottom;
+
+  return {
+    x: ((stageWidth.value - mmToPx(widthMm, DPI)) / 2) * scale.value, //(ширина сцены - ширина рамки)/2 * масштаб
+    y: ((stageHeight.value - mmToPx(heightMm, DPI)) / 2) * scale.value,
+    width: mmToPx(widthMm, DPI) * scale.value,
+    height: mmToPx(heightMm, DPI) * scale.value,
+  };
+});
+const frameData = {
+  rectangle: {
+    ...frameSizePx.value,
+    fill: "rgb(255, 50, 50)",
+    opacity: 0.2,
+  },
+};
 
 function onImageLoad() {
   if (transformerRef.value && imageRef.value) {
@@ -46,38 +101,47 @@ function handleDelete() {
 function handleClose() {
   emit("close");
 }
+
+onMounted(() => {
+  updateSize();
+  window.addEventListener("resize", updateSize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", updateSize);
+});
 </script>
 
 <template>
   <div class="modal-backdrop" @click.self="handleClose">
-    <div class="modal-content">
+    <div class="modal-content" ref="containerRef">
       <div v-if="status === 'loading'" class="loading">Загрузка...</div>
-      <v-stage ref="stageRef" :config="{ width: 500, height: 500 }">
+      <v-stage
+        ref="stageRef"
+        :config="{
+          width: stageWidth,
+          height: stageHeight,
+          scaleX: scale,
+          scaleY: scale,
+        }"
+      >
         <v-layer>
           <v-image
             v-if="status === 'loaded'"
             ref="imageRef"
             :config="{
-              image: image,
-              x: 0,
-              y: 0,
-              draggable: true,
-            }"
+          image: image,
+          x: sceneWidth/2 - image?.width!/2*imageScale,
+          y: sceneHeight/2 - image?.height!/2*imageScale,
+          scaleX: imageScale,
+          scaleY: imageScale,
+        }"
             @load="onImageLoad"
           />
-          <v-transformer
-            ref="transformerRef"
-            :config="{
-              rotateEnabled: true,
-              enabledAnchors: [
-                'top-left',
-                'top-right',
-                'bottom-left',
-                'bottom-right',
-              ],
-              boundBoxFunc: (oldBox: any, newBox: any) => newBox,
-            }"
-          />
+        </v-layer>
+        <v-layer>
+          <v-rect :config="borderData.rectangle" />
+          <v-rect :config="frameData.rectangle" />
         </v-layer>
       </v-stage>
 
@@ -86,6 +150,7 @@ function handleClose() {
         <button @click="handleDelete" class="btn red">Удалить</button>
         <button @click="handleClose" class="btn">Закрыть</button>
       </div>
+      <input type="range" min="1" max="5" step="0.1" v-model="imageScale" />
     </div>
   </div>
 </template>
@@ -108,7 +173,7 @@ function handleClose() {
   background: white;
   padding: 20px;
   border-radius: 8px;
-  min-width: 550px;
+  max-width: 500px;
   min-height: 600px;
   position: relative;
   display: flex;
