@@ -49,5 +49,4 @@ export interface PhotoData {
     cropHeight: number;
   };
   scale: number;
-  layout?: PhotoLayout;
 }

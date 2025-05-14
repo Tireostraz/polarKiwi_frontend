@@ -126,13 +126,13 @@ function handleOpenModal(index: number) {
   if (!placeholdersData.value[index] || !selectedPlaceholder.value) return;
   selectedPhoto.value = placeholdersData.value[index].assignedPhotoIndex;
 
-  console.log("Emmited index", index);
+  /* console.log("Emmited index", index);
   console.log(
     "Photo's index",
     placeholdersData.value[index].assignedPhotoIndex
   );
   console.log("Photo", photos.value[selectedPhoto.value]);
-  console.log("Layout", placeholdersData.value[index].layout);
+  console.log("Layout", placeholdersData.value[index].layout); */
 
   isModalOpen.value = true;
 }
