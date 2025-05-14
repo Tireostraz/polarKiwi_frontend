@@ -5,6 +5,8 @@ import type { PhotoLayout } from "~/repository/layouts";
 import type { PhotoData } from "~/repository/projects";
 import type { Context } from "konva/lib/Context";
 import type { Shape } from "konva/lib/Shape";
+import type { Stage } from "konva/lib/Stage";
+import type { Image } from "konva/lib/shapes/Image";
 
 const props = defineProps<{
   photo: PhotoData;
@@ -26,6 +28,10 @@ const containerRef = ref<HTMLElement | null>(null);
 const sceneWidth = 1300;
 const sceneHeight = 1300;
 
+//photo size:
+const photoWidth = ref<number>(props.photo.width);
+const photoHeight = ref<number>(props.photo.height);
+
 //Computed properties for stage dimensions
 const stageWidth = computed(() => sceneWidth * scale.value);
 const stageHeight = computed(() => sceneHeight * scale.value);
@@ -39,11 +45,26 @@ function updateSize() {
 
 const [image, status] = useImage(props.photo.src);
 
-const stageRef = ref();
+const stageRef = ref<{ getStage: () => Stage } | null>(null);
 const imageRef = ref();
 const transformerRef = ref();
 
 const DPI = 300;
+
+//Закрытие модального окна только при полном клике
+let isMouseDownOutside = false;
+function onBackdropMouseDown(e: MouseEvent) {
+  if (!containerRef.value?.contains(e.target as Node)) {
+    isMouseDownOutside = true;
+  } else {
+    isMouseDownOutside = false;
+  }
+}
+function onBackdropMouseUp(e: MouseEvent) {
+  if (!containerRef.value?.contains(e.target as Node) && isMouseDownOutside) {
+    handleClose();
+  }
+}
 
 // Размеры границы фото с рамкой
 const borderSizePx = computed(() => {
@@ -85,8 +106,8 @@ const frameSizePx = computed(() => {
 const imageSize = computed(() => {
   let imageX: number = 0;
   let imageY: number = 0;
-  let imageWidth = props.photo.width;
-  let imageHeight = props.photo.height;
+  let imageWidth = photoWidth.value;
+  let imageHeight = photoHeight.value;
   let minScale: number = 1;
   let scale: number = 1;
 
@@ -100,15 +121,15 @@ const imageSize = computed(() => {
     minScale = frameWidth / imageWidth;
     imageHeight = imageHeight * scale;
     imageWidth = imageWidth * scale;
-    imageX = frameX + (imageWidth - frameWidth) / 2;
-    imageY = frameY + (imageHeight - frameHeight) / 2;
+    imageX = frameX + frameWidth / 2;
+    imageY = frameY + frameHeight / 2;
   } else {
     scale = frameWidth / imageWidth;
     minScale = frameHeight / imageHeight;
     imageHeight = imageHeight * scale;
     imageWidth = imageWidth * scale;
-    imageX = frameX + (imageWidth - frameWidth) / 2;
-    imageY = frameY + (imageHeight - frameHeight) / 2;
+    imageX = frameX + frameWidth / 2;
+    imageY = frameY + frameHeight / 2;
   }
   return {
     x: imageX,
@@ -120,10 +141,12 @@ const imageSize = computed(() => {
   };
 });
 const minImageScale = ref(imageSize.value.minScale);
+const maxImageScale = ref(2);
 const imageScale = ref(imageSize.value.scale);
 const imageDegrees = ref(0);
-const imageX = ref<number>(imageSize.value.x);
-const imageY = ref<number>(imageSize.value.y);
+/* const imageX = ref<number>(imageSize.value.x);
+const imageY = ref<number>(imageSize.value.y); */
+const isImageDraggable = ref(true);
 
 const frameFunc = computed(() => {
   return function (context: Context, shape: Shape): void {
@@ -162,30 +185,23 @@ const borderFunc = computed(() => {
 });
 
 const handleDragMove = (e: KonvaEventObject<DragEvent>) => {
-  const imageWidth = props.photo.width * imageScale.value;
-  const imageHeight = props.photo.height * imageScale.value;
-  const minX = frameSizePx.value.x + imageWidth / 2;
-  const maxX = frameSizePx.value.x + frameSizePx.value.width - imageWidth / 2;
+  const imageWidth = photoWidth.value * imageScale.value;
+  const imageHeight = photoHeight.value * imageScale.value;
+  if (
+    imageWidth <= frameSizePx.value.width &&
+    imageHeight <= frameSizePx.value.height
+  )
+    return;
+
+  const minX = frameSizePx.value.x + frameSizePx.value.width - imageWidth / 2;
+  const maxX = frameSizePx.value.x + imageWidth / 2;
 
   e.target.x(Math.min(Math.max(e.target.x(), minX), maxX));
 
-  const minY = frameSizePx.value.y + imageHeight / 2;
-  const maxY = frameSizePx.value.y + frameSizePx.value.height - imageHeight / 2;
+  const minY = frameSizePx.value.y + frameSizePx.value.height - imageHeight / 2;
+  const maxY = frameSizePx.value.y + imageHeight / 2;
   e.target.y(Math.min(Math.max(e.target.y(), minY), maxY));
 };
-
-function getInfo() {
-  console.log("Border size: ", borderSizePx.value);
-  console.log(
-    "Frame size: ",
-    frameSizePx.value.x,
-    frameSizePx.value.y,
-    frameSizePx.value.width,
-    frameSizePx.value.height
-  );
-
-  console.log("Stage size: ", stageWidth.value, stageHeight.value, scale.value);
-}
 
 function onImageLoad() {
   if (transformerRef.value && imageRef.value) {
@@ -210,6 +226,96 @@ function handleClose() {
 
 function handleRotate(deg: number) {
   imageDegrees.value = imageDegrees.value + deg;
+  [photoWidth.value, photoHeight.value] = [photoHeight.value, photoWidth.value];
+}
+
+function onWheelZoom(e: KonvaEventObject<WheelEvent>) {
+  e.evt.preventDefault();
+  const stage = stageRef.value?.getStage();
+  if (!stage) return;
+
+  const pointer = stage.getPointerPosition();
+  if (!pointer) return;
+
+  const { x, y } = pointer;
+  const isInsideFrame =
+    x >= frameSizePx.value.x * scale.value &&
+    x <= (frameSizePx.value.x + frameSizePx.value.width) * scale.value &&
+    y >= frameSizePx.value.y * scale.value &&
+    y <= (frameSizePx.value.y + frameSizePx.value.height) * scale.value;
+  if (!isInsideFrame) return;
+
+  const zoomStep = 0.05;
+  const newScale = imageScale.value + (e.evt.deltaY > 0 ? -zoomStep : zoomStep);
+
+  imageScale.value = Math.max(
+    Math.min(newScale, maxImageScale.value),
+    imageSize.value.minScale
+  );
+}
+
+function handleScaleChange() {
+  const imageNode = imageRef.value.getNode();
+  if (!imageNode) return;
+
+  /*  const x = imageNode.attrs.x;
+  const y = imageNode.attrs.y;
+
+  const imageWidth = photoWidth.value * imageScale.value;
+  const imageHeight = photoHeight.value * imageScale.value;
+
+  const minX = frameSizePx.value.x + frameSizePx.value.width - imageWidth / 2;
+  const maxX = frameSizePx.value.x + imageWidth / 2;
+
+  const minY = frameSizePx.value.y + frameSizePx.value.height - imageHeight / 2;
+  const maxY = frameSizePx.value.y + imageHeight / 2;
+
+  const isInsideFrame = x >= minX && x <= maxX && y >= minY && y <= maxY; */
+
+  const newScale = imageScale.value;
+
+  const newWidth = photoWidth.value * newScale;
+  const newHeight = photoHeight.value * newScale;
+
+  const frame = frameSizePx.value;
+
+  let x = imageNode.x();
+  let y = imageNode.y();
+
+  // Проверка смещений при масштабировании
+  const halfWidth = newWidth / 2;
+  const halfHeight = newHeight / 2;
+
+  const left = x - halfWidth;
+  const right = x + halfWidth;
+  const top = y - halfHeight;
+  const bottom = y + halfHeight;
+
+  let offsetX = 0;
+  let offsetY = 0;
+
+  if (left > frame.x) {
+    offsetX = frame.x - left;
+  }
+  if (right < frame.x + frame.width) {
+    offsetX = frame.x + frame.width - right;
+  }
+
+  if (top > frame.y) {
+    offsetY = frame.y - top;
+  }
+  if (bottom < frame.y + frame.height) {
+    offsetY = frame.y + frame.height - bottom;
+  }
+
+  // Применяем позицию и масштаб
+  imageNode.scale({ x: newScale, y: newScale });
+  imageNode.position({ x: x + offsetX, y: y + offsetY });
+
+  /* imageNode.position({
+    x: imageSize.value.x,
+    y: imageSize.value.y,
+  }); */
 }
 
 onMounted(() => {
@@ -223,7 +329,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="modal-backdrop" @click.self="handleClose">
+  <div
+    class="modal-backdrop"
+    @mousedown="onBackdropMouseDown"
+    @mouseup="onBackdropMouseUp"
+  >
     <div class="modal-content" ref="containerRef">
       <div v-if="status === 'loading'" class="loading">Загрузка...</div>
       <v-stage
@@ -234,6 +344,7 @@ onUnmounted(() => {
           scaleX: scale,
           scaleY: scale,
         }"
+        @wheel="onWheelZoom"
       >
         <v-layer>
           <v-image
@@ -241,14 +352,14 @@ onUnmounted(() => {
             ref="imageRef"
             :config="{
               image: image,
-              x: frameSizePx.x + frameSizePx.width / 2,
-              y: frameSizePx.y + frameSizePx.height / 2,
+              x: imageSize.x,
+              y: imageSize.y,
               offsetX: props.photo.width / 2,
               offsetY: props.photo.height / 2,
               rotation: imageDegrees,
               scaleX: imageScale,
               scaleY: imageScale,
-              draggable: true,
+              draggable: isImageDraggable,
             }"
             @dragmove="handleDragMove"
             @load="onImageLoad"
@@ -272,16 +383,20 @@ onUnmounted(() => {
         <button @click="handleSave" class="btn green">Сохранить</button>
         <button @click="handleDelete" class="btn red">Удалить</button>
         <button @click="handleClose" class="btn">Закрыть</button>
-        <button @click="handleRotate(-90)"><- Туда</button>
-        <button @click="handleRotate(90)">Сюда -></button>
-        <button @click="getInfo">Получить информацию</button>
+        <button @click="handleRotate(-90)">
+          <NuxtImg src="/products/format/rotate-left.svg" width="30" />
+        </button>
+        <button @click="handleRotate(90)">
+          <NuxtImg src="/products/format/rotate-right.svg" width="30" />
+        </button>
       </div>
       <input
         type="range"
-        :min="imageSize.minScale"
-        max="5"
+        :min="imageSize.scale"
+        :max="maxImageScale"
         step="0.01"
         v-model.number="imageScale"
+        @input="handleScaleChange"
       />
     </div>
   </div>
