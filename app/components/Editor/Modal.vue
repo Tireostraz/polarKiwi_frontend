@@ -6,7 +6,6 @@ import type { PhotoData } from "~/repository/projects";
 import type { Context } from "konva/lib/Context";
 import type { Shape } from "konva/lib/Shape";
 import type { Stage } from "konva/lib/Stage";
-import type { Image } from "konva/lib/shapes/Image";
 
 const props = defineProps<{
   photo: PhotoData;
@@ -15,7 +14,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "save", newSrc: string): void;
+  (e: "save", newPhotoData: PhotoData, index: number): void;
   (e: "delete"): void;
   (e: "close"): void;
 }>();
@@ -139,13 +138,12 @@ const imageSize = computed(() => {
     scale: scale,
     minScale: minScale,
   };
-});
-const minImageScale = ref(imageSize.value.minScale);
+}); // не использовать imageSize.value! не обновляется реактивно масштаб scale
+
+const minImageScale = ref(imageSize.value.scale);
 const maxImageScale = ref(2);
 const imageScale = ref(imageSize.value.scale);
 const imageDegrees = ref(0);
-/* const imageX = ref<number>(imageSize.value.x);
-const imageY = ref<number>(imageSize.value.y); */
 const isImageDraggable = ref(true);
 
 const frameFunc = computed(() => {
@@ -210,10 +208,52 @@ function onImageLoad() {
 }
 
 function handleSave() {
-  const uri = stageRef.value?.getStage().toDataURL({ pixelRatio: 2 });
-  if (uri) {
-    emit("save", uri);
-  }
+  const imageNode = imageRef.value.getNode();
+  if (!imageNode) return;
+
+  // Центр изображения
+  const imageCenterX = imageNode.x();
+  const imageCenterY = imageNode.y();
+
+  // Размеры изображения в оригинале
+  const originalWidth = props.photo.width;
+  const originalHeight = props.photo.height;
+
+  const imageTopLeftX =
+    imageCenterX - (photoWidth.value * imageScale.value) / 2;
+  const imageTopLeftY =
+    imageCenterY - (photoHeight.value * imageScale.value) / 2;
+
+  console.log("Координаты изображения: X, Y", imageTopLeftX, imageTopLeftY);
+  console.log(
+    "Координаты верхнего левого угла кадра:",
+    frameSizePx.value.x,
+    frameSizePx.value.y
+  );
+
+  const cropX = frameSizePx.value.x - imageTopLeftX;
+  const cropY = frameSizePx.value.y - imageTopLeftY;
+
+  /* console.log(cropX, cropY);
+
+  console.log(frameSizePx.value.width, frameSizePx.value.height);
+  console.log(originalWidth, originalHeight); */
+
+  const updatedPhoto: PhotoData = {
+    ...props.photo,
+    crop: {
+      cropX: cropX,
+      cropY: cropY,
+      cropWidth: frameSizePx.value.width,
+      cropHeight: frameSizePx.value.height,
+    },
+    scale: imageScale.value,
+    rotation: imageDegrees.value,
+  };
+
+  /* const cropWidth = frame.width;
+  const cropHeight = frame.height; */
+  emit("save", updatedPhoto, props.index);
 }
 
 function handleDelete() {
@@ -227,52 +267,14 @@ function handleClose() {
 function handleRotate(deg: number) {
   imageDegrees.value = imageDegrees.value + deg;
   [photoWidth.value, photoHeight.value] = [photoHeight.value, photoWidth.value];
+  minImageScale.value = imageSize.value.scale;
+  imageScale.value = imageSize.value.scale;
+  applyImageScaleChange(imageScale.value);
 }
 
-function onWheelZoom(e: KonvaEventObject<WheelEvent>) {
-  e.evt.preventDefault();
-  const stage = stageRef.value?.getStage();
-  if (!stage) return;
-
-  const pointer = stage.getPointerPosition();
-  if (!pointer) return;
-
-  const { x, y } = pointer;
-  const isInsideFrame =
-    x >= frameSizePx.value.x * scale.value &&
-    x <= (frameSizePx.value.x + frameSizePx.value.width) * scale.value &&
-    y >= frameSizePx.value.y * scale.value &&
-    y <= (frameSizePx.value.y + frameSizePx.value.height) * scale.value;
-  if (!isInsideFrame) return;
-
-  const zoomStep = 0.05;
-  const newScale = imageScale.value + (e.evt.deltaY > 0 ? -zoomStep : zoomStep);
-
-  imageScale.value = Math.max(
-    Math.min(newScale, maxImageScale.value),
-    imageSize.value.minScale
-  );
-}
-
-function handleScaleChange() {
+function applyImageScaleChange(newScale: number) {
   const imageNode = imageRef.value.getNode();
   if (!imageNode) return;
-
-  /*  const x = imageNode.attrs.x;
-  const y = imageNode.attrs.y;
-
-  const imageWidth = photoWidth.value * imageScale.value;
-  const imageHeight = photoHeight.value * imageScale.value;
-
-  const minX = frameSizePx.value.x + frameSizePx.value.width - imageWidth / 2;
-  const maxX = frameSizePx.value.x + imageWidth / 2;
-
-  const minY = frameSizePx.value.y + frameSizePx.value.height - imageHeight / 2;
-  const maxY = frameSizePx.value.y + imageHeight / 2;
-
-  const isInsideFrame = x >= minX && x <= maxX && y >= minY && y <= maxY; */
-
-  const newScale = imageScale.value;
 
   const newWidth = photoWidth.value * newScale;
   const newHeight = photoHeight.value * newScale;
@@ -308,14 +310,38 @@ function handleScaleChange() {
     offsetY = frame.y + frame.height - bottom;
   }
 
-  // Применяем позицию и масштаб
   imageNode.scale({ x: newScale, y: newScale });
   imageNode.position({ x: x + offsetX, y: y + offsetY });
+}
 
-  /* imageNode.position({
-    x: imageSize.value.x,
-    y: imageSize.value.y,
-  }); */
+function handleScaleChange() {
+  applyImageScaleChange(imageScale.value);
+}
+
+function onWheelZoom(e: KonvaEventObject<WheelEvent>) {
+  e.evt.preventDefault();
+  const stage = stageRef.value?.getStage();
+  if (!stage) return;
+
+  const pointer = stage.getPointerPosition();
+  if (!pointer) return;
+
+  const { x, y } = pointer;
+  const isInsideFrame =
+    x >= frameSizePx.value.x * scale.value &&
+    x <= (frameSizePx.value.x + frameSizePx.value.width) * scale.value &&
+    y >= frameSizePx.value.y * scale.value &&
+    y <= (frameSizePx.value.y + frameSizePx.value.height) * scale.value;
+  if (!isInsideFrame) return;
+
+  const zoomStep = 0.05;
+  const newScale = imageScale.value + (e.evt.deltaY > 0 ? -zoomStep : zoomStep);
+  imageScale.value = Math.max(
+    Math.min(newScale, maxImageScale.value),
+    minImageScale.value
+  );
+
+  applyImageScaleChange(imageScale.value);
 }
 
 onMounted(() => {
@@ -392,7 +418,7 @@ onUnmounted(() => {
       </div>
       <input
         type="range"
-        :min="imageSize.scale"
+        :min="minImageScale"
         :max="maxImageScale"
         step="0.01"
         v-model.number="imageScale"

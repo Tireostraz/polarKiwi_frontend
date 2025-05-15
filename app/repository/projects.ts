@@ -49,4 +49,5 @@ export interface PhotoData {
     cropHeight: number;
   };
   scale: number;
+  rotation: number;
 }

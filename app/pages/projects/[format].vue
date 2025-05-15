@@ -107,9 +107,11 @@ const isModalOpen = ref(false);
 const selectedPlaceholder = ref<number | null>(null); //индекс выбранного placeholder - emit
 const selectedPhoto = ref<number | null>(null); // индекс выбранного изображения - из массива placeholdersData
 
-function handleSaveEditedImage(newSrc: string) {
-  if (selectedPhoto.value !== null) {
-    //placeholdersData.value[selectedIndex.value] = newSrc;
+function handleSaveEditedImage(newPhotoData: PhotoData, photoIndex: number) {
+  console.log(newPhotoData, photoIndex);
+  if (newPhotoData) {
+    console.log(photos.value[photoIndex]);
+    photos.value[photoIndex] = newPhotoData;
   }
   isModalOpen.value = false;
 }
@@ -118,7 +120,7 @@ function handleDeleteImage() {
   if (selectedPhoto.value !== null) {
     //placeholdersData.value[selectedIndex.value] = "";
   }
-  isModalOpen.value = false;
+  /* isModalOpen.value = false; */
 }
 
 function handleOpenModal(index: number) {
