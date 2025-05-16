@@ -17,18 +17,30 @@ const photosQuantity = ref(photoLayout.value?.quantity || 1);
 
 const photos = ref<PhotoData[]>([]);
 const placeholdersData = ref<
-  { assignedPhotoIndex: number; layout: PhotoLayout }[]
+  { assignedPhoto: PhotoData | undefined; layout: PhotoLayout }[]
 >(
   Array.from({ length: photosQuantity.value }, () => ({
-    assignedPhotoIndex: NaN,
+    assignedPhoto: undefined,
     layout: structuredClone(photoLayout.value!),
   }))
 );
 const isDraggingFromGallery = ref(false); //для анимации куда можно drag and drop (стили)
+const isAutoPlaceing = ref(false);
 
 const addPhoto = (photoData: PhotoData) => {
   //формирование массива из объектов данных о загруженных фото photo
   photos.value.push(photoData);
+  if (isAutoPlaceing.value) {
+    const firstEmptyPlaceholder = placeholdersData.value.findIndex(
+      (placeholder) => placeholder.assignedPhoto === undefined
+    );
+    if (firstEmptyPlaceholder === -1) {
+      increasePhotos();
+      assignPhotoToPlaceholder(photoData.id, placeholdersData.value.length - 1);
+    } else {
+      assignPhotoToPlaceholder(photoData.id, firstEmptyPlaceholder);
+    }
+  }
 };
 
 const cropImageToPlaceholder = (
@@ -60,7 +72,7 @@ const cropImageToPlaceholder = (
 };
 
 const assignPhotoToPlaceholder = (photoId: string, index: number) => {
-  //заполняем пустые ячейки массива индексами печатаемых изображений
+  //заполняем пустые ячейки массива null и при назначении изображения уже копируем! объект PhotoData из массива оригинальных изображений photos.value[]
   const photoIndex = photos.value.findIndex((photo) => photo.id === photoId);
   if (photoIndex === -1) return;
 
@@ -86,63 +98,48 @@ const assignPhotoToPlaceholder = (photoId: string, index: number) => {
     };
     const crop = cropImageToPlaceholder(img, placeholderSize);
 
-    const updatedPhoto = { ...photo, crop: crop };
-    photos.value[photoIndex] = updatedPhoto;
-    placeholdersData.value[index]!.assignedPhotoIndex = photoIndex;
-  };
-  // По аналогии сделать для авторасстановки фото
-  //const firstNaN = placeholdersData.value.findIndex((item) => Number.isNaN(item));
-  //placeholdersData.value[firstNaN] = index;
-};
+    //Создание копии оригинального photo с новым crop и id
+    const assignedPhoto: PhotoData = {
+      ...photo,
+      id: crypto.randomUUID(),
+      crop: crop,
+    };
 
-/* const handlePhotoUpdate = (updatedPhoto: PhotoData) => {
-  const index = photos.value.findIndex((photo) => photo.id === updatedPhoto.id);
-  if (index !== -1) {
-    photos.value[index] = updatedPhoto;
-  }
-}; */
+    placeholdersData.value[index]!.assignedPhoto = assignedPhoto;
+  };
+};
 
 // Для модалки
 const isModalOpen = ref(false);
 const selectedPlaceholder = ref<number | null>(null); //индекс выбранного placeholder - emit
-const selectedPhoto = ref<number | null>(null); // индекс выбранного изображения - из массива placeholdersData
 
-function handleSaveEditedImage(newPhotoData: PhotoData, photoIndex: number) {
-  console.log(newPhotoData, photoIndex);
-  if (newPhotoData) {
-    console.log(photos.value[photoIndex]);
-    photos.value[photoIndex] = newPhotoData;
+function handleSaveEditedImage(newPhotoData: PhotoData) {
+  if (selectedPlaceholder.value !== null) {
+    placeholdersData.value[selectedPlaceholder.value]!.assignedPhoto =
+      newPhotoData;
   }
   isModalOpen.value = false;
 }
 
 function handleDeleteImage() {
-  if (selectedPhoto.value !== null) {
-    //placeholdersData.value[selectedIndex.value] = "";
+  if (selectedPlaceholder.value !== null) {
+    placeholdersData.value[selectedPlaceholder.value]!.assignedPhoto =
+      undefined;
   }
-  /* isModalOpen.value = false; */
+  isModalOpen.value = false;
 }
 
 function handleOpenModal(index: number) {
-  selectedPlaceholder.value = index;
-  if (!placeholdersData.value[index] || !selectedPlaceholder.value) return;
-  selectedPhoto.value = placeholdersData.value[index].assignedPhotoIndex;
-
-  /* console.log("Emmited index", index);
-  console.log(
-    "Photo's index",
-    placeholdersData.value[index].assignedPhotoIndex
-  );
-  console.log("Photo", photos.value[selectedPhoto.value]);
-  console.log("Layout", placeholdersData.value[index].layout); */
-
-  isModalOpen.value = true;
+  if (placeholdersData.value[index]?.assignedPhoto) {
+    selectedPlaceholder.value = index;
+    isModalOpen.value = true;
+  }
 }
 
 function increasePhotos() {
   photosQuantity.value++;
   placeholdersData.value.push({
-    assignedPhotoIndex: NaN,
+    assignedPhoto: undefined,
     layout: structuredClone(photoLayout.value!),
   });
 }
@@ -174,6 +171,7 @@ function validateInput() {
       <div class="workspace">
         <div class="workspace-info">
           <div>Проект: {{ photoLayout?.title }}</div>
+          <input type="checkbox" v-model="isAutoPlaceing" />
           <label>Изображений: </label>
           <input
             type="number"
@@ -188,11 +186,7 @@ function validateInput() {
         <div class="workspace-container">
           <EditorPhotoPlaceholder
             v-for="(printItem, index) in placeholdersData"
-            :photo="
-              Number.isNaN(printItem.assignedPhotoIndex)
-                ? undefined
-                : photos[printItem.assignedPhotoIndex]
-            "
+            :photo="printItem.assignedPhoto"
             :template="printItem.layout"
             :is-dragging="isDraggingFromGallery"
             :key="index"
@@ -203,10 +197,10 @@ function validateInput() {
         </div>
       </div>
       <EditorModal
-        v-if="isModalOpen && selectedPhoto !== null"
-        :photo="photos[selectedPhoto]!"
-        :index="placeholdersData[selectedPlaceholder!]!.assignedPhotoIndex"
+        v-if="isModalOpen && selectedPlaceholder !== null"
+        :photo="placeholdersData[selectedPlaceholder!]!.assignedPhoto!"
         :layout="placeholdersData[selectedPlaceholder!]!.layout"
+        :index="selectedPlaceholder"
         @save="handleSaveEditedImage"
         @delete="handleDeleteImage"
         @close="isModalOpen = false"

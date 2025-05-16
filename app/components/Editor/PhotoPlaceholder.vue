@@ -15,7 +15,30 @@ const emit = defineEmits<{
   (e: "click", index: number): void;
 }>();
 
-const [image] = useImage(computed(() => props.photo?.src || ""));
+const image = ref<HTMLImageElement | null>(null);
+
+watch(
+  () => props.photo?.src,
+  (newSrc) => {
+    if (!newSrc) {
+      image.value = null;
+      return;
+    }
+
+    const img = new Image();
+    img.src = newSrc;
+    img.onload = () => {
+      image.value = img;
+    };
+  },
+  { immediate: true }
+);
+
+const imageData = computed(() => {
+  if (!image.value || !props.photo) return {};
+  return { ...sizePx.value, ...props.photo.crop, image: image.value };
+});
+/* const [image] = useImage(computed(() => props.photo?.src || "")); */
 
 const DPI = 300; // TODO перенести в родитель и в интерфейс для централизованного хранения
 const withText = ref(false);
@@ -75,10 +98,6 @@ const rectData = {
     fill: "rgb(204, 204, 204)",
   },
 };
-const imageData = computed(() => {
-  if (!image.value || !props.photo) return {};
-  return { ...sizePx.value, ...props.photo.crop, image: image.value };
-});
 
 function onDragOver(e: DragEvent) {
   if (!image.value) {

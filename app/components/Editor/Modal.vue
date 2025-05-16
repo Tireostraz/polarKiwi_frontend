@@ -9,13 +9,13 @@ import type { Stage } from "konva/lib/Stage";
 
 const props = defineProps<{
   photo: PhotoData;
-  index: number;
   layout: PhotoLayout;
+  index: number;
 }>();
 
 const emit = defineEmits<{
-  (e: "save", newPhotoData: PhotoData, index: number): void;
-  (e: "delete"): void;
+  (e: "save", newPhotoData: PhotoData): void;
+  (e: "delete", photoDataIndex: number): void;
   (e: "close"): void;
 }>();
 
@@ -224,40 +224,27 @@ function handleSave() {
   const imageTopLeftY =
     imageCenterY - (photoHeight.value * imageScale.value) / 2;
 
-  console.log("Координаты изображения: X, Y", imageTopLeftX, imageTopLeftY);
-  console.log(
-    "Координаты верхнего левого угла кадра:",
-    frameSizePx.value.x,
-    frameSizePx.value.y
-  );
-
-  const cropX = frameSizePx.value.x - imageTopLeftX;
-  const cropY = frameSizePx.value.y - imageTopLeftY;
-
-  /* console.log(cropX, cropY);
-
-  console.log(frameSizePx.value.width, frameSizePx.value.height);
-  console.log(originalWidth, originalHeight); */
+  const cropX = (frameSizePx.value.x - imageTopLeftX) / imageScale.value;
+  const cropY = (frameSizePx.value.y - imageTopLeftY) / imageScale.value;
+  const cropWidth = frameSizePx.value.width / imageScale.value;
+  const cropHeight = frameSizePx.value.height / imageScale.value;
 
   const updatedPhoto: PhotoData = {
     ...props.photo,
     crop: {
       cropX: cropX,
       cropY: cropY,
-      cropWidth: frameSizePx.value.width,
-      cropHeight: frameSizePx.value.height,
+      cropWidth: cropWidth,
+      cropHeight: cropHeight,
     },
     scale: imageScale.value,
     rotation: imageDegrees.value,
   };
-
-  /* const cropWidth = frame.width;
-  const cropHeight = frame.height; */
-  emit("save", updatedPhoto, props.index);
+  emit("save", updatedPhoto);
 }
 
 function handleDelete() {
-  emit("delete");
+  emit("delete", props.index);
 }
 
 function handleClose() {

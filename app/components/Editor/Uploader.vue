@@ -10,38 +10,43 @@ const images = ref<PhotoData[]>([]);
 const isDragging = ref(false);
 const isGalleryImage = ref(false);
 
-function setImageData(url: string) {
-  const img = new Image();
-  img.src = url;
-  img.onload = () => {
-    const photo: PhotoData = {
-      id: crypto.randomUUID(),
-      src: url,
-      width: img.naturalWidth,
-      height: img.naturalHeight,
-      crop: undefined,
-      scale: 1,
-    };
-    images.value.push(photo);
-    emit("add-image", photo);
-  };
-  img.onerror = () => {
-    console.log("Ошибка при загрузки изображения");
-  };
-}
+const processFilesSequentially = async (files: FileList | File[]) => {
+  for (const file of files) {
+    await new Promise<void>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const url = reader.result as string;
+        const img = new Image();
+        img.src = url;
+        img.onload = () => {
+          const photo: PhotoData = {
+            id: crypto.randomUUID(),
+            src: url,
+            width: img.naturalWidth,
+            height: img.naturalHeight,
+            crop: undefined,
+            scale: 1,
+            rotation: 0,
+          };
+          images.value.push(photo);
+          emit("add-image", photo);
+          resolve();
+        };
+        img.onerror = () => {
+          console.error("Ошибка загрузки изображения");
+          reject();
+        };
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+};
 
 const onFileChange = (e: Event) => {
   const files = (e.target as HTMLInputElement).files;
   if (!files) return;
 
-  [...files].forEach((file) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const url = reader.result as string;
-      setImageData(url);
-    };
-    reader.readAsDataURL(file);
-  });
+  processFilesSequentially(files);
 };
 
 const onDrop = (e: DragEvent) => {
@@ -54,14 +59,7 @@ const onDrop = (e: DragEvent) => {
   const files = e.dataTransfer?.files;
   if (!files) return;
 
-  [...files].forEach((file) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const url = reader.result as string;
-      setImageData(url);
-    };
-    reader.readAsDataURL(file);
-  });
+  processFilesSequentially(files);
 };
 
 const onDragOver = (e: DragEvent) => {
