@@ -9,8 +9,9 @@ const emit = defineEmits<{
 const images = ref<PhotoData[]>([]);
 const isDragging = ref(false);
 const isGalleryImage = ref(false);
+const { $api } = useNuxtApp();
 
-const processFilesSequentially = async (files: FileList | File[]) => {
+/* const processFilesSequentially = async (files: FileList | File[]) => {
   for (const file of files) {
     await new Promise<void>((resolve, reject) => {
       const reader = new FileReader();
@@ -39,6 +40,77 @@ const processFilesSequentially = async (files: FileList | File[]) => {
       };
       reader.readAsDataURL(file);
     });
+  }
+}; */
+
+onMounted(async () => {
+  try {
+    const list = await $api.uploader.listImages(); // DTO[]
+    list.forEach(async (dto) => {
+      const img = new Image();
+      img.src = dto.url;
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+
+      const photo: PhotoData = {
+        id: crypto.randomUUID(),
+        src: dto!.url,
+        width: img.width,
+        height: img.height,
+        crop: undefined,
+        scale: 1,
+        rotation: 0,
+      };
+
+      images.value.push(photo);
+
+      // сразу отдадим наружу, чтобы placeholders могли использовать
+      emit("add-image", images.value.at(-1)!);
+    });
+  } catch (e) {
+    console.error("Не удалось получить список картинок", e);
+  }
+});
+
+async function uploadFile(file: File) {
+  try {
+    const image = await $api.uploader.uploadImage(file);
+    return image;
+  } catch (e) {
+    console.error("Ошибка загрузки", e);
+    return null;
+  }
+}
+
+const processFilesSequentially = async (files: FileList | File[]) => {
+  for (const file of files) {
+    try {
+      const data = await uploadFile(file); // data: { url, filename }
+
+      const img = new Image();
+      img.src = data!.url;
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+
+      const photo: PhotoData = {
+        id: crypto.randomUUID(),
+        src: data!.url,
+        width: img.width,
+        height: img.height,
+        crop: undefined,
+        scale: 1,
+        rotation: 0,
+      };
+
+      images.value.push(photo);
+      emit("add-image", photo);
+    } catch (err) {
+      console.error("Ошибка загрузки", err);
+    }
   }
 };
 
