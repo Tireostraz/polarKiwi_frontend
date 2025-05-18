@@ -1,4 +1,4 @@
-import type { PhotoLayout } from "./layouts";
+/* import type { PhotoLayout } from "./layouts";
 
 export interface ProjectBase {
   //не используется
@@ -35,11 +35,23 @@ export interface SmsBookProject extends ProjectBase {
   coverImage?: string;
 }
 
-export type Project = PhotoProject | SmsBookProject; //не используется
+export type Project = PhotoProject | SmsBookProject; //не используется */
+
+export interface Project {
+  id: string;
+  title: string;
+  productId: number; //id продукта, соответствующего данному проекту
+  preview: string; //путь до картинки превью?
+  gallery?: string; //путь к папке данного проекта. Надо ли? папка просто по id проекта.
+  photoData?: PhotoData[]; //массив типа PhotoData где хранятся все картинки данного проекта, их масштаб кроп и т.д.
+  price: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 export interface PhotoData {
-  id: string;
-  src: string;
+  id: string; //уникальный id конкретной картинки
+  src: string; //картинка в виде base64
   width: number;
   height: number;
   crop?: {

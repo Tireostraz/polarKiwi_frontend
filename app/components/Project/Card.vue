@@ -13,14 +13,13 @@ const handleClick = () => {
 };
 
 const handleRemove = (e: MouseEvent) => {
-  e.stopPropagation(); // чтобы не сработал переход по клику на карточку
   projects.removeProject(props.product.id);
 };
 </script>
 
 <template>
   <div class="project-card" @click="handleClick">
-    <button class="remove-btn" @click="handleRemove">×</button>
+    <button class="remove-btn" @click.stop="handleRemove">×</button>
     <img :src="product.thumbnail" :alt="product.title" class="project-image" />
     <div class="project-content">
       <h3 class="project-title">{{ product.title || "Без названия" }}</h3>

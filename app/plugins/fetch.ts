@@ -15,17 +15,18 @@ export default defineNuxtPlugin({
   async setup(nuxtApp) {
     const config = useRuntimeConfig();
 
-    const tryRefresh = async (): Promise<boolean> => {
-      try {
-        await $fetch("/auth/refresh", {
-          baseURL: config.public.apiBaseUrl,
-          method: "POST",
-          credentials: "include",
-        });
-        return true;
-      } catch {
-        return false;
-      }
+    let refreshing: Promise<void> | null = null;
+
+    const tryRefresh = async () => {
+      refreshing ??= $fetch("/auth/refresh", {
+        baseURL: config.public.apiBaseUrl,
+        method: "POST",
+        credentials: "include",
+      }).finally(() => {
+        refreshing = null;
+      });
+
+      return refreshing;
     };
 
     const appFetch = $fetch.create({
@@ -36,26 +37,29 @@ export default defineNuxtPlugin({
         options.credentials = "include";
       },
 
-      async onResponseError({ request, response, options }): Promise<any> {
+      async onResponseError({ request, response, options }) {
         const opts = options as RetryOptions;
 
-        // 1. Попробовать обновить токен, если ещё не пробовали
+        // 1. первая 401 – пробуем refresh
         if (response.status === 401 && !opts._retried) {
-          const refreshed = await tryRefresh();
+          try {
+            await tryRefresh();
 
-          if (refreshed) {
-            // повторяем исходный запрос
+            // помечаем, чтобы второй раз не крутиться бесконечно
             opts._retried = true;
-            return await appFetch(request, opts);
-          }
 
-          // refresh тоже упал — выходим из учётки
-          await appFetch("/auth/logout", { method: "GET" });
-          nuxtApp.runWithContext(() => navigateTo("/auth/login"));
+            // ВОЗВРАЩАЕМ результат повторного запроса
+            return await appFetch(request, opts);
+          } catch {
+            // refresh тоже упал – логаут и редирект
+            await appFetch("/auth/logout", { method: "GET" as const });
+            nuxtApp.runWithContext(() => navigateTo("/auth/login"));
+            throw response; // пробрасываем наружу
+          }
         }
 
-        // 2. Все остальные 401 (или другая ошибка) — просто пробрасываем дальше
-        throw response; // важно: чтобы Promise отклонился
+        // 2. все прочие ошибки просто летят дальше
+        throw response;
       },
     });
     const api = {

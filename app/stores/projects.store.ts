@@ -4,14 +4,22 @@ import type { Project } from "~/repository/projects";
 export const useProjectsStore = defineStore(
   "projects",
   () => {
+    const projects = ref<Project[]>([]);
     const addedProjectsIds = ref<number[]>([]);
     const totalProjects = computed(() => addedProjectsIds.value.length);
-    const projects = ref<Project[]>([]);
     const { $toast } = useNuxtApp();
 
-    const addProject = (id: number, title: string) => {
+    const addProject = (id: number, title: string, preview: string) => {
       if (!addedProjectsIds.value.includes(id)) {
         addedProjectsIds.value.push(id);
+        projects.value.push({
+          id: crypto.randomUUID(),
+          title,
+          productId: id,
+          preview,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
         $toast.projectAdded(title);
       }
     };
@@ -20,8 +28,9 @@ export const useProjectsStore = defineStore(
       addedProjectsIds.value = addedProjectsIds.value.filter(
         (pid) => pid !== id
       );
-      projects.value = projects.value.filter((p) => p.id !== id);
-      //$toast.info("Проект удалён");
+      projects.value = projects.value.filter(
+        (project) => project.productId !== id
+      );
     };
 
     return {

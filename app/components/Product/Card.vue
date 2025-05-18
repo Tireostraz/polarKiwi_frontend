@@ -16,8 +16,11 @@ const projectsStore = useProjectsStore();
 } */
 
 const addToProjects = () => {
-  console.log(props.product.id, props.product.title);
-  projectsStore.addProject(props.product.id, props.product.title);
+  projectsStore.addProject(
+    props.product.id,
+    props.product.title,
+    props.product.thumbnail
+  );
   // Можно добавить уведомление об успешном добавлении
 };
 </script>

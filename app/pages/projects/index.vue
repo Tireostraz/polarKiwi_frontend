@@ -18,12 +18,17 @@ const router = useRouter();
 const goToCreate = () => {
   router.push("/products");
 };
+
+function handleClick() {
+  console.log(projects.addedProjectsIds, projects.projects);
+}
 </script>
 
 <template>
   <div class="projects-container">
     <h2 class="page-title">Мои проекты</h2>
     <div class="projects-grid">
+      <button @click="handleClick">Data</button>
       <div class="project-card add-new-card" @click="goToCreate">
         <div class="add-icon">+</div>
         <p class="add-text">Добавить новый проект</p>
