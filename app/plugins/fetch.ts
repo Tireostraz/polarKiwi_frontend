@@ -31,8 +31,31 @@ export default defineNuxtPlugin({
     const appFetch = $fetch.create({
       baseURL: config.public.apiBaseUrl,
       onRequest({ options }) {
+        options.headers = new Headers(options.headers);
         options.headers.append("Accept", "application/json");
         options.credentials = "include";
+      },
+
+      async onResponseError({ request, response, options }): Promise<any> {
+        const opts = options as RetryOptions;
+
+        // 1. Попробовать обновить токен, если ещё не пробовали
+        if (response.status === 401 && !opts._retried) {
+          const refreshed = await tryRefresh();
+
+          if (refreshed) {
+            // повторяем исходный запрос
+            opts._retried = true;
+            return await appFetch(request, opts);
+          }
+
+          // refresh тоже упал — выходим из учётки
+          await appFetch("/auth/logout", { method: "GET" });
+          nuxtApp.runWithContext(() => navigateTo("/auth/login"));
+        }
+
+        // 2. Все остальные 401 (или другая ошибка) — просто пробрасываем дальше
+        throw response; // важно: чтобы Promise отклонился
       },
     });
     const api = {
