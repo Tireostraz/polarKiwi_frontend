@@ -44,7 +44,9 @@ export interface Project {
   preview: string; //путь до картинки превью?
   gallery?: string; //путь к папке данного проекта. Надо ли? папка просто по id проекта.
   photoData?: PhotoData[]; //массив типа PhotoData где хранятся все картинки данного проекта, их масштаб кроп и т.д.
-  price: string;
+  totalImages: number; // нужно так как меняется
+  price: string; // нужно для цены итоговой
+  short_description: string; // по идее не нужно, берем из product
   createdAt: Date;
   updatedAt: Date;
 }
