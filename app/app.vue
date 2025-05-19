@@ -1,11 +1,13 @@
 <script setup></script>
 
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-    <NuxtRouteAnnouncer />
-    <Toasts />
-  </NuxtLayout>
+  <UApp>
+    <NuxtLayout>
+      <NuxtPage />
+      <NuxtRouteAnnouncer />
+      <Toasts />
+    </NuxtLayout>
+  </UApp>
 </template>
 
 <style>

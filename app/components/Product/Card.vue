@@ -8,18 +8,14 @@ const props = defineProps<{
 
 const emit = defineEmits(["add-to-cart", "open-details"]);
 
-/* const cartStore = useCartStore(); */
 const projectsStore = useProjectsStore();
-
-/* function addToCart() {
-  cartStore.addToCart(props.product);
-} */
 
 const addToProjects = () => {
   projectsStore.addProject(
     props.product.id,
     props.product.title,
-    props.product.thumbnail
+    props.product.thumbnail,
+    props.product.price
   );
   // Можно добавить уведомление об успешном добавлении
 };

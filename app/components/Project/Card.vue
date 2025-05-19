@@ -1,9 +1,40 @@
 <script setup lang="ts">
 import type { Product } from "~/repository/products";
+import type { DropdownMenuItem } from "@nuxt/ui";
 
 const props = defineProps<{
   product: Product;
 }>();
+
+const open = ref(false);
+
+defineShortcuts({
+  o: () => (open.value = !open.value),
+});
+
+const items: DropdownMenuItem[][] = [
+  [
+    {
+      label: "View",
+      icon: "i-lucide-eye",
+    },
+    {
+      label: "Copy",
+      icon: "i-lucide-copy",
+    },
+    {
+      label: "Edit",
+      icon: "i-lucide-pencil",
+    },
+  ],
+  [
+    {
+      label: "Delete",
+      color: "error",
+      icon: "i-lucide-trash",
+    },
+  ],
+];
 
 const router = useRouter();
 const projects = useProjectsStore();
@@ -19,7 +50,15 @@ const handleRemove = (e: MouseEvent) => {
 
 <template>
   <div class="project-card" @click="handleClick">
-    <button class="remove-btn" @click.stop="handleRemove">×</button>
+    <!-- <button class="remove-btn" @click.stop="handleRemove">×</button> -->
+    <UDropdownMenu v-model:open="open" :items="items" :ui="{ content: 'w-48' }">
+      <UButton
+        color="neutral"
+        variant="outline"
+        icon="i-lucide-menu"
+        @click.stop=""
+      />
+    </UDropdownMenu>
     <img :src="product.thumbnail" :alt="product.title" class="project-image" />
     <div class="project-content">
       <h3 class="project-title">{{ product.title || "Без названия" }}</h3>

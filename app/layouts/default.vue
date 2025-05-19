@@ -8,6 +8,8 @@ const modalOpen = ref(false);
 const route = useRoute();
 const isCollapsed = computed(() => route.path !== "/");
 
+const items = ["/slider/kiwi.webp", "/slider/annie.webp", "/slider/kiwi.webp"];
+
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
@@ -104,7 +106,26 @@ function handleLogout() {
 
   <main>
     <div class="container">
-      <ProductSlider :is-collapsed="isCollapsed" />
+      <div class="pb-5">
+        <UCarousel
+          v-slot="{ item }"
+          loop
+          dots
+          :autoplay="{ delay: 5000 }"
+          :items="items"
+          class="w-full"
+        >
+          <NuxtImg
+            :src="item"
+            class="w-full object-cover rounded-2xl h-full"
+            :class="
+              isCollapsed
+                ? 'h-40 max-h-40'
+                : 'h-[70vh] max-h-[480px] min-h-[200px]'
+            "
+          />
+        </UCarousel>
+      </div>
       <TabNavigation />
       <slot />
     </div>

@@ -23,8 +23,10 @@ export default defineNuxtConfig({
   },
   modules: [
     "@nuxt/image",
+    "@nuxt/ui",
     "@pinia/nuxt",
     "pinia-plugin-persistedstate/nuxt",
     "@vueuse/nuxt",
   ],
+  css: ["~/assets/css/main.css"],
 });

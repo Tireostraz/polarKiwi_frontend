@@ -9,7 +9,12 @@ export const useProjectsStore = defineStore(
     const totalProjects = computed(() => addedProjectsIds.value.length);
     const { $toast } = useNuxtApp();
 
-    const addProject = (id: number, title: string, preview: string) => {
+    const addProject = (
+      id: number,
+      title: string,
+      preview: string,
+      price: number
+    ) => {
       if (!addedProjectsIds.value.includes(id)) {
         addedProjectsIds.value.push(id);
         projects.value.push({
@@ -17,6 +22,7 @@ export const useProjectsStore = defineStore(
           title,
           productId: id,
           preview,
+          price,
           createdAt: new Date(),
           updatedAt: new Date(),
         });
