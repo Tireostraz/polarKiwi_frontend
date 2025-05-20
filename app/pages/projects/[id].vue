@@ -4,14 +4,20 @@ import { mmToPx } from "#imports";
 import type { PhotoLayout } from "~/repository/layouts";
 
 definePageMeta({ layout: "projects" });
+const projects = useProjectsStore();
 
 const route = useRoute();
 const { $api } = useNuxtApp();
 const DPI = 300;
 
-const format = computed(() => route.params.format as string);
-const { data: photoLayout } = await useAsyncData(`${format}`, () =>
-  $api.layouts.getPhotoLayout(format.value)
+const id = computed(() => route.params.id as string);
+const project = projects.addedProjects.find(
+  (project) => project.id === id.value
+);
+
+// TODO: добавить Critical на await fetch для гарантии получения данных
+const { data: photoLayout } = await useAsyncData(`${project!.format}`, () =>
+  $api.layouts.getPhotoLayout(project!.format)
 );
 const photosQuantity = ref(photoLayout.value?.quantity || 1);
 

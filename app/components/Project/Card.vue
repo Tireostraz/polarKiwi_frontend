@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import type { Product } from "~/repository/products";
 import type { DropdownMenuItem } from "@nuxt/ui";
+import type { Project } from "~/repository/projects";
 
 const props = defineProps<{
-  product: Product;
+  project: Project;
 }>();
 
-const open = ref(false);
+const isDropdownMenuOpen = ref(false);
+const isRenameModalOpen = ref(false);
+const localeTitle = ref("");
 
 const items: DropdownMenuItem[][] = [
   [
@@ -14,16 +16,26 @@ const items: DropdownMenuItem[][] = [
       label: "Переименовать",
       icon: "i-lucide-case-sensitive",
       key: "rename",
+      onSelect: () => {
+        isRenameModalOpen.value = true;
+        console.log("edit clicked");
+      },
     },
     {
       label: "Дублировать",
       icon: "i-lucide-copy",
       key: "duplicate",
+      onSelect: () => {
+        handleDuplicate();
+      },
     },
     {
       label: "Редактировать",
       icon: "i-lucide-pencil",
       key: "edit",
+      onSelect: () => {
+        handleClick();
+      },
     },
   ],
   [
@@ -32,6 +44,9 @@ const items: DropdownMenuItem[][] = [
       color: "error",
       icon: "i-lucide-trash",
       key: "delete",
+      onClick: () => {
+        handleRemove();
+      },
     },
   ],
 ];
@@ -40,23 +55,21 @@ const router = useRouter();
 const projects = useProjectsStore();
 
 const handleClick = () => {
-  router.push(`/projects/${props.product.slug}`);
-};
-
-const handleMenuSelect = (item: DropdownMenuItem) => {
-  console.log(item);
-  switch (item.key) {
-    case "rename":
-      console.log("edit clicked");
-      break;
-    case "remove":
-      handleRemove();
-      break;
-  }
+  router.push(`/projects/${props.project.id}`);
 };
 
 const handleRemove = () => {
-  projects.removeProject(props.product.id);
+  projects.removeProject(props.project.productId);
+};
+
+const handleDuplicate = () => {
+  projects.duplicateProject(props.project);
+};
+
+const confirmRename = () => {
+  projects.renameProject(localeTitle.value, props.project.id);
+  localeTitle.value = "";
+  isRenameModalOpen.value = false;
 };
 </script>
 
@@ -64,33 +77,54 @@ const handleRemove = () => {
   <div class="project-card" @click="handleClick">
     <div class="project-btn-wrapper" @click.stop>
       <UDropdownMenu
-        v-model:open="open"
+        v-model:open="isDropdownMenuOpen"
         :items="items"
         :ui="{ content: 'w-48' }"
-        @onClick="handleMenuSelect"
       >
         <UButton color="neutral" variant="outline" icon="i-lucide-menu" />
       </UDropdownMenu>
     </div>
-    <img :src="product.thumbnail" :alt="product.title" class="project-image" />
+    <img :src="project.preview" :alt="project.title" class="project-image" />
     <div class="project-content">
-      <h3 class="project-title">{{ product.title || "Без названия" }}</h3>
+      <h3 class="project-title">{{ props.project.title || "Без названия" }}</h3>
       <p class="project-description">
-        {{ product.short_description || "Нет описания" }}
+        {{ project.shortDescription || "Нет описания" }}
       </p>
-      <div class="project-meta">
+      <!-- <div class="project-meta">
         <span class="project-type">
           {{
-            product.category === "polaroid"
+            project.category === "polaroid"
               ? "Полароид"
               : product.category === "smsbook"
               ? "SMS-книга"
               : "Проект"
           }}
         </span>
-      </div>
+      </div> -->
     </div>
   </div>
+
+  <UModal
+    v-model:open="isRenameModalOpen"
+    title="Title"
+    description="Description"
+  >
+    <template #content>
+      <div class="p-4 space-y-4">
+        <h3 class="text-lg font-bold">Переименовать проект</h3>
+        <UInput
+          v-model:model-value="localeTitle"
+          placeholder="Новое название"
+        />
+        <div class="flex justify-end gap-2">
+          <UButton color="success" @click="confirmRename">Сохранить</UButton>
+          <UButton color="neutral" @click="isRenameModalOpen = false"
+            >Отмена</UButton
+          >
+        </div>
+      </div>
+    </template>
+  </UModal>
 </template>
 
 <style scoped>

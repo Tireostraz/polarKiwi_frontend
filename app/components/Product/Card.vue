@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import toast from "~/plugins/toast";
 import type { Product } from "~/repository/products";
 
 const props = defineProps<{
@@ -12,10 +11,13 @@ const projectsStore = useProjectsStore();
 
 const addToProjects = () => {
   projectsStore.addProject(
-    props.product.id,
     props.product.title,
+    props.product.id,
     props.product.thumbnail,
-    props.product.price
+    props.product.slug,
+    props.product.pages_quantity,
+    props.product.price,
+    props.product.short_description
   );
   // Можно добавить уведомление об успешном добавлении
 };

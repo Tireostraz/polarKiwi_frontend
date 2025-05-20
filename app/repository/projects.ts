@@ -42,13 +42,14 @@ export interface Project {
   title: string;
   productId: number; //id продукта, соответствующего данному проекту
   preview: string; //путь до картинки превью?
-  gallery?: string; //путь к папке данного проекта. Надо ли? папка просто по id проекта.
-  photoData?: PhotoData[]; //массив типа PhotoData где хранятся все картинки данного проекта, их масштаб кроп и т.д.
-  totalImages: number; // нужно так как меняется
+  format: string;
+  pagesQuantity: number; // нужно так как меняется
   price: number; // нужно для цены итоговой
-  short_description: string; // по идее не нужно, берем из product
+  shortDescription: string; // по идее не нужно, берем из product
   createdAt: Date;
   updatedAt: Date;
+  gallery?: string; //путь к папке данного проекта. Надо ли? папка просто по id проекта.
+  photoData?: PhotoData[]; //массив типа PhotoData где хранятся все картинки данного проекта, их масштаб кроп и т.д.
 }
 
 export interface PhotoData {
