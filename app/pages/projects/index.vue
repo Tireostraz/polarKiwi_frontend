@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { UButton } from "#components";
+
 const { $api } = useNuxtApp();
 const projects = useProjectsStore();
 
@@ -14,6 +16,12 @@ const {
   }
 );
 
+const colorMode = useColorMode();
+
+function toggleTheme() {
+  colorMode.preference = colorMode.preference === "light" ? "dark" : "light";
+}
+
 const router = useRouter();
 const goToCreate = () => {
   router.push("/products");
@@ -28,6 +36,9 @@ function handleClick() {
   <div class="projects-container">
     <h2 class="page-title">Мои проекты</h2>
     <div class="projects-grid">
+      <UButton color="info" @click="toggleTheme">
+        Сменить тему ({{ colorMode.preference }})
+      </UButton>
       <button @click="handleClick">Data</button>
       <div class="project-card add-new-card" @click="goToCreate">
         <div class="add-icon">+</div>

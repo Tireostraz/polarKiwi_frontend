@@ -8,30 +8,30 @@ const props = defineProps<{
 
 const open = ref(false);
 
-defineShortcuts({
-  o: () => (open.value = !open.value),
-});
-
 const items: DropdownMenuItem[][] = [
   [
     {
-      label: "View",
-      icon: "i-lucide-eye",
+      label: "Переименовать",
+      icon: "i-lucide-case-sensitive",
+      key: "rename",
     },
     {
-      label: "Copy",
+      label: "Дублировать",
       icon: "i-lucide-copy",
+      key: "duplicate",
     },
     {
-      label: "Edit",
+      label: "Редактировать",
       icon: "i-lucide-pencil",
+      key: "edit",
     },
   ],
   [
     {
-      label: "Delete",
+      label: "Удалить",
       color: "error",
       icon: "i-lucide-trash",
+      key: "delete",
     },
   ],
 ];
@@ -43,22 +43,35 @@ const handleClick = () => {
   router.push(`/projects/${props.product.slug}`);
 };
 
-const handleRemove = (e: MouseEvent) => {
+const handleMenuSelect = (item: DropdownMenuItem) => {
+  console.log(item);
+  switch (item.key) {
+    case "rename":
+      console.log("edit clicked");
+      break;
+    case "remove":
+      handleRemove();
+      break;
+  }
+};
+
+const handleRemove = () => {
   projects.removeProject(props.product.id);
 };
 </script>
 
 <template>
   <div class="project-card" @click="handleClick">
-    <!-- <button class="remove-btn" @click.stop="handleRemove">×</button> -->
-    <UDropdownMenu v-model:open="open" :items="items" :ui="{ content: 'w-48' }">
-      <UButton
-        color="neutral"
-        variant="outline"
-        icon="i-lucide-menu"
-        @click.stop=""
-      />
-    </UDropdownMenu>
+    <div class="project-btn-wrapper" @click.stop>
+      <UDropdownMenu
+        v-model:open="open"
+        :items="items"
+        :ui="{ content: 'w-48' }"
+        @onClick="handleMenuSelect"
+      >
+        <UButton color="neutral" variant="outline" icon="i-lucide-menu" />
+      </UDropdownMenu>
+    </div>
     <img :src="product.thumbnail" :alt="product.title" class="project-image" />
     <div class="project-content">
       <h3 class="project-title">{{ product.title || "Без названия" }}</h3>
@@ -95,6 +108,11 @@ const handleRemove = (e: MouseEvent) => {
 .project-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+.project-btn-wrapper {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
 
 .project-image {
   width: 100%;
@@ -126,25 +144,5 @@ const handleRemove = (e: MouseEvent) => {
   justify-content: space-between;
   font-size: 12px;
   color: #888;
-}
-
-.remove-btn {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  background: #eee;
-  border: none;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 18px;
-  line-height: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.remove-btn:hover {
-  background: #ffdddd;
 }
 </style>
