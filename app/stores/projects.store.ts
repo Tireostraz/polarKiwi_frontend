@@ -27,7 +27,12 @@ export const useProjectsStore = defineStore(
         status: "draft",
         createdAt: new Date(),
         updatedAt: new Date(),
-        pages: [],
+        pages: Array.from({ length: product.pages_quantity }, () => ({
+          id: crypto.randomUUID(),
+          layout: null,
+          elements: [],
+          textBlocks: [],
+        })),
         photos: [],
       };
 

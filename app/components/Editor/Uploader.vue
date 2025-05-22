@@ -1,137 +1,108 @@
 <script setup lang="ts">
-import type { PhotoData } from "~/repository/projects";
+import type { PhotoData, Project, UploadedPhoto } from "~/repository/projects";
+
+const props = defineProps<{
+  projectId: string;
+  isautoPlacing: boolean;
+}>();
 
 const emit = defineEmits<{
   (e: "drag-start"): void;
   (e: "drag-end"): void;
   (e: "add-image", photoData: PhotoData): void;
 }>();
-const images = ref<PhotoData[]>([]);
+
 const isDragging = ref(false);
 const isGalleryImage = ref(false);
 const { $api } = useNuxtApp();
 
+const projects = useProjectsStore();
+const project = computed(() =>
+  projects.addedProjects.find((project) => project.id === props.projectId)
+);
+
+// Загружаем изображения при монтировании, только если они ещё не загружены
 onMounted(async () => {
+  if (!project.value) return;
+
   try {
-    const list = await $api.uploader.listImages(); // DTO[]
+    const list = await $api.uploader.listImages();
     for (const dto of list) {
-      const img = new Image();
-      img.src = dto.url;
-      await new Promise((resolve, reject) => {
-        img.onload = resolve;
-        img.onerror = reject;
-      });
-
-      const photo: PhotoData = {
-        id: crypto.randomUUID(), // уникальный id для галереи, но он не нужен проекту
-        src: dto.url,
-        width: img.width,
-        height: img.height,
-        crop: undefined,
-        scale: 1,
-        rotation: 0,
-      };
-
-      images.value.push(photo);
-
-      // Проверка: если проект уже содержит это изображение, не добавлять его
-      const project = useProjectsStore().addedProjects.find(
-        (p) => p.id === useRoute().params.id
+      const alreadyExists = project.value.photos.some(
+        (p) => p.id === dto.filename
       );
-      const alreadyExists = project?.photos.some((p) => p.src === photo.src);
       if (!alreadyExists) {
-        emit("add-image", photo);
+        const photo = await createUploadedPhoto(dto.url, dto.filename);
+        project.value.photos.push(photo);
       }
     }
   } catch (e) {
-    console.error("Не удалось получить список картинок", e);
+    console.error("Не удалось получить список изображений", e);
   }
-  /* list.forEach(async (dto) => {
-      const img = new Image();
-      img.src = dto.url;
-      await new Promise((resolve, reject) => {
-        img.onload = resolve;
-        img.onerror = reject;
-      });
-
-      const photo: PhotoData = {
-        id: crypto.randomUUID(),
-        src: dto!.url,
-        width: img.width,
-        height: img.height,
-        crop: undefined,
-        scale: 1,
-        rotation: 0,
-      };
-
-      images.value.push(photo);
-
-      // сразу отдадим наружу, чтобы placeholders могли использовать
-      emit("add-image", images.value.at(-1)!);
-    });
-  } catch (e) {
-    console.error("Не удалось получить список картинок", e);
-  } */
 });
 
-async function uploadFile(file: File) {
-  try {
-    const image = await $api.uploader.uploadImage(file);
-    return image;
-  } catch (e) {
-    console.error("Ошибка загрузки", e);
-    return null;
-  }
+async function createUploadedPhoto(
+  url: string,
+  id: string
+): Promise<UploadedPhoto> {
+  const img = new Image();
+  img.src = url;
+
+  await new Promise<void>((resolve, reject) => {
+    img.onload = () => resolve();
+    img.onerror = () => reject();
+  });
+
+  const photoData: PhotoData = {
+    id,
+    src: img.src,
+    width: img.width,
+    height: img.height,
+    scale: 1,
+    rotation: 0,
+  };
+
+  emit("add-image", photoData);
+
+  return {
+    id,
+    url,
+    used: false,
+    uploadedAt: new Date(),
+    updatedAt: new Date(),
+  };
 }
 
-const processFilesSequentially = async (files: FileList | File[]) => {
-  for (const file of files) {
-    try {
-      const data = await uploadFile(file); // data: { url, filename }
+async function uploadAndAddFile(file: File) {
+  try {
+    const data = await $api.uploader.uploadImage(file);
+    if (!data) return;
 
-      const img = new Image();
-      img.src = data!.url;
-      await new Promise((resolve, reject) => {
-        img.onload = resolve;
-        img.onerror = reject;
-      });
-
-      const photo: PhotoData = {
-        id: crypto.randomUUID(),
-        src: data!.url,
-        width: img.width,
-        height: img.height,
-        crop: undefined,
-        scale: 1,
-        rotation: 0,
-      };
-
-      images.value.push(photo);
-      emit("add-image", photo);
-    } catch (err) {
-      console.error("Ошибка загрузки", err);
-    }
+    const uploadedPhoto = await createUploadedPhoto(data.url, data.filename);
+    project.value?.photos.push(uploadedPhoto);
+  } catch (err) {
+    console.error("Ошибка загрузки файла", err);
   }
-};
+}
 
 const onFileChange = (e: Event) => {
   const files = (e.target as HTMLInputElement).files;
   if (!files) return;
 
-  processFilesSequentially(files);
+  for (const file of files) uploadAndAddFile(file);
 };
 
 const onDrop = (e: DragEvent) => {
   isDragging.value = false;
-
   if (isGalleryImage.value) {
     isGalleryImage.value = false;
     return;
   }
+
   const files = e.dataTransfer?.files;
   if (!files) return;
 
-  processFilesSequentially(files);
+  for (const file of files) uploadAndAddFile(file);
 };
 
 const onDragOver = (e: DragEvent) => {
@@ -195,9 +166,9 @@ const handleDragEnd = (e: DragEvent) => {
       Перетащите изображения сюда
     </div>
     <div v-else class="images-grid">
-      <img
-        v-for="(image, index) in images"
-        :src="image.src"
+      <NuxtImg
+        v-for="(image, index) in project?.photos"
+        :src="image.url"
         :key="index"
         class="thumbnail"
         draggable="true"

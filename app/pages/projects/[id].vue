@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { PhotoData } from "~/repository/projects";
 import { mmToPx } from "#imports";
-import type { PhotoLayout } from "~/repository/layouts";
 
 definePageMeta({ layout: "projects" });
 const projects = useProjectsStore();
@@ -21,15 +20,20 @@ const { data: photoLayout } = await useAsyncData(
   () => $api.layouts.getPhotoLayout(project.value!.format)
 );
 
-const isDraggingFromGallery = ref(false); //для анимации куда можно drag and drop (стили)
-const isAutoPlaceing = ref(false);
+if (photoLayout.value && project.value) {
+  // добавить логику для исключения переприсвоения layout если уже он там есть (не null)
+  project.value.pages = project.value.pages.map((page) => ({
+    ...page,
+    layout: structuredClone(photoLayout.value!),
+  }));
+}
 
-project.value?.pages.length;
+const isDraggingFromGallery = ref(false); //для анимации куда можно drag and drop (стили)
+const isAutoPlacing = ref(false);
 
 const addPhoto = (photoData: PhotoData) => {
   //формирование массива из объектов данных о загруженных фото photo
-  project.value?.photos.push(photoData);
-  if (isAutoPlaceing) {
+  if (isAutoPlacing.value) {
     const firstEmptyIndex = project.value?.pages.findIndex(
       (page) => page.elements.length === 0
     );
@@ -192,6 +196,8 @@ function validateInput() {
   <div class="base-editor-layout">
     <client-only>
       <EditorUploader
+        :project-id="id"
+        :isauto-placing="isAutoPlacing"
         @add-image="addPhoto"
         @drag-start="isDraggingFromGallery = true"
         @drag-end="isDraggingFromGallery = false"
@@ -200,7 +206,7 @@ function validateInput() {
       <div class="workspace">
         <div class="workspace-info">
           <div>Проект: {{ photoLayout?.title }}</div>
-          <input type="checkbox" v-model="isAutoPlaceing" />
+          <input type="checkbox" v-model="isAutoPlacing" />
           <label>Изображений: </label>
           <input
             type="number"
@@ -208,15 +214,19 @@ function validateInput() {
             :min="photoLayout?.quantity"
             @input="validateInput"
           />
-          <button @click="increasePhotos">Добавить фото</button>
-          <button @click="decreasePhotos">Убрать фото</button>
+          <UButton color="secondary" variant="subtle" @click="increasePhotos"
+            >Добавить фото</UButton
+          >
+          <UButton color="secondary" variant="subtle" @click="decreasePhotos"
+            >Убрать фото</UButton
+          >
         </div>
         <div class="workspace-container">
           <EditorPhotoPlaceholder
             v-for="(page, index) in project?.pages"
             :key="page.id"
             :photo="page.elements[0]"
-            :template="page.layout"
+            :template="page.layout!"
             :index="index"
             :is-dragging="isDraggingFromGallery"
             @add-photo="assignPhotoToPlaceholder"
@@ -234,7 +244,7 @@ function validateInput() {
         @close="isModalOpen = false"
       />
 
-      <button class="submit-btn">Добавить в корзину</button>
+      <!-- <UButton class="submit-btn">Добавить в корзину</UButton> -->
     </client-only>
   </div>
 </template>
