@@ -11,42 +11,42 @@ const isDragging = ref(false);
 const isGalleryImage = ref(false);
 const { $api } = useNuxtApp();
 
-/* const processFilesSequentially = async (files: FileList | File[]) => {
-  for (const file of files) {
-    await new Promise<void>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const url = reader.result as string;
-        const img = new Image();
-        img.src = url;
-        img.onload = () => {
-          const photo: PhotoData = {
-            id: crypto.randomUUID(),
-            src: url,
-            width: img.naturalWidth,
-            height: img.naturalHeight,
-            crop: undefined,
-            scale: 1,
-            rotation: 0,
-          };
-          images.value.push(photo);
-          emit("add-image", photo);
-          resolve();
-        };
-        img.onerror = () => {
-          console.error("Ошибка загрузки изображения");
-          reject();
-        };
-      };
-      reader.readAsDataURL(file);
-    });
-  }
-}; */
-
 onMounted(async () => {
   try {
     const list = await $api.uploader.listImages(); // DTO[]
-    list.forEach(async (dto) => {
+    for (const dto of list) {
+      const img = new Image();
+      img.src = dto.url;
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+
+      const photo: PhotoData = {
+        id: crypto.randomUUID(), // уникальный id для галереи, но он не нужен проекту
+        src: dto.url,
+        width: img.width,
+        height: img.height,
+        crop: undefined,
+        scale: 1,
+        rotation: 0,
+      };
+
+      images.value.push(photo);
+
+      // Проверка: если проект уже содержит это изображение, не добавлять его
+      const project = useProjectsStore().addedProjects.find(
+        (p) => p.id === useRoute().params.id
+      );
+      const alreadyExists = project?.photos.some((p) => p.src === photo.src);
+      if (!alreadyExists) {
+        emit("add-image", photo);
+      }
+    }
+  } catch (e) {
+    console.error("Не удалось получить список картинок", e);
+  }
+  /* list.forEach(async (dto) => {
       const img = new Image();
       img.src = dto.url;
       await new Promise((resolve, reject) => {
@@ -71,7 +71,7 @@ onMounted(async () => {
     });
   } catch (e) {
     console.error("Не удалось получить список картинок", e);
-  }
+  } */
 });
 
 async function uploadFile(file: File) {

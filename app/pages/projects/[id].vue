@@ -11,40 +11,33 @@ const { $api } = useNuxtApp();
 const DPI = 300;
 
 const id = computed(() => route.params.id as string);
-const project = projects.addedProjects.find(
-  (project) => project.id === id.value
+const project = computed(() =>
+  projects.addedProjects.find((project) => project.id === id.value)
 );
 
 // TODO: добавить Critical на await fetch для гарантии получения данных
-const { data: photoLayout } = await useAsyncData(`${project!.format}`, () =>
-  $api.layouts.getPhotoLayout(project!.format)
+const { data: photoLayout } = await useAsyncData(
+  `${project.value!.format}`,
+  () => $api.layouts.getPhotoLayout(project.value!.format)
 );
-const photosQuantity = ref(photoLayout.value?.quantity || 1);
 
-const photos = ref<PhotoData[]>([]);
-const placeholdersData = ref<
-  { assignedPhoto: PhotoData | undefined; layout: PhotoLayout }[]
->(
-  Array.from({ length: photosQuantity.value }, () => ({
-    assignedPhoto: undefined,
-    layout: structuredClone(photoLayout.value!),
-  }))
-);
 const isDraggingFromGallery = ref(false); //для анимации куда можно drag and drop (стили)
 const isAutoPlaceing = ref(false);
 
+project.value?.pages.length;
+
 const addPhoto = (photoData: PhotoData) => {
   //формирование массива из объектов данных о загруженных фото photo
-  photos.value.push(photoData);
-  if (isAutoPlaceing.value) {
-    const firstEmptyPlaceholder = placeholdersData.value.findIndex(
-      (placeholder) => placeholder.assignedPhoto === undefined
+  project.value?.photos.push(photoData);
+  if (isAutoPlaceing) {
+    const firstEmptyIndex = project.value?.pages.findIndex(
+      (page) => page.elements.length === 0
     );
-    if (firstEmptyPlaceholder === -1) {
+    if (firstEmptyIndex === -1) {
       increasePhotos();
-      assignPhotoToPlaceholder(photoData.id, placeholdersData.value.length - 1);
+      assignPhotoToPlaceholder(photoData.id, project.value?.pages.length! - 1);
     } else {
-      assignPhotoToPlaceholder(photoData.id, firstEmptyPlaceholder);
+      assignPhotoToPlaceholder(photoData.id, firstEmptyIndex!);
     }
   }
 };
@@ -78,11 +71,13 @@ const cropImageToPlaceholder = (
 };
 
 const assignPhotoToPlaceholder = (photoId: string, index: number) => {
-  //заполняем пустые ячейки массива null и при назначении изображения уже копируем! объект PhotoData из массива оригинальных изображений photos.value[]
-  const photoIndex = photos.value.findIndex((photo) => photo.id === photoId);
-  if (photoIndex === -1) return;
+  const projectValue = project.value;
+  if (!projectValue) return;
 
-  const photo = photos.value[photoIndex];
+  console.log(photoId, index);
+  console.log(projectValue.photos);
+
+  const photo = projectValue.photos.find((photo) => photo.id === photoId);
   if (!photo) return;
 
   const img = new Image();
@@ -102,16 +97,27 @@ const assignPhotoToPlaceholder = (photoId: string, index: number) => {
         DPI
       ),
     };
+
     const crop = cropImageToPlaceholder(img, placeholderSize);
 
-    //Создание копии оригинального photo с новым crop и id
     const assignedPhoto: PhotoData = {
       ...photo,
       id: crypto.randomUUID(),
-      crop: crop,
+      crop,
     };
 
-    placeholdersData.value[index]!.assignedPhoto = assignedPhoto;
+    const page = projectValue.pages[index];
+    if (page) {
+      page.elements.push(assignedPhoto);
+    } else {
+      // если страницы не существует, создаём
+      projectValue.pages[index] = {
+        id: crypto.randomUUID(),
+        layout: structuredClone(photoLayout.value!),
+        elements: [assignedPhoto],
+        textBlocks: [],
+      };
+    }
   };
 };
 
@@ -120,48 +126,65 @@ const isModalOpen = ref(false);
 const selectedPlaceholder = ref<number | null>(null); //индекс выбранного placeholder - emit
 
 function handleSaveEditedImage(newPhotoData: PhotoData) {
-  if (selectedPlaceholder.value !== null) {
-    placeholdersData.value[selectedPlaceholder.value]!.assignedPhoto =
-      newPhotoData;
+  const projectValue = project.value;
+  const index = selectedPlaceholder.value;
+  if (projectValue && index !== null) {
+    const page = projectValue.pages[index];
+    if (page) {
+      page.elements[0] = newPhotoData;
+    }
   }
   isModalOpen.value = false;
 }
 
 function handleDeleteImage() {
-  if (selectedPlaceholder.value !== null) {
-    placeholdersData.value[selectedPlaceholder.value]!.assignedPhoto =
-      undefined;
+  const projectValue = project.value;
+  const index = selectedPlaceholder.value;
+  if (projectValue && index !== null) {
+    const page = projectValue.pages[index];
+    if (page) {
+      page.elements = [];
+    }
   }
   isModalOpen.value = false;
 }
 
 function handleOpenModal(index: number) {
-  if (placeholdersData.value[index]?.assignedPhoto) {
+  const projectValue = project.value;
+  const page = projectValue?.pages[index];
+  if (page?.elements.length) {
     selectedPlaceholder.value = index;
     isModalOpen.value = true;
   }
 }
 
 function increasePhotos() {
-  photosQuantity.value++;
-  placeholdersData.value.push({
-    assignedPhoto: undefined,
+  const projectValue = project.value;
+  if (!projectValue) return;
+
+  projectValue.pages.push({
+    id: crypto.randomUUID(),
     layout: structuredClone(photoLayout.value!),
+    elements: [],
+    textBlocks: [],
   });
 }
 function decreasePhotos() {
-  if (photosQuantity.value! > photoLayout.value!.quantity) {
-    photosQuantity.value--;
-    placeholdersData.value.pop();
+  const projectValue = project.value;
+  if (!projectValue) return;
+
+  if (projectValue.pages.length > (photoLayout.value?.quantity || 1)) {
+    projectValue.pages.pop();
   }
 }
+
 function validateInput() {
-  const min = photoLayout.value?.quantity || 1;
+  /* const min = photoLayout.value?.quantity || 1;
   if (photosQuantity.value < min) {
     photosQuantity.value = min;
   } else if (photosQuantity.value > 200) {
     photosQuantity.value = 200;
-  }
+  } */
 }
 </script>
 
@@ -181,7 +204,6 @@ function validateInput() {
           <label>Изображений: </label>
           <input
             type="number"
-            v-model="photosQuantity"
             :max="200"
             :min="photoLayout?.quantity"
             @input="validateInput"
@@ -191,21 +213,21 @@ function validateInput() {
         </div>
         <div class="workspace-container">
           <EditorPhotoPlaceholder
-            v-for="(printItem, index) in placeholdersData"
-            :photo="printItem.assignedPhoto"
-            :template="printItem.layout"
-            :is-dragging="isDraggingFromGallery"
-            :key="index"
+            v-for="(page, index) in project?.pages"
+            :key="page.id"
+            :photo="page.elements[0]"
+            :template="page.layout"
             :index="index"
+            :is-dragging="isDraggingFromGallery"
             @add-photo="assignPhotoToPlaceholder"
-            @click="handleOpenModal"
+            @click="() => handleOpenModal(index)"
           />
         </div>
       </div>
       <EditorModal
         v-if="isModalOpen && selectedPlaceholder !== null"
-        :photo="placeholdersData[selectedPlaceholder!]!.assignedPhoto!"
-        :layout="placeholdersData[selectedPlaceholder!]!.layout"
+        :photo="project?.pages[selectedPlaceholder]?.elements[0]!"
+        :layout="project?.pages[selectedPlaceholder]?.layout!"
         :index="selectedPlaceholder"
         @save="handleSaveEditedImage"
         @delete="handleDeleteImage"

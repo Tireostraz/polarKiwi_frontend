@@ -10,15 +10,7 @@ const emit = defineEmits(["add-to-cart", "open-details"]);
 const projectsStore = useProjectsStore();
 
 const addToProjects = () => {
-  projectsStore.addProject(
-    props.product.title,
-    props.product.id,
-    props.product.thumbnail,
-    props.product.slug,
-    props.product.pages_quantity,
-    props.product.price,
-    props.product.short_description
-  );
+  projectsStore.addProject(props.product);
   // Можно добавить уведомление об успешном добавлении
 };
 </script>

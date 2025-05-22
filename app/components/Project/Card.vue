@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from "@nuxt/ui";
 import type { Project } from "~/repository/projects";
+import type { Product } from "~/repository/products";
 
 const props = defineProps<{
   project: Project;
+  product: Product;
 }>();
 
 const isDropdownMenuOpen = ref(false);
@@ -84,23 +86,15 @@ const confirmRename = () => {
         <UButton color="neutral" variant="outline" icon="i-lucide-menu" />
       </UDropdownMenu>
     </div>
-    <img :src="project.preview" :alt="project.title" class="project-image" />
+    <img :src="product.thumbnail" :alt="project.title" class="project-image" />
     <div class="project-content">
       <h3 class="project-title">{{ props.project.title || "Без названия" }}</h3>
       <p class="project-description">
-        {{ project.shortDescription || "Нет описания" }}
+        {{ product.short_description || "Нет описания" }}
       </p>
-      <!-- <div class="project-meta">
-        <span class="project-type">
-          {{
-            project.category === "polaroid"
-              ? "Полароид"
-              : product.category === "smsbook"
-              ? "SMS-книга"
-              : "Проект"
-          }}
-        </span>
-      </div> -->
+      <div class="project-meta">
+        <span class="project-type"> {{ product.price }}₽ за фото </span>
+      </div>
     </div>
   </div>
 

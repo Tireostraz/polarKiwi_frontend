@@ -1,4 +1,6 @@
-/* import type { PhotoLayout } from "./layouts";
+import type { PhotoLayout } from "~/repository/layouts";
+
+/*
 
 export interface ProjectBase {
   //не используется
@@ -39,17 +41,24 @@ export type Project = PhotoProject | SmsBookProject; //не использует
 
 export interface Project {
   id: string;
+  userId: number; //чей проект
   title: string;
-  productId: number; //id продукта, соответствующего данному проекту
-  preview: string; //путь до картинки превью?
+  type: "photo" | "smsbook" | "poster";
   format: string;
-  pagesQuantity: number; // нужно так как меняется
-  price: number; // нужно для цены итоговой
-  shortDescription: string; // по идее не нужно, берем из product
+  productId: number; //id продукта, соответствующего данному проекту
+  status: "draft" | "completed" | "in_cart";
   createdAt: Date;
   updatedAt: Date;
-  gallery?: string; //путь к папке данного проекта. Надо ли? папка просто по id проекта.
-  photoData?: PhotoData[]; //массив типа PhotoData где хранятся все картинки данного проекта, их масштаб кроп и т.д.
+  pages: ProjectPage[];
+  photos: PhotoData[];
+}
+
+//это либо 1 страница смсбука либо для фото плейсхолдер. На одну страницу/шаблон фото 1 шаблон и несколько фото
+interface ProjectPage {
+  id: string;
+  layout: PhotoLayout; // здесь храним переопределённый layout. В данный момент тут PhotoLayout, нужно изменить чтобы был Layout для смсбуков также
+  elements: PhotoData[]; // заполненные placeholder'ы или пустые
+  textBlocks: TextElement[];
 }
 
 export interface PhotoData {
@@ -65,4 +74,20 @@ export interface PhotoData {
   };
   scale: number;
   rotation: number;
+}
+
+interface TextElement {
+  id: string; // id текстового поля (из layout)
+  text: string;
+  fontSize?: number;
+  fontFamily?: string;
+  color?: string;
+  alignment?: "left" | "center" | "right";
+}
+
+interface UploadedPhoto {
+  id: string;
+  url: string;
+  uploadedAt: string;
+  // Метаинформация, например, ориентация, EXIF и т.п.
 }

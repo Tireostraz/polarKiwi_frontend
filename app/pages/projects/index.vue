@@ -2,6 +2,14 @@
 const { $api } = useNuxtApp();
 const projects = useProjectsStore();
 
+const productIds = [
+  ...new Set(projects.addedProjects.map((project) => project.productId)),
+];
+
+const { data: products } = await useAsyncData("products", () =>
+  $api.products.byIds(productIds)
+);
+
 const router = useRouter();
 const goToCreate = () => {
   router.push("/products");
@@ -17,9 +25,10 @@ const goToCreate = () => {
         <p class="add-text">Добавить новый проект</p>
       </div>
       <ProjectCard
-        v-for="project in projects.addedProjects"
+        v-for="(project, index) in projects.addedProjects"
         :key="project.id"
         :project="project"
+        :product="products![index]!"
       />
       <p v-if="!projects" class="empty-text">У вас пока нет проектов.</p>
     </div>

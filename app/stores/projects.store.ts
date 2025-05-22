@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import type { Project } from "~/repository/projects";
+import type { Product } from "~/repository/products";
 
 export const useProjectsStore = defineStore(
   "projects",
@@ -7,29 +8,31 @@ export const useProjectsStore = defineStore(
     const addedProjects = ref<Project[]>([]);
     const totalProjects = computed(() => addedProjects.value.length);
     const { $toast } = useNuxtApp();
+    const authStore = useAuthStore();
 
-    const addProject = (
-      title: string,
-      productId: number,
-      preview: string,
-      format: string,
-      pagesQuantity: number,
-      price: number,
-      shortDescription: string
-    ) => {
-      addedProjects.value.push({
+    const addProject = (product: Product) => {
+      const userId = authStore.user?.id; //TODO сделать из userId string и задавать его как crypto.randomUUID(). Сейчас он берется из БД
+
+      if (!userId) {
+        $toast.authError("Вы не авторизованы");
+        return;
+      }
+      const newProject: Project = {
         id: crypto.randomUUID(),
-        title,
-        productId,
-        preview,
-        format,
-        pagesQuantity,
-        price,
-        shortDescription,
+        userId,
+        title: product.title,
+        type: "photo", //TODO Добавить type (вместо slug) в Product и в БД
+        format: product.slug,
+        productId: product.id,
+        status: "draft",
         createdAt: new Date(),
         updatedAt: new Date(),
-      });
-      $toast.projectAdded(title);
+        pages: [],
+        photos: [],
+      };
+
+      addedProjects.value.push(newProject);
+      $toast.projectAdded(product.title);
     };
 
     const removeProject = (id: number) => {
@@ -42,17 +45,24 @@ export const useProjectsStore = defineStore(
     };
 
     const duplicateProject = (project: Project) => {
-      const newProject = { ...project };
-      newProject.id = crypto.randomUUID(); // делаем новый ID проекта
+      const newProject = structuredClone(project);
+      newProject.id = crypto.randomUUID();
+      newProject.createdAt = new Date();
+      newProject.updatedAt = new Date();
       addedProjects.value.push(newProject);
     };
 
     const renameProject = (newTitle: string, id: string) => {
-      const projectIndex = addedProjects.value.findIndex(
+      /* const projectIndex = addedProjects.value.findIndex(
         (project) => project.id === id
       );
       if (addedProjects.value[projectIndex]) {
         addedProjects.value[projectIndex].title = newTitle;
+      } */
+      const project = addedProjects.value.find((p) => p.id === id);
+      if (project) {
+        project.title = newTitle;
+        project.updatedAt = new Date();
       }
     };
 
