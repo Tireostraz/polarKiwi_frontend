@@ -2,6 +2,8 @@ import { createAuthRepository } from "~/repository/auth";
 import { createLayoutsRepository } from "~/repository/layouts";
 import { createProductRepository } from "~/repository/products";
 import { createUploaderRepository } from "~/repository/uploader";
+import { createProjectRepository } from "~/repository/projects";
+
 import type { FetchOptions, $Fetch } from "ofetch";
 
 /** Добавляем свой флаг в стандартные опции */
@@ -67,6 +69,7 @@ export default defineNuxtPlugin({
       products: createProductRepository(appFetch),
       layouts: createLayoutsRepository(appFetch),
       uploader: createUploaderRepository(appFetch),
+      projects: createProjectRepository(appFetch),
     };
     return {
       provide: {

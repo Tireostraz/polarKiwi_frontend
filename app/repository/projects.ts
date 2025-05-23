@@ -1,7 +1,7 @@
 import type { PhotoLayout } from "~/repository/layouts";
 
 export interface Project {
-  id: string;
+  id: number;
   userId: number; //чей проект
   title: string;
   type: "photo" | "smsbook" | "poster";
@@ -53,4 +53,119 @@ export interface UploadedPhoto {
   uploadedAt: Date;
   updatedAt: Date;
   // Метаинформация, например, ориентация, EXIF и т.п.
+}
+
+// DTO
+export interface ProjectDTO {
+  id: number;
+  user_id: number;
+  title: string;
+  type: "photo" | "smsbook" | "poster";
+  format: string;
+  product_id: number;
+  status: "draft" | "completed" | "in_cart";
+  pages: ProjectPage[];
+  photos: UploadedPhoto[];
+  created_at: string;
+  updated_at: string;
+}
+
+// Преобразование
+export function fromDTO(dto: ProjectDTO): Project {
+  return {
+    id: dto.id,
+    userId: dto.user_id,
+    title: dto.title,
+    type: dto.type,
+    format: dto.format,
+    productId: dto.product_id,
+    status: dto.status,
+    pages: dto.pages,
+    photos: dto.photos,
+    createdAt: new Date(dto.created_at),
+    updatedAt: new Date(dto.updated_at),
+  };
+}
+
+export function toDTO(project: Project): ProjectDTO {
+  return {
+    id: project.id,
+    user_id: project.userId,
+    title: project.title,
+    type: project.type,
+    format: project.format,
+    product_id: project.productId,
+    status: project.status,
+    pages: project.pages,
+    photos: project.photos,
+    created_at: project.createdAt.toISOString(),
+    updated_at: project.updatedAt.toISOString(),
+  };
+}
+
+// Репозиторий
+export function createProjectRepository(appFetch: typeof $fetch) {
+  return {
+    // Получение всех проектов пользователя
+    async all(): Promise<Project[]> {
+      const dtos = await appFetch<ProjectDTO[]>("/projects", {
+        method: "GET",
+      });
+      return dtos.map(fromDTO);
+    },
+
+    // Получение одного проекта
+    async get(id: number): Promise<Project> {
+      const dto = await appFetch<ProjectDTO>(`/projects/${id}`, {
+        method: "GET",
+      });
+      return fromDTO(dto);
+    },
+
+    // Создание проекта
+    async create(
+      data: Omit<Project, "id" | "createdAt" | "updatedAt">
+    ): Promise<Project> {
+      const dto = await appFetch<ProjectDTO>("/projects", {
+        method: "POST",
+        body: {
+          title: data.title,
+          type: data.type,
+          format: data.format,
+          product_id: data.productId,
+          status: data.status,
+          pages: data.pages,
+          photos: data.photos,
+        },
+      });
+      return fromDTO(dto);
+    },
+
+    // Обновление проекта
+    async update(
+      id: number,
+      data: Omit<Project, "id" | "createdAt" | "updatedAt" | "userId">
+    ): Promise<Project> {
+      const dto = await appFetch<ProjectDTO>(`/projects/${id}`, {
+        method: "PUT",
+        body: {
+          title: data.title,
+          type: data.type,
+          format: data.format,
+          product_id: data.productId,
+          status: data.status,
+          pages: data.pages,
+          photos: data.photos,
+        },
+      });
+      return fromDTO(dto);
+    },
+
+    // Удаление проекта
+    async remove(id: number): Promise<void> {
+      await appFetch(`/projects/${id}`, {
+        method: "DELETE",
+      });
+    },
+  };
 }
