@@ -1,7 +1,11 @@
 <script setup lang="ts">
 const { $api } = useNuxtApp();
 const projects = useProjectsStore();
+const router = useRouter();
 
+onMounted(async () => {
+  await projects.loadProjects();
+});
 const productIds = [
   ...new Set(projects.addedProjects.map((project) => project.productId)),
 ];
@@ -10,7 +14,6 @@ const { data: products } = await useAsyncData("products", () =>
   $api.products.byIds(productIds)
 );
 
-const router = useRouter();
 const goToCreate = () => {
   router.push("/products");
 };
@@ -30,7 +33,9 @@ const goToCreate = () => {
         :project="project"
         :product="products![index]!"
       />
-      <p v-if="!projects" class="empty-text">У вас пока нет проектов.</p>
+      <p v-if="projects.totalProjects === 0" class="empty-text">
+        У вас пока нет проектов.
+      </p>
     </div>
   </div>
 </template>

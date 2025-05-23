@@ -107,7 +107,7 @@ export function toDTO(project: Project): ProjectDTO {
 export function createProjectRepository(appFetch: typeof $fetch) {
   return {
     // Получение всех проектов пользователя
-    async all(): Promise<Project[]> {
+    async getAll(): Promise<Project[]> {
       const dtos = await appFetch<ProjectDTO[]>("/projects", {
         method: "GET",
       });

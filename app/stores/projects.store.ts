@@ -7,18 +7,29 @@ export const useProjectsStore = defineStore(
   () => {
     const addedProjects = ref<Project[]>([]);
     const totalProjects = computed(() => addedProjects.value.length);
-    const { $toast } = useNuxtApp();
+
+    const { $toast, $api } = useNuxtApp();
     const authStore = useAuthStore();
 
-    const addProject = (product: Product) => {
-      const userId = authStore.user?.id; //TODO сделать из userId string и задавать его как crypto.randomUUID(). Сейчас он берется из БД
+    const loadProjects = async () => {
+      try {
+        const projects = await $api.projects.getAll();
+        addedProjects.value = projects;
+      } catch (e) {
+        console.error("Ошибка загрузки проектов", e);
+        // TODO $toast добавить $toast.error
+      }
+    };
+
+    const addProject = async (product: Product) => {
+      const userId = authStore.user?.id;
 
       if (!userId) {
         $toast.authError("Вы не авторизованы");
         return;
       }
-      const newProject: Project = {
-        id: crypto.randomUUID(),
+      const newProjectData: Project = {
+        id: 1,
         userId,
         title: product.title,
         type: "photo", //TODO Добавить type (вместо slug) в Product и в БД
@@ -36,47 +47,100 @@ export const useProjectsStore = defineStore(
         photos: [],
       };
 
-      addedProjects.value.push(newProject);
-      $toast.projectAdded(product.title);
+      try {
+        const dto = await $api.projects.create(newProjectData);
+        const project = dto;
+
+        addedProjects.value.push(project);
+        $toast.projectAdded(product.title);
+      } catch (e) {
+        console.error("Ошибка создания проекта:", e);
+      }
     };
 
-    const removeProject = (id: number) => {
-      /* addedProjectsIds.value = addedProjectsIds.value.filter(
-        (pid) => pid !== id
-      ); */
+    const removeProject = async (id: number) => {
+      try {
+        await $api.projects.remove(id);
+        addedProjects.value = addedProjects.value.filter((p) => p.id !== id);
+        console.log("Проект удалён");
+        //$toast.success("Проект удалён");
+      } catch (e) {
+        console.error("Ошибка удаления проекта:", e);
+        //$toast.error("Не удалось удалить проект");
+      }
+
       addedProjects.value = addedProjects.value.filter(
         (project) => project.productId !== id
       );
     };
 
-    const duplicateProject = (project: Project) => {
-      const newProject = structuredClone(project);
-      newProject.id = crypto.randomUUID();
-      newProject.createdAt = new Date();
-      newProject.updatedAt = new Date();
-      addedProjects.value.push(newProject);
-    };
+    const updateProject = async (project: Project) => {
+      try {
+        const updated = await $api.projects.update(project.id, {
+          title: project.title,
+          type: project.type,
+          format: project.format,
+          productId: project.productId,
+          status: project.status,
+          pages: project.pages,
+          photos: project.photos,
+        });
+        const updatedProject = updated;
 
-    const renameProject = (newTitle: string, id: string) => {
-      /* const projectIndex = addedProjects.value.findIndex(
-        (project) => project.id === id
-      );
-      if (addedProjects.value[projectIndex]) {
-        addedProjects.value[projectIndex].title = newTitle;
-      } */
-      const project = addedProjects.value.find((p) => p.id === id);
-      if (project) {
-        project.title = newTitle;
-        project.updatedAt = new Date();
+        const index = addedProjects.value.findIndex(
+          (p) => p.id === updatedProject.id
+        );
+        if (index !== -1) addedProjects.value[index] = updatedProject;
+      } catch (e) {
+        console.error("Ошибка обновления проекта:", e);
+        //$toast.error("Не удалось сохранить проект");
       }
     };
 
+    const duplicateProject = async (project: Project) => {
+      try {
+        const cloneData: Project = {
+          id: 1,
+          userId: project.userId,
+          title: project.title + " (копия)",
+          type: project.type,
+          format: project.format,
+          productId: project.productId,
+          status: "draft",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          pages: structuredClone(project.pages),
+          photos: structuredClone(project.photos),
+        };
+
+        const dto = await $api.projects.create(cloneData);
+        const duplicated = dto;
+        addedProjects.value.push(duplicated);
+        //$toast.success("Проект продублирован");
+      } catch (e) {
+        console.error("Ошибка дублирования:", e);
+        //$toast.error("Не удалось продублировать проект");
+      }
+    };
+
+    const renameProject = async (newTitle: string, id: number) => {
+      const project = addedProjects.value.find((p) => p.id === id);
+      if (!project) return;
+
+      project.title = newTitle;
+      project.updatedAt = new Date();
+
+      await updateProject(project);
+    };
+
     return {
-      totalProjects,
       addedProjects,
-      duplicateProject,
+      totalProjects,
+      loadProjects,
       addProject,
       removeProject,
+      updateProject,
+      duplicateProject,
       renameProject,
     };
   },
