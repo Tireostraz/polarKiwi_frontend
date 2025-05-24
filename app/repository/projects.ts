@@ -1,7 +1,7 @@
 import type { PhotoLayout } from "~/repository/layouts";
 
 export interface Project {
-  id: number;
+  id: string;
   userId: number; //чей проект
   title: string;
   type: "photo" | "smsbook" | "poster";
@@ -57,7 +57,7 @@ export interface UploadedPhoto {
 
 // DTO
 export interface ProjectDTO {
-  id: number;
+  id: string;
   user_id: number;
   title: string;
   type: "photo" | "smsbook" | "poster";
@@ -115,7 +115,7 @@ export function createProjectRepository(appFetch: typeof $fetch) {
     },
 
     // Получение одного проекта
-    async get(id: number): Promise<Project> {
+    async get(id: string): Promise<Project> {
       const dto = await appFetch<ProjectDTO>(`/projects/${id}`, {
         method: "GET",
       });
@@ -143,7 +143,7 @@ export function createProjectRepository(appFetch: typeof $fetch) {
 
     // Обновление проекта
     async update(
-      id: number,
+      id: string,
       data: Omit<Project, "id" | "createdAt" | "updatedAt" | "userId">
     ): Promise<Project> {
       const dto = await appFetch<ProjectDTO>(`/projects/${id}`, {
@@ -162,7 +162,7 @@ export function createProjectRepository(appFetch: typeof $fetch) {
     },
 
     // Удаление проекта
-    async remove(id: number): Promise<void> {
+    async remove(id: string): Promise<void> {
       await appFetch(`/projects/${id}`, {
         method: "DELETE",
       });

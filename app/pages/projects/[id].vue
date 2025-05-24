@@ -9,10 +9,38 @@ const route = useRoute();
 const { $api } = useNuxtApp();
 const DPI = 300;
 
+//Для сохранения проекта
+const showExitConfirm = ref(false);
+const nextRoute = ref(null);
+
 const id = computed(() => route.params.id as string);
 const project = computed(() =>
   projects.addedProjects.find((project) => project.id === id.value)
 );
+
+//Логика для сохранения проекта при обновлении/закрытии вкладки
+async function updateProjectBeforeExit() {
+  if (project.value) {
+    try {
+      await projects.updateProject(project.value);
+    } catch (e) {
+      console.error("Ошибка при обновлении проекта перед выходом:", e);
+    }
+  }
+}
+
+function handleBeforeUnload(event: BeforeUnloadEvent) {
+  updateProjectBeforeExit(); // Async здесь не сработает нормально, лучше sync или флаг
+  event.preventDefault();
+  event.returnValue = ""; // Стандартный способ показать confirm диалог
+}
+
+onMounted(() => {
+  window.addEventListener("beforeunload", handleBeforeUnload);
+});
+onUnmounted(() => {
+  window.removeEventListener("beforeunload", handleBeforeUnload);
+});
 
 // TODO: добавить Critical на await fetch для гарантии получения данных
 const { data: photoLayout } = await useAsyncData(
@@ -85,7 +113,7 @@ const assignPhotoToPlaceholder = (photoId: string, index: number) => {
   if (!photo) return;
 
   const img = new Image();
-  img.src = photo.src;
+  img.src = photo.url;
   img.onload = () => {
     const placeholderSize = {
       width: mmToPx(
@@ -190,6 +218,18 @@ function validateInput() {
     photosQuantity.value = 200;
   } */
 }
+
+async function confirmExit(shouldExit: boolean) {
+  showExitConfirm.value = false;
+  if (shouldExit) {
+    await updateProjectBeforeExit();
+    if (nextRoute.value) {
+      navigateTo(nextRoute.value.fullPath);
+    }
+  } else {
+    nextRoute.value = null; // сброс
+  }
+}
 </script>
 
 <template>
@@ -247,6 +287,18 @@ function validateInput() {
       <!-- <UButton class="submit-btn">Добавить в корзину</UButton> -->
     </client-only>
   </div>
+  <UModal v-model="showExitConfirm">
+    <template #content>
+      <div class="p-4">
+        <h2 class="text-lg font-semibold mb-2">Вы точно хотите выйти?</h2>
+        <p class="mb-4">Все изменения будут сохранены.</p>
+        <div class="flex justify-end gap-2">
+          <UButton @click="confirmExit(true)">Да</UButton>
+          <UButton color="info" @click="confirmExit(false)">Нет</UButton>
+        </div>
+      </div>
+    </template>
+  </UModal>
 </template>
 
 <style scoped>

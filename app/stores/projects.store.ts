@@ -28,16 +28,13 @@ export const useProjectsStore = defineStore(
         $toast.authError("Вы не авторизованы");
         return;
       }
-      const newProjectData: Project = {
-        id: 1,
+      const newProjectData: Omit<Project, "id" | "createdAt" | "updatedAt"> = {
         userId,
         title: product.title,
         type: "photo", //TODO Добавить type (вместо slug) в Product и в БД
         format: product.slug,
         productId: product.id,
         status: "draft",
-        createdAt: new Date(),
-        updatedAt: new Date(),
         pages: Array.from({ length: product.pages_quantity }, () => ({
           id: crypto.randomUUID(),
           layout: null,
@@ -58,7 +55,7 @@ export const useProjectsStore = defineStore(
       }
     };
 
-    const removeProject = async (id: number) => {
+    const removeProject = async (id: string) => {
       try {
         await $api.projects.remove(id);
         addedProjects.value = addedProjects.value.filter((p) => p.id !== id);
@@ -70,7 +67,7 @@ export const useProjectsStore = defineStore(
       }
 
       addedProjects.value = addedProjects.value.filter(
-        (project) => project.productId !== id
+        (project) => project.id !== id
       );
     };
 
@@ -99,16 +96,13 @@ export const useProjectsStore = defineStore(
 
     const duplicateProject = async (project: Project) => {
       try {
-        const cloneData: Project = {
-          id: 1,
+        const cloneData: Omit<Project, "id" | "createdAt" | "updatedAt"> = {
           userId: project.userId,
           title: project.title + " (копия)",
           type: project.type,
           format: project.format,
           productId: project.productId,
           status: "draft",
-          createdAt: new Date(),
-          updatedAt: new Date(),
           pages: structuredClone(project.pages),
           photos: structuredClone(project.photos),
         };
@@ -123,7 +117,7 @@ export const useProjectsStore = defineStore(
       }
     };
 
-    const renameProject = async (newTitle: string, id: number) => {
+    const renameProject = async (newTitle: string, id: string) => {
       const project = addedProjects.value.find((p) => p.id === id);
       if (!project) return;
 

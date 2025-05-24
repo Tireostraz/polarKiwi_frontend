@@ -61,7 +61,7 @@ const handleClick = () => {
 };
 
 const handleRemove = () => {
-  projects.removeProject(props.project.productId);
+  projects.removeProject(props.project.id);
 };
 
 const handleDuplicate = () => {

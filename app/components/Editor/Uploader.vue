@@ -21,25 +21,9 @@ const project = computed(() =>
   projects.addedProjects.find((project) => project.id === props.projectId)
 );
 
-// Загружаем изображения при монтировании, только если они ещё не загружены
-onMounted(async () => {
-  if (!project.value) return;
-
-  try {
-    const list = await $api.uploader.listImages();
-    for (const dto of list) {
-      const alreadyExists = project.value.photos.some(
-        (p) => p.id === dto.filename
-      );
-      if (!alreadyExists) {
-        const photo = await createUploadedPhoto(dto.url, dto.filename);
-        project.value.photos.push(photo);
-      }
-    }
-  } catch (e) {
-    console.error("Не удалось получить список изображений", e);
-  }
-});
+const unusedPhotos = computed(
+  () => project.value?.photos.filter((photo) => !photo.used) || []
+);
 
 async function createUploadedPhoto(
   url: string,
@@ -120,7 +104,7 @@ const handleDragStart = (e: DragEvent, photoId: string) => {
   e.dataTransfer?.setData("text/plain", photoId);
   e.dataTransfer!.effectAllowed = "copy";
 
-  const originalImg = e.target as HTMLImageElement;
+  /*  const originalImg = e.target as HTMLImageElement;
 
   const canvas = document.createElement("canvas");
   canvas.width = originalImg.naturalWidth;
@@ -136,7 +120,7 @@ const handleDragStart = (e: DragEvent, photoId: string) => {
 
   e.dataTransfer!.setDragImage(canvas, canvas.width / 2, canvas.height / 2);
 
-  originalImg.style.opacity = "0.4";
+  originalImg.style.opacity = "0.4"; */
 };
 
 const handleDragEnd = (e: DragEvent) => {
@@ -167,7 +151,7 @@ const handleDragEnd = (e: DragEvent) => {
     </div>
     <div v-else class="images-grid">
       <NuxtImg
-        v-for="(image, index) in project?.photos"
+        v-for="(image, index) in unusedPhotos"
         :src="image.url"
         :key="index"
         class="thumbnail"
