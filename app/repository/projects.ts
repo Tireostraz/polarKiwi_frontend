@@ -15,7 +15,7 @@ export interface Project {
 }
 
 //это либо 1 страница смсбука либо для фото плейсхолдер. На одну страницу/шаблон фото 1 шаблон и несколько фото
-interface ProjectPage {
+export interface ProjectPage {
   id: string;
   layout: PhotoLayout | null; // здесь храним переопределённый layout. В данный момент тут PhotoLayout, нужно изменить чтобы был Layout для смсбуков также
   elements: PhotoData[]; // заполненные placeholder'ы или пустые
