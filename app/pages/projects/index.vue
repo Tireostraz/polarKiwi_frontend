@@ -1,18 +1,20 @@
 <script setup lang="ts">
+import type { Product } from "~/repository/products";
 const { $api } = useNuxtApp();
 const projects = useProjectsStore();
 const router = useRouter();
 
+const products = ref<Product[]>([]);
+
+// Загрузка проектов и связанных товаров
 onMounted(async () => {
   await projects.loadProjects();
-});
-const productIds = [
-  ...new Set(projects.addedProjects.map((project) => project.productId)),
-];
 
-const { data: products } = await useAsyncData("products", () =>
-  $api.products.byIds(productIds)
-);
+  const ids = [...new Set(projects.addedProjects.map((p) => p.productId))];
+  if (ids.length > 0) {
+    products.value = await $api.products.byIds(ids);
+  }
+});
 
 const goToCreate = () => {
   router.push("/products");
@@ -31,7 +33,7 @@ const goToCreate = () => {
         v-for="(project, index) in projects.addedProjects"
         :key="project.id"
         :project="project"
-        :product="products![index]!"
+        :product="products?.find((p) => p.id === project.productId)"
       />
       <p v-if="projects.totalProjects === 0" class="empty-text">
         У вас пока нет проектов.

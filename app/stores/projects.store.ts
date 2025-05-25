@@ -139,6 +139,9 @@ export const useProjectsStore = defineStore(
     };
   },
   {
-    persist: true,
+    persist: {
+      key: "projects",
+      storage: typeof window !== "undefined" ? window.localStorage : undefined,
+    },
   }
 );

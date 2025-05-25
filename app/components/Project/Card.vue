@@ -86,14 +86,18 @@ const confirmRename = () => {
         <UButton color="neutral" variant="outline" icon="i-lucide-menu" />
       </UDropdownMenu>
     </div>
-    <img :src="product.thumbnail" :alt="project.title" class="project-image" />
+    <NuxtImg
+      :src="product?.thumbnail"
+      :alt="project.title"
+      class="project-image"
+    />
     <div class="project-content">
       <h3 class="project-title">{{ props.project.title || "Без названия" }}</h3>
       <p class="project-description">
-        {{ product.short_description || "Нет описания" }}
+        {{ product?.short_description || "Нет описания" }}
       </p>
       <div class="project-meta">
-        <span class="project-type"> {{ product.price }}₽ за фото </span>
+        <span class="project-type"> {{ product?.price }}₽ за фото </span>
       </div>
     </div>
   </div>

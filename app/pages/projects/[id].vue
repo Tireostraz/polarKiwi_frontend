@@ -265,8 +265,7 @@ async function confirmExit(shouldExit: boolean) {
           <EditorPhotoPlaceholder
             v-for="(page, index) in project?.pages"
             :key="page.id"
-            :photo="page.elements[0]"
-            :template="page.layout!"
+            :page="page"
             :index="index"
             :is-dragging="isDraggingFromGallery"
             @add-photo="assignPhotoToPlaceholder"
