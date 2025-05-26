@@ -4,17 +4,26 @@ const { $api } = useNuxtApp();
 const projects = useProjectsStore();
 const router = useRouter();
 
-const products = ref<Product[]>([]);
+// Загружаем проекты и связанные продукты через SSR-совместимый useAsyncData
+const { pending, data: productsData } = await useAsyncData(
+  "projects-and-products",
+  async () => {
+    await projects.loadProjects();
 
-// Загрузка проектов и связанных товаров
-onMounted(async () => {
-  await projects.loadProjects();
+    const productIds = [
+      ...new Set(projects.addedProjects.map((p) => p.productId)),
+    ];
 
-  const ids = [...new Set(projects.addedProjects.map((p) => p.productId))];
-  if (ids.length > 0) {
-    products.value = await $api.products.byIds(ids);
-  }
-});
+    if (productIds.length > 0) {
+      return await $api.products.byIds(productIds);
+    }
+
+    return [] as Product[];
+  },
+  { server: false }
+);
+
+const products = computed(() => productsData.value || []);
 
 const goToCreate = () => {
   router.push("/products");
@@ -29,15 +38,23 @@ const goToCreate = () => {
         <div class="add-icon">+</div>
         <p class="add-text">Добавить новый проект</p>
       </div>
-      <ProjectCard
-        v-for="(project, index) in projects.addedProjects"
-        :key="project.id"
-        :project="project"
-        :product="products?.find((p) => p.id === project.productId)"
-      />
-      <p v-if="projects.totalProjects === 0" class="empty-text">
-        У вас пока нет проектов.
-      </p>
+      <!-- Пока данные грузятся, показываем заглушки -->
+      <template v-if="pending">
+        <ProjectSkeleton v-for="i in 3" :key="'skeleton-' + i" />
+      </template>
+
+      <!-- После загрузки — рендерим проекты -->
+      <template v-else>
+        <ProjectCard
+          v-for="project in projects.addedProjects"
+          :key="project.id"
+          :project="project"
+          :product="products.find((p) => p.id === project.productId)!"
+        />
+        <p v-if="projects.totalProjects === 0" class="empty-text">
+          У вас пока нет проектов.
+        </p>
+      </template>
     </div>
   </div>
 </template>

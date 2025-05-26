@@ -10,8 +10,8 @@ const { $api } = useNuxtApp();
 const DPI = 300;
 
 //Для сохранения проекта
-const showExitConfirm = ref(false);
-const nextRoute = ref(null);
+/* const showExitConfirm = ref(false);
+const nextRoute = ref(null); */
 
 const id = computed(() => route.params.id as string);
 const project = computed(() =>
@@ -52,7 +52,7 @@ if (photoLayout.value && project.value) {
   // добавить логику для исключения переприсвоения layout если уже он там есть (не null)
   project.value.pages = project.value.pages.map((page) => ({
     ...page,
-    layout: structuredClone(photoLayout.value!),
+    layout: page.layout ?? structuredClone(photoLayout.value!),
   }));
 }
 
@@ -133,9 +133,13 @@ const assignPhotoToPlaceholder = (photoId: string, index: number) => {
     const crop = cropImageToPlaceholder(img, placeholderSize);
 
     const assignedPhoto: PhotoData = {
-      ...photo,
       id: crypto.randomUUID(),
+      src: photo.url,
+      width: img.width,
+      height: img.height,
       crop,
+      scale: 1,
+      rotation: 0,
     };
 
     const page = projectValue.pages[index];
@@ -219,7 +223,7 @@ function validateInput() {
   } */
 }
 
-async function confirmExit(shouldExit: boolean) {
+/* async function confirmExit(shouldExit: boolean) {
   showExitConfirm.value = false;
   if (shouldExit) {
     await updateProjectBeforeExit();
@@ -229,7 +233,7 @@ async function confirmExit(shouldExit: boolean) {
   } else {
     nextRoute.value = null; // сброс
   }
-}
+} */
 </script>
 
 <template>
@@ -265,7 +269,8 @@ async function confirmExit(shouldExit: boolean) {
           <EditorPhotoPlaceholder
             v-for="(page, index) in project?.pages"
             :key="page.id"
-            :page="page"
+            :element="page.elements[0] || null"
+            :layout="page.layout"
             :index="index"
             :is-dragging="isDraggingFromGallery"
             @add-photo="assignPhotoToPlaceholder"
@@ -286,7 +291,7 @@ async function confirmExit(shouldExit: boolean) {
       <!-- <UButton class="submit-btn">Добавить в корзину</UButton> -->
     </client-only>
   </div>
-  <UModal v-model="showExitConfirm">
+  <!--  <UModal v-model="showExitConfirm">
     <template #content>
       <div class="p-4">
         <h2 class="text-lg font-semibold mb-2">Вы точно хотите выйти?</h2>
@@ -297,7 +302,7 @@ async function confirmExit(shouldExit: boolean) {
         </div>
       </div>
     </template>
-  </UModal>
+  </UModal> -->
 </template>
 
 <style scoped>

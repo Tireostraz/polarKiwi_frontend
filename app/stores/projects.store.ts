@@ -103,8 +103,13 @@ export const useProjectsStore = defineStore(
           format: project.format,
           productId: project.productId,
           status: "draft",
-          pages: structuredClone(project.pages),
-          photos: structuredClone(project.photos),
+          pages: Array.from({ length: project.pages.length }, () => ({
+            id: crypto.randomUUID(),
+            layout: null,
+            elements: [],
+            textBlocks: [],
+          })), //structuredClone(project.pages), TODO для правильной реализации дублирования реализовать логику копирования папки с изображениями на backend в другую папку с UUID нового проекта
+          photos: [], //structuredClone(project.photos),  иначе будет конфликт изображений и будут удаляться  сразу и там и там. Также, заменять тип Date в photos и pages.
         };
 
         const dto = await $api.projects.create(cloneData);
@@ -139,9 +144,9 @@ export const useProjectsStore = defineStore(
     };
   },
   {
-    persist: {
+    persist: true /* {
       key: "projects",
       storage: typeof window !== "undefined" ? window.localStorage : undefined,
-    },
+    }, */,
   }
 );

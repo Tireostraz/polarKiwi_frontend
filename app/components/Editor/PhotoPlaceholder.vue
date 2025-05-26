@@ -3,9 +3,9 @@ import type { PhotoLayout } from "~/repository/layouts";
 import type { ProjectPage, PhotoData } from "~/repository/projects";
 
 const props = defineProps<{
-  page: ProjectPage;
-  /* photo?: PhotoData;
-  template: PhotoLayout; */
+  /* page: ProjectPage; */
+  element: PhotoData | null;
+  layout: PhotoLayout;
   index: number;
   isDragging: boolean;
 }>();
@@ -18,7 +18,7 @@ const emit = defineEmits<{
 const image = ref<HTMLImageElement | null>(null);
 
 watch(
-  () => props.page.elements[0]?.src,
+  () => props.element?.src,
   (newSrc) => {
     if (!newSrc) {
       image.value = null;
@@ -35,10 +35,10 @@ watch(
 );
 
 const imageData = computed(() => {
-  if (!image.value || !props.page.elements[0]) return {};
+  if (!image.value || !props.element) return {};
   return {
     ...sizePx.value,
-    ...props.page.elements[0].crop,
+    ...props.element.crop,
     image: image.value,
   };
 });
@@ -50,14 +50,14 @@ const isDragOver = ref(false);
 
 const scale = computed(() => {
   const maxWidth = 200;
-  return maxWidth / mmToPx(props.page.layout!.size.width, DPI);
+  return maxWidth / mmToPx(props.layout.size.width, DPI);
 });
 
 const stageWidth = computed(
-  () => mmToPx(props.page.layout!.size.width, DPI) * scale.value
+  () => mmToPx(props.layout.size.width, DPI) * scale.value
 );
 const stageHeight = computed(
-  () => mmToPx(props.page.layout!.size.height, DPI) * scale.value
+  () => mmToPx(props.layout.size.height, DPI) * scale.value
 );
 
 const stageSize = computed(() => ({
@@ -67,17 +67,13 @@ const stageSize = computed(() => ({
 
 const sizePx = computed(() => {
   const widthMm =
-    props.page.layout!.size.width -
-    props.page.layout!.size.left -
-    props.page.layout!.size.right;
+    props.layout.size.width - props.layout.size.left - props.layout.size.right;
   const heightMm =
-    props.page.layout!.size.height -
-    props.page.layout!.size.top -
-    props.page.layout!.size.bottom;
+    props.layout.size.height - props.layout.size.top - props.layout.size.bottom;
 
   return {
-    x: mmToPx(props.page.layout!.size.left, DPI) * scale.value,
-    y: mmToPx(props.page.layout!.size.top, DPI) * scale.value,
+    x: mmToPx(props.layout.size.left, DPI) * scale.value,
+    y: mmToPx(props.layout.size.top, DPI) * scale.value,
     width: mmToPx(widthMm, DPI) * scale.value,
     height: mmToPx(heightMm, DPI) * scale.value,
   };
@@ -86,10 +82,8 @@ const sizePx = computed(() => {
 const textConfig = {
   x: 0,
   y:
-    mmToPx(
-      props.page.layout!.size.height - props.page.layout!.size.bottom / 2,
-      DPI
-    ) * scale.value,
+    mmToPx(props.layout.size.height - props.layout.size.bottom / 2, DPI) *
+    scale.value,
   text: "Ваш текст",
   fontSize: 18,
   fontFamily: "Calibri",
@@ -115,7 +109,8 @@ function onDragOver(e: DragEvent) {
 }
 
 function onDrop(e: DragEvent) {
-  if (image.value) return;
+  if (props.element?.src) return;
+  //if (image.value) return;
   const imageId = e.dataTransfer?.getData("text/plain");
   isDragOver.value = false;
   if (imageId) {
@@ -131,7 +126,7 @@ function onClick() {
 <template>
   <div
     class="photo-canvas"
-    :class="{ 'drop-zone': isDragging && !page.elements[0] }"
+    :class="{ 'drop-zone': isDragging && !props.element }"
     @dragover.prevent="onDragOver"
     @dragleave="isDragOver = false"
     @drop="onDrop"
