@@ -1,22 +1,55 @@
 <script setup lang="ts">
-import type { PhotoData } from "~/repository/projects";
-import { mmToPx } from "#imports";
+import type { PhotoData, Project } from "~/repository/projects";
+import type { PhotoLayout } from "~/repository/layouts";
 
 definePageMeta({ layout: "projects" });
-const projects = useProjectsStore();
 
 const route = useRoute();
 const { $api } = useNuxtApp();
-const DPI = 300;
-
-//Для сохранения проекта
-/* const showExitConfirm = ref(false);
-const nextRoute = ref(null); */
+const projects = useProjectsStore();
 
 const id = computed(() => route.params.id as string);
-const project = computed(() =>
-  projects.addedProjects.find((project) => project.id === id.value)
-);
+const isLoading = ref(true);
+const project = ref<Project | null>(null);
+const layout = ref<PhotoLayout | null>(null);
+
+const DPI = 300;
+
+onMounted(async () => {
+  try {
+    // 1. Загружаем проект по ID
+    /* const loadedProject = await $api.projects.get(id.value); */
+    const loadedProject = projects.addedProjects.find((p) => p.id === id.value);
+    if (loadedProject) {
+      project.value = loadedProject;
+    }
+
+    // 2. Загружаем layout по формату
+    layout.value = await $api.layouts.getPhotoLayout(project.value.format);
+
+    // 3. Устанавливаем layout только если его нет
+    if (layout.value) {
+      project.value.pages = project.value.pages.map((page) => ({
+        ...page,
+        layout: page.layout ?? structuredClone(toRaw(layout.value!)),
+      }));
+    }
+
+    isLoading.value = false;
+  } catch (e) {
+    console.error("Ошибка при инициализации проекта:", e);
+  }
+});
+
+onMounted(() => {
+  window.addEventListener("beforeunload", updateProjectBeforeExit);
+});
+onUnmounted(() => {
+  window.removeEventListener("beforeunload", updateProjectBeforeExit);
+});
+
+const isDraggingFromGallery = ref(false);
+const isAutoPlacing = ref(false);
 
 //Логика для сохранения проекта при обновлении/закрытии вкладки
 async function updateProjectBeforeExit() {
@@ -29,48 +62,18 @@ async function updateProjectBeforeExit() {
   }
 }
 
-function handleBeforeUnload(event: BeforeUnloadEvent) {
-  updateProjectBeforeExit(); // Async здесь не сработает нормально, лучше sync или флаг
-  event.preventDefault();
-  event.returnValue = ""; // Стандартный способ показать confirm диалог
-}
-
-onMounted(() => {
-  window.addEventListener("beforeunload", handleBeforeUnload);
-});
-onUnmounted(() => {
-  window.removeEventListener("beforeunload", handleBeforeUnload);
-});
-
-// TODO: добавить Critical на await fetch для гарантии получения данных
-const { data: photoLayout } = await useAsyncData(
-  `${project.value!.format}`,
-  () => $api.layouts.getPhotoLayout(project.value!.format)
-);
-
-if (photoLayout.value && project.value) {
-  // добавить логику для исключения переприсвоения layout если уже он там есть (не null)
-  project.value.pages = project.value.pages.map((page) => ({
-    ...page,
-    layout: page.layout ?? structuredClone(photoLayout.value!),
-  }));
-}
-
-const isDraggingFromGallery = ref(false); //для анимации куда можно drag and drop (стили)
-const isAutoPlacing = ref(false);
-
+// Добавление фото
 const addPhoto = (photoData: PhotoData) => {
-  //формирование массива из объектов данных о загруженных фото photo
+  if (!project.value) return;
+
   if (isAutoPlacing.value) {
-    const firstEmptyIndex = project.value?.pages.findIndex(
+    const firstEmptyIndex = project.value.pages.findIndex(
       (page) => page.elements.length === 0
     );
-    if (firstEmptyIndex === -1) {
-      increasePhotos();
-      assignPhotoToPlaceholder(photoData.id, project.value?.pages.length! - 1);
-    } else {
-      assignPhotoToPlaceholder(photoData.id, firstEmptyIndex!);
-    }
+    const targetIndex =
+      firstEmptyIndex === -1 ? project.value.pages.length - 1 : firstEmptyIndex;
+
+    assignPhotoToPlaceholder(photoData.id, targetIndex);
   }
 };
 
@@ -106,26 +109,27 @@ const assignPhotoToPlaceholder = (photoId: string, index: number) => {
   const projectValue = project.value;
   if (!projectValue) return;
 
-  console.log(photoId, index);
-  console.log(projectValue.photos);
-
   const photo = projectValue.photos.find((photo) => photo.id === photoId);
   if (!photo) return;
+
+  console.log(photoId, index);
+
+  if (!layout.value) return;
 
   const img = new Image();
   img.src = photo.url;
   img.onload = () => {
     const placeholderSize = {
       width: mmToPx(
-        photoLayout.value?.size.width! -
-          photoLayout.value?.size.left! -
-          photoLayout.value?.size.right!,
+        layout.value?.size.width! -
+          layout.value?.size.left! -
+          layout.value?.size.right!,
         DPI
       ),
       height: mmToPx(
-        photoLayout.value?.size.height! -
-          photoLayout.value?.size.top! -
-          photoLayout.value?.size.bottom!,
+        layout.value?.size.height! -
+          layout.value?.size.top! -
+          layout.value?.size.bottom!,
         DPI
       ),
     };
@@ -149,7 +153,7 @@ const assignPhotoToPlaceholder = (photoId: string, index: number) => {
       // если страницы не существует, создаём
       projectValue.pages[index] = {
         id: crypto.randomUUID(),
-        layout: structuredClone(photoLayout.value!),
+        layout: structuredClone(layout.value!),
         elements: [assignedPhoto],
         textBlocks: [],
       };
@@ -200,7 +204,7 @@ function increasePhotos() {
 
   projectValue.pages.push({
     id: crypto.randomUUID(),
-    layout: structuredClone(photoLayout.value!),
+    layout: structuredClone(layout.value!),
     elements: [],
     textBlocks: [],
   });
@@ -209,7 +213,7 @@ function decreasePhotos() {
   const projectValue = project.value;
   if (!projectValue) return;
 
-  if (projectValue.pages.length > (photoLayout.value?.quantity || 1)) {
+  if (projectValue.pages.length > (layout.value?.quantity || 1)) {
     projectValue.pages.pop();
   }
 }
@@ -237,7 +241,7 @@ function validateInput() {
 </script>
 
 <template>
-  <div class="base-editor-layout">
+  <div class="base-editor-layout" v-if="!isLoading">
     <client-only>
       <EditorUploader
         :project-id="id"
@@ -249,17 +253,20 @@ function validateInput() {
 
       <div class="workspace">
         <div class="workspace-info">
-          <div>Проект: {{ photoLayout?.title }}</div>
+          <div>Проект: {{ layout?.title }}</div>
           <input type="checkbox" v-model="isAutoPlacing" />
           <label>Изображений: </label>
           <input
             type="number"
             :max="200"
-            :min="photoLayout?.quantity"
+            :min="layout?.quantity"
             @input="validateInput"
           />
           <UButton color="secondary" variant="subtle" @click="increasePhotos"
             >Добавить фото</UButton
+          >
+          <UButton color="info" @click="updateProjectBeforeExit"
+            >Сохранить проект</UButton
           >
           <UButton color="secondary" variant="subtle" @click="decreasePhotos"
             >Убрать фото</UButton

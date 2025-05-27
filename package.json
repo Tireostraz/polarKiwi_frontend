@@ -25,7 +25,8 @@
     "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.44",
+    "@iconify-json/lucide": "^1.2.45",
+    "@nuxt/icon": "^1.13.0",
     "@vueuse/core": "^13.1.0",
     "@vueuse/nuxt": "^13.1.0"
   }

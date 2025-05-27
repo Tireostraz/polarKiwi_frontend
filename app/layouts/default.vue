@@ -53,25 +53,34 @@ function handleLogout() {
           <nuxt-link class="nav-link" to="/projects">
             <img src="/projects.svg" width="24" height="24" />
             <div class="nav-text">Проекты</div>
-            <div v-if="projectStore.totalProjects > 0" class="nav-cart_counter">
-              {{ projectStore.totalProjects }}
-            </div>
+            <ClientOnly>
+              <div
+                v-if="projectStore.totalProjects > 0"
+                class="nav-cart_counter"
+              >
+                {{ projectStore.totalProjects }}
+              </div>
+            </ClientOnly>
           </nuxt-link>
           <nuxt-link class="nav-link" to="/cart">
             <img src="/cart.svg" width="24" height="24" />
-            <div v-if="cartStore.totalItems > 0" class="nav-cart_counter">
-              {{ cartStore.totalItems }}
-            </div>
+            <ClientOnly>
+              <div v-if="cartStore.totalItems > 0" class="nav-cart_counter">
+                {{ cartStore.totalItems }}
+              </div>
+            </ClientOnly>
             <div class="nav-text">Корзина</div>
           </nuxt-link>
-          <button v-if="auth.isAuthenticated" @click="handleLogout">
-            <img src="/account.svg" width="24" height="24" />
-            <div class="nav-text">Выйти</div>
-          </button>
-          <button v-else @click="toggleModal">
-            <img src="/account.svg" width="24" height="24" />
-            <div class="nav-text">Аккаунт</div>
-          </button>
+          <ClientOnly>
+            <button v-if="auth.isAuthenticated" @click="handleLogout">
+              <img src="/account.svg" width="24" height="24" />
+              <div class="nav-text">Выйти</div>
+            </button>
+            <button v-else @click="toggleModal">
+              <img src="/account.svg" width="24" height="24" />
+              <div class="nav-text">Аккаунт</div>
+            </button>
+          </ClientOnly>
         </div>
 
         <!-- Мобильное меню -->
@@ -132,7 +141,7 @@ function handleLogout() {
     <AuthModal :isOpen="modalOpen" @close="toggleModal"></AuthModal>
   </main>
 
-  <footer></footer>
+  <AppFooter />
 </template>
 
 <style scoped>

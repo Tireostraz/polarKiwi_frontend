@@ -24,9 +24,14 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/image",
     "@nuxt/ui",
+    "@nuxt/icon",
     "@pinia/nuxt",
     "pinia-plugin-persistedstate/nuxt",
     "@vueuse/nuxt",
   ],
   css: ["~/assets/css/main.css"],
+  icon: {
+    mode: "css",
+    cssLayer: "base",
+  },
 });
