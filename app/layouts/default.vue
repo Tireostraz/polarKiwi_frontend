@@ -8,7 +8,7 @@ const modalOpen = ref(false);
 const route = useRoute();
 const isCollapsed = computed(() => route.path !== "/");
 
-const items = ["/slider/kiwi.webp", "/slider/annie.webp", "/slider/kiwi.webp"];
+const items = ["/slider/1.webp", "/slider/2.webp", "/slider/3.jpg"];
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;

@@ -13,6 +13,8 @@ const isLoading = ref(true);
 const project = ref<Project | null>(null);
 const layout = ref<PhotoLayout | null>(null);
 
+const photoQueue: PhotoData[] = [];
+let isProcessingQueue = false;
 const DPI = 300;
 
 onMounted(async () => {
@@ -64,17 +66,117 @@ async function updateProjectBeforeExit() {
 
 // Добавление фото
 const addPhoto = (photoData: PhotoData) => {
+  console.log(photoData);
   if (!project.value) return;
+  console.log("here");
 
   if (isAutoPlacing.value) {
-    const firstEmptyIndex = project.value.pages.findIndex(
+    console.log("there");
+    photoQueue.push(photoData);
+    if (!isProcessingQueue) {
+      processNextPhoto();
+    }
+    /* const firstEmptyIndex = project.value.pages.findIndex(
       (page) => page.elements.length === 0
     );
-    const targetIndex =
-      firstEmptyIndex === -1 ? project.value.pages.length - 1 : firstEmptyIndex;
 
-    assignPhotoToPlaceholder(photoData.id, targetIndex);
+    if (firstEmptyIndex === -1) {
+      increasePhotos();
+      assignPhotoToPlaceholder(photoData.id, project.value.pages.length - 1);
+    } else {
+      assignPhotoToPlaceholder(photoData.id, firstEmptyIndex);
+    } */
   }
+};
+
+const processNextPhoto = () => {
+  if (photoQueue.length === 0) {
+    isProcessingQueue = false;
+    return;
+  }
+
+  isProcessingQueue = true;
+  const nextPhoto = photoQueue.shift();
+  if (!nextPhoto) return;
+
+  placePhotoInNextAvailablePlaceholder(nextPhoto).then(() => {
+    processNextPhoto(); // запускаем следующую
+  });
+};
+
+const placePhotoInNextAvailablePlaceholder = async (photoData: PhotoData) => {
+  return new Promise<void>((resolve) => {
+    const projectValue = project.value;
+    if (!projectValue || !layout.value) return resolve();
+
+    const firstEmptyIndex = projectValue.pages.findIndex(
+      (page) => page.elements.length === 0
+    );
+
+    const photo = projectValue.photos.find(
+      (photo) => photo.id === photoData.id
+    );
+    if (!photo) return;
+
+    photo.used = true;
+
+    const targetIndex =
+      firstEmptyIndex === -1 ? projectValue.pages.length : firstEmptyIndex;
+
+    if (firstEmptyIndex === -1) {
+      increasePhotos(); // создаём новую страницу
+    }
+
+    const img = new Image();
+    img.src = photoData.src;
+    img.onload = () => {
+      const placeholderSize = {
+        width: mmToPx(
+          layout.value!.size.width -
+            layout.value!.size.left -
+            layout.value!.size.right,
+          DPI
+        ),
+        height: mmToPx(
+          layout.value!.size.height -
+            layout.value!.size.top -
+            layout.value!.size.bottom,
+          DPI
+        ),
+      };
+
+      const crop = cropImageToPlaceholder(img, placeholderSize);
+
+      const assignedPhoto: PhotoData = {
+        id: photoData.id,
+        src: photoData.src,
+        width: img.width,
+        height: img.height,
+        crop,
+        scale: 1,
+        rotation: 0,
+      };
+
+      const targetPage = projectValue.pages[targetIndex];
+      if (targetPage) {
+        targetPage.elements.push(assignedPhoto);
+      } else {
+        projectValue.pages[targetIndex] = {
+          id: crypto.randomUUID(),
+          layout: structuredClone(layout.value!),
+          elements: [assignedPhoto],
+          textBlocks: [],
+        };
+      }
+
+      resolve(); // важный момент — продолжаем очередь
+    };
+
+    img.onerror = () => {
+      console.error("Ошибка загрузки изображения:", photoData.src);
+      resolve(); // даже при ошибке продолжаем очередь
+    };
+  });
 };
 
 const cropImageToPlaceholder = (
@@ -112,7 +214,7 @@ const assignPhotoToPlaceholder = (photoId: string, index: number) => {
   const photo = projectValue.photos.find((photo) => photo.id === photoId);
   if (!photo) return;
 
-  console.log(photoId, index);
+  photo.used = true;
 
   if (!layout.value) return;
 
@@ -137,7 +239,7 @@ const assignPhotoToPlaceholder = (photoId: string, index: number) => {
     const crop = cropImageToPlaceholder(img, placeholderSize);
 
     const assignedPhoto: PhotoData = {
-      id: crypto.randomUUID(),
+      id: photo.id,
       src: photo.url,
       width: img.width,
       height: img.height,
@@ -204,7 +306,7 @@ function increasePhotos() {
 
   projectValue.pages.push({
     id: crypto.randomUUID(),
-    layout: structuredClone(layout.value!),
+    layout: structuredClone(toRaw(layout.value!)),
     elements: [],
     textBlocks: [],
   });

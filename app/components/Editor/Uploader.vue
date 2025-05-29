@@ -26,9 +26,9 @@ const unusedPhotos = computed(
 );
 
 async function createUploadedPhoto(
-  url: string,
-  id: string
-): Promise<UploadedPhoto> {
+  id: string,
+  url: string
+): Promise<PhotoData> {
   const img = new Image();
   img.src = url;
 
@@ -46,15 +46,7 @@ async function createUploadedPhoto(
     rotation: 0,
   };
 
-  emit("add-image", photoData);
-
-  return {
-    id,
-    url,
-    used: false,
-    uploadedAt: new Date(),
-    updatedAt: new Date(),
-  };
+  return photoData;
 }
 
 async function uploadAndAddFile(file: File) {
@@ -62,8 +54,17 @@ async function uploadAndAddFile(file: File) {
     const data = await $api.uploader.uploadImage(file);
     if (!data) return;
 
-    const uploadedPhoto = await createUploadedPhoto(data.url, data.filename);
+    const uploadedPhoto = {
+      id: data.filename,
+      url: data.url,
+      used: false,
+      uploadedAt: new Date(),
+      updatedAt: new Date(),
+    };
+
     project.value?.photos.push(uploadedPhoto);
+    const photoData = await createUploadedPhoto(data.filename, data.url);
+    emit("add-image", photoData);
   } catch (err) {
     console.error("Ошибка загрузки файла", err);
   }
@@ -103,24 +104,6 @@ const handleDragStart = (e: DragEvent, photoId: string) => {
   isGalleryImage.value = true;
   e.dataTransfer?.setData("text/plain", photoId);
   e.dataTransfer!.effectAllowed = "copy";
-
-  /*  const originalImg = e.target as HTMLImageElement;
-
-  const canvas = document.createElement("canvas");
-  canvas.width = originalImg.naturalWidth;
-  canvas.height = originalImg.naturalHeight;
-
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-
-  ctx.fillStyle = "#fff";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  originalImg.style.opacity = "1";
-  ctx.drawImage(originalImg, 0, 0);
-
-  e.dataTransfer!.setDragImage(canvas, canvas.width / 2, canvas.height / 2);
-
-  originalImg.style.opacity = "0.4"; */
 };
 
 const handleDragEnd = (e: DragEvent) => {

@@ -9,25 +9,25 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    link: "/products/polaroids",
+    link: "/products/polaroid",
     image: "products/our_products/polaroids.jpg",
     title: "Фото полароид",
   },
   {
     id: 2,
-    link: "/products/smsbooks",
+    link: "/products/smsbook",
     image: "products/our_products/smsbooks.jpg",
     title: "Смсбуки",
   },
   {
     id: 3,
-    link: "/products/polaroids",
+    link: "/products/polaroid",
     image: "products/our_products/love_is.jpg",
     title: "Love is...",
   },
   {
     id: 4,
-    link: "/products/posters",
+    link: "/products/poster",
     image: "products/our_products/posters.jpg",
     title: "Постеры",
   },
@@ -51,7 +51,7 @@ const products: Product[] = [
   },
   {
     id: 8,
-    link: "/products/all",
+    link: "/products",
     image: "products/our_products/all.jpg",
     title: "Все товары",
   },

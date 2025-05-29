@@ -7,7 +7,7 @@ const tabs = [
   { name: "Смсбуки", path: "/products/smsbook" },
   { name: "Постеры", path: "/products/poster" },
   { name: "Love is...", path: "/products/photos" },
-  { name: "Журналы", path: "/products/magazines" },
+  { name: "Подарочные наборы", path: "/products/magazines" },
 ];
 
 const activeIndex = ref(-1); // Начальное значение -1 (ничего не активно)
