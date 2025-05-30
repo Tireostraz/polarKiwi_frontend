@@ -51,7 +51,7 @@ onUnmounted(() => {
 });
 
 const isDraggingFromGallery = ref(false);
-const isAutoPlacing = ref(false);
+const isAutoPlacing = ref(true);
 
 //Логика для сохранения проекта при обновлении/закрытии вкладки
 async function updateProjectBeforeExit() {
@@ -66,26 +66,17 @@ async function updateProjectBeforeExit() {
 
 // Добавление фото
 const addPhoto = (photoData: PhotoData) => {
-  console.log(photoData);
   if (!project.value) return;
-  console.log("here");
+
+  const existing = project.value.photos.find((p) => p.id === photoData.id);
+  if (!existing) return;
 
   if (isAutoPlacing.value) {
-    console.log("there");
+    existing.used = true;
     photoQueue.push(photoData);
     if (!isProcessingQueue) {
       processNextPhoto();
     }
-    /* const firstEmptyIndex = project.value.pages.findIndex(
-      (page) => page.elements.length === 0
-    );
-
-    if (firstEmptyIndex === -1) {
-      increasePhotos();
-      assignPhotoToPlaceholder(photoData.id, project.value.pages.length - 1);
-    } else {
-      assignPhotoToPlaceholder(photoData.id, firstEmptyIndex);
-    } */
   }
 };
 

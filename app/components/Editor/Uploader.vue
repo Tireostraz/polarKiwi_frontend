@@ -57,7 +57,7 @@ async function uploadAndAddFile(file: File) {
     const uploadedPhoto = {
       id: data.filename,
       url: data.url,
-      used: false,
+      used: props.isautoPlacing,
       uploadedAt: new Date(),
       updatedAt: new Date(),
     };
