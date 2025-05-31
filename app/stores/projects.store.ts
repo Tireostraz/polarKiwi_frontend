@@ -17,7 +17,10 @@ export const useProjectsStore = defineStore(
         addedProjects.value = projects;
       } catch (e) {
         console.error("Ошибка загрузки проектов", e);
-        // TODO $toast добавить $toast.error
+        $toast.base.add({
+          title: "Не удалось загрузить проекты",
+          color: "warning",
+        });
       }
     };
 

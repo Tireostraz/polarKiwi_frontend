@@ -5,7 +5,6 @@
     <NuxtLayout>
       <NuxtPage />
       <NuxtRouteAnnouncer />
-      <Toasts />
     </NuxtLayout>
   </UApp>
 </template>

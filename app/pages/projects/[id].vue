@@ -426,6 +426,7 @@ function validateInput() {
 .workspace-info {
   display: flex;
   justify-content: space-around;
+  padding: 10px 0;
 }
 
 .workspace-container {
