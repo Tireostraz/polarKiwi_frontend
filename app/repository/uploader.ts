@@ -8,13 +8,16 @@ export interface UploadedImageDTO {
 export function createUploaderRepository(appFetch: typeof $fetch) {
   return {
     /** POST один файл (FormData) */
-    async uploadImage(file: File) {
+    async uploadImage(file: File, projectId: string) {
       const fd = new FormData();
       fd.append("image", file);
-      return appFetch<UploadedImageDTO>("/uploader/upload", {
-        method: "POST",
-        body: fd,
-      });
+      return appFetch<UploadedImageDTO>(
+        `/uploader/upload?projectId=${projectId}`,
+        {
+          method: "POST",
+          body: fd,
+        }
+      );
     },
 
     /** GET все картинки пользователя */

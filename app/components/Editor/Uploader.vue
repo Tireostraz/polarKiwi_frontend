@@ -12,6 +12,7 @@ const emit = defineEmits<{
   (e: "add-image", photoData: PhotoData): void;
 }>();
 
+const fileInput = ref<HTMLInputElement | null>(null);
 const isDragging = ref(false);
 const isGalleryImage = ref(false);
 const { $api } = useNuxtApp();
@@ -51,7 +52,7 @@ async function createUploadedPhoto(
 
 async function uploadAndAddFile(file: File) {
   try {
-    const data = await $api.uploader.uploadImage(file);
+    const data = await $api.uploader.uploadImage(file, props.projectId);
     if (!data) return;
 
     const uploadedPhoto = {
@@ -111,6 +112,10 @@ const handleDragEnd = (e: DragEvent) => {
   (e.target as HTMLElement).style.opacity = "1";
   emit("drag-end");
 };
+
+function handleUploadClick() {
+  fileInput.value?.click();
+}
 </script>
 
 <template>
@@ -127,7 +132,7 @@ const handleDragEnd = (e: DragEvent) => {
       <div>Галерея</div>
     </div>
     <div class="uploader-controls">
-      <button>+ Загрузить изображения</button>
+      <button @click="handleUploadClick">+ Загрузить изображения</button>
     </div>
     <div v-if="isDragging && !isGalleryImage" class="drop-hint">
       Перетащите изображения сюда
@@ -144,12 +149,12 @@ const handleDragEnd = (e: DragEvent) => {
       />
     </div>
     <input
+      ref="fileInput"
       type="file"
       accept="image/*"
       multiple
       @change="onFileChange"
       hidden
-      ref="fileInput"
     />
   </div>
 </template>
