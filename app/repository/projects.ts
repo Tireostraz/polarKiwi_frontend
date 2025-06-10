@@ -139,6 +139,7 @@ export function createProjectRepository(appFetch: typeof $fetch) {
           type: data.type,
           format: data.format,
           product_id: data.product_id,
+          pages_quantity: data.pages_quantity,
         },
       });
       return fromDTO(dto);
