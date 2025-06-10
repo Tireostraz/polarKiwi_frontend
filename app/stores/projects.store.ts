@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { Project } from "~/repository/projects";
+import type { CreateProjectDTO, Project } from "~/repository/projects";
 import type { Product } from "~/repository/products";
 
 export const useProjectsStore = defineStore(
@@ -31,20 +31,20 @@ export const useProjectsStore = defineStore(
         $toast.authError("Вы не авторизованы");
         return;
       }
-      const newProjectData: Omit<Project, "id" | "createdAt" | "updatedAt"> = {
-        userId,
+      const newProjectData: CreateProjectDTO = {
         title: product.title,
         type: "photo", //TODO Добавить type (вместо slug) в Product и в БД
         format: product.slug,
-        productId: product.id,
-        status: "draft",
+        product_id: product.id,
+        pages_quantity: product.pages_quantity,
+        /* status: "draft",
         pages: Array.from({ length: product.pages_quantity }, () => ({
           id: crypto.randomUUID(),
           layout: null,
           elements: [],
           textBlocks: [],
         })),
-        photos: [],
+        photos: [], */
       };
 
       try {
@@ -99,24 +99,8 @@ export const useProjectsStore = defineStore(
 
     const duplicateProject = async (project: Project) => {
       try {
-        const cloneData: Omit<Project, "id" | "createdAt" | "updatedAt"> = {
-          userId: project.userId,
-          title: project.title + " (копия)",
-          type: project.type,
-          format: project.format,
-          productId: project.productId,
-          status: "draft",
-          pages: Array.from({ length: project.pages.length }, () => ({
-            id: crypto.randomUUID(),
-            layout: null,
-            elements: [],
-            textBlocks: [],
-          })), //structuredClone(project.pages), TODO для правильной реализации дублирования реализовать логику копирования папки с изображениями на backend в другую папку с UUID нового проекта
-          photos: [], //structuredClone(project.photos),  иначе будет конфликт изображений и будут удаляться  сразу и там и там. Также, заменять тип Date в photos и pages.
-        };
-
-        const dto = await $api.projects.create(cloneData);
-        const duplicated = dto;
+        const clonedProject = await $api.projects.clone(project.id);
+        const duplicated = clonedProject;
         addedProjects.value.push(duplicated);
         //$toast.success("Проект продублирован");
       } catch (e) {

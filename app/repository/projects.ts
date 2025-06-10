@@ -55,7 +55,7 @@ export interface UploadedPhoto {
   // Метаинформация, например, ориентация, EXIF и т.п.
 }
 
-// DTO
+// DTO - приходит с сервера
 export interface ProjectDTO {
   id: string;
   user_id: number;
@@ -68,6 +68,14 @@ export interface ProjectDTO {
   photos: UploadedPhoto[];
   created_at: string;
   updated_at: string;
+}
+// DTO - уходит на сервер при создании
+export interface CreateProjectDTO {
+  title: string;
+  type: string;
+  format: string;
+  product_id: number;
+  pages_quantity: number;
 }
 
 // Преобразование
@@ -123,19 +131,14 @@ export function createProjectRepository(appFetch: typeof $fetch) {
     },
 
     // Создание проекта
-    async create(
-      data: Omit<Project, "id" | "createdAt" | "updatedAt">
-    ): Promise<Project> {
+    async create(data: CreateProjectDTO): Promise<Project> {
       const dto = await appFetch<ProjectDTO>("/projects", {
         method: "POST",
         body: {
           title: data.title,
           type: data.type,
           format: data.format,
-          product_id: data.productId,
-          status: data.status,
-          pages: data.pages,
-          photos: data.photos,
+          product_id: data.product_id,
         },
       });
       return fromDTO(dto);
@@ -158,6 +161,16 @@ export function createProjectRepository(appFetch: typeof $fetch) {
           photos: data.photos,
         },
       });
+      return fromDTO(dto);
+    },
+
+    async clone(projectId: string): Promise<Project> {
+      const dto = await appFetch<ProjectDTO>(
+        `/projects/${projectId}/duplicate`,
+        {
+          method: "POST",
+        }
+      );
       return fromDTO(dto);
     },
 

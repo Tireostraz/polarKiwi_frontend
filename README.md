@@ -73,3 +73,14 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+Установка:
+
+```bash
+su - nuxt -s /bin/bash
+cd app
+git pull
+npm install
+npm run build
+exit
+```
