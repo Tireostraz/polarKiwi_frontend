@@ -17,20 +17,6 @@ export default defineNuxtPlugin({
   async setup(nuxtApp) {
     const config = useRuntimeConfig();
 
-    let refreshing: Promise<void> | null = null;
-
-    const tryRefresh = async () => {
-      refreshing ??= $fetch("/auth/refresh", {
-        baseURL: config.public.apiBaseUrl,
-        method: "POST",
-        credentials: "include",
-      }).finally(() => {
-        refreshing = null;
-      });
-
-      return refreshing;
-    };
-
     const appFetch = $fetch.create({
       baseURL: config.public.apiBaseUrl,
       onRequest({ options }) {
@@ -39,29 +25,17 @@ export default defineNuxtPlugin({
         options.credentials = "include";
       },
 
-      async onResponseError({ request, response, options }) {
-        const opts = options as RetryOptions;
+      async onResponseError({ request, options, response }) {
+        if (request.toString().includes("/auth/refresh")) {
+          throw response;
+        }
+        if (response.status === 401) {
+          const refreshed = await tryRefreshToken();
 
-        // 1. первая 401 – пробуем refresh
-        if (response.status === 401 && !opts._retried) {
-          try {
-            await tryRefresh();
-
-            // помечаем, чтобы второй раз не крутиться бесконечно
-            opts._retried = true;
-
-            // ВОЗВРАЩАЕМ результат повторного запроса
-            return await appFetch(request, opts);
-          } catch {
-            // refresh тоже упал – логаут и редирект
-            await appFetch("/auth/logout", { method: "GET" as const });
-            nuxtApp.runWithContext(() => navigateTo("/auth/login"));
-            throw response; // пробрасываем наружу
+          if (refreshed) {
+            return await $fetch(request, options);
           }
         }
-
-        // 2. все прочие ошибки просто летят дальше
-        throw response;
       },
     });
     const api = {
