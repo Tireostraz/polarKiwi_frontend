@@ -17,6 +17,18 @@ export default defineNuxtPlugin({
   async setup(nuxtApp) {
     const config = useRuntimeConfig();
 
+    const tryRefreshToken = async () => {
+      try {
+        await $fetch(`${config.public.apiBaseUrl}/auth/refresh`, {
+          method: "POST",
+          credentials: "include",
+        });
+        return true;
+      } catch (e) {
+        return false;
+      }
+    };
+
     const appFetch = $fetch.create({
       baseURL: config.public.apiBaseUrl,
       onRequest({ options }) {
@@ -25,7 +37,7 @@ export default defineNuxtPlugin({
         options.credentials = "include";
       },
 
-      async onResponseError({ request, options, response }) {
+      async onResponseError({ request, response, options }) {
         if (request.toString().includes("/auth/refresh")) {
           throw response;
         }
@@ -33,9 +45,16 @@ export default defineNuxtPlugin({
           const refreshed = await tryRefreshToken();
 
           if (refreshed) {
-            return await $fetch(request, options);
+            return await $fetch(request, options); // TODO исправить тип options
+          } else {
+            // рефреш не прошел
+            const router = useRouter();
+            router.push("/auth/login");
+            throw new Error("Ошибка обновления токена. Переход на логин");
           }
         }
+        // в случае другой ошибки пробрасываем ответ
+        throw response;
       },
     });
     const api = {
