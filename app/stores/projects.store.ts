@@ -26,8 +26,9 @@ export const useProjectsStore = defineStore(
 
     const addProject = async (product: Product) => {
       const userId = authStore.user?.id;
+      const guestId = authStore.guestId;
 
-      if (!userId) {
+      if (!userId && !guestId) {
         $toast.authError("Вы не авторизованы");
         return;
       }
@@ -37,14 +38,6 @@ export const useProjectsStore = defineStore(
         format: product.slug,
         product_id: product.id,
         pages_quantity: product.pages_quantity,
-        /* status: "draft",
-        pages: Array.from({ length: product.pages_quantity }, () => ({
-          id: crypto.randomUUID(),
-          layout: null,
-          elements: [],
-          textBlocks: [],
-        })),
-        photos: [], */
       };
 
       try {

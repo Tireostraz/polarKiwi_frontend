@@ -10,12 +10,14 @@ export interface RegisterStore {
   password: string;
 }
 
+//TODO исправить в будущем когда будет email верификация
 export interface RegisterStoreResponse {
   accessToken: string;
 }
 
 export interface LoginStoreResponse {
   accessToken: string;
+  user: User;
 }
 
 export interface User {
@@ -39,8 +41,8 @@ export function createAuthRepository(appFetch: typeof $fetch) {
         body,
       });
     },
-    me() {
-      return appFetch<User>("/auth/me", {
+    check() {
+      return appFetch<User>("/auth/check", {
         method: "GET",
       });
     },

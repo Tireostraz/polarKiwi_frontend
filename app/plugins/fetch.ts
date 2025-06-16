@@ -48,8 +48,8 @@ export default defineNuxtPlugin({
             return await $fetch(request, options); // TODO исправить тип options
           } else {
             // рефреш не прошел
-            const router = useRouter();
-            router.push("/auth/login");
+            /* const router = useRouter();
+            router.push("/auth/login"); */
             throw new Error("Ошибка обновления токена. Переход на логин");
           }
         }

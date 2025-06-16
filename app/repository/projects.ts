@@ -116,24 +116,31 @@ export function createProjectRepository(appFetch: typeof $fetch) {
   return {
     // Получение всех проектов пользователя
     async getAll(): Promise<Project[]> {
+      const guestId = useAuthStore().guestId;
+      console.log(guestId);
       const dtos = await appFetch<ProjectDTO[]>("/projects", {
         method: "GET",
+        headers: guestId ? { "x-guest-id": guestId } : undefined,
       });
       return dtos.map(fromDTO);
     },
 
     // Получение одного проекта
     async get(id: string): Promise<Project> {
+      const guestId = useAuthStore().guestId;
       const dto = await appFetch<ProjectDTO>(`/projects/${id}`, {
         method: "GET",
+        headers: guestId ? { "x-guest-id": guestId } : undefined,
       });
       return fromDTO(dto);
     },
 
     // Создание проекта
     async create(data: CreateProjectDTO): Promise<Project> {
+      const guestId = useAuthStore().guestId;
       const dto = await appFetch<ProjectDTO>("/projects", {
         method: "POST",
+        headers: guestId ? { "x-guest-id": guestId } : undefined,
         body: {
           title: data.title,
           type: data.type,
@@ -150,8 +157,10 @@ export function createProjectRepository(appFetch: typeof $fetch) {
       id: string,
       data: Omit<Project, "id" | "createdAt" | "updatedAt" | "userId">
     ): Promise<Project> {
+      const guestId = useAuthStore().guestId;
       const dto = await appFetch<ProjectDTO>(`/projects/${id}`, {
         method: "PUT",
+        headers: guestId ? { "x-guest-id": guestId } : undefined,
         body: {
           title: data.title,
           type: data.type,
@@ -166,10 +175,12 @@ export function createProjectRepository(appFetch: typeof $fetch) {
     },
 
     async clone(projectId: string): Promise<Project> {
+      const guestId = useAuthStore().guestId;
       const dto = await appFetch<ProjectDTO>(
         `/projects/${projectId}/duplicate`,
         {
           method: "POST",
+          headers: guestId ? { "x-guest-id": guestId } : undefined,
         }
       );
       return fromDTO(dto);
@@ -177,8 +188,10 @@ export function createProjectRepository(appFetch: typeof $fetch) {
 
     // Удаление проекта
     async remove(id: string): Promise<void> {
+      const guestId = useAuthStore().guestId;
       await appFetch(`/projects/${id}`, {
         method: "DELETE",
+        headers: guestId ? { "x-guest-id": guestId } : undefined,
       });
     },
   };

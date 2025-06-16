@@ -6,24 +6,22 @@ export default defineNuxtPlugin({
     const { $api } = useNuxtApp();
     const authStore = useAuthStore();
 
-    if (import.meta.server) {
-      authStore.isAuthenticated = false;
-    }
-
     if (import.meta.browser) {
       $api.auth
-        .me()
+        .check()
         .then((response) => {
           if (response) {
             authStore.setUser(response);
-            console.log("respinse ok");
-            /* authStore.isAuthenticated = true; */
           }
         })
         .catch((e) => {
           authStore.setUser(null);
-          /* authStore.isAuthenticated = false; */
-          // todo: alert about auth fail
+          let guestId = localStorage.getItem("guestId");
+          if (!guestId) {
+            guestId = crypto.randomUUID();
+            localStorage.setItem("guestId", guestId);
+          }
+          authStore.setGuestId(guestId);
         });
 
       app.hook("app:suspense:resolve", () => {
