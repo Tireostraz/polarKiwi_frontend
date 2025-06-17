@@ -117,7 +117,6 @@ export function createProjectRepository(appFetch: typeof $fetch) {
     // Получение всех проектов пользователя
     async getAll(): Promise<Project[]> {
       const guestId = useAuthStore().guestId;
-      console.log(guestId);
       const dtos = await appFetch<ProjectDTO[]>("/projects", {
         method: "GET",
         headers: guestId ? { "x-guest-id": guestId } : undefined,

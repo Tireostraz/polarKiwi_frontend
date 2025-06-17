@@ -34,4 +34,7 @@ export default defineNuxtConfig({
     mode: "css",
     cssLayer: "base",
   },
+  colorMode: {
+    preference: "light",
+  },
 });
