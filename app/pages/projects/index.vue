@@ -6,8 +6,8 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 // Используем ref для управления состоянием загрузки
-const isHydrated = authStore.isHydrated;
-const isLoading = ref(false);
+const isHydrated = computed(() => authStore.isHydrated);
+const isLoading = ref(true);
 
 // Инициализируем данные
 const productsData = ref<Product[]>([]);
@@ -34,7 +34,6 @@ const loadData = async () => {
 // Загружаем данные при монтировании
 onMounted(async () => {
   await loadData();
-  /* isHydrated.value = true; */
 });
 
 const products = computed(() => productsData.value || []);
