@@ -5,6 +5,10 @@ export const useAuthStore = defineStore("auth", () => {
   const user = ref<User | null>(null);
   const isHydrated = ref(false);
 
+  function setIsHydrated() {
+    isHydrated.value = true;
+  }
+
   const guestId = ref<string | null>(null);
   const setGuestId = (id: string) => {
     guestId.value = id;
@@ -52,14 +56,11 @@ export const useAuthStore = defineStore("auth", () => {
     user.value = currentUser;
   };
 
-  function setIsHydrated() {
-    isHydrated.value = true;
-  }
-
   return {
     user,
     ssrFriendlyUser,
     setUser,
+    isHydrated,
     setIsHydrated,
     isReady,
     guestId,

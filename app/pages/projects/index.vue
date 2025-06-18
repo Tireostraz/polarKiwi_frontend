@@ -2,12 +2,20 @@
 import type { Product } from "~/repository/products";
 const { $api } = useNuxtApp();
 const projects = useProjectsStore();
+const authStore = useAuthStore();
 const router = useRouter();
 
-// Загружаем проекты и связанные продукты через SSR-совместимый useAsyncData
-const { pending, data: productsData } = await useAsyncData(
-  "projects-and-products",
-  async () => {
+// Используем ref для управления состоянием загрузки
+const isHydrated = authStore.isHydrated;
+const isLoading = ref(false);
+
+// Инициализируем данные
+const productsData = ref<Product[]>([]);
+
+// Функция загрузки данных
+const loadData = async () => {
+  try {
+    isLoading.value = true;
     await projects.loadProjects();
 
     const productIds = [
@@ -15,13 +23,19 @@ const { pending, data: productsData } = await useAsyncData(
     ];
 
     if (productIds.length > 0) {
-      return await $api.products.byIds(productIds);
+      productsData.value = await $api.products.byIds(productIds);
     }
+  } catch (error) {
+  } finally {
+    isLoading.value = false;
+  }
+};
 
-    return [] as Product[];
-  },
-  { server: false }
-);
+// Загружаем данные при монтировании
+onMounted(async () => {
+  await loadData();
+  /* isHydrated.value = true; */
+});
 
 const products = computed(() => productsData.value || []);
 
@@ -39,7 +53,7 @@ const goToCreate = () => {
         <p class="add-text">Добавить новый проект</p>
       </div>
       <!-- Пока данные грузятся, показываем заглушки -->
-      <template v-if="pending">
+      <template v-if="!isHydrated || isLoading">
         <ProjectSkeleton v-for="i in 3" :key="'skeleton-' + i" />
       </template>
 

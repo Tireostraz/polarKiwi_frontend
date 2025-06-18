@@ -24,8 +24,10 @@ export default defineNuxtPlugin({
           authStore.setGuestId(guestId);
         });
 
-      app.hook("app:suspense:resolve", () => {
-        authStore.setIsHydrated();
+      app.hook("app:mounted", () => {
+        app.hook("app:suspense:resolve", () => {
+          authStore.setIsHydrated();
+        }); //TODO проверить, что-то не работает гидротация.
       });
     } else {
       authStore.setUser(null);

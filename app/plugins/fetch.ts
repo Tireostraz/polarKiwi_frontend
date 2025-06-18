@@ -6,11 +6,6 @@ import { createProjectRepository } from "~/repository/projects";
 
 import type { FetchOptions, $Fetch } from "ofetch";
 
-/** Добавляем свой флаг в стандартные опции */
-interface RetryOptions extends FetchOptions {
-  _retried?: boolean;
-}
-
 export default defineNuxtPlugin({
   name: "fetch",
   parallel: true,
