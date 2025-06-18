@@ -3,6 +3,13 @@ const router = useRouter();
 const config = useRuntimeConfig();
 
 const googleLoginHandle = () => {
+  // Просто делаем redirect на эндпоинт авторизации Google
+  window.location.href = `${config.public.apiBaseUrl}/auth/google`;
+};
+/* const router = useRouter();
+const config = useRuntimeConfig();
+
+const googleLoginHandle = () => {
   const width = 500;
   const height = 600;
   const left = window.screen.width / 2 - width / 2;
@@ -33,7 +40,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener("message", messageHandler);
-});
+}); */
 </script>
 
 <template>
