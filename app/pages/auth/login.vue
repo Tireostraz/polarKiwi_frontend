@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const router = useRouter();
+const config = useRuntimeConfig();
 
 const googleLoginHandle = () => {
   const width = 500;
@@ -8,7 +9,7 @@ const googleLoginHandle = () => {
   const top = window.screen.height / 2 - height / 2;
 
   window.open(
-    "http://127.0.0.1:3001/auth/google",
+    `${config.public.apiBaseUrl}/auth/google`,
     "Google Login",
     `width=${width},height=${height},top=${top},left=${left}`
   );
