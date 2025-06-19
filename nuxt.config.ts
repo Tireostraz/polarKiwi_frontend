@@ -33,6 +33,7 @@ export default defineNuxtConfig({
   icon: {
     mode: "css",
     cssLayer: "base",
+    localApiEndpoint: "/_nuxt_icon",
   },
   ui: {
     colorMode: false,
