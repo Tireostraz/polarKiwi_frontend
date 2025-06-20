@@ -22,10 +22,12 @@
     "tslib": "^2.8.1",
     "vue": "^3.5.13",
     "vue-konva": "^3.2.1",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.45",
+    "@iconify-json/mdi": "^1.2.3",
     "@nuxt/icon": "^1.13.0",
     "@vueuse/core": "^13.1.0",
     "@vueuse/nuxt": "^13.1.0"

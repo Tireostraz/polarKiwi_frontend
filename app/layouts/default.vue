@@ -6,6 +6,7 @@ const projectStore = useProjectsStore();
 const isMenuOpen = ref(false);
 const modalOpen = ref(false);
 const route = useRoute();
+const router = useRouter();
 const isCollapsed = computed(() => route.path !== "/");
 
 const items = ["/slider/1.webp", "/slider/2.webp", "/slider/3.jpg"];
@@ -15,7 +16,8 @@ const toggleMenu = () => {
 };
 
 function toggleModal() {
-  modalOpen.value = !modalOpen.value;
+  /* modalOpen.value = !modalOpen.value; */
+  router.push({ path: "/auth/login" });
 }
 
 function handleLogout() {
