@@ -133,6 +133,10 @@ function handleUploadClick() {
     </div>
     <div class="uploader-controls">
       <button @click="handleUploadClick">+ Загрузить изображения</button>
+      <EditorUploaderModal
+        :project-id="props.projectId"
+        :isauto-placing="props.isautoPlacing"
+      />
     </div>
     <div v-if="isDragging && !isGalleryImage" class="drop-hint">
       Перетащите изображения сюда
