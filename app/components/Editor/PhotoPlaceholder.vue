@@ -16,6 +16,28 @@ const emit = defineEmits<{
 }>();
 
 const image = ref<HTMLImageElement | null>(null);
+const container = ref<HTMLElement | null>(null);
+const containerWidth = ref(0);
+let resizeObserver: ResizeObserver;
+
+onMounted(() => {
+  if (container.value) {
+    containerWidth.value = container.value.clientWidth;
+
+    resizeObserver = new ResizeObserver(() => {
+      if (container.value) {
+        containerWidth.value = container.value.clientWidth;
+      }
+    });
+    resizeObserver.observe(container.value);
+  }
+});
+
+onBeforeUnmount(() => {
+  if (resizeObserver && container.value) {
+    resizeObserver.disconnect();
+  }
+});
 
 watch(
   () => props.element?.src,
@@ -49,8 +71,9 @@ const withText = ref(false);
 const isDragOver = ref(false);
 
 const scale = computed(() => {
-  const maxWidth = 200;
-  return maxWidth / mmToPx(props.layout.size.width, DPI);
+  const layoutWidthPx = mmToPx(props.layout.size.width, DPI);
+  if (layoutWidthPx === 0) return 1;
+  return containerWidth.value / layoutWidthPx;
 });
 
 const stageWidth = computed(
@@ -125,6 +148,7 @@ function onClick() {
 
 <template>
   <div
+    ref="container"
     class="photo-canvas"
     :class="{ 'drop-zone': isDragging && !props.element }"
     @dragover.prevent="onDragOver"
@@ -147,6 +171,8 @@ function onClick() {
 .photo-canvas {
   position: relative;
   border: solid 1px black;
+  width: 100%;
+  max-width: 400px;
 }
 
 .photo-index {

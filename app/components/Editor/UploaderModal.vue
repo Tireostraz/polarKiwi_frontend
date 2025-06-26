@@ -3,6 +3,7 @@ import type { PhotoData } from "~/repository/projects";
 const props = defineProps<{
   projectId: string;
   isautoPlacing: boolean;
+  isOpen: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -15,6 +16,7 @@ const projects = useProjectsStore();
 const project = computed(() =>
   projects.addedProjects.find((project) => project.id === props.projectId)
 );
+const photos = computed(() => project.value?.photos);
 
 const isOpen = ref(false);
 const isFullscreen = ref(false);
@@ -88,6 +90,10 @@ async function createUploadedPhoto(
   return photoData;
 }
 
+const handleCloseModal = () => {
+  isOpen.value = false;
+};
+
 onUnmounted(() => {
   window.removeEventListener("resize", checkResize);
 });
@@ -105,7 +111,17 @@ onUnmounted(() => {
 
     <template #content>
       <div class="flex flex-col h-full">
-        <div class="flex justify-center border-b-1 border-gray-300 p-3">
+        <div
+          class="flex justify-center border-b-1 border-gray-300 p-3 relative"
+        >
+          <UButton
+            class="absolute left-2 top-2"
+            icon="lucide:x"
+            color="neutral"
+            variant="ghost"
+            @click="handleCloseModal"
+            ><span class="hidden md:inline">Закрыть</span></UButton
+          >
           Выбор фото
         </div>
         <div class="flex flex-col-reverse md:flex-row grow">
@@ -143,7 +159,7 @@ onUnmounted(() => {
           </div>
           <div class="flex grow">
             <div
-              v-if="mode === 'myImages'"
+              v-if="mode === 'myImages' && photos?.length === 0"
               class="flex flex-col text-center justify-center items-center grow gap-4 bg-sky-100 rounded-xl m-3 hover:scale-98 transition-all"
             >
               <Icon name="lucide:folder-open" size="72" />
@@ -158,10 +174,27 @@ onUnmounted(() => {
                 >
               </span>
             </div>
+            <div class="flex flex-col w-full">
+              <div
+                v-if="mode === 'myImages' && photos?.length > 0"
+                class="grid w-full grid-cols-[repeat(auto-fill,minmax(105px,1fr))] min-h-[105px] gap-2 overflow-x-hidden"
+              >
+                <UButton class="text-xs m-2" @click="handleUploadClick"
+                  >Добавить изображения</UButton
+                >
+                <div
+                  class="flex aspect-square justify-center align-middle"
+                  v-for="photo of photos"
+                >
+                  <NuxtImg class="object-contain" :src="photo.url" />
+                </div>
+              </div>
+            </div>
             <input
               ref="fileInput"
               type="file"
               accept="image/*"
+              @change="onFileChange"
               multiple
               hidden
             />

@@ -2,7 +2,7 @@
 import type { PhotoData, Project } from "~/repository/projects";
 import type { PhotoLayout } from "~/repository/layouts";
 
-definePageMeta({ layout: "projects" });
+definePageMeta({ layout: false });
 
 const route = useRoute();
 const { $api } = useNuxtApp();
@@ -336,13 +336,13 @@ function validateInput() {
 <template>
   <div class="base-editor-layout" v-if="!isLoading">
     <client-only>
-      <EditorUploader
+      <!-- <EditorUploader
         :project-id="id"
         :isauto-placing="isAutoPlacing"
         @add-image="addPhoto"
         @drag-start="isDraggingFromGallery = true"
         @drag-end="isDraggingFromGallery = false"
-      />
+      /> -->
 
       <div class="workspace">
         <div class="workspace-info">
@@ -355,27 +355,27 @@ function validateInput() {
             :min="layout?.quantity"
             @input="validateInput"
           />
-          <UButton color="secondary" variant="subtle" @click="increasePhotos"
-            >Добавить фото</UButton
-          >
           <UButton color="info" @click="updateProjectBeforeExit"
             >Сохранить проект</UButton
           >
-          <UButton color="secondary" variant="subtle" @click="decreasePhotos"
-            >Убрать фото</UButton
-          >
         </div>
-        <div class="workspace-container">
-          <EditorPhotoPlaceholder
-            v-for="(page, index) in project?.pages"
-            :key="page.id"
-            :element="page.elements[0] || null"
-            :layout="page.layout"
-            :index="index"
-            :is-dragging="isDraggingFromGallery"
-            @add-photo="assignPhotoToPlaceholder"
-            @click="() => handleOpenModal(index)"
-          />
+        <div class="flex-row-container">
+          <div class="editor-panel">
+            <EditorPanel />
+          </div>
+
+          <div class="workspace-container">
+            <EditorPhotoPlaceholder
+              v-for="(page, index) in project?.pages"
+              :key="page.id"
+              :element="page.elements[0] || null"
+              :layout="page.layout"
+              :index="index"
+              :is-dragging="isDraggingFromGallery"
+              @add-photo="assignPhotoToPlaceholder"
+              @click="() => handleOpenModal(index)"
+            />
+          </div>
         </div>
       </div>
       <EditorModal
@@ -408,7 +408,8 @@ function validateInput() {
 <style scoped>
 .base-editor-layout {
   display: flex;
-  height: calc(100vh-56px);
+  flex-direction: column;
+  height: 100vh;
   width: 100%;
   overflow: hidden;
 }
@@ -416,28 +417,39 @@ function validateInput() {
 .workspace {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   overflow: hidden;
-  flex-grow: 75;
-  flex-shrink: 1;
-  flex-basis: 0px;
-  justify-content: center;
 }
 
 .workspace-info {
   display: flex;
   justify-content: space-around;
   padding: 10px 0;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.flex-row-container {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+  height: 100%;
+}
+
+.editor-panel {
+  width: 250px; /* ширина панели */
+  flex-shrink: 0;
+  overflow: hidden;
+  background-color: #f3f3f3; /* для визуального разделения */
 }
 
 .workspace-container {
   display: flex;
   flex-wrap: wrap;
-  padding: 40px 90px 40px 90px;
-  overflow-x: hidden;
+  justify-content: center;
+  gap: 28px;
+  padding: 40px 50px;
   overflow-y: auto;
-  align-content: flex-start;
-  box-sizing: border-box;
-  gap: 40px;
 }
 
 .submit-btn {
