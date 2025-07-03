@@ -361,7 +361,7 @@ function validateInput() {
         </div>
         <div class="flex-row-container">
           <div class="editor-panel">
-            <EditorPanel />
+            <EditorPanel :project-id="id" />
           </div>
 
           <div class="workspace-container">
