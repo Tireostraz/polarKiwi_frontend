@@ -282,10 +282,15 @@ function handleDeleteImage() {
   isModalOpen.value = false;
 }
 
-function handlePlaceholderClick(index: number) {
+function handlePlaceholderClick(
+  placeholderIndex: number,
+  elementIndex: number
+) {
+  console.log("placegolder", index, "clicked");
   const projectValue = project.value;
   const page = projectValue?.pages[index];
-  if (page?.elements[index]) {
+  console.log(page);
+  if (page?.elements) {
     selectedPlaceholder.value = index;
     isModalOpen.value = true;
   } else {
@@ -384,7 +389,7 @@ function validateInput() {
               :index="index"
               :is-dragging="isDraggingFromGallery"
               @add-photo="assignPhotoToPlaceholder"
-              @click="() => handleOpenModal(index)"
+              @click="() => handlePlaceholderClick(index)"
             />
           </div>
         </div>
