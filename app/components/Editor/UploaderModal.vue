@@ -7,10 +7,16 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
+  (e: "update:isOpen", value: boolean): void;
   (e: "drag-start"): void;
   (e: "drag-end"): void;
   (e: "add-image", photoData: PhotoData): void;
 }>();
+
+const internalIsOpen = computed({
+  get: () => props.isOpen,
+  set: (val) => emit("update:isOpen", val),
+});
 
 const projects = useProjectsStore();
 const project = computed(() =>
@@ -18,7 +24,6 @@ const project = computed(() =>
 );
 const photos = computed(() => project.value?.photos);
 
-const isOpen = ref(false);
 const isFullscreen = ref(false);
 const mode = ref("myImages");
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -91,7 +96,7 @@ async function createUploadedPhoto(
 }
 
 const handleCloseModal = () => {
-  isOpen.value = false;
+  emit("update:isOpen", false);
 };
 
 onUnmounted(() => {
@@ -103,11 +108,11 @@ onUnmounted(() => {
     :ui="{
       content: 'md:max-w-[970px] md:max-h-[656px] md:m-6 md:rounded-3xl h-full',
     }"
-    v-model="isOpen"
+    v-model:open="internalIsOpen"
     :fullscreen="isFullscreen"
     title="Modal with title"
-  >
-    <UButton label="Open" color="neutral" variant="subtle" />
+    ><!-- 
+    <UButton label="Open" color="neutral" variant="subtle" /> -->
 
     <template #content>
       <div class="flex flex-col h-full">
@@ -174,9 +179,11 @@ onUnmounted(() => {
                 >
               </span>
             </div>
-            <div class="flex flex-col w-full">
+            <div
+              v-if="mode === 'myImages' && photos?.length > 0"
+              class="flex flex-col w-full"
+            >
               <div
-                v-if="mode === 'myImages' && photos?.length > 0"
                 class="grid w-full grid-cols-[repeat(auto-fill,minmax(105px,1fr))] min-h-[105px] gap-2 overflow-x-hidden"
               >
                 <UButton class="text-xs m-2" @click="handleUploadClick"

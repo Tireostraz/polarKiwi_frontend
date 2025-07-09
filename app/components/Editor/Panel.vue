@@ -12,12 +12,13 @@ const handleOpenModal = () => {
 </script>
 <template>
   <div class="w-[200px]">
-    <UButton @click="handleOpenModal">Click</UButton>
+    <UButton @click="handleOpenModal">Загрузить</UButton>
 
     <EditorUploaderModal
       :project-id="projectId"
       :isauto-placing="isAutoPlacing"
-      :is-open="isOpen"
+      v-model:is-open="isOpen"
     />
   </div>
+  <div>Шаблоны</div>
 </template>

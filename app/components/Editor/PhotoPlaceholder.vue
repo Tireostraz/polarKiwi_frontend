@@ -102,6 +102,10 @@ const sizePx = computed(() => {
   };
 });
 
+watch(sizePx, (val) => {
+  console.log("sizePx изменился:", val);
+});
+
 const textConfig = {
   x: 0,
   y:
@@ -115,12 +119,12 @@ const textConfig = {
   align: "center",
 };
 
-const rectData = {
+const rectData = computed(() => ({
   rectangle: {
     ...sizePx.value,
     fill: "rgb(204, 204, 204)",
   },
-};
+}));
 
 function onDragOver(e: DragEvent) {
   if (!image.value) {
@@ -144,6 +148,11 @@ function onDrop(e: DragEvent) {
 function onClick() {
   emit("click", props.index);
 }
+
+function handleInfoClick() {
+  console.log("image: ", image);
+  console.log("rect params: ", rectData);
+}
 </script>
 
 <template>
@@ -163,6 +172,7 @@ function onClick() {
         <v-text v-if="withText" :config="textConfig" />
       </v-layer>
     </v-stage>
+    <UButton @click="handleInfoClick">Инфо</UButton>
     <div class="photo-index">{{ index + 1 }}</div>
   </div>
 </template>

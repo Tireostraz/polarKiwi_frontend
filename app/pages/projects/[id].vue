@@ -282,6 +282,17 @@ function handleDeleteImage() {
   isModalOpen.value = false;
 }
 
+function handlePlaceholderClick(index: number) {
+  const projectValue = project.value;
+  const page = projectValue?.pages[index];
+  if (page?.elements[index]) {
+    selectedPlaceholder.value = index;
+    isModalOpen.value = true;
+  } else {
+    console.log("upload image");
+  }
+}
+
 function handleOpenModal(index: number) {
   const projectValue = project.value;
   const page = projectValue?.pages[index];
