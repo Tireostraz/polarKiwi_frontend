@@ -1,0 +1,499 @@
+{
+  "_comment": "Получаю данный ответ при переходе на страницу товара classic-prints. страница cheerz.com/en/products/classic-prints  запрос cheerz.com/api/public/3.2/product_pages/classic-prints?lang=en",
+  "response": {
+    "displayed_sections": [
+      "section_description_blocks",
+      "section_cross_sells",
+      "section_faq"
+    ],
+    "slug": "classic-prints",
+    "title": "Classic prints",
+    "web_description": "In no time at all, print your favorite photos in portrait or landscape format and capture your best smiles!\r\n\u003cul\u003e\r\n\u003cli\u003e Available formats: 10,2x15,2 cm, 11,5x15,2 cm, 15,1x20,3 cm and 20,2x30,5 cm\u003c/li\u003e\r\n\u003cli\u003e New! 10x15 cm, the most standard of prints, perfect for frames (exact format: 10,2x15,2 cm) \u003c/li\u003e\r\n\u003cli\u003e 11x15 cm, the historic cheerz format, for seeing life in postcard format (exact format: 11,5x15,2 cm) \u003c/li\u003e\r\n\u003cli\u003e Option to choose packs of 10 prints (or more!) \u003c/li\u003e\r\n\u003cli\u003e Choice between matte or glossy finish paper \u003c/li\u003e\r\n\u003cli\u003e14 colors to enhance your memories\u003c/li\u003e\r\n\u003cli\u003e6 fonts to add style to your text\u003c/li\u003e\r\n\u003cli\u003e8 layouts to mix captions \u0026 photos (up to 6 photos + 2 text areas)\u003c/li\u003e\r\n\u003cli\u003e Option to add accessories to your cart (garland, gift pouch, etc.) \u003c/li\u003e\r\n\u003cli\u003e Printed in Europe on Fujifilm silver halide paper \u003c/li\u003e\r\n\u003c/ul\u003e",
+    "app_description": "In no time at all, print your favorite photos in portrait or landscape format and capture your best smiles!\r\n\r\n• Available formats: 10,2x15,2 cm, 11,5x15,2 cm, 15,1x20,3 cm and 20,2x30,5 cm\r\n• New! 10x15 cm, the most standard of prints, perfect for frames (exact format: 10,2x15,2 cm)\r\n• 11x15 cm, the historic Cheerz format, for seeing life in postcard format (exact format: 11,5x15,2 cm)\r\n• Option to choose packs of 10 prints (or more!)\r\n• Choice between matte or glossy finish paper\r\n• 14 colors to enhance your memories\r\n• 6 fonts to add style to your text\r\n• 8 layouts to mix captions \u0026 photos (up to 6 photos + 2 text areas)\r\n• Option to add accessories to your cart (garland, gift pouch, etc.)\r\n• Printed in Europe on Fujifilm silver halide paper",
+    "label": {
+      "icon": "classic",
+      "text": "Bestseller",
+      "color": "#FF9900"
+    },
+    "is_out_of_stock": false,
+    "price": {
+      "eur": "€0.19",
+      "usd": "$0.22",
+      "gbp": "£0.16"
+    },
+    "striked_price": null,
+    "action": null,
+    "carousel": [
+      {
+        "image": {
+          "small": "https://cdn2.chrzz.com/contents/assets/image_list_web_1_image-4kiwrqjpjv3iij0330pf8arpu8p8-1x-1.png",
+          "large": "https://cdn2.chrzz.com/contents/assets/image_list_web_1_image-4kiwrqjpjv3iij0330pf8arpu8p8-2x-1.png"
+        },
+        "video_url": null
+      },
+      {
+        "image": {
+          "small": "https://cdn2.chrzz.com/contents/assets/image_list_web_2_image-gza9j3hrgtz41w7gqgejmdrklgl6-1x-1.png",
+          "large": "https://cdn2.chrzz.com/contents/assets/image_list_web_2_image-gza9j3hrgtz41w7gqgejmdrklgl6-2x-1.png"
+        },
+        "video_url": null
+      },
+      {
+        "image": {
+          "small": "https://cdn2.chrzz.com/contents/assets/image_list_web_3_image-l0liuip9lct3vj9zmxixhnes8kak-1x-1.png",
+          "large": "https://cdn2.chrzz.com/contents/assets/image_list_web_3_image-l0liuip9lct3vj9zmxixhnes8kak-2x-1.png"
+        },
+        "video_url": null
+      },
+      {
+        "image": {
+          "small": "https://cdn2.chrzz.com/contents/assets/image_list_web_4_image-20vexvooefh51drb92oufrnrwhbj-1x-1.png",
+          "large": "https://cdn2.chrzz.com/contents/assets/image_list_web_4_image-20vexvooefh51drb92oufrnrwhbj-2x-1.png"
+        },
+        "video_url": null
+      },
+      {
+        "image": {
+          "small": "https://cdn2.chrzz.com/contents/assets/image_list_web_5_image-sar92bfsnejkz79wfh5eb2wgk9g4-1x-1.png",
+          "large": "https://cdn2.chrzz.com/contents/assets/image_list_web_5_image-sar92bfsnejkz79wfh5eb2wgk9g4-2x-1.png"
+        },
+        "video_url": null
+      },
+      {
+        "image": {
+          "small": "https://cdn2.chrzz.com/contents/assets/image_list_web_6_image-emacpu02h7ve84zu0ezml71rlb78-1x-1.png",
+          "large": "https://cdn2.chrzz.com/contents/assets/image_list_web_6_image-emacpu02h7ve84zu0ezml71rlb78-2x-1.png"
+        },
+        "video_url": null
+      },
+      {
+        "image": {
+          "small": "https://cdn2.chrzz.com/contents/assets/image_list_web_7_image-420j9hm43kcvha1xu0n63exn0bte-1x-1.png",
+          "large": "https://cdn2.chrzz.com/contents/assets/image_list_web_7_image-420j9hm43kcvha1xu0n63exn0bte-2x-1.png"
+        },
+        "video_url": null
+      }
+    ],
+    "tracking": {
+      "screen_group": "product_page",
+      "screen_name": "classic-prints",
+      "properties": {
+        "product_category": "prints",
+        "product_subcategory": "prints-classic|prints-large-print",
+        "product_page_type": "product_with_choices_and_packs"
+      },
+      "products": [
+        {
+          "tag": "print10x15-glossy-pack20",
+          "name": "Photo Prints",
+          "price": 7.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print10x15-glossy-pack10",
+          "name": "Photo Prints",
+          "price": 3.5,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "recto-verso11x15-glossy-pack10-202303",
+          "name": "Double-sided Photo Print",
+          "price": 3.9,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "recto-verso11x15-glossy-pack50-202303",
+          "name": "Double-sided Photo Print",
+          "price": 17.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "recto-verso11x15-glossy-pack300-202303",
+          "name": "Double-sided Photo Print",
+          "price": 72.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "recto-verso11x15-glossy-pack100-202303",
+          "name": "Double-sided Photo Print",
+          "price": 29.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print10x15-glossy-pack100",
+          "name": "Photo Prints",
+          "price": 25.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print10x15-glossy-pack300",
+          "name": "Photo Prints (300 prints)",
+          "price": 57.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "recto-verso11x15-glossy-pack20-202303",
+          "name": "Double-sided Photo Print",
+          "price": 7.8,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print11x15-glossy-pack50",
+          "name": "Photo Prints (50 prints)",
+          "price": 15.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print15x20-matte",
+          "name": "Classic Prints 15×20cm",
+          "price": 4.95,
+          "category": "prints",
+          "sub_category": "prints-large-print"
+        },
+        {
+          "tag": "print11x15-glossy-pack300",
+          "name": "Photo Prints (300 prints)",
+          "price": 57.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print11x15-glossy-pack20",
+          "name": "Photo Prints",
+          "price": 7.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print11x15-glossy-pack100",
+          "name": "Photo Prints",
+          "price": 25.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print11x15-glossy-pack10",
+          "name": "Photo Prints",
+          "price": 3.5,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print20x30-matte",
+          "name": "Classic Prints 20×30cm",
+          "price": 12.45,
+          "category": "prints",
+          "sub_category": "prints-large-print"
+        },
+        {
+          "tag": "print10x15-glossy-pack50",
+          "name": "Photo Prints (50 prints)",
+          "price": 15.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        }
+      ]
+    },
+    "web_reinsurance": {
+      "items": [
+        {
+          "title": "Premium Fujifilm papers",
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/medium_colored_icons_web_1_image-rpfyyhkd06xd6xwml0dy1pkbze2r-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/medium_colored_icons_web_1_image-rpfyyhkd06xd6xwml0dy1pkbze2r-2x-1.png"
+          }
+        },
+        {
+          "title": "FSC certified, and printed in Europe",
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/medium_colored_icons_web_2_image-xeohbrzb3thlyrf4a0rak9etzfrp-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/medium_colored_icons_web_2_image-xeohbrzb3thlyrf4a0rak9etzfrp-2x-1.png"
+          }
+        },
+        {
+          "title": "The gift that brings a smile, to give ... or to treat yourself!",
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/medium_colored_icons_web_3_image-2tf1w8ojhacr6xli5lr83yjy2y54-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/medium_colored_icons_web_3_image-2tf1w8ojhacr6xli5lr83yjy2y54-2x-1.png"
+          }
+        }
+      ]
+    },
+    "breadcrumb": [
+      {
+        "text": "Photo Printing",
+        "navigation": {
+          "destination": "prints",
+          "type": "category_page"
+        }
+      },
+      {
+        "text": "Classic prints",
+        "navigation": null
+      }
+    ],
+    "price_table": [
+      {
+        "product_name": "10x15cm",
+        "with_quantity": true,
+        "products": [
+          {
+            "product_name": "10+",
+            "product_tag": "print10x15-glossy-pack10",
+            "with_quantity": false,
+            "product_price": "€0.35"
+          },
+          {
+            "product_name": "20+",
+            "product_tag": "print10x15-glossy-pack20",
+            "with_quantity": false,
+            "product_price": "€0.35"
+          },
+          {
+            "product_name": "50+",
+            "product_tag": "print10x15-glossy-pack50",
+            "with_quantity": false,
+            "product_price": "€0.30"
+          },
+          {
+            "product_name": "100+",
+            "product_tag": "print10x15-glossy-pack100",
+            "with_quantity": false,
+            "product_price": "€0.25"
+          },
+          {
+            "product_name": "300+",
+            "product_tag": "print10x15-glossy-pack300",
+            "with_quantity": false,
+            "product_price": "€0.19"
+          }
+        ]
+      },
+      {
+        "product_name": "11x15cm",
+        "with_quantity": true,
+        "products": [
+          {
+            "product_name": "10+",
+            "product_tag": "print11x15-glossy-pack10",
+            "with_quantity": false,
+            "product_price": "€0.35"
+          },
+          {
+            "product_name": "20+",
+            "product_tag": "print11x15-glossy-pack20",
+            "with_quantity": false,
+            "product_price": "€0.35"
+          },
+          {
+            "product_name": "50+",
+            "product_tag": "print11x15-glossy-pack50",
+            "with_quantity": false,
+            "product_price": "€0.30"
+          },
+          {
+            "product_name": "100+",
+            "product_tag": "print11x15-glossy-pack100",
+            "with_quantity": false,
+            "product_price": "€0.25"
+          },
+          {
+            "product_name": "300+",
+            "product_tag": "print11x15-glossy-pack300",
+            "with_quantity": false,
+            "product_price": "€0.19"
+          }
+        ]
+      },
+      {
+        "product_name": "15x20cm",
+        "with_quantity": true,
+        "products": [
+          {
+            "product_name": "5+",
+            "product_tag": "print15x20-matte",
+            "with_quantity": false,
+            "product_price": "€0.99"
+          }
+        ]
+      },
+      {
+        "product_name": "20x30cm",
+        "with_quantity": true,
+        "products": [
+          {
+            "product_name": "5+",
+            "product_tag": "print20x30-matte",
+            "with_quantity": false,
+            "product_price": "€2.49"
+          }
+        ]
+      },
+      {
+        "product_name": "11x15cm Recto-Verso ",
+        "with_quantity": true,
+        "products": [
+          {
+            "product_name": "10+",
+            "product_tag": "recto-verso11x15-glossy-pack10-202303",
+            "with_quantity": false,
+            "product_price": "€0.39"
+          },
+          {
+            "product_name": "20+",
+            "product_tag": "recto-verso11x15-glossy-pack20-202303",
+            "with_quantity": false,
+            "product_price": "€0.39"
+          },
+          {
+            "product_name": "50+",
+            "product_tag": "recto-verso11x15-glossy-pack50-202303",
+            "with_quantity": false,
+            "product_price": "€0.34"
+          },
+          {
+            "product_name": "100+",
+            "product_tag": "recto-verso11x15-glossy-pack100-202303",
+            "with_quantity": false,
+            "product_price": "€0.29"
+          },
+          {
+            "product_name": "300+",
+            "product_tag": "recto-verso11x15-glossy-pack300-202303",
+            "with_quantity": false,
+            "product_price": "€0.24"
+          }
+        ]
+      }
+    ],
+    "seo_product": {
+      "meta_description": "Print your photos in a classic format and bring to life your best memories on paper! Simple, quick and really beautiful quality!",
+      "meta_title": "High quality classic photo printing | Cheerz",
+      "rating_value": 4.6,
+      "review_count": 4165,
+      "category_slug": "prints"
+    },
+    "metadata": {
+      "kustom_web_mobile": false,
+      "kind": "product_with_choices_and_packs"
+    },
+    "section_description_blocks": {
+      "items": [
+        {
+          "text": "\u003ch2\u003eMore details about your photo prints\u003c/h2\u003e\r\n\r\n\u003cNEW! The 10x15 cm : \u003c/b\u003e\r\n\u003cul\u003e\r\n\u003c3/2 ratio\r\n\u003cli\u003e The most widely used standard format in photo printing \u003c/li\u003e\r\n\u003cli\u003e Perfect for frames and albums to slip your photos \u003c/li\u003e\r\n\u003cli\u003e Ideal for photos taken with an DSLR-type camera \u003c/li\u003e\r\n\u003c/ul\u003e\r\n\u003cbr\u003e\r\n\u003cb\u003eFormats and materials :\u003c/b\u003e\u003cbr\u003e\r\n\u003cul\u003e\u003cli\u003ePack of 10 photos (or more!)\u003c/li\u003e\r\n\u003cli\u003ePhoto print sizes: 10.2x15.2 cm, 11.5×15.2 cm, 15.1×20.3 cm and 20.2×30.5 cm\u003c/li\u003e\u003cli\u003eFormat: portrait or landscape\u003c/li\u003e\u003c/ul\u003e\u003cbr\u003e\r\n\r\n\u003c11x15 cm : \u003c/b\u003e\r\n\u003cli\u003e 4/3 ratio \u003c/li\u003e\r\n\u003cli\u003e Cheerz's historic classic format \u003c/li\u003e\r\n\u003cli\u003e Suitable for our Classic Cheerz Box \u003c/li\u003e\r\n\u003cli\u003e Ideal for photos taken with your phone \u003c/li\u003e\r\n\u003c/ul\u003e\r\n\r\n\u003cb\u003eLayout :\u003c/b\u003e\u003cbr\u003e\r\n\u003cul\u003e\u003cli\u003eChoose your border colour (5mm)\u003c/li\u003e\r\n\u003cli\u003eMatte or glossy finish\u003c/li\u003e\r\n\u003cli\u003ePossibility depending on the format to add accessories to the basket: gift bag, fairy lights\u003c/li\u003e\u003c/ul\u003e\u003cbr\u003e\r\nPhoto prints for a present? That's always a good idea!"
+        },
+        {
+          "text": "\u003ch2\u003eThe little tale of our photo print\u003c/h2\u003eA classic photo print - it's the photo equivalent of the Little Black Dress: an essential that never goes out of style. Just for you, we've chosen the best photo paper on the market (Fujifilm, top of the range) because great classics never age. Delivered in a cute cardboard envelope to boot! Our classic photo prints are totally affordable, premium quality. Simple to design and perfect for all your photos of your family, your friends, your holidays, your nights out... these photos will soon become your firm favourites!"
+        }
+      ]
+    },
+    "section_cross_sells": {
+      "items": [
+        {
+          "title": "Classic Cheerz Box",
+          "navigation": {
+            "type": "container_page",
+            "destination": "cheerz-box-11x15"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/medium_product_cards_web_image-8rf25pimdkggakef3zexqq97a1vc-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/medium_product_cards_web_image-8rf25pimdkggakef3zexqq97a1vc-2x-1.jpg"
+          }
+        },
+        {
+          "title": "Retro prints",
+          "navigation": {
+            "type": "product_page",
+            "destination": "retro-prints"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/medium_product_cards_web_image-2nni3cxe5j9chp0htcdzb8e7exdx-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/medium_product_cards_web_image-2nni3cxe5j9chp0htcdzb8e7exdx-2x-1.jpg"
+          }
+        },
+        {
+          "title": "2-in-1 frame box",
+          "navigation": {
+            "type": "product_page",
+            "destination": "very-precious-box"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/medium_product_cards_web_image-w4piovujqg4914klcbs2ild7wwex-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/medium_product_cards_web_image-w4piovujqg4914klcbs2ild7wwex-2x-1.jpg"
+          }
+        }
+      ]
+    },
+    "section_faq": {
+      "title": "",
+      "items": [
+        {
+          "question": "",
+          "answer": ""
+        },
+        {
+          "question": "",
+          "answer": ""
+        },
+        {
+          "question": "",
+          "answer": ""
+        },
+        {
+          "question": "",
+          "answer": ""
+        },
+        {
+          "question": "",
+          "answer": ""
+        },
+        {
+          "question": "",
+          "answer": ""
+        }
+      ]
+    },
+    "button": {
+      "text": "Get started ",
+      "navigation": {
+        "type": "choice_page",
+        "destination": "classic-prints"
+      }
+    },
+    "banners": [
+      {
+        "color": {
+          "light": "#00B093",
+          "dark": "#00B093"
+        },
+        "text": {
+          "short": "-20% off your 1st order with code TAKETHELEAP, until 15/07 included! (excl. gift cards)",
+          "long": "-20% off your 1st order with code TAKETHELEAP, until 15/07 included! (excl. gift cards)"
+        },
+        "navigation": {
+          "type": "collection_page",
+          "destination": "first-order"
+        },
+        "tracking": {
+          "screen_group": "product_page",
+          "screen_name": "classic-prints",
+          "properties": {
+            "destination_screen_name": "first-order",
+            "destination_screen_group": "product_collection"
+          },
+          "products": null
+        }
+      }
+    ]
+  }
+}

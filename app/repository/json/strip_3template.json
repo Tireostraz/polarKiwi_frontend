@@ -1,4 +1,5 @@
 {
+  "_comment": "Загрузка шаблона по id проекта? /customizations/:articleId/template GET cheerz.com/api/identified/3.0/customizations/94904001/template",
   "response": {
     "id": "23a8e542-d4b9-11ef-a42f-c338c6ab5224",
     "asset_url_template": "https://cdn2.chrzz.com/customization/assets/[asset_id]/[width]",

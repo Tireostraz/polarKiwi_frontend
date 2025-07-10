@@ -1,0 +1,866 @@
+{
+  "_comment": "Получаю данный ответ при переходе на страницу категории Photo Printing из шапки. cheerz.com/en/categories/prints  запрос cheerz.com/api/public/3.2/category_pages/prints?lang=en",
+  "response": {
+    "topbar_title": "Prints",
+    "tracking": {
+      "screen_group": "product_category",
+      "screen_name": "prints",
+      "properties": {},
+      "products": [
+        {
+          "tag": "print10x15-glossy-pack10",
+          "name": "Photo Prints",
+          "price": 3.5,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print10x15-glossy-pack20",
+          "name": "Photo Prints",
+          "price": 7.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "recto-verso11x15-glossy-pack10-202303",
+          "name": "Double-sided Photo Print",
+          "price": 3.9,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "recto-verso11x15-glossy-pack50-202303",
+          "name": "Double-sided Photo Print",
+          "price": 17.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "recto-verso11x15-glossy-pack300-202303",
+          "name": "Double-sided Photo Print",
+          "price": 72.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "recto-verso11x15-glossy-pack100-202303",
+          "name": "Double-sided Photo Print",
+          "price": 29.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print10x15-glossy-pack100",
+          "name": "Photo Prints",
+          "price": 25.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print10x15-glossy-pack300",
+          "name": "Photo Prints (300 prints)",
+          "price": 57.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "recto-verso11x15-glossy-pack20-202303",
+          "name": "Double-sided Photo Print",
+          "price": 7.8,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print11x15-glossy-pack50",
+          "name": "Photo Prints (50 prints)",
+          "price": 15.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print15x20-matte",
+          "name": "Classic Prints 15×20cm",
+          "price": 4.95,
+          "category": "prints",
+          "sub_category": "prints-large-print"
+        },
+        {
+          "tag": "print11x15-glossy-pack300",
+          "name": "Photo Prints (300 prints)",
+          "price": 57.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print11x15-glossy-pack20",
+          "name": "Photo Prints",
+          "price": 7.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print11x15-glossy-pack100",
+          "name": "Photo Prints",
+          "price": 25.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print11x15-glossy-pack10",
+          "name": "Photo Prints",
+          "price": 3.5,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print20x30-matte",
+          "name": "Classic Prints 20×30cm",
+          "price": 12.45,
+          "category": "prints",
+          "sub_category": "prints-large-print"
+        },
+        {
+          "tag": "print10x15-glossy-pack50",
+          "name": "Photo Prints (50 prints)",
+          "price": 15.0,
+          "category": "prints",
+          "sub_category": "prints-classic"
+        },
+        {
+          "tag": "print8x10-glossy-pack25",
+          "name": "Retro Prints",
+          "price": 8.0,
+          "category": "prints",
+          "sub_category": "prints-retro"
+        },
+        {
+          "tag": "print8x10-glossy-pack300",
+          "name": "Retro 8×10cm (300 prints)",
+          "price": 57.0,
+          "category": "prints",
+          "sub_category": "prints-retro"
+        },
+        {
+          "tag": "print8x10-glossy-pack50",
+          "name": "Retro 8×10 cm",
+          "price": 15.0,
+          "category": "prints",
+          "sub_category": "prints-retro"
+        },
+        {
+          "tag": "print12x15-matte",
+          "name": "Retro Prints 12×15cm",
+          "price": 7.9,
+          "category": "prints",
+          "sub_category": "prints-large-print"
+        },
+        {
+          "tag": "print8x10-glossy-pack100",
+          "name": "Retro Prints",
+          "price": 25.0,
+          "category": "prints",
+          "sub_category": "prints-retro"
+        },
+        {
+          "tag": "print8x10-glossy-pack10",
+          "name": "Retro Prints",
+          "price": 3.5,
+          "category": "prints",
+          "sub_category": "prints-retro"
+        },
+        {
+          "tag": "memoriespocket-print8x10-valentine-heart-202401",
+          "name": "Pocket of memories",
+          "price": 9.9,
+          "category": "prints",
+          "sub_category": "prints-pochette-souvenirs"
+        },
+        {
+          "tag": "memoriespocket-print8x10-classic-202307",
+          "name": "Pocket of memories",
+          "price": 9.9,
+          "category": "prints",
+          "sub_category": "prints-pochette-souvenirs"
+        },
+        {
+          "tag": "memoriespocket-print8x10-love-202307",
+          "name": "Pocket of memories",
+          "price": 9.9,
+          "category": "prints",
+          "sub_category": "prints-pochette-souvenirs"
+        },
+        {
+          "tag": "memoriespocket-print8x10-celebration-202307",
+          "name": "Pocket of memories",
+          "price": 9.9,
+          "category": "prints",
+          "sub_category": "prints-pochette-souvenirs"
+        },
+        {
+          "tag": "memoriespocket-print8x10-travel-202307",
+          "name": "Pocket of memories",
+          "price": 9.9,
+          "category": "prints",
+          "sub_category": "prints-pochette-souvenirs"
+        },
+        {
+          "tag": "print6x9-glossy-pack10",
+          "name": "Mini Prints",
+          "price": 3.5,
+          "category": "prints",
+          "sub_category": "prints-mini"
+        },
+        {
+          "tag": "print6x9-glossy-pack50",
+          "name": "Mini Prints",
+          "price": 15.0,
+          "category": "prints",
+          "sub_category": "prints-mini"
+        },
+        {
+          "tag": "print6x9-glossy-pack300",
+          "name": "Mini Prints",
+          "price": 57.0,
+          "category": "prints",
+          "sub_category": "prints-mini"
+        },
+        {
+          "tag": "print6x9-matte-pack100",
+          "name": "Mini Prints",
+          "price": 25.0,
+          "category": "prints",
+          "sub_category": "prints-mini"
+        },
+        {
+          "tag": "print6x9-glossy-pack20",
+          "name": "Mini Prints",
+          "price": 7.0,
+          "category": "prints",
+          "sub_category": "prints-mini"
+        },
+        {
+          "tag": "print10x10-glossy-pack20",
+          "name": "Square 10x10cm",
+          "price": 7.0,
+          "category": "prints",
+          "sub_category": "prints-square"
+        },
+        {
+          "tag": "print10x10-glossy-pack50",
+          "name": "Square 10x10cm",
+          "price": 15.0,
+          "category": "prints",
+          "sub_category": "prints-square"
+        },
+        {
+          "tag": "print10x10-glossy-pack100",
+          "name": "Square 10x10cm",
+          "price": 25.0,
+          "category": "prints",
+          "sub_category": "prints-square"
+        },
+        {
+          "tag": "print20x20-glossy",
+          "name": "Square Prints 20×20cm",
+          "price": 9.95,
+          "category": "prints",
+          "sub_category": "prints-large-print"
+        },
+        {
+          "tag": "print10x10-glossy-pack10",
+          "name": "Square 10x10cm",
+          "price": 3.5,
+          "category": "prints",
+          "sub_category": "prints-square"
+        },
+        {
+          "tag": "print10x10-glossy-pack300",
+          "name": "Square Prints (300 prints)",
+          "price": 57.0,
+          "category": "prints",
+          "sub_category": "prints-square"
+        },
+        {
+          "tag": "print5x20-cabine",
+          "name": "Strips",
+          "price": 9.5,
+          "category": "prints",
+          "sub_category": "prints-id-print"
+        },
+        {
+          "tag": "print15x20-glossy",
+          "name": "Classic Prints 15×20cm",
+          "price": 4.95,
+          "category": "prints",
+          "sub_category": "prints-large-print"
+        },
+        {
+          "tag": "print20x20-glossy",
+          "name": "Square Prints 20×20cm",
+          "price": 9.95,
+          "category": "prints",
+          "sub_category": "prints-large-print"
+        },
+        {
+          "tag": "print12x15-matte",
+          "name": "Retro Prints 12×15cm",
+          "price": 7.9,
+          "category": "prints",
+          "sub_category": "prints-large-print"
+        },
+        {
+          "tag": "print20x30-glossy",
+          "name": "Classic Prints 20×30cm",
+          "price": 12.45,
+          "category": "prints",
+          "sub_category": "prints-large-print"
+        }
+      ]
+    },
+    "displayed_sections": [
+      "section_category_products",
+      "section_title",
+      "section_description_blocks",
+      "section_faq",
+      "section_cross_sells"
+    ],
+    "breadcrumb": [
+      {
+        "text": "Photo Printing",
+        "navigation": null
+      }
+    ],
+    "seo": {
+      "meta_description": "Photo printing on analogue photo paper: easily develop your beautiful photos! Order online⚡Quality photo printing⚡Fast delivery",
+      "meta_title": "Online Photo Printing: Easy Photo Development | Cheerz",
+      "category_slug": "prints"
+    },
+    "section_category_products": {
+      "title": "Photo Printing : Create quality photo prints",
+      "web_description": "Personalised photo prints are like photo books: a great classic revisited by Cheerz! What's more, they're super easy to \u003cb\u003eorder online with premium photo printing\u003c/b\u003e on glossy analogue paper and fast delivery.\u003cbr\u003e\r\n\u003cbr\u003e\r\nSeveral options are available on our website and app: choose photo development by the unit or in packs (price decreases the more photos you add) in the format of your choice: \u003cb\u003esquare, retro, classic\u003c/b\u003e or \u003cb\u003emini high quality photo prints\u003c/b\u003e.",
+      "app_description": "Classic, retro or a little bit different: there's a print for every style.",
+      "items": [
+        {
+          "title": "Classic prints",
+          "web_description": "New size: 10,2x15,2\r\nSizes: 11x15, 15x20 \u0026 20x30 cm\r\nPrinted on matte or glossy silver-based photo paper\r\nCustomizable outlines in a selection of 14 colors",
+          "app_description": "Sizes: 10,2x15,2, 11x15, 15x20 \u0026 20x30 cm",
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-1r4pan92bb9vqt31d6d35vrdch62-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-1r4pan92bb9vqt31d6d35vrdch62-2x-1.jpg"
+          },
+          "price": {
+            "eur": "€0.19",
+            "usd": "$0.22",
+            "gbp": "£0.16"
+          },
+          "striked_price": null,
+          "navigation": {
+            "type": "product_page",
+            "destination": "classic-prints"
+          },
+          "label": {
+            "icon": "classic",
+            "text": "Bestseller",
+            "color": "#FF9900"
+          },
+          "alerts": [
+            {
+              "label": {
+                "icon": "clock",
+                "text": "✨",
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "clock",
+                "text": "✨",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-01-31T17:10:00+01:00",
+              "end_at": "2025-01-31T17:11:00+01:00"
+            },
+            {
+              "label": {
+                "icon": "clock",
+                "text": "",
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "rocket",
+                "text": "",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-01-31T17:10:00+01:00",
+              "end_at": "2025-01-31T17:11:00+01:00"
+            },
+            {
+              "label": {
+                "icon": "clock",
+                "text": null,
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "ghost",
+                "text": "",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-01-31T17:10:00+01:00",
+              "end_at": "2025-01-31T17:11:00+01:00"
+            }
+          ],
+          "is_out_of_stock": false,
+          "seo": {
+            "rating_value": 4.6,
+            "review_count": 4165
+          }
+        },
+        {
+          "title": "Retro prints",
+          "web_description": "Sizes: 8x10 and 13x15 cm\r\nPrinted on silver photo paper\r\nCustomizable outlines \u0026 text in a selection of 14 colors",
+          "app_description": "8x10 cm and 12x15 cm",
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-g9zvhkc4b30xaisryvbcnf4q8li6-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-g9zvhkc4b30xaisryvbcnf4q8li6-2x-1.jpg"
+          },
+          "price": {
+            "eur": "€0.19",
+            "usd": "$0.22",
+            "gbp": "£0.16"
+          },
+          "striked_price": null,
+          "navigation": {
+            "type": "product_page",
+            "destination": "retro-prints"
+          },
+          "label": null,
+          "alerts": [
+            {
+              "label": {
+                "icon": "clock",
+                "text": "✨",
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "clock",
+                "text": "✨",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-01-31T17:10:00+01:00",
+              "end_at": "2025-01-31T17:11:00+01:00"
+            },
+            {
+              "label": {
+                "icon": "clock",
+                "text": "",
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "rocket",
+                "text": "",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-01-31T17:10:00+01:00",
+              "end_at": "2025-01-31T17:11:00+01:00"
+            },
+            {
+              "label": {
+                "icon": "clock",
+                "text": null,
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "ghost",
+                "text": "",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-01-31T17:10:00+01:00",
+              "end_at": "2025-01-31T17:11:00+01:00"
+            }
+          ],
+          "is_out_of_stock": false,
+          "seo": {
+            "rating_value": 4.8,
+            "review_count": 18140
+          }
+        },
+        {
+          "title": "Pocket of Memories",
+          "web_description": "10 prints in 8 x 10 cm format \r\nDigital printing on both sides\r\nDesign of your choice with outside customization of the pocket\r\nOption to add a note behind each photo",
+          "app_description": "",
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-07jy98pcfvr0rz9dhmqcp7xgcguw-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-07jy98pcfvr0rz9dhmqcp7xgcguw-2x-1.jpg"
+          },
+          "price": {
+            "eur": "€9.90",
+            "usd": "$10.90",
+            "gbp": "£8.50"
+          },
+          "striked_price": null,
+          "navigation": {
+            "type": "product_page",
+            "destination": "memories-pocket"
+          },
+          "label": null,
+          "alerts": [
+            {
+              "label": {
+                "icon": "clock",
+                "text": "Last Days",
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "clock",
+                "text": "Last day to order standard delivery and have it delivered in time for Father's Day ! 3, 2, 1, Order !",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-06-06T07:00:00+02:00",
+              "end_at": "2025-06-10T23:59:00+02:00"
+            },
+            {
+              "label": {
+                "icon": "clock",
+                "text": "Last Day",
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "rocket",
+                "text": "Quiiiick, order before 21/05, 11h59pm, to receive your product in time for Father's Day with express delivery!",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-06-06T07:00:00+02:00",
+              "end_at": "2025-06-11T23:59:00+02:00"
+            },
+            {
+              "label": {
+                "icon": "clock",
+                "text": null,
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "ghost",
+                "text": "Oops, we no longer guarantee delivery in time for Father's Day! Heard of our digital gift card? 😉",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-06-06T07:00:00+02:00",
+              "end_at": "2025-06-15T23:59:00+02:00"
+            }
+          ],
+          "is_out_of_stock": false,
+          "seo": {
+            "rating_value": null,
+            "review_count": null
+          }
+        },
+        {
+          "title": "Mini prints",
+          "web_description": "Sizes: 6x9 cm (credit card)\r\nPrinted on matte or glossy silver photo paper\r\nCustomizable outlines thanks to a choice of templates and colors",
+          "app_description": "",
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-5fhqjfnge3q8mahgkcfrlcd6z30f-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-5fhqjfnge3q8mahgkcfrlcd6z30f-2x-1.jpg"
+          },
+          "price": {
+            "eur": "€0.19",
+            "usd": "$0.21",
+            "gbp": "£0.16"
+          },
+          "striked_price": null,
+          "navigation": {
+            "type": "product_page",
+            "destination": "prints-6x9"
+          },
+          "label": null,
+          "alerts": [
+            {
+              "label": {
+                "icon": "clock",
+                "text": "Last Days",
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "clock",
+                "text": "Last day to order standard delivery and have it delivered in time for Father's Day ! 3, 2, 1, Order !",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-06-06T07:00:00+02:00",
+              "end_at": "2025-06-10T23:59:00+02:00"
+            },
+            {
+              "label": {
+                "icon": "clock",
+                "text": "Last Day",
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "rocket",
+                "text": "Quiiiick, order before 21/05, 11h59pm, to receive your product in time for Father's Day with express delivery!",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-06-06T07:00:00+02:00",
+              "end_at": "2025-06-11T23:59:00+02:00"
+            },
+            {
+              "label": {
+                "icon": "clock",
+                "text": null,
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "ghost",
+                "text": "Oops, we no longer guarantee delivery in time for Father's Day! Heard of our digital gift card? 😉",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-06-06T07:00:00+02:00",
+              "end_at": "2025-06-15T23:59:00+02:00"
+            }
+          ],
+          "is_out_of_stock": false,
+          "seo": {
+            "rating_value": null,
+            "review_count": null
+          }
+        },
+        {
+          "title": "Square prints",
+          "web_description": "Sizes: 10x10 \u0026 20x20 cm\r\nPrinted on silver photo paper\r\nCustomizable outlines in a selection of 14 colors",
+          "app_description": "",
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-3w99m8y789qpij3ulow15cflt6gu-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-3w99m8y789qpij3ulow15cflt6gu-2x-1.jpg"
+          },
+          "price": {
+            "eur": "€0.19",
+            "usd": "$0.22",
+            "gbp": "£0.16"
+          },
+          "striked_price": null,
+          "navigation": {
+            "type": "product_page",
+            "destination": "square-prints"
+          },
+          "label": null,
+          "alerts": [
+            {
+              "label": {
+                "icon": "clock",
+                "text": "✨",
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "clock",
+                "text": "✨",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-01-31T17:10:00+01:00",
+              "end_at": "2025-01-31T17:11:00+01:00"
+            },
+            {
+              "label": {
+                "icon": "clock",
+                "text": "",
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "rocket",
+                "text": "",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-01-31T17:10:00+01:00",
+              "end_at": "2025-01-31T17:11:00+01:00"
+            },
+            {
+              "label": {
+                "icon": "clock",
+                "text": null,
+                "color": "#FA4364"
+              },
+              "message": {
+                "icon": "ghost",
+                "text": "",
+                "color": "#FA4364"
+              },
+              "start_at": "2025-01-31T17:10:00+01:00",
+              "end_at": "2025-01-31T17:11:00+01:00"
+            }
+          ],
+          "is_out_of_stock": false,
+          "seo": {
+            "rating_value": 4.5,
+            "review_count": 8525
+          }
+        },
+        {
+          "title": "Photobooth prints",
+          "web_description": "Sizes: 5x20 cm\r\nPack of 5 strips of 4 photos\r\nPrinted on matte silver photo paper\r\nCustomizable outlines in a choice of 14 colors",
+          "app_description": "",
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-csbwsezd9gfnyw9oap696ee15dra-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-csbwsezd9gfnyw9oap696ee15dra-2x-1.jpg"
+          },
+          "price": {
+            "eur": "€9.50",
+            "usd": "$11.00",
+            "gbp": "£8.00"
+          },
+          "striked_price": null,
+          "navigation": {
+            "type": "product_page",
+            "destination": "strips"
+          },
+          "label": null,
+          "alerts": null,
+          "is_out_of_stock": false,
+          "seo": {
+            "rating_value": 4.8,
+            "review_count": 776
+          }
+        },
+        {
+          "title": "The bigger picture",
+          "web_description": "Sizes: 12x15, 15x20, 20x20 \u0026 20x30 cm\r\nPrinted on matte or glossy silver-based photo paper\r\nCustomizable prints in 14 colors of your choice",
+          "app_description": "",
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-7u3mutuc63rm9t5enn6tg0mzkgqz-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/large_product_cards_web_image-7u3mutuc63rm9t5enn6tg0mzkgqz-2x-1.jpg"
+          },
+          "price": {
+            "eur": "€0.79",
+            "usd": "$0.90",
+            "gbp": "£0.68"
+          },
+          "striked_price": null,
+          "navigation": {
+            "type": "product_page",
+            "destination": "big-print"
+          },
+          "label": null,
+          "alerts": null,
+          "is_out_of_stock": false,
+          "seo": {
+            "rating_value": 4.5,
+            "review_count": 10246
+          }
+        }
+      ]
+    },
+    "section_title": {
+      "title": "Photo printing: your most beautiful memories in the form of Cheerz photo prints!"
+    },
+    "section_description_blocks": {
+      "items": [
+        {
+          "text": "Discover the most beautiful gifts to create (on your phone or your computer!), keep on a desk, hang as a decoration, display on a shelf, or slip into a beautiful photo album.\u003cbr\u003e\r\n\u003cbr\u003e\r\nOrder your photo prints online and choose from several \u003cb\u003eformats and enlargements of photo prints\u003c/b\u003e: \r\n\u003cul\u003e\r\n\u003cli\u003e11×15 cm,\u003c/li\u003e\r\n\u003cli\u003e15×20 cm,\u003c/li\u003e\r\n\u003cli\u003eor 20×30 cm.\u003c/li\u003e\r\n\u003c/ul\u003e\r\n\u003cbr\u003e\r\nAs well as the option to choose the style of your \u003cb\u003ephoto print: matte or gloss finish\u003c/b\u003e.\u003cbr\u003e\r\n\u003cbr\u003e\r\nWhen you order online with Cheerz, your printed photos arrive in a pretty pouch. It’s up to you to then display or store them away, in their original format or in different styles, with a white border or without, in short: however you like, as the fine art prints they are!\u003cbr\u003e\r\n\u003cbr\u003e\r\nIn a nutshell: rediscover your favourite moments through \u003cb\u003eeasy-to-order photo prints\u003c/b\u003e, printed on premium Fujifilm silver photo paper, at a \u003cb\u003every low price for great value\u003c/b\u003e. Photo prints are also an original and personalised gift idea for the holidays or any other occasion: emotions and success guaranteed!\u003cbr\u003e\r\n\u003cbr\u003e\r\nPssst: You can also order larger personalised photo prints (larger than a card, but smaller than a poster) with our photo enlargement options printed on premium paper. And for life-size photo prints, opt for a poster or photo canvas (a real professional-quality painting!).\r\n"
+        },
+        {
+          "text": "Digital photo printing is the \u003cb\u003eperfect service to easily capture your most memorable moments\u003c/b\u003e with family, friends, travel or parties and for all occasions: the birth of a baby, your holidays, a wedding, a birthday party, Christmas... All your memories will be there for the pleasure of finding them, commenting on them and bringing them back in a few years!\u003cbr\u003e\r\n \u003cbr\u003e\r\nIf you're the old school type, now is the time to \u003cb\u003ecreate a collage\u003c/b\u003e of your special moments by varying the print formats of your prints: small, large, medium, there's something for everyone.\u003cbr\u003e\r\n \u003cbr\u003e\r\nAnd if you're more conservative, we recommend you store your photo prints in a pretty box or in a personalised photo album.\r\nOr… switch it up and create a collage with a nice greeting card or wedding invitation.\u003cbr\u003e\r\n \u003cbr\u003e\r\nPssst, if you want to have your precious photos and your treasured memories printed in a way other than as photo prints, check out our range on our website and app:\r\n\u003cul\u003e\r\n\u003cli\u003ePhoto books,\u003c/li\u003e\r\n\u003cli\u003ePhoto calendars,\u003c/li\u003e\r\n\u003cli\u003ePhoto magnets,\u003c/li\u003e\r\n\u003cli\u003ePhoto posters,\u003c/li\u003e\r\n\u003cli\u003ePhoto on canvas,\u003c/li\u003e\r\n\u003cli\u003eAnd lots of other ideas for personalised decorations.\u003c/li\u003e\r\n\u003c/ul\u003e\r\n\u003cbr\u003e\r\nYou'll also find our new premium customised products to print photos straight from your phone, upside down, inside out, round and round: in short, however you’d like. Simply upload your photos from your device of choice and get to creating!\u003cbr\u003e\r\n\u003cbr\u003e\r\nPssst pssst: If you need help with your order, payment, delivery, our customer service will be happy to answer your questions!\r\n"
+        }
+      ]
+    },
+    "section_faq": {
+      "title": "Everything you need to know about online printing",
+      "items": [
+        {
+          "question": "Where should I get my photos developed?",
+          "answer": "Choosing Cheerz means choosing a unique photo service that makes it easy to print your pictures in a professional way, and make your prints online.\u003cbr\u003e\r\n\u003cbr\u003e\r\nCheerz offers fast picture printing on premium Fujifilm photo paper. Choose between glossy photo prints, or a matte finish. \r\nWith the Cheerz online photo service, your best images can be printed as :\r\n\u003cul\u003e\r\n\u003cli\u003ePhoto prints: square, classic, photobooth or decorative;\u003c/li\u003e\r\n\u003cli\u003eRetro prints ;\u003c/li\u003e\r\n\u003cli\u003eFramed photos;\u003c/li\u003e\r\n\u003cli\u003ePhoto enlargements ;\u003c/li\u003e\r\n\u003cli\u003eWall decorations;\u003c/li\u003e\r\n\u003cli\u003eOr other personalised photo products.\u003c/li\u003e\r\n\u003c/ul\u003e\r\n\u003cbr\u003e\r\nOnce the order is placed, your favourite photos are carefully packaged and sent as soon as possible. But before being sent, all prints are manually checked.\r\n\r\nCheerz is a French company committed to \u003cb\u003ecarbon footprint reduction\u003c/b\u003e through more responsible and environmentally friendly production.\u003cbr\u003e\r\n\u003cbr\u003e\r\nOur albums and photo prints are \u003cb\u003ecertified FSC®\u003c/b\u003e. A label promoting responsible forest management (they’re even replanting trees in Peru!).\u003cbr\u003e\r\n\u003cbr\u003e\r\nBy choosing Cheerz, you’re choosing a company that cares.\u003cbr\u003e\r\n\u003cbr\u003e\r\nAnd… with Cheerz, \u003cb\u003eprinting is made simple.\u003c/b\u003e In the blink of an eye, create high quality photo products for you and your loved ones with our online photo printing service : photo books, photo prints, poster prints, frames, photo canvas, magnets…\u003cbr\u003e\r\n\u003cbr\u003e\r\nThe bonus point? Photo printing is \u003cb\u003ethe perfect gift\u003c/b\u003e  for any occasion: a special day for you and your partner, your last family holiday, your best friend's birthday…And! You can do it all directly from your phone! \r\n"
+        },
+        {
+          "question": "How do I personalise my photo prints online?",
+          "answer": "There is a \u003cb\u003ewide range of customisation options\u003c/b\u003e for developing your premium photo print (the photo developer):\r\n\u003cul\u003e\r\n\u003cli\u003eAdd filters to your photos;\u003c/li\u003e\r\n\u003cli\u003eCrop them;\u003c/li\u003e\r\n\u003cli\u003eAdd text to retro and photobooth prints;\u003c/li\u003e\r\n\u003cli\u003eOr by choosing an outline in one of the 12 colours available on some of our formats for a unique personalisation!\u003c/li\u003e\r\n\u003c/ul\u003e\r\n\u003cbr\u003e\r\nAll this to enhance your favourite images of those special moments!\r\n"
+        },
+        {
+          "question": "What sizes of photo prints are available?",
+          "answer": "There are \u003cb\u003e4 different formats\u003c/b\u003e of quick photo prints: square prints, retro prints, classic prints or photobooth prints. Depending on the format, you can also opt for photo enlargements when developing your favourite snaps.\u003cbr\u003e\r\n\u003cbr\u003e\r\nSo choose the perfect format for the finish that you want (matt finish or gloss finish) and start the creative process! You can even choose to \u003cb\u003edevelop your images individually or in packs of 5, 20 and up to 300\u003c/b\u003e pictures depending on the model."
+        },
+        {
+          "question": "What is the quality of Cheerz photo paper?",
+          "answer": "As with our photo books, photo calendars and even our wooden canvas prints, we want the best for our photo prints (and for all Cheerz photo prints, as you'll understand).\u003cbr\u003e\r\n\u003cbr\u003e\r\nWhen it comes to printing photos, or your favourite photos in particular, you want to immortalise your camera roll so you can keep your favourite snaps close to you forever, which is why at Cheerz we use \u003cb\u003eFujifilm premium photo paper with a high quality silver print\u003c/b\u003e (it’s all in the details). The glossy prints keep the colours vivid.\u003cbr\u003e\r\n\u003cbr\u003e\r\nEven with the passage of time, the quality remains the same regardless of the finish (matte or gloss finish) or the format of the photo to be printed (large, small, medium or large).\r\n"
+        },
+        {
+          "question": "What is the finish of the photo prints?",
+          "answer": "You can choose between \u003cb\u003ematte and glossy\u003c/b\u003e finish on some of our formats, depending on the final result you want!\u003cbr\u003e\r\n\u003cbr\u003e\r\nWhichever finish you choose, your online photo print will be printed on Fujifilm premium silver photo paper: print quality guaranteed!\r\n"
+        },
+        {
+          "question": "How do I make a black and white photo print?",
+          "answer": "It's very simple: \u003cb\u003eseveral filters are available\u003c/b\u003e when editing your photos, including a black and white filter that will give your photo prints a vintage effect.\u003cbr\u003e\r\n\u003cbr\u003e\r\nDevelop and create prints according to your desires and moods! If you're looking for decorative gift ideas, consider retro photo prints to put in a book 😉 Order black and white prints for a timeless look. \r\n"
+        },
+        {
+          "question": "",
+          "answer": ""
+        },
+        {
+          "question": "",
+          "answer": ""
+        },
+        {
+          "question": "How do I print photos online?",
+          "answer": "Online photo printing can easily be done in a few steps:\r\n\u003col\u003e\r\n\u003cli\u003eStart by setting your number of prints to access the online editor;\u003c/li\u003e\r\n\u003cli\u003eChoose the photo product you want to create: This involves selecting the photos you want to print and placing them in order for our system to take care of everything).\u003c/li\u003e\r\n\u003cli\u003eDesign your photo product and confirm the order;\u003c/li\u003e\r\n\u003cli\u003eOnce you have placed your order for the photo product, we will print and ship the photos.\u003c/li\u003e\r\n\u003c/ol\u003e\r\n\u003cbr\u003e\r\nThis way you can print and have \u003cb\u003eprofessional photos\u003c/b\u003e delivered directly to your home or office, created easily from your phone or computer. "
+        },
+        {
+          "question": "",
+          "answer": ""
+        },
+        {
+          "question": "",
+          "answer": ""
+        },
+        {
+          "question": "",
+          "answer": ""
+        }
+      ]
+    },
+    "section_cross_sells": {
+      "title": "Want to see something else ? ",
+      "subtitle": "Everything you're looking for is right there! ",
+      "items": [
+        {
+          "title": "Softcover photo book",
+          "navigation": {
+            "type": "product_page",
+            "destination": "photo-album-softcover"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/medium_product_cards_web_image-4i3f8ksopeuuep198yrr4yobhgc3-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/medium_product_cards_web_image-4i3f8ksopeuuep198yrr4yobhgc3-2x-1.jpg"
+          }
+        },
+        {
+          "title": "Layflat Photo Book",
+          "navigation": {
+            "type": "product_page",
+            "destination": "photo-album-hardcover-layflat"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/medium_product_cards_web_image-cckcdihezjmbr8klrw1a2lawdvcz-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/medium_product_cards_web_image-cckcdihezjmbr8klrw1a2lawdvcz-2x-1.jpg"
+          }
+        }
+      ]
+    },
+    "banners": [
+      {
+        "color": {
+          "light": "#00B093",
+          "dark": "#00B093"
+        },
+        "text": {
+          "short": "-20% off your 1st order with code TAKETHELEAP, until 15/07 included! (excl. gift cards)",
+          "long": "-20% off your 1st order with code TAKETHELEAP, until 15/07 included! (excl. gift cards)"
+        },
+        "navigation": {
+          "type": "collection_page",
+          "destination": "first-order"
+        },
+        "tracking": {
+          "screen_group": "product_category",
+          "screen_name": "prints",
+          "properties": {
+            "destination_screen_name": "first-order",
+            "destination_screen_group": "product_collection"
+          },
+          "products": null
+        }
+      }
+    ]
+  }
+}

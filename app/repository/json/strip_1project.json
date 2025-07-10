@@ -1,0 +1,117 @@
+{
+  "_comment": "Ответ при заходе в проект Strip. Подгружает инфу о проекте по id cheerz.com/en/customizations/94904001/edit?  запрос cheerz.com/api/identified/3.3/customizations/94904001",
+  "response": {
+    "article": {
+      "id": 94904001,
+      "title": "Strips",
+      "subtitle": "5 strips • 1 photo",
+      "image_url": "https://fotomk8s.cheerz.com/photos/4379deaf5311c3780600fdd095cbb21652bd1a1c.jpg",
+      "total": {
+        "currency_code_3": "USD",
+        "cents": 1100
+      },
+      "is_in_cart": false,
+      "quantity": 1,
+      "can_be_reordered": false,
+      "created_at": "2025-06-24T13:45:59+02:00",
+      "updated_at": "2025-07-10T12:28:33+02:00",
+      "product": {
+        "slug": "print5x20-cabine",
+        "is_customizable_on_web_mobile": true,
+        "bypass_customization": false,
+        "is_out_of_stock": false,
+        "is_quantity_editable": true,
+        "tracking": {
+          "slug": "print5x20-cabine",
+          "category_slug": "prints",
+          "sub_category_slug": "prints-id-print"
+        }
+      },
+      "selected_addons": []
+    },
+    "config": {
+      "min_page_count": 5,
+      "max_page_count": 50,
+      "page_increment_step": 5,
+      "page_increment_price": {
+        "currency_code_3": "EUR",
+        "cents": 100
+      },
+      "page_addition_order": "addition_desc",
+      "price": {
+        "currency_code_3": "EUR",
+        "cents": 950
+      },
+      "display_title": "Strips",
+      "display_format": "5,1x20,3 cm",
+      "display_page_name_singular": "strip",
+      "display_page_name_plural": "strips",
+      "min_column_count": 3,
+      "max_column_count": 5,
+      "is_zoom_out_enabled": false,
+      "should_start_with_gallery": true,
+      "dpi_thresholds": {
+        "optimal": 300,
+        "acceptable": 150
+      },
+      "addons": [
+        {
+          "slug": "fairy_lights",
+          "value": "default",
+          "title": "LED Garlands",
+          "description": "2m length, delivered with batteries and small wooden clips.",
+          "image_url": "https://cdn2.chrzz.com/contents/assets/image-d9h05dwdmj5ctbuja523agyvtzz7-3x-1.jpg",
+          "price": {
+            "currency_code_3": "EUR",
+            "cents": 790
+          }
+        },
+        {
+          "slug": "adhesive",
+          "value": "patafix",
+          "title": "UHU® Patafix",
+          "description": "Sheet of 80 stickers to hang your photos and redecorate!",
+          "image_url": "https://cdn2.chrzz.com/contents/assets/image-cai6hyiw8gnk05hru1gqw2164w9p-3x-1.jpg",
+          "price": {
+            "currency_code_3": "EUR",
+            "cents": 350
+          }
+        }
+      ],
+      "switch_products": [
+        {
+          "slug": "print5x20-cabine",
+          "display_title": "Strips",
+          "display_label": "",
+          "image_url": "https://cdn2.chrzz.com/contents/assets/image-g7yum00tshlo46fagl7jry7y5j0v-3x-1.JPG",
+          "price": {
+            "currency_code_3": "EUR",
+            "cents": 950
+          },
+          "additional_page_config": {
+            "unit_price": {
+              "currency_code_3": "EUR",
+              "cents": 100
+            },
+            "pack_price": {
+              "currency_code_3": "EUR",
+              "cents": 500
+            },
+            "pack_size": 5
+          }
+        }
+      ],
+      "additional_page_config": {
+        "unit_price": {
+          "currency_code_3": "EUR",
+          "cents": 100
+        },
+        "pack_price": {
+          "currency_code_3": "EUR",
+          "cents": 500
+        },
+        "pack_size": 5
+      }
+    }
+  }
+}

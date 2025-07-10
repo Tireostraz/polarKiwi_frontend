@@ -1,0 +1,964 @@
+{
+  "_comment": "Ответ на странице категорий. Подгружает шапку с меню. запрос cheerz.com/api/public/3.0/menu_categories?lang=en",
+  "response": [
+    {
+      "title": "Photo Books",
+      "tag": "books",
+      "navigation": {
+        "type": "category_page",
+        "destination": "books"
+      },
+      "text_button": "View all our photo books",
+      "product_highlights": [
+        {
+          "title": "Layflat Photo Book",
+          "tag": "photo-album-hardcover-layflat",
+          "navigation": {
+            "type": "product_page",
+            "destination": "photo-album-hardcover-layflat"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-i9z81iula8gd8uuaucs5xrkm9ek6-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-i9z81iula8gd8uuaucs5xrkm9ek6-2x-1.png"
+          }
+        }
+      ],
+      "sub_categories": [
+        {
+          "title": "Our photo albums by format ",
+          "items": [
+            {
+              "title": "Portrait photo album",
+              "tag": "photo-album-portrait",
+              "navigation": {
+                "type": "product_page",
+                "destination": "photo-album-portrait"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "New colors",
+                "color": "#FF4286"
+              }
+            },
+            {
+              "title": "Landscape photo album",
+              "tag": "photo-album-landscape",
+              "navigation": {
+                "type": "product_page",
+                "destination": "photo-album-landscape"
+              },
+              "label": null
+            },
+            {
+              "title": "Small square photo album ",
+              "tag": "photo-album-small-square",
+              "navigation": {
+                "type": "product_page",
+                "destination": "photo-album-small-square"
+              },
+              "label": null
+            },
+            {
+              "title": "Big square photo album",
+              "tag": "photo-album-large-square",
+              "navigation": {
+                "type": "product_page",
+                "destination": "photo-album-large-square"
+              },
+              "label": null
+            },
+            {
+              "title": "A5 Photo book",
+              "tag": "photo-album-mini-a5",
+              "navigation": {
+                "type": "product_page",
+                "destination": "photo-album-mini-a5"
+              },
+              "label": null
+            },
+            {
+              "title": "Layflat Photo Book",
+              "tag": "photo-album-hardcover-layflat",
+              "navigation": {
+                "type": "product_page",
+                "destination": "photo-album-hardcover-layflat"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "New paper",
+                "color": "#fbc850"
+              }
+            },
+            {
+              "title": "Baby photo book",
+              "tag": "photo-album-baby",
+              "navigation": {
+                "type": "product_page",
+                "destination": "photo-album-baby"
+              },
+              "label": null
+            }
+          ]
+        },
+        {
+          "title": "Type of photo album ",
+          "items": [
+            {
+              "title": "Cheerz x Make-A-Wish® Photo Book",
+              "tag": "photo-album-makeawish",
+              "navigation": {
+                "type": "product_page",
+                "destination": "photo-album-makeawish"
+              },
+              "label": null
+            },
+            {
+              "title": "Photo album of the year",
+              "tag": "yearbook-photo-album",
+              "navigation": {
+                "type": "product_page",
+                "destination": "yearbook-photo-album"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "2024 edition",
+                "color": "#48dea8"
+              }
+            },
+            {
+              "title": "Travel diary",
+              "tag": "photo-album-softcover-travel",
+              "navigation": {
+                "type": "product_page",
+                "destination": "photo-album-softcover-travel"
+              },
+              "label": null
+            },
+            {
+              "title": "Photo albums by occasion",
+              "navigation": {
+                "type": "category_page",
+                "destination": "albums-occasions"
+              },
+              "tag": "albums-occasions",
+              "label": null
+            }
+          ]
+        },
+        {
+          "title": "Our DIY Photo Album",
+          "items": [
+            {
+              "title": "Small Scrapbook",
+              "tag": "diy-book",
+              "navigation": {
+                "type": "container_page",
+                "destination": "diy-book"
+              },
+              "label": null
+            },
+            {
+              "title": "Big Scrapbook",
+              "tag": "scrapbook",
+              "navigation": {
+                "type": "container_page",
+                "destination": "scrapbook"
+              },
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Photo Printing",
+      "tag": "prints",
+      "navigation": {
+        "type": "category_page",
+        "destination": "prints"
+      },
+      "text_button": "View all our photo prints",
+      "product_highlights": [
+        {
+          "title": "Pocket of Memories",
+          "tag": "memories-pocket",
+          "navigation": {
+            "type": "product_page",
+            "destination": "memories-pocket"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-xnwyhzsuj1fpdxbtvtzojygtsisv-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-xnwyhzsuj1fpdxbtvtzojygtsisv-2x-1.png"
+          }
+        }
+      ],
+      "sub_categories": [
+        {
+          "title": "Our photo prints",
+          "items": [
+            {
+              "title": "Classic prints",
+              "tag": "classic-prints",
+              "navigation": {
+                "type": "product_page",
+                "destination": "classic-prints"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "Bestseller",
+                "color": "#FF9900"
+              }
+            },
+            {
+              "title": "Retro prints",
+              "tag": "retro-prints",
+              "navigation": {
+                "type": "product_page",
+                "destination": "retro-prints"
+              },
+              "label": null
+            },
+            {
+              "title": "Mini prints",
+              "tag": "prints-6x9",
+              "navigation": {
+                "type": "product_page",
+                "destination": "prints-6x9"
+              },
+              "label": null
+            },
+            {
+              "title": "Square prints",
+              "tag": "square-prints",
+              "navigation": {
+                "type": "product_page",
+                "destination": "square-prints"
+              },
+              "label": null
+            },
+            {
+              "title": "Photobooth prints",
+              "tag": "strips",
+              "navigation": {
+                "type": "product_page",
+                "destination": "strips"
+              },
+              "label": null
+            },
+            {
+              "title": "The bigger picture",
+              "tag": "big-print",
+              "navigation": {
+                "type": "product_page",
+                "destination": "big-print"
+              },
+              "label": null
+            }
+          ]
+        },
+        {
+          "title": "Our photo boxes",
+          "items": [
+            {
+              "title": "Retro Cheerz Box",
+              "tag": "cheerz-box",
+              "navigation": {
+                "type": "container_page",
+                "destination": "cheerz-box"
+              },
+              "label": null
+            },
+            {
+              "title": "Classic Cheerz Box",
+              "tag": "cheerz-box-11x15",
+              "navigation": {
+                "type": "container_page",
+                "destination": "cheerz-box-11x15"
+              },
+              "label": null
+            },
+            {
+              "title": "Very Little Box ",
+              "tag": "very-little-box",
+              "navigation": {
+                "type": "product_page",
+                "destination": "very-little-box"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "New colors",
+                "color": "#FF4286"
+              }
+            },
+            {
+              "title": "Memory Box",
+              "tag": "memory-box-standard",
+              "navigation": {
+                "type": "service_page",
+                "destination": "memory-box-standard"
+              },
+              "label": null
+            }
+          ]
+        },
+        {
+          "title": "Our favourite gift",
+          "items": [
+            {
+              "title": "Pocket of Memories",
+              "tag": "memories-pocket",
+              "navigation": {
+                "type": "product_page",
+                "destination": "memories-pocket"
+              },
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Photo calendar",
+      "tag": "calendar",
+      "navigation": {
+        "type": "category_page",
+        "destination": "calendar"
+      },
+      "text_button": "View all our photo calendars",
+      "product_highlights": [
+        {
+          "title": "Weekly Planner",
+          "tag": "weekly-calendar-a4",
+          "navigation": {
+            "type": "product_page",
+            "destination": "weekly-calendar-a4"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-tc7ko0rij3ddz04mosq6eb9629tf-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-tc7ko0rij3ddz04mosq6eb9629tf-2x-1.png"
+          }
+        },
+        {
+          "title": "Double page A4 photo calendar",
+          "tag": "calendars-a4-landscape",
+          "navigation": {
+            "type": "product_page",
+            "destination": "calendars-a4-landscape"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-lh4tcnfsx45y9jk4xdrv3uft7pjb-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-lh4tcnfsx45y9jk4xdrv3uft7pjb-2x-1.png"
+          }
+        }
+      ],
+      "sub_categories": [
+        {
+          "title": "Our photo calendars",
+          "items": [
+            {
+              "title": "Weekly Planner",
+              "tag": "weekly-calendar-a4",
+              "navigation": {
+                "type": "product_page",
+                "destination": "weekly-calendar-a4"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "New",
+                "color": "#03b093"
+              }
+            },
+            {
+              "title": "Double page A4 photo calendar",
+              "tag": "calendars-a4-landscape",
+              "navigation": {
+                "type": "product_page",
+                "destination": "calendars-a4-landscape"
+              },
+              "label": null
+            },
+            {
+              "title": "Wall-hanging calendar (A4)",
+              "tag": "calendars-a4-portrait",
+              "navigation": {
+                "type": "product_page",
+                "destination": "calendars-a4-portrait"
+              },
+              "label": null
+            },
+            {
+              "title": "Annual Calendar 2025",
+              "tag": "calendar30x45-monopage",
+              "navigation": {
+                "type": "product_page",
+                "destination": "calendar30x45-monopage"
+              },
+              "label": null
+            },
+            {
+              "title": "Extra big photo calendar (A3)",
+              "tag": "calendars-a3-portrait",
+              "navigation": {
+                "type": "product_page",
+                "destination": "calendars-a3-portrait"
+              },
+              "label": null
+            }
+          ]
+        },
+        {
+          "title": "Our desk calendars",
+          "items": [
+            {
+              "title": "Desk calendar",
+              "tag": "desk-calendar",
+              "navigation": {
+                "type": "product_page",
+                "destination": "desk-calendar"
+              },
+              "label": null
+            },
+            {
+              "title": "Desk calendar refill ",
+              "tag": "desk-calendar-refill",
+              "navigation": {
+                "type": "product_page",
+                "destination": "desk-calendar-refill"
+              },
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Boxes",
+      "tag": "box",
+      "navigation": {
+        "type": "category_page",
+        "destination": "box"
+      },
+      "text_button": "View all of our photo boxes",
+      "product_highlights": [
+        {
+          "title": "Classic Cheerz Box",
+          "tag": "cheerz-box-11x15",
+          "navigation": {
+            "type": "container_page",
+            "destination": "cheerz-box-11x15"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-yguxba73g3cyc8smvwmoq3h2frn2-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-yguxba73g3cyc8smvwmoq3h2frn2-2x-1.png"
+          }
+        },
+        {
+          "title": "Very Little Box ",
+          "tag": "very-little-box",
+          "navigation": {
+            "type": "product_page",
+            "destination": "very-little-box"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-36k677fd2ys7c0o9hruu0ifkg5nx-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-36k677fd2ys7c0o9hruu0ifkg5nx-2x-1.png"
+          }
+        }
+      ],
+      "sub_categories": [
+        {
+          "title": "Our photo boxes",
+          "items": [
+            {
+              "title": "Retro Cheerz Box",
+              "tag": "cheerz-box",
+              "navigation": {
+                "type": "container_page",
+                "destination": "cheerz-box"
+              },
+              "label": null
+            },
+            {
+              "title": "Very Little Box ",
+              "tag": "very-little-box",
+              "navigation": {
+                "type": "product_page",
+                "destination": "very-little-box"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "New colors",
+                "color": "#FF4286"
+              }
+            },
+            {
+              "title": "Memory Box",
+              "tag": "memory-box-standard",
+              "navigation": {
+                "type": "service_page",
+                "destination": "memory-box-standard"
+              },
+              "label": null
+            },
+            {
+              "title": "Classic Cheerz Box",
+              "tag": "cheerz-box-11x15",
+              "navigation": {
+                "type": "container_page",
+                "destination": "cheerz-box-11x15"
+              },
+              "label": null
+            },
+            {
+              "title": "Big Fat Box",
+              "tag": "big-fat-box",
+              "navigation": {
+                "type": "container_page",
+                "destination": "big-fat-box"
+              },
+              "label": null
+            }
+          ]
+        },
+        {
+          "title": "Our decorative boxes",
+          "items": [
+            {
+              "title": "2-in-1 frame box",
+              "tag": "very-precious-box",
+              "navigation": {
+                "type": "product_page",
+                "destination": "very-precious-box"
+              },
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Fridge Magnets",
+      "tag": "magnets",
+      "navigation": {
+        "type": "category_page",
+        "destination": "magnets"
+      },
+      "text_button": "View all our magnets",
+      "product_highlights": [
+        {
+          "title": "Heart magnet x10",
+          "tag": "magnet-heart",
+          "navigation": {
+            "type": "product_page",
+            "destination": "magnet-heart"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-6iwu04l9uvs7i4o11paxocryblrd-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-6iwu04l9uvs7i4o11paxocryblrd-2x-1.png"
+          }
+        },
+        {
+          "title": "Square magnet x9",
+          "tag": "magnet-square",
+          "navigation": {
+            "type": "product_page",
+            "destination": "magnet-square"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-dfys3tdc4l24vnm7b2r2x0sfzwod-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-dfys3tdc4l24vnm7b2r2x0sfzwod-2x-1.png"
+          }
+        }
+      ],
+      "sub_categories": [
+        {
+          "title": "Our sets of magnets",
+          "items": [
+            {
+              "title": "Square magnet x9",
+              "tag": "magnet-square",
+              "navigation": {
+                "type": "product_page",
+                "destination": "magnet-square"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "Bestseller",
+                "color": "#FF9900"
+              }
+            },
+            {
+              "title": "Retro magnet x12",
+              "tag": "retro-magnets",
+              "navigation": {
+                "type": "product_page",
+                "destination": "retro-magnets"
+              },
+              "label": null
+            },
+            {
+              "title": "Rectangular magnet x9",
+              "tag": "magnet-7x9",
+              "navigation": {
+                "type": "product_page",
+                "destination": "magnet-7x9"
+              },
+              "label": null
+            },
+            {
+              "title": "Heart magnet x10",
+              "tag": "magnet-heart",
+              "navigation": {
+                "type": "product_page",
+                "destination": "magnet-heart"
+              },
+              "label": null
+            },
+            {
+              "title": "Photobooth magnet x5",
+              "tag": "magnet-id",
+              "navigation": {
+                "type": "product_page",
+                "destination": "magnet-id"
+              },
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Photo deco",
+      "tag": "frames",
+      "navigation": {
+        "type": "category_page",
+        "destination": "frames"
+      },
+      "text_button": "View all our wall decor",
+      "product_highlights": [
+        {
+          "title": "Umbra® - photo frame",
+          "tag": "copper-frame-15x15",
+          "navigation": {
+            "type": "product_page",
+            "destination": "copper-frame-15x15"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-6qlx9e5r2qsgt1mdzx5ki0mvqgq9-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-6qlx9e5r2qsgt1mdzx5ki0mvqgq9-2x-1.png"
+          }
+        }
+      ],
+      "sub_categories": [
+        {
+          "title": "Our posters \u0026 frames to hang",
+          "items": [
+            {
+              "title": "Photo Collage",
+              "tag": "photo-mosaic",
+              "navigation": {
+                "type": "product_page",
+                "destination": "photo-mosaic"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "New",
+                "color": "#03b093"
+              }
+            },
+            {
+              "title": "Framed Photo",
+              "tag": "poster-framed",
+              "navigation": {
+                "type": "product_page",
+                "destination": "poster-framed"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "Bestseller",
+                "color": "#FF9900"
+              }
+            },
+            {
+              "title": "Mounted frame",
+              "tag": "marielouise",
+              "navigation": {
+                "type": "product_page",
+                "destination": "marielouise"
+              },
+              "label": null
+            },
+            {
+              "title": "Poster",
+              "tag": "poster",
+              "navigation": {
+                "type": "product_page",
+                "destination": "poster"
+              },
+              "label": null
+            }
+          ]
+        },
+        {
+          "title": "Our wall prints",
+          "items": [
+            {
+              "title": "Canvas Prints",
+              "tag": "canvase",
+              "navigation": {
+                "type": "product_page",
+                "destination": "canvase"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "Bestseller",
+                "color": "#FF9900"
+              }
+            },
+            {
+              "title": "Retro Canvas Print",
+              "tag": "canvases-retro",
+              "navigation": {
+                "type": "product_page",
+                "destination": "canvases-retro"
+              },
+              "label": null
+            },
+            {
+              "title": "Plexiglass print",
+              "tag": "plexi",
+              "navigation": {
+                "type": "product_page",
+                "destination": "plexi"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "Premium",
+                "color": "#FF8CB5"
+              }
+            },
+            {
+              "title": "Photo on metallics",
+              "tag": "metallic-print",
+              "navigation": {
+                "type": "product_page",
+                "destination": "metallic-print"
+              },
+              "label": null
+            }
+          ]
+        },
+        {
+          "title": "Our standing frames",
+          "items": [
+            {
+              "title": "Umbra® - photo frame",
+              "tag": "copper-frame-15x15",
+              "navigation": {
+                "type": "product_page",
+                "destination": "copper-frame-15x15"
+              },
+              "label": null
+            },
+            {
+              "title": "2-in-1 frame box",
+              "tag": "very-precious-box",
+              "navigation": {
+                "type": "product_page",
+                "destination": "very-precious-box"
+              },
+              "label": null
+            },
+            {
+              "title": "Decorative photo frame",
+              "tag": "big-copper-frame-18x23",
+              "navigation": {
+                "type": "product_page",
+                "destination": "big-copper-frame-18x23"
+              },
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Puzzle",
+      "tag": "puzzles",
+      "navigation": {
+        "type": "category_page",
+        "destination": "puzzles"
+      },
+      "text_button": "View all our games",
+      "product_highlights": [
+        {
+          "title": "Personalised photo puzzle for children",
+          "tag": "puzzle20x30",
+          "navigation": {
+            "type": "product_page",
+            "destination": "puzzle20x30"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-jmkx23skppfd77t3q0iayvuufkgg-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-jmkx23skppfd77t3q0iayvuufkgg-2x-1.jpg"
+          }
+        },
+        {
+          "title": "Personalised puzzle Ravensburger",
+          "tag": "puzzle50x70-ravensburger",
+          "navigation": {
+            "type": "product_page",
+            "destination": "puzzle50x70-ravensburger"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-0dd2qlkefcmh20sm15z14qpkqssy-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-0dd2qlkefcmh20sm15z14qpkqssy-2x-1.jpg"
+          }
+        }
+      ],
+      "sub_categories": [
+        {
+          "title": "Our puzzles",
+          "items": [
+            {
+              "title": "Personalised puzzle Ravensburger",
+              "tag": "puzzle50x70-ravensburger",
+              "navigation": {
+                "type": "product_page",
+                "destination": "puzzle50x70-ravensburger"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "Bestseller",
+                "color": "#FF9900"
+              }
+            },
+            {
+              "title": "Personalised photo puzzle for children",
+              "tag": "puzzle20x30",
+              "navigation": {
+                "type": "product_page",
+                "destination": "puzzle20x30"
+              },
+              "label": null
+            },
+            {
+              "title": "Magnetic photo puzzle",
+              "tag": "magnethexa7x6",
+              "navigation": {
+                "type": "product_page",
+                "destination": "magnethexa7x6"
+              },
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Card Shop ",
+      "tag": "cards",
+      "navigation": {
+        "type": "category_page",
+        "destination": "cards"
+      },
+      "text_button": "View all our cards",
+      "product_highlights": [
+        {
+          "title": "Greeting cards",
+          "tag": "christmas-cards",
+          "navigation": {
+            "type": "product_page",
+            "destination": "christmas-cards"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-122x1hbjtpz49nmtgqa8ad3r4ga0-1x-1.png",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-122x1hbjtpz49nmtgqa8ad3r4ga0-2x-1.png"
+          }
+        },
+        {
+          "title": "Photo \u0026 Video Card",
+          "tag": "card-photo-and-video",
+          "navigation": {
+            "type": "product_page",
+            "destination": "card-photo-and-video"
+          },
+          "image": {
+            "small": "https://cdn2.chrzz.com/contents/assets/highlight_image-of44bjuqzxlpq9miknqcgbyjhipg-1x-1.jpg",
+            "large": "https://cdn2.chrzz.com/contents/assets/highlight_image-of44bjuqzxlpq9miknqcgbyjhipg-2x-1.jpg"
+          }
+        }
+      ],
+      "sub_categories": [
+        {
+          "title": "Our cards offer",
+          "items": [
+            {
+              "title": "The Thought that Counts",
+              "tag": "card-petite-attention",
+              "navigation": {
+                "type": "product_page",
+                "destination": "card-petite-attention"
+              },
+              "label": {
+                "icon": "classic",
+                "text": "Bestseller",
+                "color": "#FF9900"
+              }
+            },
+            {
+              "title": "The new baby card ",
+              "tag": "card-birth",
+              "navigation": {
+                "type": "product_page",
+                "destination": "card-birth"
+              },
+              "label": null
+            },
+            {
+              "title": "Thank you cards",
+              "tag": "card-thankyou",
+              "navigation": {
+                "type": "product_page",
+                "destination": "card-thankyou"
+              },
+              "label": null
+            },
+            {
+              "title": "Invitations ",
+              "tag": "card-invitation",
+              "navigation": {
+                "type": "product_page",
+                "destination": "card-invitation"
+              },
+              "label": null
+            },
+            {
+              "title": "Photo \u0026 Video Card",
+              "tag": "card-photo-and-video",
+              "navigation": {
+                "type": "product_page",
+                "destination": "card-photo-and-video"
+              },
+              "label": null
+            }
+          ]
+        },
+        {
+          "title": "Our favourite",
+          "items": [
+            {
+              "title": "Greeting cards",
+              "tag": "christmas-cards",
+              "navigation": {
+                "type": "product_page",
+                "destination": "christmas-cards"
+              },
+              "label": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
