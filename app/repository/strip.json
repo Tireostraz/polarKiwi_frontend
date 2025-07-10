@@ -1,0 +1,415 @@
+{
+  "response": {
+    "id": "23a8e542-d4b9-11ef-a42f-c338c6ab5224",
+    "asset_url_template": "https://cdn2.chrzz.com/customization/assets/[asset_id]/[width]",
+    "definition": {
+      "content_page_configuration": {
+        "filter_type_definitions": [
+          {
+            "key": "default",
+            "default_page_key": "T101",
+            "localized_description": ""
+          }
+        ],
+        "force_pack_color": true,
+        "link_in_content": false,
+        "increment": true,
+        "forced_layouts_filter_type_keys": [
+          "default",
+          "default",
+          "default",
+          "default",
+          "default"
+        ],
+        "next_filter_type_keys": ["default"]
+      },
+      "definition_version": 15,
+      "min_dpi": 150,
+      "template_type": "mural",
+      "asset_definitions": [
+        {
+          "asset_id": "37620abe-ff4d-11ea-bdb7-ab19a951a9a8",
+          "key": "transparent",
+          "format_type": "default"
+        },
+        {
+          "asset_id": "e936651a-ff4c-11ea-b3d6-df804102c22b",
+          "key": "icon_option",
+          "format_type": "default"
+        }
+      ],
+      "category_definitions": [],
+      "color_definitions": [
+        {
+          "key": "white",
+          "theme_value": "#ffffff",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#ffffff",
+          "tint_colors": []
+        },
+        {
+          "key": "rose",
+          "theme_value": "#ff98e3",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#ff98e3",
+          "tint_colors": []
+        },
+        {
+          "key": "rouge",
+          "theme_value": "#fe502b",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#fe502b",
+          "tint_colors": []
+        },
+        {
+          "key": "fuschia",
+          "theme_value": "#e01982",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#e01982",
+          "tint_colors": []
+        },
+        {
+          "key": "orange",
+          "theme_value": "#ff9240",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#ff9240",
+          "tint_colors": []
+        },
+        {
+          "key": "jaune",
+          "theme_value": "#ffe176",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#ffe176",
+          "tint_colors": []
+        },
+        {
+          "key": "rose_clair",
+          "theme_value": "#ffd0e0",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#ffd0e0",
+          "tint_colors": []
+        },
+        {
+          "key": "lila",
+          "theme_value": "#c8affc",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#c8affc",
+          "tint_colors": []
+        },
+        {
+          "key": "bleu",
+          "theme_value": "#8bc8ff",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#8bc8ff",
+          "tint_colors": []
+        },
+        {
+          "key": "marine",
+          "theme_value": "#0061c5",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#0061c5",
+          "tint_colors": []
+        },
+        {
+          "key": "celadon",
+          "theme_value": "#9fd7bc",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#9fd7bc",
+          "tint_colors": []
+        },
+        {
+          "key": "vert",
+          "theme_value": "#1f9483",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#1f9483",
+          "tint_colors": []
+        },
+        {
+          "key": "gris",
+          "theme_value": "#e4e4e4",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#e4e4e4",
+          "tint_colors": []
+        },
+        {
+          "key": "noir",
+          "theme_value": "#000000",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#000000",
+          "tint_colors": []
+        }
+      ],
+      "font_definitions": [
+        {
+          "font_tag": "playfair",
+          "key": "font-playfair",
+          "width_per_height_mean_char_ratio": 0.6623
+        },
+        {
+          "font_tag": "oswald",
+          "key": "font-oswald",
+          "width_per_height_mean_char_ratio": 0.6623
+        },
+        {
+          "font_tag": "futurastd",
+          "key": "font-futura",
+          "width_per_height_mean_char_ratio": 0.6623
+        },
+        {
+          "font_tag": "poppins",
+          "key": "font-poppins",
+          "width_per_height_mean_char_ratio": 0.6623
+        },
+        {
+          "font_tag": "nunito",
+          "key": "font-nunito",
+          "width_per_height_mean_char_ratio": 0.6623
+        },
+        {
+          "font_tag": "dancing",
+          "key": "font-dancing",
+          "width_per_height_mean_char_ratio": 0.6623
+        }
+      ],
+      "option_definitions": [],
+      "page_definitions": [
+        {
+          "category_key": null,
+          "filter_type_keys": ["default"],
+          "height_dmm": 2020,
+          "key": "T101",
+          "type": "mural",
+          "width_dmm": 500,
+          "color_keys": [
+            "white",
+            "rose",
+            "rouge",
+            "fuschia",
+            "orange",
+            "jaune",
+            "rose_clair",
+            "lila",
+            "bleu",
+            "marine",
+            "celadon",
+            "vert",
+            "gris",
+            "noir"
+          ],
+          "elements": [
+            {
+              "key": "text1",
+              "type": "editable-text",
+              "anchor_page": ["top", "center"],
+              "anchor_self": ["top", "center"],
+              "height_dmm": 50,
+              "width_dmm": 440,
+              "x_dmm": 0,
+              "y_dmm": 1930,
+              "z_index": 1,
+              "font_color_key": "primary",
+              "font_size_dmm": 35,
+              "line_height_dmm": 40,
+              "order": 1,
+              "text_align": ["middle", "center"],
+              "text_orientation": 0,
+              "font_keys": [
+                "font-playfair",
+                "font-oswald",
+                "font-futura",
+                "font-poppins",
+                "font-nunito",
+                "font-dancing"
+              ],
+              "localized_placeholder": "Add text"
+            },
+            {
+              "key": "picture1",
+              "type": "editable-picture",
+              "anchor_page": ["top", "center"],
+              "anchor_self": ["top", "center"],
+              "height_dmm": 440,
+              "width_dmm": 440,
+              "x_dmm": 0,
+              "y_dmm": 30,
+              "z_index": 0,
+              "order": 1
+            },
+            {
+              "key": "picture2",
+              "type": "editable-picture",
+              "anchor_page": ["top", "center"],
+              "anchor_self": ["top", "center"],
+              "height_dmm": 440,
+              "width_dmm": 440,
+              "x_dmm": 0,
+              "y_dmm": 500,
+              "z_index": 0,
+              "order": 2
+            },
+            {
+              "key": "picture3",
+              "type": "editable-picture",
+              "anchor_page": ["top", "center"],
+              "anchor_self": ["top", "center"],
+              "height_dmm": 440,
+              "width_dmm": 440,
+              "x_dmm": 0,
+              "y_dmm": 970,
+              "z_index": 0,
+              "order": 3
+            },
+            {
+              "key": "picture4",
+              "type": "editable-picture",
+              "anchor_page": ["top", "center"],
+              "anchor_self": ["top", "center"],
+              "height_dmm": 440,
+              "width_dmm": 440,
+              "x_dmm": 0,
+              "y_dmm": 1440,
+              "z_index": 0,
+              "order": 4
+            }
+          ],
+          "presentations": [],
+          "tag_key": null
+        }
+      ],
+      "presentation_definitions": [],
+      "shape_definitions": [],
+      "tag_definitions": []
+    },
+    "definition_version": "15",
+    "status": "published",
+    "archived_at": null,
+    "template_id": "34aa670a-f1db-11ea-b67d-936c3711f5bb",
+    "version": "22"
+  }
+}

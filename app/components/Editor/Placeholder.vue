@@ -2,5 +2,8 @@
 defineProps<{}>();
 </script>
 <template>
-  <h2>My Placeholder</h2>
+  <div>
+    <div class="w-[200px] h-[200px] bg-amber-600"></div>
+    <div class="w-[200px] h-[200px] bg-green-400"></div>
+  </div>
 </template>

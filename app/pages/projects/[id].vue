@@ -282,16 +282,13 @@ function handleDeleteImage() {
   isModalOpen.value = false;
 }
 
-function handlePlaceholderClick(
-  placeholderIndex: number,
-  elementIndex: number
-) {
-  console.log("placegolder", index, "clicked");
+function handlePlaceholderClick(placeholderIndex: number) {
+  console.log("placegolder", placeholderIndex, "clicked");
   const projectValue = project.value;
-  const page = projectValue?.pages[index];
+  const page = projectValue?.pages[placeholderIndex];
   console.log(page);
   if (page?.elements) {
-    selectedPlaceholder.value = index;
+    selectedPlaceholder.value = placeholderIndex;
     isModalOpen.value = true;
   } else {
     console.log("upload image");
@@ -335,31 +332,11 @@ function validateInput() {
     photosQuantity.value = 200;
   } */
 }
-
-/* async function confirmExit(shouldExit: boolean) {
-  showExitConfirm.value = false;
-  if (shouldExit) {
-    await updateProjectBeforeExit();
-    if (nextRoute.value) {
-      navigateTo(nextRoute.value.fullPath);
-    }
-  } else {
-    nextRoute.value = null; // сброс
-  }
-} */
 </script>
 
 <template>
   <div class="base-editor-layout" v-if="!isLoading">
     <client-only>
-      <!-- <EditorUploader
-        :project-id="id"
-        :isauto-placing="isAutoPlacing"
-        @add-image="addPhoto"
-        @drag-start="isDraggingFromGallery = true"
-        @drag-end="isDraggingFromGallery = false"
-      /> -->
-
       <div class="workspace">
         <div class="workspace-info">
           <div>Проект: {{ layout?.title }}</div>
@@ -381,7 +358,8 @@ function validateInput() {
           </div>
 
           <div class="workspace-container">
-            <EditorPhotoPlaceholder
+            <EditorPlaceholder v-for="page in project?.pages" />
+            <!-- <EditorPhotoPlaceholder
               v-for="(page, index) in project?.pages"
               :key="page.id"
               :element="page.elements[0] || null"
@@ -390,7 +368,7 @@ function validateInput() {
               :is-dragging="isDraggingFromGallery"
               @add-photo="assignPhotoToPlaceholder"
               @click="() => handlePlaceholderClick(index)"
-            />
+            /> -->
           </div>
         </div>
       </div>
@@ -403,22 +381,8 @@ function validateInput() {
         @delete="handleDeleteImage"
         @close="isModalOpen = false"
       />
-
-      <!-- <UButton class="submit-btn">Добавить в корзину</UButton> -->
     </client-only>
   </div>
-  <!--  <UModal v-model="showExitConfirm">
-    <template #content>
-      <div class="p-4">
-        <h2 class="text-lg font-semibold mb-2">Вы точно хотите выйти?</h2>
-        <p class="mb-4">Все изменения будут сохранены.</p>
-        <div class="flex justify-end gap-2">
-          <UButton @click="confirmExit(true)">Да</UButton>
-          <UButton color="info" @click="confirmExit(false)">Нет</UButton>
-        </div>
-      </div>
-    </template>
-  </UModal> -->
 </template>
 
 <style scoped>
