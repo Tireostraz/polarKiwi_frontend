@@ -57,18 +57,21 @@ function handleLogout() {
             <div class="nav-text">Проекты</div>
             <ClientOnly>
               <div
-                v-if="projectStore.totalProjects > 0"
+                v-if="projectStore.totalDraftProjects > 0"
                 class="nav-cart_counter"
               >
-                {{ projectStore.totalProjects }}
+                {{ projectStore.totalDraftProjects }}
               </div>
             </ClientOnly>
           </nuxt-link>
           <nuxt-link class="nav-link" to="/cart">
             <img src="/cart.svg" width="24" height="24" />
             <ClientOnly>
-              <div v-if="cartStore.totalItems > 0" class="nav-cart_counter">
-                {{ cartStore.totalItems }}
+              <div
+                v-if="projectStore.totalCartProjects > 0"
+                class="nav-cart_counter"
+              >
+                {{ projectStore.totalCartProjects }}
               </div>
             </ClientOnly>
             <div class="nav-text">Корзина</div>

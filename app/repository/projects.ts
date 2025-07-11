@@ -14,7 +14,17 @@ export interface Project {
   photos: UploadedPhoto[];
 }
 
-export interface ProjectIds {}
+export interface ProjectId {
+  id: string;
+  quantity: number;
+}
+
+export interface ProjectIdsDTO {
+  response: {
+    cart_projects: ProjectId[];
+    draft_projects: ProjectId[];
+  };
+}
 
 //это либо 1 страница смсбука либо для фото плейсхолдер. На одну страницу/шаблон фото 1 шаблон и несколько фото
 export interface ProjectPage {
@@ -126,13 +136,13 @@ export function createProjectRepository(appFetch: typeof $fetch) {
       return dtos.map(fromDTO);
     },
 
-    async getIds(): Promise<Project> {
+    //Получение всех id проектов пользователя которые draft и in_cart
+    async getIds(): Promise<ProjectIdsDTO> {
       const guestId = useAuthStore().guestId;
-      const dtos = await appFetch<ProjectDTO>("/projects/ids", {
+      return await appFetch<ProjectIdsDTO>("/projects/ids", {
         method: "GET",
         headers: guestId ? { "x-guest-id": guestId } : undefined,
       });
-      return dtos.map(fromDTO);
     },
 
     // Получение одного проекта

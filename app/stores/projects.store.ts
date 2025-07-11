@@ -1,11 +1,25 @@
 import { defineStore } from "pinia";
-import type { CreateProjectDTO, Project } from "~/repository/projects";
+import type {
+  CreateProjectDTO,
+  Project,
+  ProjectId,
+} from "~/repository/projects";
 import type { Product } from "~/repository/products";
 
 export const useProjectsStore = defineStore(
   "projects",
   () => {
     const addedProjects = ref<Project[]>([]);
+    const draftProjects = ref<ProjectId[]>([]);
+    const cartProjects = ref<ProjectId[]>([]);
+
+    const totalDraftProjects = computed(() =>
+      draftProjects.value.reduce((acc, val) => acc + val.quantity, 0)
+    );
+
+    const totalCartProjects = computed(() =>
+      cartProjects.value.reduce((acc, val) => acc + val.quantity, 0)
+    );
     const totalProjects = computed(() => addedProjects.value.length);
 
     const { $toast, $api } = useNuxtApp();
@@ -24,11 +38,15 @@ export const useProjectsStore = defineStore(
       }
     };
 
-    /* const getProjectsIds = async () =>{
-      try{
-        const 
+    const getProjectsIds = async () => {
+      try {
+        const projectIds = await $api.projects.getIds();
+        cartProjects.value = projectIds.response.cart_projects;
+        draftProjects.value = projectIds.response.draft_projects;
+      } catch (e) {
+        console.error("Ошибка загрузки идентификаторов проектов", e);
       }
-    } */
+    };
 
     const addProject = async (product: Product) => {
       const userId = authStore.user?.id;
@@ -120,8 +138,13 @@ export const useProjectsStore = defineStore(
 
     return {
       addedProjects,
+      cartProjects,
+      draftProjects,
+      totalDraftProjects,
+      totalCartProjects,
       totalProjects,
       loadProjects,
+      getProjectsIds,
       addProject,
       removeProject,
       updateProject,

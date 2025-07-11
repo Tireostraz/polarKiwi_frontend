@@ -96,17 +96,21 @@
               }
             }
           ],
-          "cells": [],
           "videos": []
         },
         {
           "key": "7bdebd11-5dc9-11f0-8746-8972f7da41ae",
           "filter_type_key": "single-page",
-          "page_definition_key": "PAGE-101",
+          "page_definition_key": "PAGE-100",
           "color_key": "white",
-          "editable_texts": [],
+          "editable_texts": [
+            {
+              "editable_text_key": "text",
+              "content": "3331313",
+              "font_key": "font-montserrat"
+            }
+          ],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -116,7 +120,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -126,7 +129,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -136,7 +138,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -146,7 +147,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -156,7 +156,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -166,7 +165,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -176,7 +174,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -186,7 +183,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -196,7 +192,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -206,7 +201,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -216,7 +210,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -226,7 +219,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -236,7 +228,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -246,7 +237,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -256,7 +246,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -266,7 +255,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -276,7 +264,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -286,7 +273,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -296,7 +282,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -306,7 +291,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -316,7 +300,6 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         },
         {
@@ -326,14 +309,13 @@
           "color_key": "white",
           "editable_texts": [],
           "editable_pictures": [],
-          "cells": [],
           "videos": []
         }
       ],
       "selection_photos": [
         {
           "key": "upload-090e6fd2c0420469163a529b7ca08df67bd1a8b1",
-          "creation_date": "2024-08-10T20:00:36.251Z",
+          "creation_date": "2025-07-10T22:21:06.462Z",
           "height_px": 720,
           "width_px": 720,
           "fotom_key": "090e6fd2c0420469163a529b7ca08df67bd1a8b1",
@@ -342,7 +324,7 @@
         },
         {
           "key": "upload-24ed4ebc10f1199f845f54d323ab82a28ab1c209",
-          "creation_date": "2020-04-06T17:20:00.000Z",
+          "creation_date": "2025-07-10T22:21:06.462Z",
           "height_px": 158,
           "width_px": 208,
           "fotom_key": "24ed4ebc10f1199f845f54d323ab82a28ab1c209",
