@@ -1,0 +1,126 @@
+{
+  "response": {
+    "article": {
+      "id": 95127751,
+      "title": "Hardcover Photo Album 27x21cm",
+      "subtitle": null,
+      "image_url": "https://cdn2.chrzz.com/contents/assets/image-ekpxctsrprk3sv0lnqek7hhkeimd-3x-1.jpg",
+      "total": {
+        "currency_code_3": "USD",
+        "cents": 4290
+      },
+      "is_in_cart": false,
+      "quantity": 1,
+      "can_be_reordered": true,
+      "created_at": "2025-07-10T22:07:17+02:00",
+      "updated_at": "2025-07-10T22:07:18+02:00",
+      "product": {
+        "slug": "book27x21-hard-matte",
+        "is_customizable_on_web_mobile": false,
+        "bypass_customization": false,
+        "is_out_of_stock": false,
+        "is_quantity_editable": true,
+        "tracking": {
+          "slug": "book27x21-hard-matte",
+          "category_slug": "albums",
+          "sub_category_slug": "albums-hard-cover"
+        }
+      },
+      "selected_addons": []
+    },
+    "config": {
+      "min_page_count": 24,
+      "max_page_count": 96,
+      "page_increment_step": 4,
+      "page_increment_price": {
+        "currency_code_3": "EUR",
+        "cents": 99
+      },
+      "page_addition_order": "addition_desc",
+      "price": {
+        "currency_code_3": "EUR",
+        "cents": 3890
+      },
+      "display_title": "Hardcover Photo Album ",
+      "display_format": "27x21cm",
+      "display_page_name_singular": "page",
+      "display_page_name_plural": "pages",
+      "min_column_count": null,
+      "max_column_count": null,
+      "is_zoom_out_enabled": true,
+      "should_start_with_gallery": true,
+      "dpi_thresholds": {
+        "optimal": 300,
+        "acceptable": 150
+      },
+      "addons": [
+        {
+          "slug": "packaging",
+          "value": "box",
+          "title": "Box",
+          "description": "A lovely box to protect, keep, and gift it.",
+          "image_url": "https://cdn2.chrzz.com/contents/assets/image-ntl0yg499psyf81h6j5n91iqp8rf-3x-1.jpg",
+          "price": {
+            "currency_code_3": "EUR",
+            "cents": 690
+          }
+        }
+      ],
+      "switch_products": [
+        {
+          "slug": "book27x21-hard-matte",
+          "display_title": "Hardcover Photo Album ",
+          "display_label": "Mat",
+          "image_url": "https://cdn2.chrzz.com/contents/assets/image-ekpxctsrprk3sv0lnqek7hhkeimd-3x-1.jpg",
+          "price": {
+            "currency_code_3": "EUR",
+            "cents": 3890
+          },
+          "additional_page_config": {
+            "unit_price": {
+              "currency_code_3": "EUR",
+              "cents": 99
+            },
+            "pack_price": {
+              "currency_code_3": "EUR",
+              "cents": 396
+            },
+            "pack_size": 4
+          }
+        },
+        {
+          "slug": "book27x21-hard-glossy",
+          "display_title": "Hardcover Photo Album",
+          "display_label": "glossy",
+          "image_url": "https://cdn2.chrzz.com/contents/assets/image-sgpwcc6zyu19d57xnpkxq78rb1fu-3x-1.jpg",
+          "price": {
+            "currency_code_3": "EUR",
+            "cents": 4480
+          },
+          "additional_page_config": {
+            "unit_price": {
+              "currency_code_3": "EUR",
+              "cents": 119
+            },
+            "pack_price": {
+              "currency_code_3": "EUR",
+              "cents": 476
+            },
+            "pack_size": 4
+          }
+        }
+      ],
+      "additional_page_config": {
+        "unit_price": {
+          "currency_code_3": "EUR",
+          "cents": 99
+        },
+        "pack_price": {
+          "currency_code_3": "EUR",
+          "cents": 396
+        },
+        "pack_size": 4
+      }
+    }
+  }
+}
