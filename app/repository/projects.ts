@@ -124,6 +124,15 @@ export function createProjectRepository(appFetch: typeof $fetch) {
       return dtos.map(fromDTO);
     },
 
+    async getIds(): Promise<Project> {
+      const guestId = useAuthStore().guestId;
+      const dtos = await appFetch<ProjectDTO>("/projects/ids", {
+        method: "GET",
+        headers: guestId ? { "x-guest-id": guestId } : undefined,
+      });
+      return dtos.map(fromDTO);
+    },
+
     // Получение одного проекта
     async get(id: string): Promise<Project> {
       const guestId = useAuthStore().guestId;

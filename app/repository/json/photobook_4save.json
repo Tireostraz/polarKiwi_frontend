@@ -1,0 +1,341 @@
+{
+  "response": {
+    "id": "7aa88c96-5dc9-11f0-aa72-73ddc8af9ee2",
+    "definition": {
+      "template_type": "book",
+      "definition_version": 15,
+      "locale": "en",
+      "pages": [
+        {
+          "key": "page-0",
+          "filter_type_key": "front-cover",
+          "page_definition_key": "PAGE-1-COVER",
+          "color_key": "jaune",
+          "editable_texts": [],
+          "editable_pictures": [
+            {
+              "editable_picture_key": "img1",
+              "selection_photo_key": "upload-090e6fd2c0420469163a529b7ca08df67bd1a8b1",
+              "filter_tag": "none",
+              "photo_placement": {
+                "is_default": true,
+                "placed_by": "none",
+                "rotation": 0,
+                "offset": {
+                  "x_dmm": 0,
+                  "y_dmm": -190
+                },
+                "size": {
+                  "height_dmm": 1520,
+                  "width_dmm": 1520
+                }
+              }
+            }
+          ],
+          "videos": []
+        },
+        {
+          "key": "page-1",
+          "filter_type_key": "spine",
+          "page_definition_key": "PAGE-1-SPINE1",
+          "color_key": "jaune",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "page-2",
+          "filter_type_key": "back-cover",
+          "page_definition_key": "PAGE-1-BACK",
+          "color_key": "jaune",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "page-3",
+          "filter_type_key": "single-front-matter",
+          "page_definition_key": "single-front-matter-1",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "page-4",
+          "filter_type_key": "single-back-matter",
+          "page_definition_key": "single-back-matter-1",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdebd10-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [
+            {
+              "editable_picture_key": "img1",
+              "selection_photo_key": "upload-24ed4ebc10f1199f845f54d323ab82a28ab1c209",
+              "filter_tag": "none",
+              "photo_placement": {
+                "is_default": true,
+                "placed_by": "none",
+                "rotation": 0,
+                "offset": {
+                  "x_dmm": -9,
+                  "y_dmm": 0
+                },
+                "size": {
+                  "height_dmm": 2110,
+                  "width_dmm": 2778
+                }
+              }
+            }
+          ],
+          "videos": []
+        },
+        {
+          "key": "7bdebd11-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-100",
+          "color_key": "white",
+          "editable_texts": [
+            {
+              "editable_text_key": "text",
+              "content": "33313opip",
+              "font_key": "font-montserrat"
+            }
+          ],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdebd12-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdebd13-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdebd14-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdebd15-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdebd16-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdebd17-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdebd18-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdebd19-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee420-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee421-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee422-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee423-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee424-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee425-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee426-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee427-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee428-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee429-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee42a-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee42b-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee42c-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "7bdee42d-5dc9-11f0-8746-8972f7da41ae",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        }
+      ],
+      "selection_photos": [
+        {
+          "key": "upload-090e6fd2c0420469163a529b7ca08df67bd1a8b1",
+          "creation_date": "2025-07-11T14:52:52.338Z",
+          "height_px": 720,
+          "width_px": 720,
+          "fotom_key": "090e6fd2c0420469163a529b7ca08df67bd1a8b1",
+          "provider": "upload",
+          "provider_ref": "090e6fd2c0420469163a529b7ca08df67bd1a8b1"
+        },
+        {
+          "key": "upload-24ed4ebc10f1199f845f54d323ab82a28ab1c209",
+          "creation_date": "2025-07-11T14:52:52.338Z",
+          "height_px": 158,
+          "width_px": 208,
+          "fotom_key": "24ed4ebc10f1199f845f54d323ab82a28ab1c209",
+          "provider": "upload",
+          "provider_ref": "24ed4ebc10f1199f845f54d323ab82a28ab1c209"
+        }
+      ],
+      "gallery_photos": []
+    },
+    "definition_version": "15",
+    "status": "draft",
+    "template_revision_id": "03f87ace-5d8a-11f0-bd16-f36bf3120468"
+  }
+}

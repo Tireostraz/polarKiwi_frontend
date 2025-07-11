@@ -5,6 +5,7 @@
     "asset_url_template": "https://cdn2.chrzz.com/customization/assets/[asset_id]/[width]",
     "definition": {
       "content_page_configuration": {
+        "_comment": "Данные для рендера страницы (фильтрация товаров по критерию, флаги отображения контента)",
         "filter_type_definitions": [
           {
             "key": "front-cover",
@@ -54,6 +55,7 @@
       "template_type": "book",
       "asset_definitions": [
         {
+          "_comment": "Определение ассетов на странице? Данный ключ brush соответствует всем шаблонам, с одинаковой палитрой. У других товаров с другой палитрой видимо другой key",
           "asset_id": "ffe8e98e-458d-11ed-9fc3-9fbae6c9d88b",
           "key": "brush",
           "format_type": "default"
@@ -64,6 +66,7 @@
           "format_type": "default"
         },
         {
+          "_comment": "Определяет цвет блока (прямоугольника) на шаблоне обложки",
           "asset_id": "69a7b1b8-a984-11eb-816c-c31555c43add",
           "key": "color_block_background",
           "format_type": "default"
@@ -84,6 +87,7 @@
           "format_type": "default"
         },
         {
+          "_comment": "Определяет цвет и размер + положение рамки (белого прямоугольника) на шаблоне обложки",
           "asset_id": "fcd2f72e-2db2-11ec-9abb-3f2dc01e589c",
           "key": "color_block_white_border",
           "format_type": "default"
@@ -109,16 +113,19 @@
           "format_type": "default"
         },
         {
+          "_comment": "Аналогично color_block_background определяет цвет фона у товара Colorblock Landscape",
           "asset_id": "3fc24e64-4154-11f0-b21b-d70b3e71a92d",
           "key": "page-1-cover-bg",
           "format_type": "default"
         },
         {
+          "_comment": "Аналогично но для Colorblock Square",
           "asset_id": "f4250856-4082-11f0-8824-1b2411f1ef09",
           "key": "page-2-cover-bg",
           "format_type": "default"
         },
         {
+          "_comment": "Аналогично но для Colorblock Retro",
           "asset_id": "0c8d8bfc-4083-11f0-8841-57d038046282",
           "key": "page-3-cover-bg",
           "format_type": "default"
@@ -170,6 +177,9 @@
         }
       ],
       "category_definitions": [
+        {
+          "_comment": "Определяет категории и порядок их расстановки для внутренних страниц альбома. Текст ____ 1 Фото ___ 2 Фото ___ и т.д."
+        },
         {
           "key": "0",
           "order": 1,
