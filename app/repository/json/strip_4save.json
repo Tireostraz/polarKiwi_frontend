@@ -50,6 +50,34 @@
             {
               "editable_picture_key": "picture1",
               "selection_photo_key": "upload-e731c1c8922f2b992556731d52eff45aef92fa65",
+              "filter_tag": "greycheerzou",
+              "photo_placement": {
+                "is_default": false,
+                "placed_by": "user",
+                "rotation": 0,
+                "offset": {
+                  "x_dmm": -223,
+                  "y_dmm": -92
+                },
+                "size": {
+                  "height_dmm": 723,
+                  "width_dmm": 1087
+                }
+              }
+            }
+          ],
+          "videos": []
+        },
+        {
+          "key": "page-2",
+          "filter_type_key": "default",
+          "page_definition_key": "T101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [
+            {
+              "editable_picture_key": "picture1",
+              "selection_photo_key": "upload-e731c1c8922f2b992556731d52eff45aef92fa65",
               "filter_tag": "none",
               "photo_placement": {
                 "is_default": true,
@@ -66,15 +94,6 @@
               }
             }
           ],
-          "videos": []
-        },
-        {
-          "key": "page-2",
-          "filter_type_key": "default",
-          "page_definition_key": "T101",
-          "color_key": "white",
-          "editable_texts": [],
-          "editable_pictures": [],
           "videos": []
         },
         {
@@ -99,7 +118,7 @@
       "selection_photos": [
         {
           "key": "upload-4379deaf5311c3780600fdd095cbb21652bd1a1c",
-          "creation_date": "2025-07-11T15:06:56.624Z",
+          "creation_date": "2025-07-11T15:22:06.332Z",
           "height_px": 450,
           "width_px": 600,
           "fotom_key": "4379deaf5311c3780600fdd095cbb21652bd1a1c",

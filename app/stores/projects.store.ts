@@ -24,6 +24,12 @@ export const useProjectsStore = defineStore(
       }
     };
 
+    /* const getProjectsIds = async () =>{
+      try{
+        const 
+      }
+    } */
+
     const addProject = async (product: Product) => {
       const userId = authStore.user?.id;
       const guestId = authStore.guestId;

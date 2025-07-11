@@ -14,6 +14,8 @@ export interface Project {
   photos: UploadedPhoto[];
 }
 
+export interface ProjectIds {}
+
 //это либо 1 страница смсбука либо для фото плейсхолдер. На одну страницу/шаблон фото 1 шаблон и несколько фото
 export interface ProjectPage {
   id: string;
