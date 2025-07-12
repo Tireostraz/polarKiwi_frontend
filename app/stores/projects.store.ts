@@ -56,19 +56,8 @@ export const useProjectsStore = defineStore(
         $toast.authError("Вы не авторизованы");
         return;
       }
-      const newProjectData: CreateProjectDTO = {
-        title: product.title,
-        type: "photo", //TODO Добавить type (вместо slug) в Product и в БД
-        format: product.slug,
-        product_id: product.id,
-        pages_quantity: product.pages_quantity,
-      };
 
       try {
-        const dto = await $api.projects.create(newProjectData);
-        const project = dto;
-
-        addedProjects.value.push(project);
         $toast.projectAdded(product.title);
       } catch (e) {
         console.error("Ошибка создания проекта:", e);

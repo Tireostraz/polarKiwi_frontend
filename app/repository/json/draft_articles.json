@@ -1,4 +1,5 @@
 {
+  "_comment": "Запрос при заходе на страницу проектов (Drafts) GET cheerz.com/api/identified/3.0/draft_articles. Получаем список всех проектов клиента.",
   "response": {
     "retention_delay_in_month": 6,
     "drafts": [

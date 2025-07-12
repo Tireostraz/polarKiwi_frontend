@@ -1,0 +1,439 @@
+{
+  "_comment": "Запрос для дублирования проекта. PATCH cheerz.com/api/identified/3.0/drafts/duplicate_article?id=94904001 В ответе новый проект (копия) стрипов",
+  "response": [
+    {
+      "expired_at": "2026-01-12T11:46:12+01:00",
+      "article": {
+        "id": 95144096,
+        "title": "Strips (copied)",
+        "subtitle": "5 strips • 2 photos",
+        "image_url": "https://fotomk8s.cheerz.com/photos/4379deaf5311c3780600fdd095cbb21652bd1a1c.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 1100
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": false,
+        "created_at": "2025-07-12T11:46:12+02:00",
+        "updated_at": "2025-07-12T11:46:12+02:00",
+        "product": {
+          "slug": "print5x20-cabine",
+          "is_customizable_on_web_mobile": true,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print5x20-cabine",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-id-print"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2026-01-11T17:35:42+01:00",
+      "article": {
+        "id": 94904001,
+        "title": "Strips",
+        "subtitle": "5 strips • 2 photos",
+        "image_url": "https://fotomk8s.cheerz.com/photos/4379deaf5311c3780600fdd095cbb21652bd1a1c.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 1100
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": false,
+        "created_at": "2025-06-24T13:45:59+02:00",
+        "updated_at": "2025-07-11T17:35:42+02:00",
+        "product": {
+          "slug": "print5x20-cabine",
+          "is_customizable_on_web_mobile": true,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print5x20-cabine",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-id-print"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2026-01-11T16:52:52+01:00",
+      "article": {
+        "id": 95127751,
+        "title": "Hardcover Photo Album 27x21cm",
+        "subtitle": "24 pages • 2 photos",
+        "image_url": "https://fotomk8s.cheerz.com/photos/090e6fd2c0420469163a529b7ca08df67bd1a8b1.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 4290
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": true,
+        "created_at": "2025-07-10T22:07:17+02:00",
+        "updated_at": "2025-07-11T16:52:52+02:00",
+        "product": {
+          "slug": "book27x21-hard-matte",
+          "is_customizable_on_web_mobile": false,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "book27x21-hard-matte",
+            "category_slug": "albums",
+            "sub_category_slug": "albums-hard-cover"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2025-12-25T23:32:02+01:00",
+      "article": {
+        "id": 94918791,
+        "title": "Mini Prints",
+        "subtitle": "2 prints • 2 photos",
+        "image_url": "https://fotomk8s.cheerz.com/photos/e73862b888c49df1147ee3c17dfce97fcb4ad9a6.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 756
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": true,
+        "created_at": "2025-06-25T16:37:23+02:00",
+        "updated_at": "2025-06-25T23:32:02+02:00",
+        "product": {
+          "slug": "print6x9-glossy-pack20",
+          "is_customizable_on_web_mobile": false,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print6x9-glossy-pack20",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-mini"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2025-12-25T16:44:10+01:00",
+      "article": {
+        "id": 94918886,
+        "title": "Pocket of memories",
+        "subtitle": null,
+        "image_url": "https://cdn2.chrzz.com/contents/assets/image-1w06wgccxpfr4ewn3jjv209tif4c-3x-1.png",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 1090
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": true,
+        "created_at": "2025-06-25T16:44:10+02:00",
+        "updated_at": "2025-06-25T16:44:10+02:00",
+        "product": {
+          "slug": "memoriespocket-print8x10-travel-202307",
+          "is_customizable_on_web_mobile": true,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "memoriespocket-print8x10-travel-202307",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-pochette-souvenirs"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2026-01-09T11:48:15+01:00",
+      "article": {
+        "id": 94917463,
+        "title": "Retro Prints",
+        "subtitle": "2 prints • 1 photo",
+        "image_url": "https://fotomk8s.cheerz.com/photos/efb95c114f072a8cab87fe2948a66aaca90ac8a2.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 864
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": false,
+        "created_at": "2025-06-25T15:04:41+02:00",
+        "updated_at": "2025-07-09T11:48:15+02:00",
+        "product": {
+          "slug": "print8x10-glossy-pack25",
+          "is_customizable_on_web_mobile": true,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print8x10-glossy-pack25",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-retro"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2025-12-25T15:04:56+01:00",
+      "article": {
+        "id": 94917459,
+        "title": "Retro Prints",
+        "subtitle": null,
+        "image_url": "https://cdn2.chrzz.com/contents/assets/image-aph6tphbetojggijo3udcrgbkw95-3x-1.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 864
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": false,
+        "created_at": "2025-06-25T15:04:25+02:00",
+        "updated_at": "2025-06-25T15:04:56+02:00",
+        "product": {
+          "slug": "print8x10-glossy-pack25",
+          "is_customizable_on_web_mobile": true,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print8x10-glossy-pack25",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-retro"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2025-12-25T01:21:54+01:00",
+      "article": {
+        "id": 94912503,
+        "title": "Retro Prints",
+        "subtitle": "1 print • 1 photo",
+        "image_url": "https://fotomk8s.cheerz.com/photos/090e6fd2c0420469163a529b7ca08df67bd1a8b1.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 864
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": true,
+        "created_at": "2025-06-25T01:03:25+02:00",
+        "updated_at": "2025-06-25T01:21:54+02:00",
+        "product": {
+          "slug": "print8x10-matte-pack25",
+          "is_customizable_on_web_mobile": true,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print8x10-matte-pack25",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-retro"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2025-12-25T15:04:56+01:00",
+      "article": {
+        "id": 94895172,
+        "title": "Photo Prints",
+        "subtitle": null,
+        "image_url": "https://cdn2.chrzz.com/contents/assets/image-bqp483nm4dyugv5kac3j5ud2xkkq-3x-1.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 800
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": true,
+        "created_at": "2025-06-23T19:42:52+02:00",
+        "updated_at": "2025-06-25T15:04:56+02:00",
+        "product": {
+          "slug": "print10x15-glossy-pack20",
+          "is_customizable_on_web_mobile": false,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print10x15-glossy-pack20",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-classic"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2025-12-25T15:04:56+01:00",
+      "article": {
+        "id": 94887930,
+        "title": "Retro Prints",
+        "subtitle": null,
+        "image_url": "https://cdn2.chrzz.com/contents/assets/image-aph6tphbetojggijo3udcrgbkw95-3x-1.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 864
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": false,
+        "created_at": "2025-06-23T11:59:13+02:00",
+        "updated_at": "2025-06-25T15:04:56+02:00",
+        "product": {
+          "slug": "print8x10-glossy-pack25",
+          "is_customizable_on_web_mobile": true,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print8x10-glossy-pack25",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-retro"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2025-12-25T15:04:56+01:00",
+      "article": {
+        "id": 94874580,
+        "title": "Retro Prints",
+        "subtitle": null,
+        "image_url": "https://cdn2.chrzz.com/contents/assets/image-aph6tphbetojggijo3udcrgbkw95-3x-1.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 864
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": false,
+        "created_at": "2025-06-22T13:13:59+02:00",
+        "updated_at": "2025-06-25T15:04:56+02:00",
+        "product": {
+          "slug": "print8x10-glossy-pack25",
+          "is_customizable_on_web_mobile": true,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print8x10-glossy-pack25",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-retro"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2025-12-25T15:04:56+01:00",
+      "article": {
+        "id": 94874545,
+        "title": "Retro 8×10cm (300 prints)",
+        "subtitle": null,
+        "image_url": "https://cdn2.chrzz.com/contents/assets/image-mw9xue6e1r2etrk5436hquwp5bdb-3x-1.jpg",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 6500
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": false,
+        "created_at": "2025-06-22T13:12:04+02:00",
+        "updated_at": "2025-06-25T15:04:56+02:00",
+        "product": {
+          "slug": "print8x10-glossy-pack300",
+          "is_customizable_on_web_mobile": false,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print8x10-glossy-pack300",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-retro"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2025-12-25T15:04:56+01:00",
+      "article": {
+        "id": 94862291,
+        "title": "Strips",
+        "subtitle": null,
+        "image_url": "https://cdn2.chrzz.com/contents/assets/image-g7yum00tshlo46fagl7jry7y5j0v-3x-1.JPG",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 1100
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": false,
+        "created_at": "2025-06-20T23:37:12+02:00",
+        "updated_at": "2025-06-25T15:04:56+02:00",
+        "product": {
+          "slug": "print5x20-cabine",
+          "is_customizable_on_web_mobile": true,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print5x20-cabine",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-id-print"
+          }
+        },
+        "selected_addons": []
+      }
+    },
+    {
+      "expired_at": "2025-12-25T15:04:56+01:00",
+      "article": {
+        "id": 94862288,
+        "title": "Strips",
+        "subtitle": null,
+        "image_url": "https://cdn2.chrzz.com/contents/assets/image-g7yum00tshlo46fagl7jry7y5j0v-3x-1.JPG",
+        "total": {
+          "currency_code_3": "USD",
+          "cents": 1100
+        },
+        "is_in_cart": false,
+        "quantity": 1,
+        "can_be_reordered": false,
+        "created_at": "2025-06-20T23:36:54+02:00",
+        "updated_at": "2025-06-25T15:04:56+02:00",
+        "product": {
+          "slug": "print5x20-cabine",
+          "is_customizable_on_web_mobile": true,
+          "bypass_customization": false,
+          "is_out_of_stock": false,
+          "is_quantity_editable": true,
+          "tracking": {
+            "slug": "print5x20-cabine",
+            "category_slug": "prints",
+            "sub_category_slug": "prints-id-print"
+          }
+        },
+        "selected_addons": []
+      }
+    }
+  ]
+}

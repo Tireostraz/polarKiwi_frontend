@@ -1,0 +1,5 @@
+{
+  "_comment": "Запрос при создании нового проекта. Кнопка Get Started -> переход на страницу выбора формата и количества -> выбрав формат и количество, POST запрос без ответа cheerz.com/api/identified/3.0/customizations. Ниже тело запроса",
+  "product_slug": "print8x10-glossy-pack25",
+  "gift_card": {}
+}
