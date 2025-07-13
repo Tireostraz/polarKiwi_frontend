@@ -1,7 +1,6 @@
 {
-  "_comment": "Запрос при первом открытии Strip (Photobooth) GET cheerz.com/api/identified/3.0/customizations/95160109/content?update_on_read=true",
   "response": {
-    "id": "7c0ef162-5ff7-11f0-a57a-e36807712bb4",
+    "id": "6c41e97e-600b-11f0-bafb-d3b651e19573",
     "definition": {
       "definition_version": 15,
       "locale": "en",
@@ -11,27 +10,27 @@
           "editable_texts": [],
           "videos": [],
           "key": "page-0",
-          "color_key": "white",
-          "page_definition_key": "T101",
-          "filter_type_key": "default"
+          "color_key": "bleu",
+          "page_definition_key": "PAGE-1-COVER",
+          "filter_type_key": "front-cover"
         },
         {
           "editable_pictures": [],
           "editable_texts": [],
           "videos": [],
           "key": "page-1",
-          "color_key": "white",
-          "page_definition_key": "T101",
-          "filter_type_key": "default"
+          "color_key": "bleu",
+          "page_definition_key": "PAGE-1-SPINE1",
+          "filter_type_key": "spine"
         },
         {
           "editable_pictures": [],
           "editable_texts": [],
           "videos": [],
           "key": "page-2",
-          "color_key": "white",
-          "page_definition_key": "T101",
-          "filter_type_key": "default"
+          "color_key": "bleu",
+          "page_definition_key": "PAGE-1-BACK",
+          "filter_type_key": "back-cover"
         },
         {
           "editable_pictures": [],
@@ -39,8 +38,8 @@
           "videos": [],
           "key": "page-3",
           "color_key": "white",
-          "page_definition_key": "T101",
-          "filter_type_key": "default"
+          "page_definition_key": "single-front-matter-1",
+          "filter_type_key": "single-front-matter"
         },
         {
           "editable_pictures": [],
@@ -48,16 +47,16 @@
           "videos": [],
           "key": "page-4",
           "color_key": "white",
-          "page_definition_key": "T101",
-          "filter_type_key": "default"
+          "page_definition_key": "single-back-matter-1",
+          "filter_type_key": "single-back-matter"
         }
       ],
       "selection_photos": [],
       "gallery_photos": [],
-      "template_type": "mural"
+      "template_type": "book"
     },
     "definition_version": "15",
     "status": "draft",
-    "template_revision_id": "23a8e542-d4b9-11ef-a42f-c338c6ab5224"
+    "template_revision_id": "72855de1-421f-11f0-92ee-273742274f9e"
   }
 }

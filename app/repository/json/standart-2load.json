@@ -1,0 +1,32 @@
+{
+  "response": {
+    "id": "02d8d790-5f07-11f0-a51b-c76c302f694f",
+    "definition": {
+      "definition_version": 15,
+      "locale": "en",
+      "pages": [
+        {
+          "editable_pictures": [],
+          "editable_texts": [],
+          "videos": [],
+          "key": "page-0",
+          "color_key": "white",
+          "page_definition_key": "T1-RETRO",
+          "filter_type_key": "default"
+        }
+      ],
+      "selection_photos": [],
+      "gallery_photos": [],
+      "template_type": "print",
+      "print_quantities": [
+        {
+          "page_key": "page-0",
+          "quantity": 1
+        }
+      ]
+    },
+    "definition_version": "15",
+    "status": "draft",
+    "template_revision_id": "b763cb1c-e88e-11ef-830c-37335fcca57f"
+  }
+}

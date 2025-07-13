@@ -1,0 +1,92 @@
+{
+  "_comment": "Загрузка данных о текущем состоянии проекта? На момент загрузки в проекте 1 изображение в 1м стрипе. запрос cheerz.com/api/identified/3.0/customizations/94904001/content?update_on_read=true",
+  "response": {
+    "id": "cc09a31c-50f0-11f0-94d0-7711334ddf86",
+    "definition": {
+      "template_type": "mural",
+      "definition_version": 15,
+      "locale": "en",
+      "pages": [
+        {
+          "key": "page-0",
+          "filter_type_key": "default",
+          "page_definition_key": "T101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [
+            {
+              "editable_picture_key": "picture1",
+              "selection_photo_key": "upload-4379deaf5311c3780600fdd095cbb21652bd1a1c",
+              "filter_tag": "none",
+              "photo_placement": {
+                "is_default": true,
+                "placed_by": "none",
+                "rotation": 0,
+                "offset": {
+                  "x_dmm": -73,
+                  "y_dmm": 0
+                },
+                "size": {
+                  "height_dmm": 440,
+                  "width_dmm": 587
+                }
+              }
+            }
+          ],
+          "videos": []
+        },
+        {
+          "key": "page-1",
+          "filter_type_key": "default",
+          "page_definition_key": "T101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "page-2",
+          "filter_type_key": "default",
+          "page_definition_key": "T101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "page-3",
+          "filter_type_key": "default",
+          "page_definition_key": "T101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "page-4",
+          "filter_type_key": "default",
+          "page_definition_key": "T101",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        }
+      ],
+      "selection_photos": [
+        {
+          "key": "upload-4379deaf5311c3780600fdd095cbb21652bd1a1c",
+          "creation_date": "2019-02-22T17:37:11.133Z",
+          "height_px": 450,
+          "width_px": 600,
+          "fotom_key": "4379deaf5311c3780600fdd095cbb21652bd1a1c",
+          "provider": "upload",
+          "provider_ref": "4379deaf5311c3780600fdd095cbb21652bd1a1c"
+        }
+      ],
+      "gallery_photos": []
+    },
+    "definition_version": "15",
+    "status": "draft",
+    "template_revision_id": "23a8e542-d4b9-11ef-a42f-c338c6ab5224"
+  }
+}

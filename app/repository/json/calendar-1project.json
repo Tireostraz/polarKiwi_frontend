@@ -1,0 +1,116 @@
+{
+  "response": {
+    "article": {
+      "id": 95162485,
+      "title": "Weekly Planner",
+      "subtitle": null,
+      "image_url": "https://cdn2.chrzz.com/contents/assets/image-0mgcl1507kdo1bnwzhizfdg44a7o-3x-1.png",
+      "total": {
+        "currency_code_3": "USD",
+        "cents": 2990
+      },
+      "is_in_cart": false,
+      "quantity": 1,
+      "can_be_reordered": true,
+      "created_at": "2025-07-13T19:06:16+02:00",
+      "updated_at": "2025-07-13T19:06:16+02:00",
+      "product": {
+        "slug": "calendar21x29-weeklyplanner-matte-2025",
+        "is_customizable_on_web_mobile": false,
+        "bypass_customization": false,
+        "is_out_of_stock": false,
+        "is_quantity_editable": true,
+        "tracking": {
+          "slug": "calendar21x29-weeklyplanner-matte-2025",
+          "category_slug": "calendars",
+          "sub_category_slug": "calendars-mural-calendar"
+        }
+      },
+      "selected_addons": []
+    },
+    "config": {
+      "min_page_count": 52,
+      "max_page_count": 52,
+      "page_increment_step": 52,
+      "page_increment_price": {
+        "currency_code_3": "EUR",
+        "cents": 0
+      },
+      "page_addition_order": "addition_desc",
+      "price": {
+        "currency_code_3": "EUR",
+        "cents": 2490
+      },
+      "display_title": "Weekly Planner A4 Landscape ",
+      "display_format": "21x29 cm",
+      "display_page_name_singular": "page",
+      "display_page_name_plural": "pages",
+      "min_column_count": 1,
+      "max_column_count": 1,
+      "is_zoom_out_enabled": true,
+      "should_start_with_gallery": true,
+      "dpi_thresholds": {
+        "optimal": 300,
+        "acceptable": 150
+      },
+      "addons": [
+        {
+          "slug": "hook",
+          "value": "metal",
+          "title": "Hook",
+          "description": "3M© adhesive nail, no holes, no marks, no glue residue!",
+          "image_url": "https://cdn2.chrzz.com/contents/assets/image-e42veu9t99qri5qp0ezxpa0c44fl-3x-1.jpg",
+          "price": {
+            "currency_code_3": "EUR",
+            "cents": 390
+          }
+        },
+        {
+          "slug": "bag",
+          "value": "giftbag_landscape",
+          "title": "Gift bag",
+          "description": "Delivered unwrapped so you can admire the photos before gifting them!",
+          "image_url": "https://cdn2.chrzz.com/contents/assets/image-mnrkqstpgudbkaqviorc21a9f6n8-3x-1.jpg",
+          "price": {
+            "currency_code_3": "EUR",
+            "cents": 390
+          }
+        }
+      ],
+      "switch_products": [
+        {
+          "slug": "calendar21x29-weeklyplanner-matte-2025",
+          "display_title": "Weekly Planner A4 Landscape ",
+          "display_label": "",
+          "image_url": "https://cdn2.chrzz.com/contents/assets/image-0mgcl1507kdo1bnwzhizfdg44a7o-3x-1.png",
+          "price": {
+            "currency_code_3": "EUR",
+            "cents": 2490
+          },
+          "additional_page_config": {
+            "unit_price": {
+              "currency_code_3": "EUR",
+              "cents": 0
+            },
+            "pack_price": {
+              "currency_code_3": "EUR",
+              "cents": 0
+            },
+            "pack_size": 52
+          }
+        }
+      ],
+      "additional_page_config": {
+        "unit_price": {
+          "currency_code_3": "EUR",
+          "cents": 0
+        },
+        "pack_price": {
+          "currency_code_3": "EUR",
+          "cents": 0
+        },
+        "pack_size": 52
+      }
+    }
+  }
+}

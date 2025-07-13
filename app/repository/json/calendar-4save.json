@@ -1,0 +1,546 @@
+{
+  "response": {
+    "id": "af705c6d-600b-11f0-bb21-b3a670e30845",
+    "definition": {
+      "template_type": "book",
+      "definition_version": 15,
+      "locale": "en",
+      "pages": [
+        {
+          "key": "page-0",
+          "filter_type_key": "front-cover",
+          "page_definition_key": "PAGE-1-COVER",
+          "color_key": "bleu-cheerz",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c50-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c51-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c52-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c53-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c54-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c55-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c56-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c57-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c58-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c59-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c5a-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c5b-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c5c-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c5d-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c5e-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c5f-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c60-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c61-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c62-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c63-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c64-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c65-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c66-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c67-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c68-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c69-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c6a-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c6b-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c6c-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c6d-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c6e-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c6f-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c70-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c71-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c72-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c73-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c74-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c75-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c76-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c77-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c78-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c79-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c7a-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c7b-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c7c-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c7d-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c7e-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c7f-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c80-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c81-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c82-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        },
+        {
+          "key": "b14b3c83-600b-11f0-9311-479c19c33dbb",
+          "filter_type_key": "single-page",
+          "page_definition_key": "PAGE-11",
+          "color_key": "rose",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "cells": [],
+          "videos": []
+        }
+      ],
+      "selection_photos": [],
+      "gallery_photos": []
+    },
+    "definition_version": "15",
+    "status": "draft",
+    "template_revision_id": "320a9de4-0fbd-11f0-8aef-47c6189a41f1"
+  }
+}

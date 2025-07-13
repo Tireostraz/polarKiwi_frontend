@@ -1,0 +1,64 @@
+{
+  "response": {
+    "id": "0eb826fa-6007-11f0-b7c5-07ba73430a81",
+    "definition": {
+      "definition_version": 15,
+      "locale": "en",
+      "pages": [
+        {
+          "editable_pictures": [],
+          "editable_texts": [],
+          "videos": [],
+          "key": "page-0",
+          "color_key": "white",
+          "page_definition_key": "T0-CLASSIQUE",
+          "filter_type_key": "default"
+        }
+      ],
+      "selection_photos": [],
+      "gallery_photos": [],
+      "template_type": "print",
+      "print_quantities": [
+        {
+          "page_key": "page-0",
+          "quantity": 1
+        }
+      ]
+    },
+    "definition_version": "15",
+    "status": "draft",
+    "template_revision_id": "e75a3000-e895-11ef-94d6-cb894126c0f4"
+  },
+
+  "_comment": "Ответ при запросе состояния при выборе 50 штук фото",
+  "response 2": {
+    "id": "44a6166e-6007-11f0-b7f8-2bad7ad7910b",
+    "definition": {
+      "definition_version": 15,
+      "locale": "en",
+      "pages": [
+        {
+          "editable_pictures": [],
+          "editable_texts": [],
+          "videos": [],
+          "key": "page-0",
+          "color_key": "white",
+          "page_definition_key": "T0-CLASSIQUE",
+          "filter_type_key": "default"
+        }
+      ],
+      "selection_photos": [],
+      "gallery_photos": [],
+      "template_type": "print",
+      "print_quantities": [
+        {
+          "page_key": "page-0",
+          "quantity": 1
+        }
+      ]
+    },
+    "definition_version": "15",
+    "status": "draft",
+    "template_revision_id": "e75a3000-e895-11ef-94d6-cb894126c0f4"
+  }
+}

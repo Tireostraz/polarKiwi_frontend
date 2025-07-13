@@ -1,0 +1,1895 @@
+{
+  "response": {
+    "id": "b763cb1c-e88e-11ef-830c-37335fcca57f",
+    "asset_url_template": "https://cdn2.chrzz.com/customization/assets/[asset_id]/[width]",
+    "definition": {
+      "content_page_configuration": {
+        "filter_type_definitions": [
+          {
+            "key": "default",
+            "default_page_key": "T1-RETRO",
+            "localized_description": ""
+          }
+        ],
+        "force_pack_color": false,
+        "link_in_content": false,
+        "increment": true,
+        "forced_layouts_filter_type_keys": ["default"],
+        "next_filter_type_keys": ["default"]
+      },
+      "definition_version": 15,
+      "min_dpi": 150,
+      "template_type": "print",
+      "asset_definitions": [
+        {
+          "asset_id": "37620abe-ff4d-11ea-bdb7-ab19a951a9a8",
+          "key": "transparent",
+          "format_type": "default"
+        },
+        {
+          "asset_id": "e936651a-ff4c-11ea-b3d6-df804102c22b",
+          "key": "icon_option",
+          "format_type": "default"
+        },
+        {
+          "asset_id": "0674cd2e-ff4d-11ea-9e47-c73c40af6a57",
+          "key": "option_choice_asset_glossy",
+          "format_type": "default"
+        },
+        {
+          "asset_id": "f8076922-ff4c-11ea-ab29-e75804362044",
+          "key": "option_choice_asset_matte",
+          "format_type": "default"
+        },
+        {
+          "asset_id": "bc9f0c66-e46f-11ef-8714-e39dd2af8fe6",
+          "key": "background-colorblock",
+          "format_type": "default"
+        },
+        {
+          "asset_id": "c3673412-dc3c-11ec-8a15-03d5734a8f38",
+          "key": "background-fulltext",
+          "format_type": "default"
+        }
+      ],
+      "category_definitions": [],
+      "color_definitions": [
+        {
+          "key": "white",
+          "theme_value": "#ffffff",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#ffffff",
+          "tint_colors": []
+        },
+        {
+          "key": "rose",
+          "theme_value": "#ff98e3",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#ff98e3",
+          "tint_colors": []
+        },
+        {
+          "key": "rouge",
+          "theme_value": "#fe502b",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#fe502b",
+          "tint_colors": []
+        },
+        {
+          "key": "fuschia",
+          "theme_value": "#e01982",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#e01982",
+          "tint_colors": []
+        },
+        {
+          "key": "orange",
+          "theme_value": "#ff9240",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#ff9240",
+          "tint_colors": []
+        },
+        {
+          "key": "jaune",
+          "theme_value": "#ffe176",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#ffe176",
+          "tint_colors": []
+        },
+        {
+          "key": "rose_clair",
+          "theme_value": "#ffd0e0",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#ffd0e0",
+          "tint_colors": []
+        },
+        {
+          "key": "lila",
+          "theme_value": "#c8affc",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#c8affc",
+          "tint_colors": []
+        },
+        {
+          "key": "bleu",
+          "theme_value": "#8bc8ff",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#8bc8ff",
+          "tint_colors": []
+        },
+        {
+          "key": "marine",
+          "theme_value": "#0061c5",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#0061c5",
+          "tint_colors": []
+        },
+        {
+          "key": "celadon",
+          "theme_value": "#9fd7bc",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#9fd7bc",
+          "tint_colors": []
+        },
+        {
+          "key": "vert",
+          "theme_value": "#1f9483",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#1f9483",
+          "tint_colors": []
+        },
+        {
+          "key": "gris",
+          "theme_value": "#e4e4e4",
+          "font_colors": [
+            {
+              "value": "#000000",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#e4e4e4",
+          "tint_colors": []
+        },
+        {
+          "key": "noir",
+          "theme_value": "#000000",
+          "font_colors": [
+            {
+              "value": "#ffffff",
+              "key": "primary"
+            },
+            {
+              "value": "#000000",
+              "key": "secondary"
+            }
+          ],
+          "background_value": "#000000",
+          "tint_colors": []
+        }
+      ],
+      "font_definitions": [
+        {
+          "font_tag": "playfair",
+          "key": "font-playfair",
+          "width_per_height_mean_char_ratio": 0.6623
+        },
+        {
+          "font_tag": "oswald",
+          "key": "font-oswald",
+          "width_per_height_mean_char_ratio": 0.6623
+        },
+        {
+          "font_tag": "futurastd",
+          "key": "font-futura",
+          "width_per_height_mean_char_ratio": 0.727
+        },
+        {
+          "font_tag": "poppins",
+          "key": "font-poppins",
+          "width_per_height_mean_char_ratio": 0.6623
+        },
+        {
+          "font_tag": "nunito",
+          "key": "font-nunito",
+          "width_per_height_mean_char_ratio": 0.786
+        },
+        {
+          "font_tag": "dancing",
+          "key": "font-dancing",
+          "width_per_height_mean_char_ratio": 1.0
+        }
+      ],
+      "option_definitions": [
+        {
+          "key": "product_tag",
+          "type": "customization",
+          "only_global": true,
+          "option_tag": "product_tag",
+          "option_choices": [
+            {
+              "value": "print8x10-glossy-pack500",
+              "asset_key": "option_choice_asset_glossy",
+              "localized_label": "Glossy paper"
+            },
+            {
+              "value": "print8x10-glossy-pack300",
+              "asset_key": "option_choice_asset_glossy",
+              "localized_label": "Glossy paper"
+            },
+            {
+              "value": "print8x10-glossy-pack70-202311",
+              "asset_key": "option_choice_asset_glossy",
+              "localized_label": "Glossy paper"
+            },
+            {
+              "value": "print8x10-glossy-pack100",
+              "asset_key": "option_choice_asset_glossy",
+              "localized_label": "Glossy paper"
+            },
+            {
+              "value": "print8x10-glossy-pack50",
+              "asset_key": "option_choice_asset_glossy",
+              "localized_label": "Glossy paper"
+            },
+            {
+              "value": "print8x10-glossy-pack25",
+              "asset_key": "option_choice_asset_glossy",
+              "localized_label": "Glossy paper"
+            },
+            {
+              "value": "print8x10-glossy-pack20",
+              "asset_key": "option_choice_asset_glossy",
+              "localized_label": "Glossy paper"
+            },
+            {
+              "value": "print8x10-glossy-pack10",
+              "asset_key": "option_choice_asset_glossy",
+              "localized_label": "Glossy paper"
+            },
+            {
+              "value": "print8x10-matte-pack500",
+              "asset_key": "option_choice_asset_matte",
+              "localized_label": "Mat paper"
+            },
+            {
+              "value": "print8x10-matte-pack300",
+              "asset_key": "option_choice_asset_matte",
+              "localized_label": "Mat paper"
+            },
+            {
+              "value": "print8x10-matte-pack70",
+              "asset_key": "option_choice_asset_matte",
+              "localized_label": "Mat paper"
+            },
+            {
+              "value": "print8x10-matte-pack100",
+              "asset_key": "option_choice_asset_matte",
+              "localized_label": "Mat paper"
+            },
+            {
+              "value": "print8x10-matte-pack50",
+              "asset_key": "option_choice_asset_matte",
+              "localized_label": "Mat paper"
+            },
+            {
+              "value": "print8x10-matte-pack25",
+              "asset_key": "option_choice_asset_matte",
+              "localized_label": "Mat paper"
+            },
+            {
+              "value": "print8x10-matte-pack20",
+              "asset_key": "option_choice_asset_matte",
+              "localized_label": "Mat paper"
+            },
+            {
+              "value": "print8x10-matte-pack10",
+              "asset_key": "option_choice_asset_matte",
+              "localized_label": "Mat paper"
+            }
+          ],
+          "icon_asset_key": "icon_option",
+          "localized_option_title": "Paper type"
+        }
+      ],
+      "page_definitions": [
+        {
+          "category_key": null,
+          "filter_type_keys": ["default"],
+          "height_dmm": 1020,
+          "key": "T1-RETRO",
+          "type": "print",
+          "width_dmm": 850,
+          "color_keys": [
+            "white",
+            "rose",
+            "rouge",
+            "fuschia",
+            "orange",
+            "jaune",
+            "rose_clair",
+            "lila",
+            "bleu",
+            "marine",
+            "celadon",
+            "vert",
+            "gris",
+            "noir"
+          ],
+          "elements": [
+            {
+              "key": "picture1",
+              "type": "editable-picture",
+              "anchor_page": ["top", "left"],
+              "anchor_self": ["top", "left"],
+              "height_dmm": 750,
+              "width_dmm": 750,
+              "x_dmm": 50,
+              "y_dmm": 50,
+              "z_index": 0,
+              "order": 1
+            },
+            {
+              "key": "text1",
+              "type": "editable-text",
+              "anchor_page": ["top", "left"],
+              "anchor_self": ["top", "left"],
+              "height_dmm": 60,
+              "width_dmm": 750,
+              "x_dmm": 50,
+              "y_dmm": 880,
+              "z_index": 0,
+              "font_color_key": "primary",
+              "font_size_dmm": 46,
+              "line_height_dmm": 55,
+              "order": 1,
+              "text_align": ["middle", "center"],
+              "text_orientation": 0,
+              "font_keys": [
+                "font-playfair",
+                "font-oswald",
+                "font-futura",
+                "font-poppins",
+                "font-nunito",
+                "font-dancing"
+              ],
+              "localized_placeholder": "Add text"
+            }
+          ],
+          "presentations": [
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory-bebe",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            }
+          ],
+          "tag_key": null
+        },
+        {
+          "category_key": null,
+          "filter_type_keys": ["default"],
+          "height_dmm": 1020,
+          "key": "T2-MODERNE",
+          "type": "print",
+          "width_dmm": 850,
+          "color_keys": [
+            "white",
+            "rose",
+            "rouge",
+            "fuschia",
+            "orange",
+            "jaune",
+            "rose_clair",
+            "lila",
+            "bleu",
+            "marine",
+            "celadon",
+            "vert",
+            "gris",
+            "noir"
+          ],
+          "elements": [
+            {
+              "key": "picture1",
+              "type": "editable-picture",
+              "anchor_page": ["top", "left"],
+              "anchor_self": ["top", "left"],
+              "height_dmm": 809,
+              "width_dmm": 868,
+              "x_dmm": -9,
+              "y_dmm": -9,
+              "z_index": 0,
+              "order": 1
+            },
+            {
+              "key": "text1",
+              "type": "editable-text",
+              "anchor_page": ["top", "left"],
+              "anchor_self": ["top", "left"],
+              "height_dmm": 60,
+              "width_dmm": 750,
+              "x_dmm": 50,
+              "y_dmm": 880,
+              "z_index": 0,
+              "font_color_key": "primary",
+              "font_size_dmm": 46,
+              "line_height_dmm": 55,
+              "order": 1,
+              "text_align": ["middle", "center"],
+              "text_orientation": 0,
+              "font_keys": [
+                "font-playfair",
+                "font-oswald",
+                "font-futura",
+                "font-poppins",
+                "font-nunito",
+                "font-dancing"
+              ],
+              "localized_placeholder": "Add text"
+            }
+          ],
+          "presentations": [
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory-bebe",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            }
+          ],
+          "tag_key": null
+        },
+        {
+          "category_key": null,
+          "filter_type_keys": ["default"],
+          "height_dmm": 1020,
+          "key": "T3-COLORBLOCK",
+          "type": "print",
+          "width_dmm": 850,
+          "color_keys": [
+            "rose",
+            "rouge",
+            "fuschia",
+            "orange",
+            "jaune",
+            "rose_clair",
+            "lila",
+            "bleu",
+            "marine",
+            "celadon",
+            "vert",
+            "gris",
+            "noir"
+          ],
+          "elements": [
+            {
+              "key": "picture1",
+              "type": "editable-picture",
+              "anchor_page": ["top", "left"],
+              "anchor_self": ["top", "left"],
+              "height_dmm": 920,
+              "width_dmm": 750,
+              "x_dmm": 50,
+              "y_dmm": 50,
+              "z_index": 1,
+              "order": 1
+            },
+            {
+              "key": "background-colorblock",
+              "type": "forced-image",
+              "anchor_page": ["top", "left"],
+              "anchor_self": ["top", "left"],
+              "height_dmm": 1038,
+              "width_dmm": 868,
+              "x_dmm": -9,
+              "y_dmm": -9,
+              "z_index": 0,
+              "asset_key": "background-colorblock"
+            }
+          ],
+          "presentations": [
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory-bebe",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            }
+          ],
+          "tag_key": null
+        },
+        {
+          "category_key": null,
+          "filter_type_keys": ["default"],
+          "height_dmm": 1020,
+          "key": "T3-CLASSIC",
+          "type": "print",
+          "width_dmm": 850,
+          "color_keys": [
+            "white",
+            "rose",
+            "rouge",
+            "fuschia",
+            "orange",
+            "jaune",
+            "rose_clair",
+            "lila",
+            "bleu",
+            "marine",
+            "celadon",
+            "vert",
+            "gris",
+            "noir"
+          ],
+          "elements": [
+            {
+              "key": "picture1",
+              "type": "editable-picture",
+              "anchor_page": ["top", "left"],
+              "anchor_self": ["top", "left"],
+              "height_dmm": 920,
+              "width_dmm": 750,
+              "x_dmm": 50,
+              "y_dmm": 50,
+              "z_index": 1,
+              "order": 1
+            }
+          ],
+          "presentations": [
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory-bebe",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            }
+          ],
+          "tag_key": null
+        },
+        {
+          "category_key": null,
+          "filter_type_keys": ["default"],
+          "height_dmm": 1020,
+          "key": "T4-FULLPAGE",
+          "type": "print",
+          "width_dmm": 850,
+          "color_keys": ["white"],
+          "elements": [
+            {
+              "key": "picture1",
+              "type": "editable-picture",
+              "anchor_page": ["top", "left"],
+              "anchor_self": ["top", "left"],
+              "height_dmm": 1038,
+              "width_dmm": 868,
+              "x_dmm": -9,
+              "y_dmm": -9,
+              "z_index": 1,
+              "order": 1
+            }
+          ],
+          "presentations": [
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory-bebe",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            }
+          ],
+          "tag_key": null
+        },
+        {
+          "category_key": null,
+          "filter_type_keys": ["default"],
+          "height_dmm": 1020,
+          "key": "T5-FULLTEXT",
+          "type": "print",
+          "width_dmm": 850,
+          "color_keys": [
+            "white",
+            "rose",
+            "rouge",
+            "fuschia",
+            "orange",
+            "jaune",
+            "rose_clair",
+            "lila",
+            "bleu",
+            "marine",
+            "celadon",
+            "vert",
+            "gris",
+            "noir"
+          ],
+          "elements": [
+            {
+              "key": "text1",
+              "type": "editable-text",
+              "anchor_page": ["top", "left"],
+              "anchor_self": ["top", "left"],
+              "height_dmm": 720,
+              "width_dmm": 550,
+              "x_dmm": 150,
+              "y_dmm": 150,
+              "z_index": 1,
+              "font_color_key": "secondary",
+              "font_size_dmm": 46,
+              "line_height_dmm": 55,
+              "order": 1,
+              "text_align": ["middle", "center"],
+              "text_orientation": 0,
+              "font_keys": [
+                "font-playfair",
+                "font-oswald",
+                "font-futura",
+                "font-poppins",
+                "font-nunito",
+                "font-dancing"
+              ],
+              "localized_placeholder": "Add text"
+            },
+            {
+              "key": "background-fulltext",
+              "type": "forced-image",
+              "anchor_page": ["top", "left"],
+              "anchor_self": ["top", "left"],
+              "height_dmm": 1038,
+              "width_dmm": 868,
+              "x_dmm": -9,
+              "y_dmm": -9,
+              "z_index": 0,
+              "asset_key": "background-fulltext"
+            }
+          ],
+          "presentations": [
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-memory-bebe",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-glossy-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "glossy"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack20",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack50",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack100",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-pack300",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-memory",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-bigfat",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-red",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-yellow",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            },
+            {
+              "conditions": [
+                {
+                  "type": "option",
+                  "value": "print8x10-matte-box-blue",
+                  "option_definition_key": "product_tag"
+                }
+              ],
+              "presentation_definition_key": "matte"
+            }
+          ],
+          "tag_key": null
+        }
+      ],
+      "presentation_definitions": [
+        {
+          "asset_key": "transparent",
+          "content_x_dmm": 0,
+          "content_y_dmm": 0,
+          "height_dmm": 1020,
+          "key": "matte",
+          "width_dmm": 850
+        },
+        {
+          "asset_key": "transparent",
+          "content_x_dmm": 0,
+          "content_y_dmm": 0,
+          "height_dmm": 1020,
+          "key": "glossy",
+          "width_dmm": 850
+        }
+      ],
+      "shape_definitions": [],
+      "tag_definitions": []
+    },
+    "definition_version": "15",
+    "status": "published",
+    "archived_at": null,
+    "template_id": "2c2c37a6-f1e1-11ea-bb10-3b469ca9c063",
+    "version": "21"
+  }
+}

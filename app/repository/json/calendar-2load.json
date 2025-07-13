@@ -1,0 +1,26 @@
+{
+  "response": {
+    "id": "af705c6d-600b-11f0-bb21-b3a670e30845",
+    "definition": {
+      "definition_version": 15,
+      "locale": "en",
+      "pages": [
+        {
+          "editable_pictures": [],
+          "editable_texts": [],
+          "videos": [],
+          "key": "page-0",
+          "color_key": "bleu-cheerz",
+          "page_definition_key": "PAGE-1-COVER",
+          "filter_type_key": "front-cover"
+        }
+      ],
+      "selection_photos": [],
+      "gallery_photos": [],
+      "template_type": "book"
+    },
+    "definition_version": "15",
+    "status": "draft",
+    "template_revision_id": "320a9de4-0fbd-11f0-8aef-47c6189a41f1"
+  }
+}
