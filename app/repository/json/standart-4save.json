@@ -1,0 +1,148 @@
+{
+  "definition": {
+    "template_type": "print",
+    "definition_version": 15,
+    "locale": "en",
+    "pages": [
+      {
+        "key": "page-0",
+        "filter_type_key": "default",
+        "page_definition_key": "T3-CLASSIC",
+        "color_key": "white",
+        "editable_texts": [],
+        "editable_pictures": [
+          {
+            "editable_picture_key": "picture1",
+            "selection_photo_key": "upload-efb95c114f072a8cab87fe2948a66aaca90ac8a2",
+            "filter_tag": "none",
+            "photo_placement": {
+              "is_default": true,
+              "placed_by": "none",
+              "rotation": 0,
+              "offset": { "x_dmm": 0, "y_dmm": -38 },
+              "size": { "height_dmm": 996, "width_dmm": 750 }
+            }
+          }
+        ],
+        "videos": []
+      },
+      {
+        "key": "6a8e4040-51c5-11f0-a50b-c3425a0d131d",
+        "filter_type_key": "default",
+        "page_definition_key": "T1-RETRO",
+        "color_key": "white",
+        "editable_texts": [],
+        "editable_pictures": [],
+        "videos": []
+      }
+    ],
+    "selection_photos": [
+      {
+        "key": "upload-efb95c114f072a8cab87fe2948a66aaca90ac8a2",
+        "creation_date": "2025-07-15T12:17:12.819Z",
+        "height_px": 1476,
+        "width_px": 1111,
+        "fotom_key": "efb95c114f072a8cab87fe2948a66aaca90ac8a2",
+        "provider": "upload",
+        "provider_ref": "efb95c114f072a8cab87fe2948a66aaca90ac8a2"
+      }
+    ],
+    "gallery_photos": [
+      {
+        "key": "upload-4a44ae400395c5d59b001bdcb06f51e336c1bc9c",
+        "creation_date": "2025-07-15T12:17:12.819Z",
+        "height_px": 1024,
+        "width_px": 836,
+        "fotom_key": "4a44ae400395c5d59b001bdcb06f51e336c1bc9c",
+        "provider": "upload",
+        "provider_ref": "4a44ae400395c5d59b001bdcb06f51e336c1bc9c"
+      }
+    ],
+    "print_quantities": [
+      { "page_key": "page-0", "quantity": 1 },
+      { "page_key": "6a8e4040-51c5-11f0-a50b-c3425a0d131d", "quantity": 1 }
+    ]
+  },
+  "response": {
+    "id": "f5313a64-51c4-11f0-bc08-f7e7351e6ac5",
+    "definition": {
+      "template_type": "print",
+      "definition_version": 15,
+      "locale": "en",
+      "pages": [
+        {
+          "key": "page-0",
+          "filter_type_key": "default",
+          "page_definition_key": "T3-CLASSIC",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [
+            {
+              "editable_picture_key": "picture1",
+              "selection_photo_key": "upload-efb95c114f072a8cab87fe2948a66aaca90ac8a2",
+              "filter_tag": "none",
+              "photo_placement": {
+                "is_default": true,
+                "placed_by": "none",
+                "rotation": 0,
+                "offset": {
+                  "x_dmm": 0,
+                  "y_dmm": -38
+                },
+                "size": {
+                  "height_dmm": 996,
+                  "width_dmm": 750
+                }
+              }
+            }
+          ],
+          "videos": []
+        },
+        {
+          "key": "6a8e4040-51c5-11f0-a50b-c3425a0d131d",
+          "filter_type_key": "default",
+          "page_definition_key": "T1-RETRO",
+          "color_key": "white",
+          "editable_texts": [],
+          "editable_pictures": [],
+          "videos": []
+        }
+      ],
+      "selection_photos": [
+        {
+          "key": "upload-efb95c114f072a8cab87fe2948a66aaca90ac8a2",
+          "creation_date": "2025-07-15T12:17:12.819Z",
+          "height_px": 1476,
+          "width_px": 1111,
+          "fotom_key": "efb95c114f072a8cab87fe2948a66aaca90ac8a2",
+          "provider": "upload",
+          "provider_ref": "efb95c114f072a8cab87fe2948a66aaca90ac8a2"
+        }
+      ],
+      "gallery_photos": [
+        {
+          "key": "upload-4a44ae400395c5d59b001bdcb06f51e336c1bc9c",
+          "creation_date": "2025-07-15T12:17:12.819Z",
+          "height_px": 1024,
+          "width_px": 836,
+          "fotom_key": "4a44ae400395c5d59b001bdcb06f51e336c1bc9c",
+          "provider": "upload",
+          "provider_ref": "4a44ae400395c5d59b001bdcb06f51e336c1bc9c"
+        }
+      ],
+      "print_quantities": [
+        {
+          "page_key": "page-0",
+          "quantity": 1
+        },
+        {
+          "page_key": "6a8e4040-51c5-11f0-a50b-c3425a0d131d",
+          "quantity": 1
+        }
+      ]
+    },
+    "definition_version": "15",
+    "status": "draft",
+    "template_revision_id": "b763cb1c-e88e-11ef-830c-37335fcca57f"
+  }
+}

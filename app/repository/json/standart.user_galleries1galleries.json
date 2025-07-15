@@ -1,0 +1,26 @@
+{
+  "_comments": "fotom.cheerz.com/api/v2/user_galleries?fotom_key=W1syNDYyMzgwODNdLCIyMDI1LTA3LTIyVDE0OjE4OjM0LjYyMSswMjowMCJd--edb999d622232c90108970898ee916aecefcb847&upload_origin=custo",
+  "response": [
+    {
+      "date": "2025-06-25",
+      "upload_outside_session": false,
+      "upload_origin": null,
+      "count": 12,
+      "cover": "e73862b888c49df1147ee3c17dfce97fcb4ad9a6"
+    },
+    {
+      "date": "2025-06-24",
+      "upload_outside_session": false,
+      "upload_origin": null,
+      "count": 1,
+      "cover": "090e6fd2c0420469163a529b7ca08df67bd1a8b1"
+    },
+    {
+      "date": "2025-06-23",
+      "upload_outside_session": false,
+      "upload_origin": null,
+      "count": 3,
+      "cover": "efb95c114f072a8cab87fe2948a66aaca90ac8a2"
+    }
+  ]
+}

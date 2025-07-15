@@ -1,18 +1,37 @@
 import type { PhotoLayout } from "~/repository/layouts";
 
+export interface ProjectDTO {
+  id: string;
+  title: string;
+  subtitle?: string;
+  image_url: string;
+  total: number;
+  status: "draft" | "completed" | "in_cart";
+  quantity: number;
+  can_be_reordered: boolean;
+  created_at: Date;
+  updated_at: Date;
+  product: {
+    slug: string;
+    price: number;
+  };
+}
+
 export interface Project {
   id: string;
-  userId: number; //чей проект
   title: string;
-  type: "photo" | "smsbook" | "poster";
-  format: string;
-  productId: number; //id продукта, соответствующего данному проекту
+  subtitle?: string;
+  image_url: string;
+  total: number;
   status: "draft" | "completed" | "in_cart";
+  quantity: number;
+  can_be_reordered: boolean;
   createdAt: Date;
   updatedAt: Date;
-  pages: ProjectPage[];
-  photos: UploadedPhoto[];
+  expiredAt: Date;
 }
+
+//Для /projects/ids
 
 export interface ProjectId {
   id: string;
@@ -24,6 +43,35 @@ export interface ProjectIdsDTO {
     cart_projects: ProjectId[];
     draft_projects: ProjectId[];
   };
+}
+
+//Для POST /projects создание нового проекта
+export interface CreateProjectDTO {
+  productSlug: string;
+}
+
+// Преобразование зачем-то сделал, пока не нужно
+export function projectFromDraftDTO(dto: DraftDTO): Project {
+  return {
+    id: dto.project.id,
+    title: dto.project.title,
+    subtitle: dto.project.subtitle,
+    image_url: dto.project.image_url,
+    total: dto.project.total,
+    status: dto.project.status,
+    quantity: dto.project.quantity,
+    can_be_reordered: dto.project.can_be_reordered,
+    createdAt: new Date(dto.project.created_at),
+    updatedAt: new Date(dto.project.updated_at),
+    expiredAt: new Date(dto.expired_at),
+  };
+}
+
+//_________________ Новые интерфейсы
+
+export interface DraftDTO {
+  expired_at: Date;
+  project: ProjectDTO;
 }
 
 //это либо 1 страница смсбука либо для фото плейсхолдер. На одну страницу/шаблон фото 1 шаблон и несколько фото
@@ -68,7 +116,7 @@ export interface UploadedPhoto {
 }
 
 // DTO - приходит с сервера
-export interface ProjectDTO {
+/* export interface ProjectDTO {
   id: string;
   user_id: number;
   title: string;
@@ -80,32 +128,9 @@ export interface ProjectDTO {
   photos: UploadedPhoto[];
   created_at: string;
   updated_at: string;
-}
-// DTO - уходит на сервер при создании
-export interface CreateProjectDTO {
-  title: string;
-  type: string;
-  format: string;
-  product_id: number;
-  pages_quantity: number;
-}
+} */
 
-// Преобразование
-export function fromDTO(dto: ProjectDTO): Project {
-  return {
-    id: dto.id,
-    userId: dto.user_id,
-    title: dto.title,
-    type: dto.type,
-    format: dto.format,
-    productId: dto.product_id,
-    status: dto.status,
-    pages: dto.pages,
-    photos: dto.photos,
-    createdAt: new Date(dto.created_at),
-    updatedAt: new Date(dto.updated_at),
-  };
-}
+// DTO - уходит на сервер при создании
 
 export function toDTO(project: Project): ProjectDTO {
   return {
@@ -126,14 +151,13 @@ export function toDTO(project: Project): ProjectDTO {
 // Репозиторий
 export function createProjectRepository(appFetch: typeof $fetch) {
   return {
-    // Получение всех проектов пользователя
-    async getAll(): Promise<Project[]> {
+    async drafts(): Promise<DraftDTO[]> {
       const guestId = useAuthStore().guestId;
-      const dtos = await appFetch<ProjectDTO[]>("/projects", {
+      const dtos = await appFetch<DraftDTO[]>("/projects/drafts", {
         method: "GET",
         headers: guestId ? { "x-guest-id": guestId } : undefined,
       });
-      return dtos.map(fromDTO);
+      return dtos; // возможно сделать потом map для исправления DraftDTO -> нормальный Draft
     },
 
     //Получение всех id проектов пользователя которые draft и in_cart
@@ -145,29 +169,24 @@ export function createProjectRepository(appFetch: typeof $fetch) {
       });
     },
 
+    // Создание проекта. Отправляем product_slug, ничего не получаем (на самом деле "message": "Project created")
+    async create(data: CreateProjectDTO): Promise<void> {
+      const guestId = useAuthStore().guestId;
+      const dto = await appFetch<void>("/projects", {
+        method: "POST",
+        headers: guestId ? { "x-guest-id": guestId } : undefined,
+        body: {
+          product_slug: data.productSlug,
+        },
+      });
+    },
+
     // Получение одного проекта
     async get(id: string): Promise<Project> {
       const guestId = useAuthStore().guestId;
       const dto = await appFetch<ProjectDTO>(`/projects/${id}`, {
         method: "GET",
         headers: guestId ? { "x-guest-id": guestId } : undefined,
-      });
-      return fromDTO(dto);
-    },
-
-    // Создание проекта
-    async create(data: CreateProjectDTO): Promise<Project> {
-      const guestId = useAuthStore().guestId;
-      const dto = await appFetch<ProjectDTO>("/projects", {
-        method: "POST",
-        headers: guestId ? { "x-guest-id": guestId } : undefined,
-        body: {
-          title: data.title,
-          type: data.type,
-          format: data.format,
-          product_id: data.product_id,
-          pages_quantity: data.pages_quantity,
-        },
       });
       return fromDTO(dto);
     },
