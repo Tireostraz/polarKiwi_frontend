@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from "@nuxt/ui";
 import type { Project } from "~/repository/projects";
-import type { Product } from "~/repository/products";
 
 const props = defineProps<{
   project: Project;
-  product: Product;
 }>();
 
 const isDropdownMenuOpen = ref(false);
@@ -28,7 +26,7 @@ const items: DropdownMenuItem[][] = [
       icon: "i-lucide-copy",
       key: "duplicate",
       onSelect: () => {
-        handleDuplicate();
+        //handleDuplicate();
       },
     },
     {
@@ -64,15 +62,15 @@ const handleRemove = () => {
   projects.removeProject(props.project.id);
 };
 
-const handleDuplicate = () => {
+/* const handleDuplicate = () => {
   projects.duplicateProject(props.project);
-};
+}; */
 
-const confirmRename = () => {
+/* const confirmRename = () => {
   projects.renameProject(localeTitle.value, props.project.id);
   localeTitle.value = "";
   isRenameModalOpen.value = false;
-};
+}; */
 </script>
 
 <template>
@@ -87,17 +85,17 @@ const confirmRename = () => {
       </UDropdownMenu>
     </div>
     <NuxtImg
-      :src="product?.thumbnail"
-      :alt="project.title"
+      :src="props.project.imageUrl"
+      :alt="props.project.title"
       class="project-image"
     />
     <div class="project-content">
       <h3 class="project-title">{{ props.project.title || "Без названия" }}</h3>
       <p class="project-description">
-        {{ product?.short_description || "Нет описания" }}
+        {{ props.project.subtitle || "Нет описания" }}
       </p>
       <div class="project-meta">
-        <span class="project-type"> {{ product?.price }}₽ за фото </span>
+        <span class="project-type"> {{ props.project.total }}₽ за фото </span>
       </div>
     </div>
   </div>
@@ -115,7 +113,9 @@ const confirmRename = () => {
           placeholder="Новое название"
         />
         <div class="flex justify-end gap-2">
-          <UButton color="success" @click="confirmRename">Сохранить</UButton>
+          <UButton color="success" @click="console.log('Rename clicked')"
+            >Сохранить</UButton
+          >
           <UButton color="neutral" @click="isRenameModalOpen = false"
             >Отмена</UButton
           >

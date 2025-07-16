@@ -96,97 +96,63 @@ export interface ProjectByIdDTO {
   }[];
 }
 
-//_________________ Новые интерфейсы
+export interface DraftsDTO {
+  response: {
+    drafts: DraftDTO[];
+  };
+}
 
 export interface DraftDTO {
   expired_at: Date;
   project: ProjectDTO;
 }
 
-//это либо 1 страница смсбука либо для фото плейсхолдер. На одну страницу/шаблон фото 1 шаблон и несколько фото
-export interface ProjectPage {
-  id: string;
-  layout: PhotoLayout | null; // здесь храним переопределённый layout. В данный момент тут PhotoLayout, нужно изменить чтобы был Layout для смсбуков также
-  elements: PhotoData[]; // заполненные placeholder'ы или пустые
-  textBlocks: TextElement[];
-}
-
-export interface PhotoData {
-  id: string; //уникальный id конкретной картинки
-  src: string; //картинка в виде base64
-  width: number;
-  height: number;
-  crop?: {
-    cropX: number;
-    cropY: number;
-    cropWidth: number;
-    cropHeight: number;
-  };
-  scale: number;
-  rotation: number;
-}
-
-interface TextElement {
-  id: string; // id текстового поля (из layout)
-  text: string;
-  fontSize?: number;
-  fontFamily?: string;
-  color?: string;
-  alignment?: "left" | "center" | "right";
-}
-
-export interface UploadedPhoto {
-  id: string;
-  url: string;
-  used: boolean;
-  uploadedAt: Date;
-  updatedAt: Date;
-  // Метаинформация, например, ориентация, EXIF и т.п.
-}
-
-// DTO - приходит с сервера
-/* export interface ProjectDTO {
-  id: string;
-  user_id: number;
-  title: string;
-  type: "photo" | "smsbook" | "poster";
-  format: string;
-  product_id: number;
-  status: "draft" | "completed" | "in_cart";
-  pages: ProjectPage[];
-  photos: UploadedPhoto[];
-  created_at: string;
-  updated_at: string;
-} */
-
-// DTO - уходит на сервер при создании
-
-/* export function toDTO(project: Project): ProjectDTO {
+function mapProduct(dto: ProductDTO): Product {
   return {
-    id: project.id,
-    user_id: project.userId,
-    title: project.title,
-    type: project.type,
-    format: project.format,
-    product_id: project.productId,
-    status: project.status,
-    pages: project.pages,
-    photos: project.photos,
-    created_at: project.createdAt.toISOString(),
-    updated_at: project.updatedAt.toISOString(),
+    slug: dto.slug,
+    price: dto.price,
+    isCustomizableOnWebMobile: dto.is_customizable_on_web_mobile,
+    bypassCustomization: dto.bypass_customization,
+    isOutOfStock: dto.is_out_of_stock,
+    isQuantityEditable: dto.is_quantity_editable,
   };
-} */
+}
+
+function mapProject(dto: ProjectDTO): Project {
+  return {
+    id: dto.id,
+    title: dto.title,
+    subtitle: dto.subtitle ?? null,
+    imageUrl: dto.image_url,
+    total: dto.total,
+    status: dto.status,
+    quantity: dto.quantity,
+    canBeReordered: dto.can_be_reordered,
+    createdAt: new Date(dto.created_at),
+    updatedAt: new Date(dto.updated_at),
+    product: mapProduct(dto.product),
+  };
+}
+
+//_________________ Новые интерфейсы
 
 // Репозиторий
 export function createProjectRepository(appFetch: typeof $fetch) {
   return {
-    async drafts(): Promise<DraftDTO[]> {
+    async drafts(): Promise<Project[]> {
       const guestId = useAuthStore().guestId;
-      const dtos = await appFetch<DraftDTO[]>("/projects/drafts", {
+      const dtosResponse = await appFetch<DraftsDTO>("/projects/drafts", {
         method: "GET",
         headers: guestId ? { "x-guest-id": guestId } : undefined,
       });
-      return dtos; // возможно сделать потом map для исправления DraftDTO -> нормальный Draft
+      const dtos = dtosResponse.response.drafts;
+      return dtos.map((dto) => {
+        const project = mapProject(dto.project);
+        return {
+          ...project,
+          expiredAt: new Date(dto.expired_at),
+        };
+      }); // возможно сделать потом map для исправления DraftDTO -> нормальный Draft
     },
 
     //Получение всех id проектов пользователя которые draft и in_cart
@@ -221,7 +187,7 @@ export function createProjectRepository(appFetch: typeof $fetch) {
     },
 
     // Обновление проекта
-    async update(
+    /* async update(
       id: string,
       data: Omit<Project, "id" | "createdAt" | "updatedAt" | "userId">
     ): Promise<Project> {
@@ -240,9 +206,9 @@ export function createProjectRepository(appFetch: typeof $fetch) {
         },
       });
       return fromDTO(dto);
-    },
+    }, */
 
-    async clone(projectId: string): Promise<Project> {
+    /* async clone(projectId: string): Promise<Project> {
       const guestId = useAuthStore().guestId;
       const dto = await appFetch<ProjectDTO>(
         `/projects/${projectId}/duplicate`,
@@ -252,7 +218,7 @@ export function createProjectRepository(appFetch: typeof $fetch) {
         }
       );
       return fromDTO(dto);
-    },
+    }, */
 
     // Удаление проекта
     async remove(id: string): Promise<void> {

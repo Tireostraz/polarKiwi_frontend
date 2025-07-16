@@ -1,42 +1,13 @@
 <script setup lang="ts">
-import type { Product } from "~/repository/products";
+import type { Project } from "~/repository/projects";
 const { $api } = useNuxtApp();
-const projects = useProjectsStore();
-const authStore = useAuthStore();
 const router = useRouter();
 
-// Используем ref для управления состоянием загрузки
-const isHydrated = computed(() => authStore.isHydrated);
-const isLoading = ref(true);
-
-// Инициализируем данные
-const productsData = ref<Product[]>([]);
-
-// Функция загрузки данных
-const loadData = async () => {
-  try {
-    isLoading.value = true;
-    await projects.loadProjects();
-
-    const productIds = [
-      ...new Set(projects.addedProjects.map((p) => p.productId)),
-    ];
-
-    if (productIds.length > 0) {
-      productsData.value = await $api.products.byIds(productIds);
-    }
-  } catch (error) {
-  } finally {
-    isLoading.value = false;
-  }
-};
-
-// Загружаем данные при монтировании
-onMounted(async () => {
-  await loadData();
-});
-
-const products = computed(() => productsData.value || []);
+const { data, status } = await useAsyncData<Project[]>(
+  "projects",
+  () => $api.projects.drafts(),
+  { server: false }
+);
 
 const goToCreate = () => {
   router.push("/products");
@@ -52,19 +23,18 @@ const goToCreate = () => {
         <p class="add-text">Добавить новый проект</p>
       </div>
       <!-- Пока данные грузятся, показываем заглушки -->
-      <template v-if="!isHydrated || isLoading">
+      <template v-if="status !== 'success'">
         <ProjectSkeleton v-for="i in 3" :key="'skeleton-' + i" />
       </template>
 
       <!-- После загрузки — рендерим проекты -->
       <template v-else>
         <ProjectCard
-          v-for="project in projects.addedProjects"
+          v-for="project in data"
           :key="project.id"
           :project="project"
-          :product="products.find((p) => p.id === project.productId)!"
         />
-        <p v-if="projects.totalProjects === 0" class="empty-text">
+        <p v-if="data?.length === 0" class="empty-text">
           У вас пока нет проектов.
         </p>
       </template>

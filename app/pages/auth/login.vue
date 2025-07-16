@@ -44,6 +44,7 @@ const registerState = reactive<Partial<RegisterData>>({});
 async function handleLogin(e: FormSubmitEvent<LoginData>) {
   try {
     await auth.login(e.data);
+    await initApp();
     router.push({ path: "/" });
   } catch (e) {
     console.error(e, "Ошибка входа");

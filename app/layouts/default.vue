@@ -20,9 +20,10 @@ function toggleModal() {
   router.push({ path: "/auth/login" });
 }
 
-function handleLogout() {
-  auth.logout();
-  console.log("Logout");
+async function handleLogout() {
+  await auth.logout();
+  await initApp();
+  router.push({ path: "/" });
 }
 </script>
 

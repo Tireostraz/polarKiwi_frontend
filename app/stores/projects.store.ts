@@ -1,9 +1,5 @@
 import { defineStore } from "pinia";
-import type {
-  CreateProjectDTO,
-  Project,
-  ProjectId,
-} from "~/repository/projects";
+import type { Project, ProjectId } from "~/repository/projects";
 import type { Product } from "~/repository/products";
 
 export const useProjectsStore = defineStore(
@@ -25,19 +21,7 @@ export const useProjectsStore = defineStore(
     const { $toast, $api } = useNuxtApp();
     const authStore = useAuthStore();
 
-    const loadProjects = async () => {
-      try {
-        const projects = await $api.projects.getAll();
-        addedProjects.value = projects;
-      } catch (e) {
-        console.error("Ошибка загрузки проектов", e);
-        $toast.base.add({
-          title: "Не удалось загрузить проекты",
-          color: "warning",
-        });
-      }
-    };
-
+    //Получаем id всех проектов которые добавлены (для числа проектов и в корзине) используем в init-app.ts
     const getProjectsIds = async () => {
       try {
         const projectIds = await $api.projects.getIds();
@@ -45,6 +29,17 @@ export const useProjectsStore = defineStore(
         draftProjects.value = projectIds.response.draft_projects;
       } catch (e) {
         console.error("Ошибка загрузки идентификаторов проектов", e);
+      }
+    };
+
+    //Получаем все проекты в работе (черновики), для страницы Мои проекты
+
+    const getDrafts = async () => {
+      try {
+        const drafts = await $api.projects.drafts();
+        console.log(drafts);
+      } catch (e) {
+        console.error("Ошибка загрузки drafts", e);
       }
     };
 
@@ -80,7 +75,7 @@ export const useProjectsStore = defineStore(
       );
     };
 
-    const updateProject = async (project: Project) => {
+    /* const updateProject = async (project: Project) => {
       try {
         const updated = await $api.projects.update(project.id, {
           title: project.title,
@@ -101,9 +96,9 @@ export const useProjectsStore = defineStore(
         console.error("Ошибка обновления проекта:", e);
         //$toast.error("Не удалось сохранить проект");
       }
-    };
+    }; */
 
-    const duplicateProject = async (project: Project) => {
+    /* const duplicateProject = async (project: Project) => {
       try {
         const clonedProject = await $api.projects.clone(project.id);
         const duplicated = clonedProject;
@@ -113,9 +108,9 @@ export const useProjectsStore = defineStore(
         console.error("Ошибка дублирования:", e);
         //$toast.error("Не удалось продублировать проект");
       }
-    };
+    }; */
 
-    const renameProject = async (newTitle: string, id: string) => {
+    /* const renameProject = async (newTitle: string, id: string) => {
       const project = addedProjects.value.find((p) => p.id === id);
       if (!project) return;
 
@@ -123,7 +118,7 @@ export const useProjectsStore = defineStore(
       project.updatedAt = new Date();
 
       await updateProject(project);
-    };
+    }; */
 
     return {
       addedProjects,
@@ -132,13 +127,10 @@ export const useProjectsStore = defineStore(
       totalDraftProjects,
       totalCartProjects,
       totalProjects,
-      loadProjects,
       getProjectsIds,
+      getDrafts,
       addProject,
       removeProject,
-      updateProject,
-      duplicateProject,
-      renameProject,
     };
   },
   {
