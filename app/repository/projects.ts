@@ -1,5 +1,23 @@
 import type { PhotoLayout } from "~/repository/layouts";
 
+interface ProductDTO {
+  slug: string;
+  price?: number;
+  is_customizable_on_web_mobile?: boolean;
+  bypass_customization?: boolean;
+  is_out_of_stock?: boolean;
+  is_quantity_editable?: boolean;
+}
+
+interface Product {
+  slug: string;
+  price?: number;
+  isCustomizableOnWebMobile?: boolean;
+  bypassCustomization?: boolean;
+  isOutOfStock?: boolean;
+  isQuantityEditable?: boolean;
+}
+
 export interface ProjectDTO {
   id: string;
   title: string;
@@ -11,24 +29,22 @@ export interface ProjectDTO {
   can_be_reordered: boolean;
   created_at: Date;
   updated_at: Date;
-  product: {
-    slug: string;
-    price: number;
-  };
+  product: ProductDTO;
 }
 
 export interface Project {
   id: string;
   title: string;
-  subtitle?: string;
-  image_url: string;
+  subtitle: string | null;
+  imageUrl: string;
   total: number;
   status: "draft" | "completed" | "in_cart";
   quantity: number;
-  can_be_reordered: boolean;
+  canBeReordered: boolean;
+  product: Product;
   createdAt: Date;
   updatedAt: Date;
-  expiredAt: Date;
+  expiredAt?: Date;
 }
 
 //Для /projects/ids
@@ -50,21 +66,34 @@ export interface CreateProjectDTO {
   productSlug: string;
 }
 
-// Преобразование зачем-то сделал, пока не нужно
-export function projectFromDraftDTO(dto: DraftDTO): Project {
-  return {
-    id: dto.project.id,
-    title: dto.project.title,
-    subtitle: dto.project.subtitle,
-    image_url: dto.project.image_url,
-    total: dto.project.total,
-    status: dto.project.status,
-    quantity: dto.project.quantity,
-    can_be_reordered: dto.project.can_be_reordered,
-    createdAt: new Date(dto.project.created_at),
-    updatedAt: new Date(dto.project.updated_at),
-    expiredAt: new Date(dto.expired_at),
-  };
+//Для GET /projects/{{projectId}} (projectById)
+export interface ConfigProjectDTO {
+  min_page_count: number;
+  max_page_count: any;
+  page_increment_step: number;
+  page_increment_price: number;
+  display_title: string;
+  display_format: string;
+  display_page_name_singular: string;
+  display_page_name_plural: string;
+  min_column_count: any;
+  max_column_count: any;
+  is_zoom_out_enabled: boolean;
+  should_start_with_gallery: boolean;
+  dpi_thresholds: DpiThresholds;
+}
+
+export interface DpiThresholds {
+  optimal: number;
+  acceptable: number;
+}
+
+export interface ProjectByIdDTO {
+  response: {
+    project: ProjectDTO;
+    config: ConfigProjectDTO;
+    addons: any[];
+  }[];
 }
 
 //_________________ Новые интерфейсы
@@ -132,7 +161,7 @@ export interface UploadedPhoto {
 
 // DTO - уходит на сервер при создании
 
-export function toDTO(project: Project): ProjectDTO {
+/* export function toDTO(project: Project): ProjectDTO {
   return {
     id: project.id,
     user_id: project.userId,
@@ -146,7 +175,7 @@ export function toDTO(project: Project): ProjectDTO {
     created_at: project.createdAt.toISOString(),
     updated_at: project.updatedAt.toISOString(),
   };
-}
+} */
 
 // Репозиторий
 export function createProjectRepository(appFetch: typeof $fetch) {
@@ -182,13 +211,13 @@ export function createProjectRepository(appFetch: typeof $fetch) {
     },
 
     // Получение одного проекта
-    async get(id: string): Promise<Project> {
+    async getById(id: string): Promise<ProjectByIdDTO> {
       const guestId = useAuthStore().guestId;
-      const dto = await appFetch<ProjectDTO>(`/projects/${id}`, {
+      const dto = await appFetch<ProjectByIdDTO>(`/projects/${id}`, {
         method: "GET",
         headers: guestId ? { "x-guest-id": guestId } : undefined,
       });
-      return fromDTO(dto);
+      return dto;
     },
 
     // Обновление проекта
