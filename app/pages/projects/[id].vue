@@ -80,7 +80,11 @@ function showInfo() {
           </div>
 
           <div class="workspace-container">
-            <EditorPlaceholder v-for="page in content?.definition.pages" />
+            <EditorPlaceholder
+              v-for="page in content?.definition.pages"
+              :page="page"
+              :page-difinition="template?.definition.pageDefinitions"
+            />
           </div>
         </div>
       </div>

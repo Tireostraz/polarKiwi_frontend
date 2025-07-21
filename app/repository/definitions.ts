@@ -571,6 +571,7 @@ export function createDefinitionsRepository(appFetch: typeof $fetch) {
 
       return mapTemplateDTO(dto);
     },
+
     async getContent(projectId: string): Promise<Content> {
       const guestId = useAuthStore().guestId;
       const dto = await appFetch<ContentDTO>(`/editor/${projectId}/content`, {
