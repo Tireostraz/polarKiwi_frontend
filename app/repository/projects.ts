@@ -93,7 +93,23 @@ export interface ProjectByIdDTO {
     project: ProjectDTO;
     config: ConfigProjectDTO;
     addons: any[];
-  }[];
+  };
+}
+
+export interface configProject {
+  minPageCount: number;
+  maxPageCount: any;
+  pageIncrementStep: number;
+  pageIncrementPrice: number;
+  displayTitle: string;
+  displayFormat: string;
+  displayPageNameSingular: string;
+  displayPageNamePlural: string;
+  minColumnCount: any;
+  maxColumnCount: any;
+  isZoomOutEnabled: boolean;
+  shouldStartWithGallery: boolean;
+  dpiThresholds: DpiThresholds;
 }
 
 export interface DraftsDTO {
@@ -128,9 +144,27 @@ function mapProject(dto: ProjectDTO): Project {
     status: dto.status,
     quantity: dto.quantity,
     canBeReordered: dto.can_be_reordered,
+    product: mapProduct(dto.product),
     createdAt: new Date(dto.created_at),
     updatedAt: new Date(dto.updated_at),
-    product: mapProduct(dto.product),
+  };
+}
+
+function mapConfig(dto: ConfigProjectDTO): configProject {
+  return {
+    minPageCount: dto.min_page_count,
+    maxPageCount: dto.max_page_count,
+    pageIncrementStep: dto.page_increment_step,
+    pageIncrementPrice: dto.page_increment_price,
+    displayTitle: dto.display_title,
+    displayFormat: dto.display_format,
+    displayPageNameSingular: dto.display_page_name_singular,
+    displayPageNamePlural: dto.display_page_name_plural,
+    minColumnCount: dto.min_column_count,
+    maxColumnCount: dto.max_column_count,
+    isZoomOutEnabled: dto.is_zoom_out_enabled,
+    shouldStartWithGallery: dto.should_start_with_gallery,
+    dpiThresholds: dto.dpi_thresholds,
   };
 }
 
@@ -177,13 +211,19 @@ export function createProjectRepository(appFetch: typeof $fetch) {
     },
 
     // Получение одного проекта
-    async getById(id: string): Promise<ProjectByIdDTO> {
+    async getById(
+      id: string
+    ): Promise<{ project: Project; config: configProject; addons: any[] }> {
       const guestId = useAuthStore().guestId;
       const dto = await appFetch<ProjectByIdDTO>(`/projects/${id}`, {
         method: "GET",
         headers: guestId ? { "x-guest-id": guestId } : undefined,
       });
-      return dto;
+      return {
+        project: mapProject(dto.response.project),
+        config: mapConfig(dto.response.config),
+        addons: dto.response.addons,
+      };
     },
 
     // Обновление проекта

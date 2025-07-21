@@ -8,11 +8,13 @@ const projectId = computed(() => route.params.id as string);
 let isProcessingQueue = false;
 const DPI = 300;
 
-const { data, status } = await useAsyncData(
+const { data: project } = await useAsyncData(
   "project",
   () => $api.projects.getById(projectId.value),
   { server: false }
 );
+
+const templateId = computed(() => project.value?.response);
 
 /* onMounted(() => {
   window.addEventListener("beforeunload", updateProjectBeforeExit);
