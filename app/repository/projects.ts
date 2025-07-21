@@ -1,5 +1,3 @@
-import type { PhotoLayout } from "~/repository/layouts";
-
 interface ProductDTO {
   slug: string;
   price?: number;
@@ -9,6 +7,7 @@ interface ProductDTO {
   is_quantity_editable?: boolean;
 }
 
+//Пока тут, далее взять из products репозитория
 interface Product {
   slug: string;
   price?: number;
@@ -168,9 +167,6 @@ function mapConfig(dto: ConfigProjectDTO): configProject {
   };
 }
 
-//_________________ Новые интерфейсы
-
-// Репозиторий
 export function createProjectRepository(appFetch: typeof $fetch) {
   return {
     async drafts(): Promise<Project[]> {
@@ -210,12 +206,12 @@ export function createProjectRepository(appFetch: typeof $fetch) {
       });
     },
 
-    // Получение одного проекта
+    // Получение одного проекта, конфига, аддонов
     async getById(
-      id: string
+      projectId: string
     ): Promise<{ project: Project; config: configProject; addons: any[] }> {
       const guestId = useAuthStore().guestId;
-      const dto = await appFetch<ProjectByIdDTO>(`/projects/${id}`, {
+      const dto = await appFetch<ProjectByIdDTO>(`/projects/${projectId}`, {
         method: "GET",
         headers: guestId ? { "x-guest-id": guestId } : undefined,
       });
@@ -225,28 +221,6 @@ export function createProjectRepository(appFetch: typeof $fetch) {
         addons: dto.response.addons,
       };
     },
-
-    // Обновление проекта
-    /* async update(
-      id: string,
-      data: Omit<Project, "id" | "createdAt" | "updatedAt" | "userId">
-    ): Promise<Project> {
-      const guestId = useAuthStore().guestId;
-      const dto = await appFetch<ProjectDTO>(`/projects/${id}`, {
-        method: "PUT",
-        headers: guestId ? { "x-guest-id": guestId } : undefined,
-        body: {
-          title: data.title,
-          type: data.type,
-          format: data.format,
-          product_id: data.productId,
-          status: data.status,
-          pages: data.pages,
-          photos: data.photos,
-        },
-      });
-      return fromDTO(dto);
-    }, */
 
     /* async clone(projectId: string): Promise<Project> {
       const guestId = useAuthStore().guestId;

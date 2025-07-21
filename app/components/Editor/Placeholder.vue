@@ -1,5 +1,10 @@
 <script setup lang="ts">
-defineProps<{}>();
+import type { Page, PageDefinition } from "~/repository/definitions";
+
+defineProps<{
+  page: Page;
+  pageDifinition: PageDefinition;
+}>();
 </script>
 <template>
   <div>

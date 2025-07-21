@@ -3,18 +3,35 @@ definePageMeta({ layout: false });
 
 const route = useRoute();
 const { $api } = useNuxtApp();
+const definitionsStore = useDefinitionStore();
 
 const projectId = computed(() => route.params.id as string);
-let isProcessingQueue = false;
-const DPI = 300;
 
 const { data: project } = await useAsyncData(
-  "project",
-  () => $api.projects.getById(projectId.value),
+  `project-${projectId.value}`,
+  async () => {
+    try {
+      const result = await $api.projects.getById(projectId.value);
+      return result;
+    } catch (err) {
+      console.error("❌ Error in getById", err);
+      return null;
+    }
+  },
   { server: false }
 );
 
-const templateId = computed(() => project.value?.response);
+const { data: template } = await useAsyncData(
+  `template-${projectId.value}`,
+  () => $api.definitions.getTemplate(projectId.value),
+  { server: false }
+);
+
+const { data: content } = await useAsyncData(
+  `content-${projectId.value}`,
+  () => $api.definitions.getContent(projectId.value),
+  { server: false }
+);
 
 /* onMounted(() => {
   window.addEventListener("beforeunload", updateProjectBeforeExit);
@@ -23,7 +40,6 @@ onUnmounted(() => {
   window.removeEventListener("beforeunload", updateProjectBeforeExit);
 }); */
 
-const isDraggingFromGallery = ref(false);
 const isAutoPlacing = ref(true);
 
 //Логика для сохранения проекта при обновлении/закрытии вкладки
@@ -37,66 +53,11 @@ const isAutoPlacing = ref(true);
   }
 } */
 
-const cropImageToPlaceholder = (
-  image: HTMLImageElement,
-  size: { width: number; height: number }
-) => {
-  const aspectRatio = size.width / size.height;
-  const imageRatio = image.width / image.height;
-
-  let newWidth;
-  let newHeight;
-
-  if (aspectRatio >= imageRatio) {
-    newWidth = image.width;
-    newHeight = image.width / aspectRatio;
-  } else {
-    newWidth = image.height * aspectRatio;
-    newHeight = image.height;
-  }
-  const x = (image.width - newWidth) / 2;
-  const y = (image.height - newHeight) / 2;
-
-  return {
-    cropX: x,
-    cropY: y,
-    cropWidth: newWidth,
-    cropHeight: newHeight,
-  };
-};
-
-// Для модалки
-const isModalOpen = ref(false);
-const selectedPlaceholder = ref<number | null>(null); //индекс выбранного placeholder - emit
-
-/* function handleOpenModal(index: number) {
-  const projectValue = project.value;
-  const page = projectValue?.pages[index];
-  if (page?.elements.length) {
-    selectedPlaceholder.value = index;
-    isModalOpen.value = true;
-  }
-} */
-
-/* function increasePhotos() {
-  const projectValue = project.value;
-  if (!projectValue) return;
-
-  projectValue.pages.push({
-    id: crypto.randomUUID(),
-    layout: structuredClone(toRaw(layout.value!)),
-    elements: [],
-    textBlocks: [],
-  });
-} */
-/* function decreasePhotos() {
-  const projectValue = project.value;
-  if (!projectValue) return;
-
-  if (projectValue.pages.length > (layout.value?.quantity || 1)) {
-    projectValue.pages.pop();
-  }
-} */
+function showInfo() {
+  console.log("✅ Project:", project.value);
+  console.log("✅ Template:", template.value);
+  console.log("✅ Content:", content.value);
+}
 </script>
 
 <template>
@@ -106,36 +67,23 @@ const selectedPlaceholder = ref<number | null>(null); //индекс выбра�
         <div class="workspace-info">
           <div>Проект: {{}}</div>
           <input type="checkbox" v-model="isAutoPlacing" />
-          <label>Изображений: </label>
-          <!-- <input
-            type="number"
-            :max="200"
-            :min="layout?.quantity"
-            @input="validateInput"
-          /> -->
+          <label>Изображений:</label>
+
           <UButton color="info" @click="console.log('save project')"
             >Сохранить проект</UButton
           >
+          <UButton color="info" @click="showInfo">Инфо</UButton>
         </div>
         <div class="flex-row-container">
           <div class="editor-panel">
-            <EditorPanel :project-id="id" />
+            <EditorPanel :project-id="projectId" />
           </div>
 
           <div class="workspace-container">
-            <EditorPlaceholder v-for="page in project?.pages" />
+            <EditorPlaceholder v-for="page in content?.definition.pages" />
           </div>
         </div>
       </div>
-      <!-- <EditorModal
-        v-if="isModalOpen && selectedPlaceholder !== null"
-        :photo="project?.pages[selectedPlaceholder]?.elements[0]!"
-        :layout="project?.pages[selectedPlaceholder]?.layout!"
-        :index="selectedPlaceholder"
-        @save="handleSaveEditedImage"
-        @delete="handleDeleteImage"
-        @close="isModalOpen = false"
-      /> -->
     </client-only>
   </div>
 </template>

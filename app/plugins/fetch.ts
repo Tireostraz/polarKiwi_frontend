@@ -3,6 +3,7 @@ import { createLayoutsRepository } from "~/repository/layouts";
 import { createProductRepository } from "~/repository/products";
 import { createUploaderRepository } from "~/repository/uploader";
 import { createProjectRepository } from "~/repository/projects";
+import { createDefinitionsRepository } from "~/repository/definitions";
 
 import type { FetchOptions, $Fetch } from "ofetch";
 
@@ -58,6 +59,7 @@ export default defineNuxtPlugin({
       layouts: createLayoutsRepository(appFetch),
       uploader: createUploaderRepository(appFetch),
       projects: createProjectRepository(appFetch),
+      definitions: createDefinitionsRepository(appFetch),
     };
     return {
       provide: {
