@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { Page, PageDefinition } from "~/repository/definitions";
 
-defineProps<{
+const props = defineProps<{
   page: Page;
-  pageDifinition: PageDefinition;
+  pageDefinition?: PageDefinition;
 }>();
 </script>
 <template>

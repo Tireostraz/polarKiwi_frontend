@@ -83,7 +83,12 @@ function showInfo() {
             <EditorPlaceholder
               v-for="page in content?.definition.pages"
               :page="page"
-              :page-difinition="template?.definition.pageDefinitions"
+              :page-definition="
+                template?.definition.pageDefinitions.find(
+                  (pageDefinition) =>
+                    pageDefinition.key === page.pageDefinitionKey
+                )
+              "
             />
           </div>
         </div>
@@ -134,6 +139,7 @@ function showInfo() {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
   gap: 28px;
   padding: 40px 50px;
   overflow-y: auto;
